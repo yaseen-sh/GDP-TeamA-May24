@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: f5d47fc8254d830479657ebb63499b3d
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelectPvP.unity
+    guid: a5ac79c1431bf5949bfaa33e4f94a9b8
   m_configObjects: {}

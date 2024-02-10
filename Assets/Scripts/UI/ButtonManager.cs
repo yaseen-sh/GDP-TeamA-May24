@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// This Script Contains a basic button Manager that loads different scenes by their name.
+// When Player clicks on the button it will go to the corresponding scene.
+
 public class ButtonManager : MonoBehaviour
 {
     public void TitleScreen()
@@ -13,9 +16,9 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("MapSelect");
     }
-    public void CharacterSelect()
+    public void CharacterSelectPvP()
     {
-        SceneManager.LoadScene("CharacterSelect");
+        SceneManager.LoadScene("CharacterSelectPvP");
     }
     public void FightScene()
     {
@@ -24,5 +27,29 @@ public class ButtonManager : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene("Credits");
+    }
+
+    // ------------------------------------------------------
+    // Character Select Buttons
+
+    public void SelectMeldin()
+    {
+
+    }
+    public void SelectGreg()
+    {
+
+    }
+    public void SelectMikhail()
+    {
+
+    }
+    public void SelectBranson()
+    {
+
+    }
+    public void SelectBill()
+    {
+
     }
 }
