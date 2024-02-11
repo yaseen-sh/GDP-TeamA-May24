@@ -43,10 +43,6 @@ public class CharacterController : MonoBehaviour
         float currentMeter = minMeter;
         return currentMeter;
     }
-    CharacterAttack attack()
-    {
-
-    }
     bool FacingRight()//if character is facing right, normal controls, else invert left right
     {
         return true; 
