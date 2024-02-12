@@ -45,6 +45,11 @@ public class CharacterAttack : MonoBehaviour
     {
         return 0;
     }
+    float attack()
+    {
+        int damageDealt;
+        return 0;
+    }
     string AttackProperty()
     {
         return "";
