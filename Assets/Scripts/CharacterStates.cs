@@ -10,11 +10,13 @@ public class CharacterStates : MonoBehaviour
     [SerializeField] List<KeyCode> Keys = new List<KeyCode>();
     [SerializeField] Text controlsTestText; // used for printing out buttons pressed
     
-    MovesManager movesManager;
+    //MovesManager movesManager;
     void Awake()
     {
+        /*
     if (movesManager == null)
         movesManager = FindObjectOfType<MovesManager>();
+        */
     }
     CharacterStates() { }
     // Update is called once per frame
@@ -46,8 +48,8 @@ public class CharacterStates : MonoBehaviour
             {
                 Keys.Add(kcode); //Add the Key to the List
 
-                if (!movesManager.CanMove(Keys)) //if there is no avilable Moves reset the list
-                    StopAllCoroutines();
+               // if (!movesManager.CanMove(Keys)) //if there is no avilable Moves reset the list
+                   // StopAllCoroutines();
 
                 StartCoroutine(ComboResetTime()); //Start the Reseting process
             }
@@ -55,9 +57,9 @@ public class CharacterStates : MonoBehaviour
     }
     IEnumerator ComboResetTime()// amount of time to reset combo
     {
-        yield return new WaitForSeconds(ComboResetTime);
+        yield return new WaitForSeconds(1);
 
-        movesManager.PlayMove(Keys); //Run the move from the list
+        //movesManager.PlayMove(Keys); //Run the move from the list
         Keys.Clear(); //Empty the list
     }
 

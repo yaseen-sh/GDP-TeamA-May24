@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CharacterController : MonoBehaviour
 {
-    public CharacterAttack attack;
+   // public CharacterAttack attack;
+    public GameObject playerHurtBox;
+    public TMP_Text healthText;
+    public TMP_Text superMeterText;
+    const float maxHealth = 1000;//should be reset to 1000 after end of round
+    public float currentHealth = maxHealth;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +26,19 @@ public class CharacterController : MonoBehaviour
         Time.fixedDeltaTime = 1 / 60;
         PlayerHealth();
         SuperMeter();
-
     }
+    
     float PlayerHealth() // playerHealth
     {
-        const float maxHealth = 1000;//should be reset to 1000 after end of round
-        float currentHealth = maxHealth;
+        healthText.text = "Health: " + currentHealth.ToString();
         return currentHealth;
     }
+
     float SuperMeter() // meter used for special moves
     {
         const float minMeter = 0;//after each match the minMeter should be reset to 0
         float currentMeter = minMeter;
+        superMeterText.text = "Super: " +  currentMeter.ToString();
         return currentMeter;
     }
     float MovementSpeed()// variable movement speed
