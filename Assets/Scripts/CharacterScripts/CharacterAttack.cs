@@ -12,7 +12,7 @@ public class CharacterAttack : MonoBehaviour
     public bool isBlocking;
     public GameObject hitboxPrefab;
     public Transform hitBoxSpawnLocation;// where the hit box spawns
-    public float hitboxDuration = 0f;
+    public float hitboxDuration = 10f;
 
     private int frameCount = 0; // counts duration of current attack
     private GameObject currentHitBox;
@@ -45,7 +45,7 @@ public class CharacterAttack : MonoBehaviour
         if (currentHitBox != null)
         {
             frameCount++;
-
+            
             if (frameCount > hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count
             {
                 DestroyHitbox(currentHitBox);
@@ -63,7 +63,7 @@ public class CharacterAttack : MonoBehaviour
         if (context.performed && currentHitBox == null)
         {
             frameCount = 0; // Reset frame count
-
+            
             SpawnHitbox();
             Debug.Log("light punch");
         }
@@ -100,12 +100,12 @@ public class CharacterAttack : MonoBehaviour
     void SpawnHitbox()
     {
         Debug.Log("HitBoxSpawned");
-        Vector3 newPosition = hitBoxSpawnLocation.position + new Vector3(1f,1f,0);
+        Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(1f,1f); //Tweak HitBox Locations based on Attack type
+        //Tweak size of prefab based off of attack
         currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity,transform);
-        hitBoxRenderer.enabled = true;
         currentHitBox.SetActive(true);
+        hitBoxRenderer.enabled = true;
         //CheckHit(); checks if hitbox triggers hurt box and applies damage.
-       
     }
 
     void DestroyHitbox(GameObject hb)
