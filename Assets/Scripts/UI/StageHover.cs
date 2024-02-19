@@ -43,7 +43,10 @@ public class ImageHover : MonoBehaviour
 
         if (!hovered)
         {
-            defaultText = MainText.text;
+            MainText.text = defaultText;
+            Background1.text = MainText.text;
+            Background2.text = MainText.text;
+            //defaultText = MainText.text;
             buttonImage.sprite = defaultImage;
         }
     }
