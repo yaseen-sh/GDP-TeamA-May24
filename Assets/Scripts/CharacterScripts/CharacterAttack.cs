@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+/* 
+ *  all your attacks neatly organized in an object and use several combinations of Hitboxes for any of them.
+ *  To do that you would need a script that strictly delegates 
+ *  OnTriggerEnter calls to your active attack or something along those lines.
+*/
 
 public class CharacterAttack : MonoBehaviour
 {
@@ -31,7 +36,7 @@ public class CharacterAttack : MonoBehaviour
     void InitializeHitBox()
     {
         //hitBoxRenderer
-        // Find hitbox renderer
+        /* Find hitbox renderer
         if (hitBoxRenderer == null)
             Debug.LogError("Hitbox renderer not found!");
 
@@ -39,6 +44,7 @@ public class CharacterAttack : MonoBehaviour
         currentHitBox = hitBoxRenderer.gameObject;
         if (currentHitBox == null)
             Debug.LogError("Current hitbox not found!");
+        */
     }
     void FixedUpdate()
     {
@@ -104,7 +110,7 @@ public class CharacterAttack : MonoBehaviour
         //Tweak size of prefab based off of attack
         currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity,transform);
         currentHitBox.SetActive(true);
-        hitBoxRenderer.enabled = true;
+        //hitBoxRenderer.enabled = true;
         //CheckHit(); checks if hitbox triggers hurt box and applies damage.
     }
 
