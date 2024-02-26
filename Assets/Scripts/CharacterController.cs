@@ -39,7 +39,7 @@ public class CharacterController : MonoBehaviour
     {
         // Sets the fixed delta time to 60fps.
         Time.fixedDeltaTime = 1 / 60;
-        PlayerHealth();
+        setPlayerHealth();
         SuperMeter();
         MyCollisions();
     }
@@ -70,12 +70,12 @@ public class CharacterController : MonoBehaviour
         if (m_Started)
             //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
             Gizmos.DrawCube(Vector2.zero, new Vector2(boxSize.x * 1.25f, boxSize.y * 2.2f));//CHANGE VALUES FOR SPRITES
+        
     }
 
-    float PlayerHealth() // playerHealth
+    public void setPlayerHealth() // playerHealth
     {
         healthText.text = "Health: " + currentHealth.ToString();
-        return currentHealth;
     }
 
     float SuperMeter() // meter used for special moves

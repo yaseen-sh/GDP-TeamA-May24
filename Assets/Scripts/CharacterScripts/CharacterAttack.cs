@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 /* 
@@ -8,20 +9,25 @@ using UnityEngine.InputSystem;
  *  To do that you would need a script that strictly delegates 
  *  OnTriggerEnter calls to your active attack or something along those lines.
 */
-
 public class CharacterAttack : MonoBehaviour
 {
     // Update is called once per frame
     public Rigidbody2D character;
     public LayerMask groundLayer; //ground layer so we know if we're above ground
     public bool isBlocking;
-    public GameObject hitboxPrefab;
-    public Transform hitBoxSpawnLocation;// where the hit box spawns
-    public float hitboxDuration = 10f;
-
+    public string actionName = "Action";// action names
+    public int damage = 100;// amount of damage a attack does. for now 100
+    
     private int frameCount = 0; // counts duration of current attack
     private GameObject currentHitBox;
-    private SpriteRenderer hitBoxRenderer;
+    //private SpriteRenderer hitBoxRenderer;
+    
+    protected Animator animator;
+    protected bool shouldCombo;// if attack would combo into another
+    protected int attackIndex;// the attack number in a combo string
+
+    public Hitbox hitbox;
+    public CharacterController controller;
     
     private void Awake()
     {
@@ -35,8 +41,11 @@ public class CharacterAttack : MonoBehaviour
     }
     void InitializeHitBox()
     {
+        
         //hitBoxRenderer
-        /* Find hitbox renderer
+        //Find hitbox renderer
+        /*
+        hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
             Debug.LogError("Hitbox renderer not found!");
 
@@ -45,33 +54,46 @@ public class CharacterAttack : MonoBehaviour
         if (currentHitBox == null)
             Debug.LogError("Current hitbox not found!");
         */
+       
     }
     void FixedUpdate()
     {
         if (currentHitBox != null)
         {
             frameCount++;
-            
-            if (frameCount > hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count
+            if (frameCount > hitbox.hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count
             {
-                DestroyHitbox(currentHitBox);
+
+                hitbox.DestroyHitbox(currentHitBox);
                 frameCount = 0;
             }
         }
     }
 
-    
-    
+    private void checkHit()
+    {
+        
+        controller.currentHealth -= damage;
+        controller.setPlayerHealth();
+        //Debug.Log("Hit Confirmed");
+    }
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.CompareTag("HurtBox"))
+        {
+            checkHit();
+            Debug.Log(coll.gameObject.name);
+        }
+    }
     public void AttackLight(InputAction.CallbackContext context)
     {
-        Debug.Log("AttackLightCalled");
+       // Debug.Log("AttackLightCalled");
         
         if (context.performed && currentHitBox == null)
         {
             frameCount = 0; // Reset frame count
-            
-            SpawnHitbox();
-            Debug.Log("light punch");
+            hitbox.SpawnHitbox();
+           // Debug.Log("light punch");
         }
     }
     float StartFrames()
@@ -96,30 +118,10 @@ public class CharacterAttack : MonoBehaviour
     }
     float attack()
     {
-        int damageDealt;
         return 0;
     }
     string AttackProperty()
     {
         return "";
-    }
-    void SpawnHitbox()
-    {
-        Debug.Log("HitBoxSpawned");
-        Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(1f,1f); //Tweak HitBox Locations based on Attack type
-        //Tweak size of prefab based off of attack
-        currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity,transform);
-        currentHitBox.SetActive(true);
-        //hitBoxRenderer.enabled = true;
-        //CheckHit(); checks if hitbox triggers hurt box and applies damage.
-    }
-
-    void DestroyHitbox(GameObject hb)
-    {
-        if (hb != null)
-        {
-            Debug.Log("HitBox Deleted");
-            Destroy(hb);
-        }
     }
 }
