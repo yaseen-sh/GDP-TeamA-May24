@@ -60,6 +60,12 @@ public class CharacterAttack : MonoBehaviour
     {
         if (currentHitBox != null)
         {
+            //framecount -= time.deltatime;
+            //if(frame <= 0; framecount = 0)
+            //if (attackHappened then start frame counter
+            //setup for each
+            //time.deltatime
+
             frameCount++;
             if (frameCount > hitbox.hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count
             {
