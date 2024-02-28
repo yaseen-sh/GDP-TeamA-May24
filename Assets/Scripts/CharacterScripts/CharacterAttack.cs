@@ -14,11 +14,11 @@ public class CharacterAttack : MonoBehaviour
     // Update is called once per frame
     public Rigidbody2D character;
     public LayerMask groundLayer; //ground layer so we know if we're above ground
-    public bool isBlocking;
+    public bool isBlocking = false;
     public string actionName = "Action";// action names
     public int damage = 100;// amount of damage a attack does. for now 100
     
-    private int frameCount = 0; // counts duration of current attack
+    private float frameCount = 10f; // counts duration of current attack
     private GameObject currentHitBox;
     //private SpriteRenderer hitBoxRenderer;
     
@@ -26,9 +26,10 @@ public class CharacterAttack : MonoBehaviour
     protected bool shouldCombo;// if attack would combo into another
     protected int attackIndex;// the attack number in a combo string
 
-    public Hitbox hitbox;
+    private Hitbox hitbox;
     public CharacterController controller;
-    
+    private SpriteRenderer hitBoxRenderer;
+
     private void Awake()
     {
         // Sets the fixed delta time to 60fps.
@@ -36,15 +37,16 @@ public class CharacterAttack : MonoBehaviour
     }
     void Start()
     {
-        isBlocking = false;
         InitializeHitBox();
+        controller.SetPlayerHealth();
+        controller.SetSuperMeter();
     }
     void InitializeHitBox()
     {
         
         //hitBoxRenderer
         //Find hitbox renderer
-        /*
+        
         hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
             Debug.LogError("Hitbox renderer not found!");
@@ -53,10 +55,9 @@ public class CharacterAttack : MonoBehaviour
         currentHitBox = hitBoxRenderer.gameObject;
         if (currentHitBox == null)
             Debug.LogError("Current hitbox not found!");
-        */
        
     }
-    void FixedUpdate()
+    private void Update()
     {
         if (currentHitBox != null)
         {
@@ -65,41 +66,28 @@ public class CharacterAttack : MonoBehaviour
             //if (attackHappened then start frame counter
             //setup for each
             //time.deltatime
-
-            frameCount++;
-            if (frameCount > hitbox.hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count
+            frameCount -= Time.fixedDeltaTime;
+            if (frameCount <= 0) // After hitbox duration, destroy hitbox and reset frame count
             {
-
                 hitbox.DestroyHitbox(currentHitBox);
                 frameCount = 0;
             }
         }
     }
-
-    private void checkHit()
+    void FixedUpdate()
     {
         
-        controller.currentHealth -= damage;
-        controller.setPlayerHealth();
-        //Debug.Log("Hit Confirmed");
     }
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-        if (coll.gameObject.CompareTag("HurtBox"))
-        {
-            checkHit();
-            Debug.Log(coll.gameObject.name);
-        }
-    }
+
     public void AttackLight(InputAction.CallbackContext context)
     {
-       // Debug.Log("AttackLightCalled");
+       Debug.Log("AttackLightCalled");
         
         if (context.performed && currentHitBox == null)
         {
             frameCount = 0; // Reset frame count
             hitbox.SpawnHitbox();
-           // Debug.Log("light punch");
+           Debug.Log("light punch");
         }
     }
     float StartFrames()

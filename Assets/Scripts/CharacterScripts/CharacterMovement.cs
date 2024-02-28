@@ -31,7 +31,7 @@ public class CharacterMovement : MonoBehaviour
             if(isGrounded)
             {
                 playerRotation.rotation = Quaternion.Euler(0, 180, 0);
-                Debug.Log("Facing Right");
+                //Debug.Log("Facing Right");
             }
         }
         else
@@ -39,7 +39,7 @@ public class CharacterMovement : MonoBehaviour
             if (isGrounded)
             {
                 playerRotation.rotation = Quaternion.Euler(0, 0, 0);
-                Debug.Log("Facing Left");
+                //Debug.Log("Facing Left");
             }
         }
     }
@@ -58,7 +58,7 @@ public class CharacterMovement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
 
         if (context.performed && isGrounded)
         {

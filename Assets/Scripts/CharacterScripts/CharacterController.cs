@@ -16,7 +16,11 @@ public class CharacterController : MonoBehaviour
 
     const float maxHealth = 1000;//should be reset to 1000 after end of round
     public float currentHealth = maxHealth;
-
+    const float minMeter = 0;
+    public float currentMeter = minMeter;
+    const float maxBlock = 100;//after each match the maxBlock should be reset to 100
+    public float currentBlock = maxBlock;
+    bool roundStarted = true;
 
     /*HITBOX SPECIFIC SHIT*/
     bool m_Started;
@@ -29,6 +33,8 @@ public class CharacterController : MonoBehaviour
     public enum ColliderState{ Closed, Open,Colliding}
     void Start()
     {
+        // Sets the frame rate to 60fps.
+        Application.targetFrameRate = 60;
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
         m_Started = true;
         boxSize = new Vector2(1.25f, 1.25f);
@@ -37,11 +43,9 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Sets the fixed delta time to 60fps.
-        Time.fixedDeltaTime = 1 / 60;
-        setPlayerHealth();
-        SuperMeter();
-        MyCollisions();
+       // setPlayerHealth();
+        //SuperMeter();
+       // MyCollisions();
     }
 
     void MyCollisions()
@@ -73,17 +77,18 @@ public class CharacterController : MonoBehaviour
         
     }
 
-    public void setPlayerHealth() // playerHealth
+    public void SetPlayerHealth() // playerHealth call when on hit
     {
+        //if (roundStarted)
+            currentHealth = maxHealth;
         healthText.text = "Health: " + currentHealth.ToString();
     }
 
-    float SuperMeter() // meter used for special moves
+    public void SetSuperMeter() // meter used for special moves
     {
-        const float minMeter = 0;//after each match the minMeter should be reset to 0
-        float currentMeter = minMeter;
+        if (roundStarted)
+            currentMeter = minMeter;
         superMeterText.text = "Super: " +  currentMeter.ToString();
-        return currentMeter;
     }
     float MovementSpeed()// variable movement speed
     {
@@ -91,8 +96,9 @@ public class CharacterController : MonoBehaviour
     }
     float BlockMeter()// a regenerative "shield" that degrades after each hit sustained
     {
-        const float minMeter = 100;//after each match the minMeter should be reset to 100
-        float currentMeter = minMeter;
+        /*
+         * Do some stuff to decrement every time player blocks an attack
+         */
         return currentMeter;
     }
     bool FacingRight()//if character is facing right, normal controls, else invert left right

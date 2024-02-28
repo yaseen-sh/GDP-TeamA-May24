@@ -4,12 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-
+  - HurtBox
   - Player 1
   - Player 2
-  - HitBox
-  - HurtBox
-
   layers:
   - Default
   - TransparentFX
@@ -17,11 +14,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - PushBox
-  - HitBox
-  - HurtBox
   - 
+  - 
+  - 
+  - 
+  - Pushbox
   - 
   - 
   - 

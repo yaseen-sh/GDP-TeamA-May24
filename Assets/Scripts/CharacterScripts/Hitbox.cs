@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using static CharacterController;
 
 public class Hitbox : MonoBehaviour
@@ -36,18 +37,21 @@ public class Hitbox : MonoBehaviour
     {
         if (coll.gameObject.CompareTag("HurtBox"))
         {
-            checkHit();
+            checkHit(coll);
             Debug.Log(coll.gameObject.name);
         }
     }
-
-    private void checkHit()
-    { 
+    private void checkHit(Collider2D coll)
+    {
+        CharacterController Opponent = coll.gameObject.GetComponent<CharacterController>();
+        Opponent.currentHealth -= damage;
+        Opponent.SetPlayerHealth();
+        Debug.Log("Hit Confirmed");
     }
     public void SpawnHitbox()
     {
 
-        //Debug.Log("HitBoxSpawned");
+        Debug.Log("HitBoxSpawned");
         Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
         //Tweak size of prefab based off of attack
         currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, transform);
@@ -61,7 +65,7 @@ public class Hitbox : MonoBehaviour
     {
         if (hb != null)
         {
-            //Debug.Log("HitBox Deleted");
+            Debug.Log("HitBox Deleted");
             Destroy(hb);
         }
     }
