@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CursorP1
+  - CursorP2
+  - CharManager
+  - ButtonManager
+  - CharacterTile
+  - CharGrid
+  - CursorManager
   layers:
   - Default
   - TransparentFX
@@ -12,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - CharacterTile
   - 
   - 
   - 
