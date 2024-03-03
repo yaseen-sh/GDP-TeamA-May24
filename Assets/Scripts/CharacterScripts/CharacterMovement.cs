@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviour
     public Transform groundCheck; //for checking if we're grounded.
     public float groundCheckRadius = 0.1f; //radius around groundcheck for testing 
     public float jumpForce = 20f;
-
+    public CharacterAttack attack;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -43,7 +43,11 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-
+    public void AttackLight(InputAction.CallbackContext context)
+    {
+        Debug.Log("AttackLightCalled");
+        attack.AttackLight();
+    }
     public void Movement(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;

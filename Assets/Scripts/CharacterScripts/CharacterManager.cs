@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class CharacterController : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
    // public CharacterAttack attack;
     public GameObject playerHurtBox;
@@ -38,6 +38,8 @@ public class CharacterController : MonoBehaviour
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
         m_Started = true;
         boxSize = new Vector2(1.25f, 1.25f);
+        SetPlayerHealth();
+        SetSuperMeter();
     }
 
     // Update is called once per frame
@@ -79,7 +81,7 @@ public class CharacterController : MonoBehaviour
 
     public void SetPlayerHealth() // playerHealth call when on hit
     {
-        //if (roundStarted)
+        if (roundStarted)
             currentHealth = maxHealth;
         healthText.text = "Health: " + currentHealth.ToString();
     }

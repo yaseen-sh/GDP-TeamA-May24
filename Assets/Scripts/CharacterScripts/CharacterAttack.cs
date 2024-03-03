@@ -11,8 +11,7 @@ using UnityEngine.InputSystem;
 */
 public class CharacterAttack : MonoBehaviour
 {
-    // Update is called once per frame
-    public Rigidbody2D character;
+   // public Rigidbody2D character;
     public LayerMask groundLayer; //ground layer so we know if we're above ground
     public bool isBlocking = false;
     public string actionName = "Action";// action names
@@ -26,8 +25,8 @@ public class CharacterAttack : MonoBehaviour
     protected bool shouldCombo;// if attack would combo into another
     protected int attackIndex;// the attack number in a combo string
 
-    private Hitbox hitbox;
-    public CharacterController controller;
+    public Hitbox hitbox;
+    public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
 
     private void Awake()
@@ -37,16 +36,7 @@ public class CharacterAttack : MonoBehaviour
     }
     void Start()
     {
-        InitializeHitBox();
-        controller.SetPlayerHealth();
-        controller.SetSuperMeter();
-    }
-    void InitializeHitBox()
-    {
-        
-        //hitBoxRenderer
-        //Find hitbox renderer
-        
+
         hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
             Debug.LogError("Hitbox renderer not found!");
@@ -55,40 +45,25 @@ public class CharacterAttack : MonoBehaviour
         currentHitBox = hitBoxRenderer.gameObject;
         if (currentHitBox == null)
             Debug.LogError("Current hitbox not found!");
-       
+        hitbox = GetComponent<Hitbox>();
+        // controller.SetPlayerHealth();
+        //controller.SetSuperMeter();
     }
+    
     private void Update()
-    {
-        if (currentHitBox != null)
-        {
-            //framecount -= time.deltatime;
-            //if(frame <= 0; framecount = 0)
-            //if (attackHappened then start frame counter
-            //setup for each
-            //time.deltatime
-            frameCount -= Time.fixedDeltaTime;
-            if (frameCount <= 0) // After hitbox duration, destroy hitbox and reset frame count
-            {
-                hitbox.DestroyHitbox(currentHitBox);
-                frameCount = 0;
-            }
-        }
+    { 
     }
     void FixedUpdate()
     {
         
     }
 
-    public void AttackLight(InputAction.CallbackContext context)
+    public void AttackLight()
     {
-       Debug.Log("AttackLightCalled");
-        
-        if (context.performed && currentHitBox == null)
-        {
-            frameCount = 0; // Reset frame count
-            hitbox.SpawnHitbox();
-           Debug.Log("light punch");
-        }
+        //Debug.Log("AttackLightCalled");
+        frameCount = 0; // Reset frame count
+        hitbox.SpawnHitbox(1);//attack type 1;
+        //Debug.Log("light punch");
     }
     float StartFrames()
     {
