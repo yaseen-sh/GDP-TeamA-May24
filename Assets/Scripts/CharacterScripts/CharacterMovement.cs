@@ -43,11 +43,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-    public void AttackLight(InputAction.CallbackContext context)
-    {
-        Debug.Log("AttackLightCalled");
-        attack.AttackLight();
-    }
+   
     public void Movement(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;

@@ -21,13 +21,17 @@ public class Hitbox : MonoBehaviour
     public Collider2D hitBoxCollider;
     public string actionName = "Action";// action names
     public int damage = 100;// amount of damage a attack does. for now 100
-
+    public CharacterManager Opponent;
     private int frameCount = 0; // counts duration of current attack
-    private float timer = .01f;
-    private GameObject currentHitBox;
-
+    private float timer = 1f;
+    public GameObject currentHitBox;
+    public GameObject hitBoxChild;
     //private ColliderState _state;
 
+    private void Start()
+    {
+         //Opponent = coll.gameObject.GetComponent<CharacterManager>();
+    }
     private void Update()
     {
         
@@ -44,24 +48,23 @@ public class Hitbox : MonoBehaviour
             Debug.Log(timer);
             if (timer <= 0f) // After hitbox duration, destroy hitbox and reset frame count
             {
-                Debug.Log("Frames per second: " + frameCount);
+                //Debug.Log("Frames per second: " + frameCount);
                 DestroyHitbox(currentHitBox);
                 frameCount = 0;
-                timer = .01f;
+                timer = 1f;
             }
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
+        Debug.Log("ontrigger");
         if (coll.gameObject.CompareTag("HurtBox"))
-        {
-            Debug.Log("ontrigger");
+        { 
             Debug.Log(coll.gameObject.name);
             CharacterManager Opponent = coll.gameObject.GetComponent<CharacterManager>();
             Opponent.currentHealth -= damage;
             Opponent.SetPlayerHealth();
             Debug.Log("Hit Confirmed");
-            
         }
     }
     public void SpawnHitbox(int attackType)
@@ -72,6 +75,8 @@ public class Hitbox : MonoBehaviour
             //attacktype Light
             case 1:
                 //set hitbox parameters
+                hitboxDuration = .01f;
+
             break;
             //attacktype heavy
             case 2:
@@ -81,24 +86,30 @@ public class Hitbox : MonoBehaviour
                 break;
         }
             
-    
-        Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
-        //Tweak size of prefab based off of attack
-        currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, transform);
-        currentHitBox.SetActive(true);
-        hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
-        //hitBoxRenderer.enabled = true;
-        //CheckHit(); checks if hitbox triggers hurt box and applies damage.
-
+                                             //Tweak size of prefab based off of attack
+        if (hitBoxChild.transform.childCount <= 0 )
+        {
+            
+            //Check for the same hitbox hit 
+            Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
+            currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, transform);
+            currentHitBox.transform.parent = hitBoxChild.transform;
+            currentHitBox.SetActive(true);
+            hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
+            //hitBoxRenderer.enabled = true;
+            //CheckHit(); checks if hitbox triggers hurt box and applies damage.
+        }
       
     }
 
     public void DestroyHitbox(GameObject hb)
     {
+
         if (hb != null)
         {
             hb.SetActive(false);
             Destroy(hb);
+            Debug.Log("Hitbox Destroyed");
         }
     }
 

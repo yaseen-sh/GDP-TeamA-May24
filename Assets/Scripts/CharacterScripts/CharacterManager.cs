@@ -4,6 +4,7 @@ using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class CharacterManager : MonoBehaviour
     bool roundStarted = true;
 
     /*HITBOX SPECIFIC SHIT*/
-    bool m_Started;
+    bool m_Started = true;
     public LayerMask m_LayerMask;
     private Vector2 scaleChange, positionChange;
     private Vector2 boxSize;
@@ -36,7 +37,7 @@ public class CharacterManager : MonoBehaviour
         // Sets the frame rate to 60fps.
         Application.targetFrameRate = 60;
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
-        m_Started = true;
+        roundStarted = false;
         boxSize = new Vector2(1.25f, 1.25f);
         SetPlayerHealth();
         SetSuperMeter();

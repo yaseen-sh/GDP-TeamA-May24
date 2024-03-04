@@ -28,14 +28,16 @@ public class CharacterAttack : MonoBehaviour
     public Hitbox hitbox;
     public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
+    bool keyPressed;
+    bool test;
 
     private void Awake()
     {
-        // Sets the fixed delta time to 60fps.
-        Time.fixedDeltaTime = 1 / 60;
+        
     }
     void Start()
     {
+        controller = GetComponent<CharacterManager>();
 
         hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
@@ -51,20 +53,33 @@ public class CharacterAttack : MonoBehaviour
     }
     
     private void Update()
-    { 
+    {
+        if (test)
+        {
+            Debug.Log("AttackLightHappened");
+            test = false;
+        }
+
     }
     void FixedUpdate()
     {
         
     }
 
-    public void AttackLight()
+    public void AttackLight(InputAction.CallbackContext context)
     {
-        //Debug.Log("AttackLightCalled");
-        frameCount = 0; // Reset frame count
-        hitbox.SpawnHitbox(1);//attack type 1;
-        //Debug.Log("light punch");
+        if (context.action.IsPressed())
+        {
+            Debug.Log("AttackLightCalled");
+            //frameCount = 0; // Reset frame count
+            //if(keyPressed == false)
+            hitbox.SpawnHitbox(1);//attack type 1;
+                                  //Debug.Log("light punch");
+
+            test = true;
+        }
     }
+
     float StartFrames()
     {
         return 0;
