@@ -11,7 +11,7 @@ public class ImageHover : MonoBehaviour
     public TMP_Text Background2;
     public Image buttonImage;
     private TMP_Text[] stageNames;
-    private Image[] images;//
+    private Image[] images;
 
     private Sprite defaultImage;
     private string defaultText;
@@ -53,7 +53,7 @@ public class ImageHover : MonoBehaviour
 
     public void OnButtonClick()
     {
-        Debug.Log("hey");
+      //  Debug.Log("hey");
         defaultText = MainText.text;
         defaultImage = buttonImage.sprite;
     }
