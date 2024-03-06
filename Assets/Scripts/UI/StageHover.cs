@@ -12,9 +12,10 @@ public class ImageHover : MonoBehaviour
     public Image buttonImage;
     private TMP_Text[] stageNames;
     private Image[] images;
-
+    
     private Sprite defaultImage;
-    private string defaultText;
+    public string defaultText;
+    public bool has_selected_once = false;
 
     private void Start()
     {
@@ -56,5 +57,6 @@ public class ImageHover : MonoBehaviour
       //  Debug.Log("hey");
         defaultText = MainText.text;
         defaultImage = buttonImage.sprite;
+        has_selected_once = true;
     }
 }
