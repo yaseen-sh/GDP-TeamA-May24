@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-
-// Manages Characters
+/*
+    Manages Characters
+*/
 public class CharManager : MonoBehaviour
 {
     [Header("Player 1 Variables")]
@@ -16,29 +17,8 @@ public class CharManager : MonoBehaviour
     public bool player2Selected = false;
     public Sprite player2Fighter;
 
-    [Header("Ready?")]
-    public GameObject ready;
-
     public void Start()
     {
-        DontDestroyOnLoad(transform.gameObject);
-        if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
-            ready.SetActive(false);
-    }
-
-    public void Update()
-    {
-        if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
-        {
-            if (player1Selected && player2Selected)
-            {
-                ready.transform.SetSiblingIndex(1000);
-                ready.SetActive(true);
-            }
-            else
-            {
-                ready.SetActive(false);
-            }
-        }
+        DontDestroyOnLoad(gameObject);
     }
 }

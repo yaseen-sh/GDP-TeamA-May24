@@ -8,9 +8,12 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
-// Setup for the Character Selection Screen. Takes a List of Character Tiles and Instantiates them into the character grid.
-// To Display the Name and Sprite of the characters.
-
+/*
+    Setup for the Character Selection Screen. Takes a List of Character Tiles and Instantiates them into the character grid.
+    To Display the Name and Sprite of the characters. Also Used to determine whether a cursor is hovering over a character tile
+    to display the coresponding name and sprite. Determines which cursor is hovering by making the tiles either red or blue to
+    match the cursor.
+*/
 public class SetupCharTiles : MonoBehaviour
 {
     [Header("List of CharTile Scriptable Objects")]
@@ -19,17 +22,29 @@ public class SetupCharTiles : MonoBehaviour
     [Space]
     public GameObject charTilePrefab;
     [Space]
+    [Header("Player 1's Side")]
     public GameObject player1Char;
     public TextMeshProUGUI player1Name;
+
+    [Header("Player 2's Side")]
     public GameObject player2Char;
     public TextMeshProUGUI player2Name;
+
+    [Header("default")]
     public Sprite defaultImage;
 
     [Header("Used for Detecting if the Cursor is over a Tile")]
     public List<GameObject> allTiles = new List<GameObject>();
 
+    public Button backButton;
+
+    [Header("Ready?")]
+    public GameObject ready;
+
+    // Intial Setup
     void Start()
     {
+        ready.SetActive(false);
         player1Name.text = "";
         player2Name.text = "";
         player1Char.GetComponent<Image>().sprite = defaultImage;
@@ -46,60 +61,181 @@ public class SetupCharTiles : MonoBehaviour
         GameObject tile = Instantiate(charTilePrefab, transform);
         tile.GetComponentInChildren<TextMeshProUGUI>().text = fighter.charName;
         tile.GetComponentInChildren<Image>().sprite = fighter.charImage;
-        tile.GetComponentInChildren<Button>().onClick = fighter.select;
+        tile.GetComponent<AudioSource>().clip = fighter.selectLine;
         allTiles.Add(tile);
     }
 
     void Update()
     {
-        bool is1Hovered = false;
-        bool is2Hovered = false;
-        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected)
+        // For the back button hover
+        if (GameObject.FindGameObjectWithTag("CursorP1") != null)
+        {
+            if (RectTransformUtility.RectangleContainsScreenPoint(backButton.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+            {
+                var buttonColor = backButton.GetComponent<Button>().colors;
+                buttonColor.normalColor = new Color(0, 0, 1, .5f);
+                backButton.GetComponent<Button>().colors = buttonColor;
+            }
+            else
+            {
+                var defaultColor = backButton.GetComponent<Button>().colors;
+                defaultColor.normalColor = new Color(0, 0, 0, 0);
+                backButton.GetComponent<Button>().colors = defaultColor;
+            }
+        }
+        bool is1Hovered = true;
+        bool is2Hovered = true;
+        // Player 1 Controller
+        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected && GameObject.FindGameObjectWithTag("CursorP1") != null)
+        {
+            is1Hovered = false;
+            foreach (GameObject fighter in allTiles)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(fighter.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+                {
+                    var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, .5f, .5f);
+                    fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                    player1Char.SetActive(true);
+                    player1Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                    player1Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
+                    is1Hovered = true;
+                    break;
+                }
+            }
+        }
+        // Player 2 Controller
+        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected && GameObject.FindGameObjectWithTag("CursorP2") != null)
+        {
+            is2Hovered = false;
+            foreach (GameObject fighter in allTiles)
+            {
+                if (RectTransformUtility.RectangleContainsScreenPoint(fighter.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                {
+                    var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                    buttonColor.normalColor = new Color(.5f, 0, 0, .5f);
+                    fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                    player2Char.SetActive(true);
+                    player2Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                    player2Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
+                    is2Hovered = true;
+                    break;
+                }
+            }
+        }
+        // Case if player 1 and player 2 are not hovered (set all tiles back to Orignal Color)
+        if (!is1Hovered && !is2Hovered)
         {
             foreach (GameObject fighter in allTiles)
             {
-                // Player 1 Controller
-                if (GameObject.FindGameObjectWithTag("CursorP1") != null)
-                {
-                    if (RectTransformUtility.RectangleContainsScreenPoint(fighter.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
-                    {
-                        player1Char.SetActive(true);
-                        player1Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
-                        player1Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
-                        is1Hovered = true;
-                        break;
-                    }
-                }
+                var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                buttonColor.normalColor = new Color(0, 0, 0, 0);
+                fighter.GetComponentInChildren<Button>().colors = buttonColor;
             }
-            if (!is1Hovered)
-            {
-                player1Name.text = "";
-                player1Char.SetActive(false);
-            }
+            player1Name.text = "";
+            player1Char.SetActive(false);
+            player2Name.text = "";
+            player2Char.SetActive(false);
         }
-        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected)
+        else if (is1Hovered && !is2Hovered) // Case if player 1 is hovered but player 2 is not hovered
         {
             foreach (GameObject fighter in allTiles)
             {
-                // Player 2 Controller
-                if (GameObject.FindGameObjectWithTag("CursorP2") != null)
+                // All blue Tiles except the one player 1 is currently hovering are changed back to thier orignal color
+                if (player1Name.text != fighter.GetComponentInChildren<TextMeshProUGUI>().text)
                 {
-                    if (RectTransformUtility.RectangleContainsScreenPoint(fighter.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                    var blue = new Color(0, 0, .5f, .5f);
+                    if (fighter.GetComponentInChildren<Button>().colors.normalColor == blue)
                     {
-                        player2Char.SetActive(true);
-                        player2Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
-                        player2Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
-                        is2Hovered = true;
-                        break;
+                        var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                        buttonColor.normalColor = new Color(0, 0, 0, 0);
+                        fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                    }
+                }
+                // all Tiles player 2 made red, back to their orignal color
+                var red = new Color(.5f, 0, 0, .5f);
+                if (fighter.GetComponentInChildren<Button>().colors.normalColor == red)
+                {
+                    var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                }
+            }
+            player2Name.text = "";
+            player2Char.SetActive(false);
+        }
+        else if (!is1Hovered && is2Hovered) // Case if player 2 is hovered but player 1 is not hovered
+        {
+            foreach (GameObject fighter in allTiles)
+            {
+                // All red Tiles except the one player 2 is currently hovering are changed back to thier orignal color
+                if (player2Name.text != fighter.GetComponentInChildren<TextMeshProUGUI>().text)
+                {
+                    var red = new Color(.5f, 0, 0, .5f);
+                    if (fighter.GetComponentInChildren<Button>().colors.normalColor == red)
+                    {
+                        var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                        buttonColor.normalColor = new Color(0, 0, 0, 0);
+                        fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                    }
+                }
+                // all Tiles player 1 made blue, back to their orignal color
+                var blue = new Color(0, 0, .5f, .5f);
+                if (fighter.GetComponentInChildren<Button>().colors.normalColor == blue)
+                {
+                    var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                }
+            }
+            player1Name.text = "";
+            player1Char.SetActive(false);
+        }
+        else if (is1Hovered && is2Hovered) // Case if player 1 and player 2 are both hovered 
+        {
+            foreach (GameObject fighter in allTiles)
+            {
+                // All blue Tiles except the one player 1 is currently hovering are changed back to thier orignal color
+                if (player1Name.text != fighter.GetComponentInChildren<TextMeshProUGUI>().text)
+                {
+                        var blue = new Color(0, 0, .5f, .5f);
+                        if (fighter.GetComponentInChildren<Button>().colors.normalColor == blue)
+                        {
+                            var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                            buttonColor.normalColor = new Color(0, 0, 0, 0);
+                            fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                        }
+                }
+                // All red Tiles except the one player 2 is currently hovering are changed back to thier orignal color
+                if (player2Name.text != fighter.GetComponentInChildren<TextMeshProUGUI>().text)
+                {
+                        var red = new Color(.5f, 0, 0, .5f);
+                        if (fighter.GetComponentInChildren<Button>().colors.normalColor == red)
+                        {
+                            var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                            buttonColor.normalColor = new Color(0, 0, 0, 0);
+                            fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                        }
+                }
+                // If both cursors are hovering the same 1 then whoever selected it the color stays that color unless both are selected
+                if (player1Name.text == player2Name.text)
+                {
+                    if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected)
+                    {
+                        var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                        buttonColor.normalColor = new Color(0, 0, .5f, .5f);
+                        fighter.GetComponentInChildren<Button>().colors = buttonColor;
+                    }
+                    if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected)
+                    {
+                        var buttonColor = fighter.GetComponentInChildren<Button>().colors;
+                        buttonColor.normalColor = new Color(.5f, 0, 0, .5f);
+                        fighter.GetComponentInChildren<Button>().colors = buttonColor;
                     }
                 }
             }
-            if (!is2Hovered)
-            {
-                player2Name.text = "";
-                player2Char.SetActive(false);
-            }
         }
+        /*
         foreach (GameObject fighter in allTiles)
         {
                 // Mouse For Player 1
@@ -111,6 +247,16 @@ public class SetupCharTiles : MonoBehaviour
                     is1Hovered = true;
                     break;
                 }
+        }*/
+        if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected && 
+            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected)
+        {
+            ready.transform.SetSiblingIndex(1000);
+            ready.SetActive(true);
+        }
+        else
+        {
+            ready.SetActive(false);
         }
     }
 }

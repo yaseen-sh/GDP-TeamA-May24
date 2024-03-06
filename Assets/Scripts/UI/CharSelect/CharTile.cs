@@ -4,10 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/*
+    The CharacterTile Scriptable Object that contains the name, sprite and voice line
+    for when the chracter is selected.
+*/
+
 [CreateAssetMenu(fileName = "New Character Tile", menuName = "Character Tile")]
 public class CharTile : ScriptableObject
 {
     public string charName; // Name of Character
     public Sprite charImage; // Sprite of Character
-    public Button.ButtonClickedEvent select; // Button Action
+    public AudioClip selectLine; // Voice Line when Character is Selected
 }

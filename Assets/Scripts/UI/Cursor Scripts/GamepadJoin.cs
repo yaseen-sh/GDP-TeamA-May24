@@ -5,27 +5,34 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
+/*
+    Script used for joining controllers. Spawns the cursor in from the resources folder. 
+    Activates the cursor player input and keeps track of how many cursors are being used 
+    and the limit is 2 cursors.
+*/
 public class GamepadJoin : MonoBehaviour
 {
     [SerializeField]
     private Canvas currentCanvas;
-    public int numberOfActivePlayers { get; private set; } = 0;
+    public static int numberOfActivePlayers { get; private set; } = 0;
+    [SerializeField]
     private GameObject inputManager;
 
     public void Awake()
     {
+        currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (inputManager == null)
         {
             inputManager = gameObject;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
-
     void Start()
     {
         var myAction = new InputAction(binding: "/*/<button>");
@@ -47,19 +54,20 @@ public class GamepadJoin : MonoBehaviour
                 }
             }
         }
-
+        // only works for devices with controller or gamepad in the name.
         if (!device.displayName.Contains("Controller") && !device.displayName.Contains("Gamepad"))
             return;
 
         var playerNumberToAdd = PlayerInput.all.Count + 1;
         numberOfActivePlayers = playerNumberToAdd;
+        Debug.Log("Number of Players Connected is: " + numberOfActivePlayers);
 
         string controlScheme = "Gamepad";
 
         // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
         GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
 
-
+        currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (!playerCursor.activeInHierarchy)
         {
             PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
