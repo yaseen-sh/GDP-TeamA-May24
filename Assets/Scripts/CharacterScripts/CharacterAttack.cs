@@ -60,11 +60,20 @@ public class CharacterAttack : MonoBehaviour
     {
         if (currentHitBox != null)
         {
+<<<<<<< Updated upstream
             //framecount -= time.deltatime;
             //if(frame <= 0; framecount = 0)
             //if (attackHappened then start frame counter
             //setup for each
             //time.deltatime
+=======
+            Debug.Log("AttackLightCalled");
+            //frameCount = 0; // Reset frame count
+            //if(keyPressed == false)
+            hitbox.isAttacking = true;
+            hitbox.SpawnHitbox(1);//attack type 1;
+                                  //Debug.Log("light punch");
+>>>>>>> Stashed changes
 
             frameCount++;
             if (frameCount > hitbox.hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count

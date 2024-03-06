@@ -53,8 +53,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+<<<<<<< Updated upstream
                     ""initialStateCheck"": false
 
+=======
+                    ""initialStateCheck"": true
+>>>>>>> Stashed changes
                 }
             ],
             ""bindings"": [
@@ -205,7 +209,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""97d3afe6-f8dc-4e75-aca9-4bf4411556dc"",
                     ""path"": ""<Keyboard>/j"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""AttackLight"",

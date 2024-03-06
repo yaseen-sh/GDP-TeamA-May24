@@ -30,7 +30,7 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -181,7 +181,7 @@
                     "name": "",
                     "id": "97d3afe6-f8dc-4e75-aca9-4bf4411556dc",
                     "path": "<Keyboard>/j",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "AttackLight",
