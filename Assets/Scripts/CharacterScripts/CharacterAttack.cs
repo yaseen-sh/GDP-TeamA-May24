@@ -56,7 +56,7 @@ public class CharacterAttack : MonoBehaviour
     {
         if (test)
         {
-            Debug.Log("AttackLightHappened");
+            //Debug.Log("AttackLightHappened");
             test = false;
         }
 
@@ -70,7 +70,7 @@ public class CharacterAttack : MonoBehaviour
     {
         if (context.action.IsPressed())
         {
-            Debug.Log("AttackLightCalled");
+            //Debug.Log("AttackLightCalled");
             //frameCount = 0; // Reset frame count
             //if(keyPressed == false)
             hitbox.isAttacking = true;

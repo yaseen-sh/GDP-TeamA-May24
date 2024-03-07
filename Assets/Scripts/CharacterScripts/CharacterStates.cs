@@ -28,33 +28,15 @@ public class CharacterStates : MonoBehaviour
     }
     void FixedUpdate()
     {
-        DetectPressedKey();// reads key pressed
         PrintControls();
     }
 
     public void PrintControls()
     {
-       Console.Write(controlsTestText.text);
+      // Console.Write(controlsTestText.text);
     }
 
-    public void DetectPressedKey()
-    {
-        //Go through all the Keys
-        //To make it faster we can attach a class and put all the keys that are allowed to be pressed
-        //This will make the process a bit faster rather than moving through all keys
-        foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
-        {
-            if (Input.GetKeyDown(kcode))
-            {
-                Keys.Add(kcode); //Add the Key to the List
-
-               // if (!movesManager.CanMove(Keys)) //if there is no avilable Moves reset the list
-                   // StopAllCoroutines();
-
-                StartCoroutine(ComboResetTime()); //Start the Reseting process
-            }
-        }
-    }
+    
     IEnumerator ComboResetTime()// amount of time to reset combo
     {
         yield return new WaitForSeconds(1);
@@ -103,5 +85,9 @@ public class CharacterStates : MonoBehaviour
     void moving()
     {
 
+    }
+    public void dead()
+    {
+        Debug.Log("Character Is Dead");
     }
 }

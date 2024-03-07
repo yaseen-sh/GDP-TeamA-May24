@@ -23,6 +23,8 @@ public class CharacterManager : MonoBehaviour
     public float currentBlock = maxBlock;
     bool roundStarted = true;
 
+    public CharacterStates state;
+
     /*HITBOX SPECIFIC SHIT*/
     bool m_Started = true;
     public LayerMask m_LayerMask;
@@ -32,6 +34,10 @@ public class CharacterManager : MonoBehaviour
     private ColliderState _state;
     // Start is called before the first frame update
     public enum ColliderState{ Closed, Open,Colliding}
+    private void Awake()
+    {
+        state = GetComponent<CharacterStates>();
+    }
     void Start()
     {
         // Sets the frame rate to 60fps.
@@ -86,6 +92,9 @@ public class CharacterManager : MonoBehaviour
         if (roundStarted)
             currentHealth = maxHealth;
         healthText.text = "Health: " + currentHealth.ToString();
+        if (currentHealth <= 0)
+            state.dead();
+           
     }
 
     public void SetSuperMeter() // meter used for special moves

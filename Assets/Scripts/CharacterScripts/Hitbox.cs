@@ -30,9 +30,10 @@ public class Hitbox : MonoBehaviour
     public CharacterManager playerTag;
     public bool isAttacking = false;
     //private ColliderState _state;
-
-    private void Start()
+    public CharacterMovement movement;
+    private void Awake()
     {
+        movement = GetComponent<CharacterMovement>();
     }
     private void Update()
     {
@@ -46,8 +47,8 @@ public class Hitbox : MonoBehaviour
             //setup for each
             //time.deltatime
             frameCount++;
-            timer -= Time.fixedDeltaTime;
-            Debug.Log(timer);
+            timer -= Time.deltaTime;
+            //Debug.Log(timer);
             if (timer <= 0f) // After hitbox duration, destroy hitbox and reset frame count
             {
                 //Debug.Log("Frames per second: " + frameCount);
@@ -60,19 +61,19 @@ public class Hitbox : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
-        Debug.Log("ontrigger");
+        //Debug.Log("ontrigger");
         if (coll.gameObject.CompareTag("HurtBox")&& isAttacking == true)
         { 
-            Debug.Log(coll.gameObject.name);
+            //Debug.Log(coll.gameObject.name);
             
             Opponent.currentHealth -= damage;
             Opponent.SetPlayerHealth();
-            Debug.Log("Hit Confirmed");
+            //Debug.Log("Hit Confirmed");
         }
     }
     public void SpawnHitbox(int attackType)
     {
-        Debug.Log("HitBoxSpawned");
+        //Debug.Log("HitBoxSpawned");
         switch (attackType)
         {
             //attacktype Light
@@ -80,7 +81,10 @@ public class Hitbox : MonoBehaviour
                 damage = 50;
                 //set hitbox parameters
                 hitboxDuration = .01f;
-
+                if (movement.facingRight == true)
+                    Debug.Log("FacingRightLightAttack");
+                else
+                    Debug.Log("FacingLeftLightAttack");
             break;
             //attacktype heavy
             case 2:
@@ -114,7 +118,7 @@ public class Hitbox : MonoBehaviour
         {
             hb.SetActive(false);
             Destroy(hb);
-            Debug.Log("Hitbox Destroyed");
+            //Debug.Log("Hitbox Destroyed");
         }
     }
 
