@@ -73,6 +73,7 @@ public class CharacterAttack : MonoBehaviour
             Debug.Log("AttackLightCalled");
             //frameCount = 0; // Reset frame count
             //if(keyPressed == false)
+            hitbox.isAttacking = true;
             hitbox.SpawnHitbox(1);//attack type 1;
                                   //Debug.Log("light punch");
 

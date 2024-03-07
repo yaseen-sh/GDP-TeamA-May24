@@ -28,19 +28,16 @@ public class CharacterMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (facingRight)
         {
-            if(isGrounded)
-            {
+            
                 playerRotation.rotation = Quaternion.Euler(0, 180, 0);
                 //Debug.Log("Facing Right");
-            }
         }
         else
         {
-            if (isGrounded)
-            {
+           
                 playerRotation.rotation = Quaternion.Euler(0, 0, 0);
                 //Debug.Log("Facing Left");
-            }
+
         }
     }
    

@@ -21,16 +21,18 @@ public class Hitbox : MonoBehaviour
     public Collider2D hitBoxCollider;
     public string actionName = "Action";// action names
     public int damage = 100;// amount of damage a attack does. for now 100
-    public CharacterManager Opponent;
+
     private int frameCount = 0; // counts duration of current attack
     private float timer = 1f;
     public GameObject currentHitBox;
     public GameObject hitBoxChild;
+    public CharacterManager Opponent;
+    public CharacterManager playerTag;
+    public bool isAttacking = false;
     //private ColliderState _state;
 
     private void Start()
     {
-         //Opponent = coll.gameObject.GetComponent<CharacterManager>();
     }
     private void Update()
     {
@@ -51,17 +53,18 @@ public class Hitbox : MonoBehaviour
                 //Debug.Log("Frames per second: " + frameCount);
                 DestroyHitbox(currentHitBox);
                 frameCount = 0;
-                timer = 1f;
+                timer = .1f;
+                isAttacking = false;
             }
         }
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
         Debug.Log("ontrigger");
-        if (coll.gameObject.CompareTag("HurtBox"))
+        if (coll.gameObject.CompareTag("HurtBox")&& isAttacking == true)
         { 
             Debug.Log(coll.gameObject.name);
-            CharacterManager Opponent = coll.gameObject.GetComponent<CharacterManager>();
+            
             Opponent.currentHealth -= damage;
             Opponent.SetPlayerHealth();
             Debug.Log("Hit Confirmed");

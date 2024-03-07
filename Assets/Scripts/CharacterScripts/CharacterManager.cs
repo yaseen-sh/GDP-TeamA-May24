@@ -80,6 +80,7 @@ public class CharacterManager : MonoBehaviour
         
     }
 
+
     public void SetPlayerHealth() // playerHealth call when on hit
     {
         if (roundStarted)
