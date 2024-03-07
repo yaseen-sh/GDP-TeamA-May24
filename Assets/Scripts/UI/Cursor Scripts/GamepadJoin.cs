@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 /*
@@ -19,6 +20,8 @@ public class GamepadJoin : MonoBehaviour
     public static int numberOfActivePlayers { get; private set; } = 0;
     [SerializeField]
     private GameObject inputManager;
+
+    public GameObject controllerConnected;
 
     public void Awake()
     {
@@ -63,20 +66,49 @@ public class GamepadJoin : MonoBehaviour
         Debug.Log("Number of Players Connected is: " + numberOfActivePlayers);
 
         string controlScheme = "Gamepad";
-
-        // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
-        GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
-
-        currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        if (!playerCursor.activeInHierarchy)
+        if(SceneManager.GetActiveScene().name != "TitleScreen")
         {
-            PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
-            theCursor.transform.parent = currentCanvas.transform;
-            theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+            // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
+            GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
+
+            currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            if (!playerCursor.activeInHierarchy)
+            {
+                PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                theCursor.transform.parent = currentCanvas.transform;
+                theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "TitleScreen")
+        {
+            if (numberOfActivePlayers != 2)
+            {
+
+                // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
+                GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
+
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+            else
+            {
+                StartCoroutine(ShowControllerText());
+            }
         }
 
     }
-
+    IEnumerator ShowControllerText()
+    {
+        GameObject controlText = Canvas.Instantiate(controllerConnected, currentCanvas.transform);
+        controlText.GetComponent<TextMeshProUGUI>().text = "Player 2 Connected";
+        yield return new WaitForSeconds(5f);
+        Destroy(controlText);
+    }
 
 
     public void OnPlayerJoin(PlayerInput input)

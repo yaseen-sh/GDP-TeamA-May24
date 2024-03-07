@@ -146,8 +146,8 @@ public class GamepadCursor : MonoBehaviour
                                 buttonColor.normalColor = new Color(0, 0, 0, 0);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor;
                             }
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected = charSelected;
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected = charSelected;
+                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
                         }
                         else if (gameObject.CompareTag("CursorP2"))
                         {
@@ -163,8 +163,8 @@ public class GamepadCursor : MonoBehaviour
                                 buttonColor2.normalColor = new Color(0, 0, 0, 0);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor2;
                             }
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected = charSelected;
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected = charSelected;
+                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
                         }
                         return;
                     }
@@ -180,8 +180,8 @@ public class GamepadCursor : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 Debug.Log("Start Button Pressed");
-                if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected &&
-                    GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected)
+                if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected &&
+                    GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
                 {
                     SceneManager.LoadScene("StageSelect");
                 }

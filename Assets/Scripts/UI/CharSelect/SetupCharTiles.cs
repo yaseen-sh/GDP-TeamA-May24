@@ -86,7 +86,7 @@ public class SetupCharTiles : MonoBehaviour
         bool is1Hovered = true;
         bool is2Hovered = true;
         // Player 1 Controller
-        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected && GameObject.FindGameObjectWithTag("CursorP1") != null)
+        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected && GameObject.FindGameObjectWithTag("CursorP1") != null)
         {
             is1Hovered = false;
             foreach (GameObject fighter in allTiles)
@@ -105,7 +105,7 @@ public class SetupCharTiles : MonoBehaviour
             }
         }
         // Player 2 Controller
-        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected && GameObject.FindGameObjectWithTag("CursorP2") != null)
+        if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected && GameObject.FindGameObjectWithTag("CursorP2") != null)
         {
             is2Hovered = false;
             foreach (GameObject fighter in allTiles)
@@ -220,13 +220,13 @@ public class SetupCharTiles : MonoBehaviour
                 // If both cursors are hovering the same 1 then whoever selected it the color stays that color unless both are selected
                 if (player1Name.text == player2Name.text)
                 {
-                    if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected)
+                    if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected)
                     {
                         var buttonColor = fighter.GetComponentInChildren<Button>().colors;
                         buttonColor.normalColor = new Color(0, 0, .5f, .5f);
                         fighter.GetComponentInChildren<Button>().colors = buttonColor;
                     }
-                    if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected)
+                    if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
                     {
                         var buttonColor = fighter.GetComponentInChildren<Button>().colors;
                         buttonColor.normalColor = new Color(.5f, 0, 0, .5f);
@@ -244,12 +244,12 @@ public class SetupCharTiles : MonoBehaviour
                     player1Char.SetActive(true);
                     player1Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                     player1Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
-                    is1Hovered = true;
+                    //is1Hovered = true;
                     break;
                 }
         }*/
-        if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player1Selected && 
-            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CharManager>().player2Selected)
+        if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected && 
+            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
         {
             ready.transform.SetSiblingIndex(1000);
             ready.SetActive(true);

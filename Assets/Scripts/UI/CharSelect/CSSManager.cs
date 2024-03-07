@@ -7,7 +7,7 @@ using TMPro;
 /*
     Manages Characters
 */
-public class CharManager : MonoBehaviour
+public class CSSManager : MonoBehaviour
 {
     [Header("Player 1 Variables")]
     public bool player1Selected = false; 

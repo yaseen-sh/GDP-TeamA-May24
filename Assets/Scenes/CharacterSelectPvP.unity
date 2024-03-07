@@ -608,8 +608,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278254079
+  m_fontColor: {r: 1, g: 0.9749821, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1428,6 +1428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentCanvas: {fileID: 1498595191}
   inputManager: {fileID: 0}
+  controllerConnected: {fileID: 0}
 --- !u!1 &1245201365
 GameObject:
   m_ObjectHideFlags: 0
