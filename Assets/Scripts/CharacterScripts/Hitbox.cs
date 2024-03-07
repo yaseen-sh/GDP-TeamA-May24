@@ -77,12 +77,14 @@ public class Hitbox : MonoBehaviour
         {
             //attacktype Light
             case 1:
+                damage = 50;
                 //set hitbox parameters
                 hitboxDuration = .01f;
 
             break;
             //attacktype heavy
             case 2:
+                damage = 100;
                 break;
             //attacktype etc
             case 3:
