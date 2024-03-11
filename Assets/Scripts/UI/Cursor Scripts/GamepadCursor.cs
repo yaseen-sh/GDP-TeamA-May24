@@ -200,8 +200,8 @@ public class GamepadCursor : MonoBehaviour
 
             if (context.phase == InputActionPhase.Performed)
             {
-                if (currentScene.name == "CharacterSelectPvP") SceneManager.LoadScene("TitleScreen");
-                else if (currentScene.name == "TempStageSelect") SceneManager.LoadScene("CharacterSelectPvP");
+                if (currentScene.name == "CharacterSelectPvP") { SceneManager.LoadScene("TitleScreen"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
+                else if (currentScene.name == "TempStageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); }
             }
         }
     }

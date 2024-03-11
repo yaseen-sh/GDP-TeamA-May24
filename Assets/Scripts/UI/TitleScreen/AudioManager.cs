@@ -8,8 +8,15 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
-        music = GetComponent<AudioSource>();
+        if (GameObject.FindGameObjectsWithTag("AudioManager").Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(transform.gameObject);
+            music = GetComponent<AudioSource>();
+        }
     }
     public void PlayMusic()
     {
