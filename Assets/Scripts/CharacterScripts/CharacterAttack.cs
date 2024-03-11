@@ -1,37 +1,45 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+/* 
+ *  all your attacks neatly organized in an object and use several combinations of Hitboxes for any of them.
+ *  To do that you would need a script that strictly delegates 
+ *  OnTriggerEnter calls to your active attack or something along those lines.
+*/
 public class CharacterAttack : MonoBehaviour
 {
-    // Update is called once per frame
-    public Rigidbody2D character;
+   // public Rigidbody2D character;
     public LayerMask groundLayer; //ground layer so we know if we're above ground
-    public bool isBlocking;
-    public GameObject hitboxPrefab;
-    public Transform hitBoxSpawnLocation;// where the hit box spawns
-    public float hitboxDuration = 10f;
-
-    private int frameCount = 0; // counts duration of current attack
-    private GameObject currentHitBox;
-    private SpriteRenderer hitBoxRenderer;
+    public bool isBlocking = false;
+    public string actionName = "Action";// action names
+    public int damage = 100;// amount of damage a attack does. for now 100
     
+    private float frameCount = 10f; // counts duration of current attack
+    private GameObject currentHitBox;
+    //private SpriteRenderer hitBoxRenderer;
+    
+    protected Animator animator;
+    protected bool shouldCombo;// if attack would combo into another
+    protected int attackIndex;// the attack number in a combo string
+
+    public Hitbox hitbox;
+    public CharacterManager controller;
+    private SpriteRenderer hitBoxRenderer;
+    bool keyPressed;
+    bool test;
+
     private void Awake()
     {
-        // Sets the fixed delta time to 60fps.
-        Time.fixedDeltaTime = 1 / 60;
+        
     }
     void Start()
     {
-        isBlocking = false;
-        InitializeHitBox();
-    }
-    void InitializeHitBox()
-    {
-        //hitBoxRenderer
-        // Find hitbox renderer
+        controller = GetComponent<CharacterManager>();
+
+        hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
             Debug.LogError("Hitbox renderer not found!");
 
@@ -39,35 +47,40 @@ public class CharacterAttack : MonoBehaviour
         currentHitBox = hitBoxRenderer.gameObject;
         if (currentHitBox == null)
             Debug.LogError("Current hitbox not found!");
+        hitbox = GetComponent<Hitbox>();
+        // controller.SetPlayerHealth();
+        //controller.SetSuperMeter();
+    }
+    
+    private void Update()
+    {
+        if (test)
+        {
+            //Debug.Log("AttackLightHappened");
+            test = false;
+        }
+
     }
     void FixedUpdate()
     {
-        if (currentHitBox != null)
+        
+    }
+
+    public void AttackLight(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed())
         {
-            frameCount++;
-            
-            if (frameCount > hitboxDuration) // After hitbox duration, destroy hitbox and reset frame count
-            {
-                DestroyHitbox(currentHitBox);
-                frameCount = 0;
-            }
+            //Debug.Log("AttackLightCalled");
+            //frameCount = 0; // Reset frame count
+            //if(keyPressed == false)
+            hitbox.isAttacking = true;
+            hitbox.SpawnHitbox(1);//attack type 1;
+                                  //Debug.Log("light punch");
+
+            test = true;
         }
     }
 
-    
-    
-    public void AttackLight(InputAction.CallbackContext context)
-    {
-        Debug.Log("AttackLightCalled");
-        
-        if (context.performed && currentHitBox == null)
-        {
-            frameCount = 0; // Reset frame count
-            
-            SpawnHitbox();
-            Debug.Log("light punch");
-        }
-    }
     float StartFrames()
     {
         return 0;
@@ -90,30 +103,10 @@ public class CharacterAttack : MonoBehaviour
     }
     float attack()
     {
-        int damageDealt;
         return 0;
     }
     string AttackProperty()
     {
         return "";
-    }
-    void SpawnHitbox()
-    {
-        Debug.Log("HitBoxSpawned");
-        Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(1f,1f); //Tweak HitBox Locations based on Attack type
-        //Tweak size of prefab based off of attack
-        currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity,transform);
-        currentHitBox.SetActive(true);
-        hitBoxRenderer.enabled = true;
-        //CheckHit(); checks if hitbox triggers hurt box and applies damage.
-    }
-
-    void DestroyHitbox(GameObject hb)
-    {
-        if (hb != null)
-        {
-            Debug.Log("HitBox Deleted");
-            Destroy(hb);
-        }
     }
 }
