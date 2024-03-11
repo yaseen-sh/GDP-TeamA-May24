@@ -11,10 +11,11 @@ public class ImageHover : MonoBehaviour
     public TMP_Text Background2;
     public Image buttonImage;
     private TMP_Text[] stageNames;
-    private Image[] images;//
-
+    private Image[] images;
+    
     private Sprite defaultImage;
-    private string defaultText;
+    public string defaultText;
+    public bool has_selected_once = false;
 
     private void Start()
     {
@@ -43,15 +44,19 @@ public class ImageHover : MonoBehaviour
 
         if (!hovered)
         {
-            defaultText = MainText.text;
+            MainText.text = defaultText;
+            Background1.text = MainText.text;
+            Background2.text = MainText.text;
+            //defaultText = MainText.text;
             buttonImage.sprite = defaultImage;
         }
     }
 
     public void OnButtonClick()
     {
-        Debug.Log("hey");
+      //  Debug.Log("hey");
         defaultText = MainText.text;
         defaultImage = buttonImage.sprite;
+        has_selected_once = true;
     }
 }

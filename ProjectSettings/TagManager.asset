@@ -4,6 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - CursorP1
+  - CursorP2
+  - CharManager
+  - ButtonManager
+  - CharacterTile
+  - CharGrid
+  - CursorManager
   - HurtBox
   - Player 1
   - Player 2
@@ -14,6 +21,8 @@ TagManager:
   - Ground
   - Water
   - UI
+  - Ground
+  - CharacterTile
   - 
   - 
   - 
