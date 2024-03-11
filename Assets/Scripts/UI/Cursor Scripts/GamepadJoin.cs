@@ -47,6 +47,8 @@ public class GamepadJoin : MonoBehaviour
     }
     void AddPlayer(InputDevice device)
     {
+        if (SceneManager.GetActiveScene().name == "TempStageSelect") return;
+
         foreach (var player in PlayerInput.all)
         {
             foreach (var playerDevice in player.devices)

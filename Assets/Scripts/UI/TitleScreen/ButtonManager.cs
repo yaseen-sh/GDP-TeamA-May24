@@ -15,13 +15,15 @@ public class ButtonManager : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("CharManager"));
         SceneManager.LoadScene("TitleScreen");
     }
-    public void MapSelect()
+    public void StageSelect()
     {
-        SceneManager.LoadScene("MapSelect");
+        SceneManager.LoadScene("StageSelect");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
     public void CharacterSelectPvP()
     {
         SceneManager.LoadScene("CharacterSelectPvP");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
     public void FightScene()
     {
@@ -30,6 +32,7 @@ public class ButtonManager : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene("Credits");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
     public void Quit()
     {

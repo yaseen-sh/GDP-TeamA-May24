@@ -16,7 +16,12 @@ public class SetupTitle : MonoBehaviour
     public Button story;
     public Button credits;
     public Button quit;
-    
+
+    private void Start()
+    {
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -183,7 +183,7 @@ public class GamepadCursor : MonoBehaviour
                 if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected &&
                     GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
                 {
-                    SceneManager.LoadScene("StageSelect");
+                    SceneManager.LoadScene("TempStageSelect");
                 }
             }
         }
@@ -201,7 +201,7 @@ public class GamepadCursor : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 if (currentScene.name == "CharacterSelectPvP") SceneManager.LoadScene("TitleScreen");
-                else if (currentScene.name == "StageSelect") SceneManager.LoadScene("CharacterSelect");
+                else if (currentScene.name == "TempStageSelect") SceneManager.LoadScene("CharacterSelectPvP");
             }
         }
     }
