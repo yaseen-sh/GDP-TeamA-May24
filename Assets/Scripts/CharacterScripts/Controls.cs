@@ -44,7 +44,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-
                 },
                 {
                     ""name"": ""AttackLight"",
@@ -54,7 +53,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-
                 }
             ],
             ""bindings"": [
@@ -235,6 +233,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AttackLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""20ee233c-2d53-4056-8639-19136af06970"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -380,6 +387,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6e57fd7-f579-4d8a-9672-28f67374dc14"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""AttackLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -413,14 +431,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
-
         m_Player_AttackLight = m_Player.FindAction("AttackLight", throwIfNotFound: true);
-
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
         m_Player1_Jumping = m_Player1.FindAction("Jumping", throwIfNotFound: true);
-
+        m_Player1_AttackLight = m_Player1.FindAction("AttackLight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -485,7 +501,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jumping;
     private readonly InputAction m_Player_AttackLight;
-
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -493,7 +508,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
         public InputAction @AttackLight => m_Wrapper.m_Player_AttackLight;
-
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -509,7 +523,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jumping.started += instance.OnJumping;
             @Jumping.performed += instance.OnJumping;
             @Jumping.canceled += instance.OnJumping;
-
             @AttackLight.started += instance.OnAttackLight;
             @AttackLight.performed += instance.OnAttackLight;
             @AttackLight.canceled += instance.OnAttackLight;
@@ -526,7 +539,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AttackLight.started -= instance.OnAttackLight;
             @AttackLight.performed -= instance.OnAttackLight;
             @AttackLight.canceled -= instance.OnAttackLight;
-
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -545,18 +557,19 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     }
     public PlayerActions @Player => new PlayerActions(this);
 
-
     // Player1
     private readonly InputActionMap m_Player1;
     private List<IPlayer1Actions> m_Player1ActionsCallbackInterfaces = new List<IPlayer1Actions>();
     private readonly InputAction m_Player1_Movement;
     private readonly InputAction m_Player1_Jumping;
+    private readonly InputAction m_Player1_AttackLight;
     public struct Player1Actions
     {
         private @Controls m_Wrapper;
         public Player1Actions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player1_Movement;
         public InputAction @Jumping => m_Wrapper.m_Player1_Jumping;
+        public InputAction @AttackLight => m_Wrapper.m_Player1_AttackLight;
         public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -572,6 +585,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jumping.started += instance.OnJumping;
             @Jumping.performed += instance.OnJumping;
             @Jumping.canceled += instance.OnJumping;
+            @AttackLight.started += instance.OnAttackLight;
+            @AttackLight.performed += instance.OnAttackLight;
+            @AttackLight.canceled += instance.OnAttackLight;
         }
 
         private void UnregisterCallbacks(IPlayer1Actions instance)
@@ -582,6 +598,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Jumping.started -= instance.OnJumping;
             @Jumping.performed -= instance.OnJumping;
             @Jumping.canceled -= instance.OnJumping;
+            @AttackLight.started -= instance.OnAttackLight;
+            @AttackLight.performed -= instance.OnAttackLight;
+            @AttackLight.canceled -= instance.OnAttackLight;
         }
 
         public void RemoveCallbacks(IPlayer1Actions instance)
@@ -599,7 +618,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public Player1Actions @Player1 => new Player1Actions(this);
-
     private int m_ControllerSchemeIndex = -1;
     public InputControlScheme ControllerScheme
     {
@@ -628,5 +646,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnJumping(InputAction.CallbackContext context);
+        void OnAttackLight(InputAction.CallbackContext context);
     }
 }

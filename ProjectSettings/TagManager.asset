@@ -3,19 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - HurtBox
+  - Player 1
+  - Player 2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - Ground
   - 
   - 
   - 
   - 
+  - Pushbox
   - 
   - 
   - 
