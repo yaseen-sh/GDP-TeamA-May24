@@ -12,11 +12,14 @@ TagManager:
   - CharGrid
   - CursorManager
   - AudioManager
+  - HurtBox
+  - Player 1
+  - Player 2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Ground
@@ -24,6 +27,8 @@ TagManager:
   - 
   - 
   - 
+  - 
+  - Pushbox
   - 
   - 
   - 
