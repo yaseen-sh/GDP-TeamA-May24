@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.LowLevel;
 
 public class ImageHover : MonoBehaviour
 {
@@ -31,7 +33,17 @@ public class ImageHover : MonoBehaviour
         bool hovered = false;
         foreach (Image image in images)
         {
+            /*
             if (RectTransformUtility.RectangleContainsScreenPoint(image.rectTransform, Input.mousePosition))
+            {
+                MainText.text = image.GetComponentInChildren<TMP_Text>().text;
+                Background1.text = MainText.text;
+                Background2.text = MainText.text;
+                buttonImage.sprite = image.sprite;
+                hovered = true;
+                break;
+            }*/
+            if (RectTransformUtility.RectangleContainsScreenPoint(image.rectTransform, GameObject.Find("2PlayerCursor").GetComponent<VirtualMouseInput>().virtualMouse.position.value))
             {
                 MainText.text = image.GetComponentInChildren<TMP_Text>().text;
                 Background1.text = MainText.text;

@@ -47,8 +47,6 @@ public class GamepadJoin : MonoBehaviour
     }
     void AddPlayer(InputDevice device)
     {
-        if (SceneManager.GetActiveScene().name == "TempStageSelect") return;
-
         foreach (var player in PlayerInput.all)
         {
             foreach (var playerDevice in player.devices)
@@ -59,6 +57,7 @@ public class GamepadJoin : MonoBehaviour
                 }
             }
         }
+
         // only works for devices with controller or gamepad in the name.
         if (!device.displayName.Contains("Controller") && !device.displayName.Contains("Gamepad"))
             return;
@@ -68,7 +67,7 @@ public class GamepadJoin : MonoBehaviour
         Debug.Log("Number of Players Connected is: " + numberOfActivePlayers);
 
         string controlScheme = "Gamepad";
-        if(SceneManager.GetActiveScene().name != "TitleScreen")
+        if(SceneManager.GetActiveScene().name == "CharacterSelectPvP")
         {
             // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
             GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
@@ -101,6 +100,20 @@ public class GamepadJoin : MonoBehaviour
             {
                 StartCoroutine(ShowControllerText());
             }
+        }
+        else if (SceneManager.GetActiveScene().name == "TempStageSelect")
+        {
+
+                // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
+                GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
+
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
         }
 
     }

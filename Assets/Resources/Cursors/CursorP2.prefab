@@ -318,10 +318,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorSpeed: 10
   padding: 50
+  moving: 0
   charSelected: 0
   playerSelection: {fileID: 0}
-  moving: 0
-  playerVPlayerButton: {fileID: 4655551717958485034, guid: bca68cc98c0ab0342afaad5f6977a3a9, type: 3}
-  creditsButton: {fileID: 4369897506220564695, guid: d3cb1525fb9e544408e74b91123e8b25, type: 3}
   player2Required: {fileID: 959128374766350556, guid: bb8478fa9d52dc14eb64d518dccb2560, type: 3}
   holdSlider: {fileID: 705868000677630395, guid: f866f5ec72b7a36459fe25bbc4b8ded1, type: 3}
+  cursorSprite: {fileID: 21300000, guid: c956b3ddd76a56345b79dc7d307b3443, type: 3}

@@ -15,8 +15,7 @@ using TMPro;
 */
 public class GamepadCursor : MonoBehaviour
 {
-    [SerializeField]
-    private float cursorSpeed;
+    private float cursorSpeed = 6;
     [SerializeField]
     private float padding = 50f;
 
@@ -37,6 +36,9 @@ public class GamepadCursor : MonoBehaviour
     public GameObject holdSlider;
     private GameObject slider;
     private bool beingHeld = false;
+
+    [SerializeField]
+    private Sprite cursorSprite;
 
     private void Update()
     {
@@ -62,6 +64,9 @@ public class GamepadCursor : MonoBehaviour
         {
             if (slider != null) Destroy(slider);
         }
+
+        if (SceneManager.GetActiveScene().name == "TempStageSelect") { gameObject.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0); }
+        else { gameObject.GetComponentInChildren<Image>().sprite = cursorSprite; }
     }
 
     // Function Called when Cursor Moves
@@ -201,7 +206,7 @@ public class GamepadCursor : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 if (currentScene.name == "CharacterSelectPvP") { SceneManager.LoadScene("TitleScreen"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
-                else if (currentScene.name == "TempStageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); }
+                else if (currentScene.name == "TempStageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
             }
         }
     }
