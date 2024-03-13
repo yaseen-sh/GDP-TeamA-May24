@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 533529879}
   - component: {fileID: 533529884}
   - component: {fileID: 533529886}
+  - component: {fileID: 533529887}
   m_Layer: 0
   m_Name: Nesterenko1
   m_TagString: Player 1
@@ -901,9 +902,12 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 0}
   actionName: Action
   damage: 100
-  Opponent: {fileID: 0}
   currentHitBox: {fileID: 0}
   hitBoxChild: {fileID: 720893557}
+  Opponent: {fileID: 1782109694}
+  playerTag: {fileID: 1782109694}
+  isAttacking: 0
+  movement: {fileID: 0}
 --- !u!114 &533529886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,10 +927,26 @@ MonoBehaviour:
   currentHealth: 1000
   currentMeter: 0
   currentBlock: 100
+  state: {fileID: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 0
   hitBoxSize: {x: 1, y: 1}
+--- !u!114 &533529887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533529877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fce5c7ae81bc74eb59c6dfb6e0b20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keys: 
+  controlsTestText: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!1001 &558759346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1798,6 +1818,7 @@ GameObject:
   - component: {fileID: 1782109694}
   - component: {fileID: 1782109688}
   - component: {fileID: 1782109693}
+  - component: {fileID: 1782109695}
   m_Layer: 0
   m_Name: Nesterenko2
   m_TagString: Player 2
@@ -2040,10 +2061,26 @@ MonoBehaviour:
   currentHealth: 1000
   currentMeter: 0
   currentBlock: 100
+  state: {fileID: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 0
   hitBoxSize: {x: 1, y: 1}
+--- !u!114 &1782109695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782109686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fce5c7ae81bc74eb59c6dfb6e0b20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Keys: 
+  controlsTestText: {fileID: 0}
+  controller: {fileID: 0}
 --- !u!1 &1891790735
 GameObject:
   m_ObjectHideFlags: 0

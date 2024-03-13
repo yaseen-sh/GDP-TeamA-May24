@@ -23,13 +23,33 @@ public class Hitbox : MonoBehaviour
     public int damage = 100;// amount of damage a attack does. for now 100
 
     private int frameCount = 0; // counts duration of current attack
-    private float timer = 1f;
+    private float timer = .1f;
     public GameObject currentHitBox;
+    private Vector2 scaleChange;
     public GameObject hitBoxChild;
     public CharacterManager Opponent;
     public CharacterManager playerTag;
     public bool isAttacking = false;
     //private ColliderState _state;
+
+
+    //Character Loader
+    public int lightAttackDamage = 0;
+    public float lightAttackPosY = 0;
+    public float lightAttackPosX = 0;
+    public float lightAttackFrameCount = 0;
+    public float lightAttackHitboxScale = 0;
+
+    public int heavyAttackDamage = 0;
+    public float heavyAttackPosY = 0;
+    public float heavyAttackPosX = 0;
+    public float heavyAttackFrameCount = 0;
+    public Vector2 heavyAttackHitboxScale = new Vector2 (0f,0f);
+
+
+
+
+
     public CharacterMovement movement;
     private void Awake()
     {
@@ -54,7 +74,6 @@ public class Hitbox : MonoBehaviour
                 //Debug.Log("Frames per second: " + frameCount);
                 DestroyHitbox(currentHitBox);
                 frameCount = 0;
-                timer = .1f;
                 isAttacking = false;
             }
         }
@@ -78,35 +97,60 @@ public class Hitbox : MonoBehaviour
         {
             //attacktype Light
             case 1:
-                damage = 50;
+                damage = lightAttackDamage;
                 //set hitbox parameters
-                hitboxDuration = .01f;
+                timer = lightAttackFrameCount;
                 if (movement.facingRight == true)
+                {
                     Debug.Log("FacingRightLightAttack");
+                    hitboxPosX = lightAttackPosX;
+                    hitboxPosY = lightAttackPosY;
+                    scaleChange = heavyAttackHitboxScale;
+                }
                 else
+                {
                     Debug.Log("FacingLeftLightAttack");
+                    hitboxPosX = -lightAttackPosX;
+                    hitboxPosY = lightAttackPosY;
+                    scaleChange = heavyAttackHitboxScale;
+                }
             break;
             //attacktype heavy
             case 2:
                 damage = 100;
+                if (movement.facingRight == true)
+                {
+                    Debug.Log("FacingRightHeavyAttack");
+                }
+                else
+                {
+                    Debug.Log("FacingLeftHeavyAttack");
+                }
                 break;
             //attacktype etc
             case 3:
+                if (movement.facingRight == true)
+                {
+                    Debug.Log("FacingRightLightAttack");
+                }
+                else
+                {
+                    Debug.Log("FacingLeftLightAttack");
+                }
                 break;
         }
             
                                              //Tweak size of prefab based off of attack
         if (hitBoxChild.transform.childCount <= 0 )
         {
-            
             //Check for the same hitbox hit 
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
-            currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, transform);
+            currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
+            currentHitBox.transform.localScale = scaleChange;
             currentHitBox.transform.parent = hitBoxChild.transform;
             currentHitBox.SetActive(true);
             hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
             //hitBoxRenderer.enabled = true;
-            //CheckHit(); checks if hitbox triggers hurt box and applies damage.
         }
       
     }

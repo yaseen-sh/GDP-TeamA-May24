@@ -215,10 +215,11 @@ MonoBehaviour:
   facingRight: 0
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   groundCheck: {fileID: 8180122317878886848}
   groundCheckRadius: 0.1
   jumpForce: 8.5
+  attack: {fileID: 0}
 --- !u!50 &359482652158760658
 Rigidbody2D:
   serializedVersion: 4
