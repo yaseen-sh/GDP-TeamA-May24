@@ -17,6 +17,7 @@ public class ImageHover : MonoBehaviour
     
     private Sprite defaultImage;
     public string defaultText;
+    public string selectedStage;
     public bool has_selected_once = false;
 
     private void Start()
@@ -30,10 +31,12 @@ public class ImageHover : MonoBehaviour
 
     private void Update()
     {
+        selectedStage = MainText.text;
+       // Debug.Log(selectedStage);
         bool hovered = false;
         foreach (Image image in images)
         {
-            /*
+            
             if (RectTransformUtility.RectangleContainsScreenPoint(image.rectTransform, Input.mousePosition))
             {
                 MainText.text = image.GetComponentInChildren<TMP_Text>().text;
@@ -42,7 +45,7 @@ public class ImageHover : MonoBehaviour
                 buttonImage.sprite = image.sprite;
                 hovered = true;
                 break;
-            }*/
+            }
             if (RectTransformUtility.RectangleContainsScreenPoint(image.rectTransform, GameObject.Find("2PlayerCursor").GetComponent<VirtualMouseInput>().virtualMouse.position.value))
             {
                 MainText.text = image.GetComponentInChildren<TMP_Text>().text;

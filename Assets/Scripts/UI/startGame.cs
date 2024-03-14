@@ -9,22 +9,24 @@ public class startGame : MonoBehaviour
     public GameObject hoverObj;
     private ImageHover hoverScript;
     private string stageName = "null";
-    private GameObject startGameText;
+    public GameObject startGameText;
 
     // Start is called before the first frame update
     void Start()
     {
-        hoverObj = GameObject.Find("Buttons");
-        hoverScript = hoverObj.GetComponent<ImageHover>();
+
         startGameText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if(hoverScript.has_selected_once)
+        Debug.Log("update");
+        hoverObj = GameObject.Find("Buttons");
+        hoverScript = hoverObj.GetComponent<ImageHover>();
+        if (hoverScript.has_selected_once)
         {
+            Debug.Log("passed if");
             startGameText.SetActive(true);
             stageName = hoverScript.defaultText;
         }
