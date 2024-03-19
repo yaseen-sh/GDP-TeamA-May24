@@ -1,0 +1,62 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
+
+public class startGame : MonoBehaviour
+{
+    public GameObject hoverObj;
+    private StageHover hoverScript;
+    //private string stageName = "null";
+    public GameObject startGameText;
+
+    public static string selectedStage;
+    public static Sprite selectedImage;
+    private string prevSelectedStage;
+    public static bool hasSelectedStage = false;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        hoverObj = GameObject.Find("Buttons");
+        hoverScript = hoverObj.GetComponent<StageHover>();
+        startGameText.SetActive(false);
+        selectedStage = "";
+        hasSelectedStage = false;
+        prevSelectedStage = "";
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (hasSelectedStage)
+            startGameText.SetActive(true);
+        else
+            startGameText.SetActive(false);
+    }
+
+    public void StageSelect()
+    {
+        selectedStage = StageHover.selectedStageName;
+        selectedImage = StageHover.defaultImage;
+        Debug.Log(selectedStage);
+        if (prevSelectedStage == selectedStage)
+        {
+            if (hasSelectedStage) hasSelectedStage = false;
+            else hasSelectedStage = true;
+        } 
+        else
+        {
+            hasSelectedStage = true;
+            prevSelectedStage = selectedStage;
+        }
+    }
+
+    public void LoadStage()
+    {
+        Debug.Log("We would be loading "+selectedStage+" here");
+        //SceneManager.LoadScene(selectedStage);
+    }
+}
