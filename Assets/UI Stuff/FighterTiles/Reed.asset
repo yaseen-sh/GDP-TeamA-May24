@@ -15,4 +15,5 @@ MonoBehaviour:
   charName: Bill Reed
   charImage: {fileID: 21300000, guid: d1dc3562fb8038641883142251503e17, type: 3}
   selectLine: {fileID: 8300000, guid: b0041f4f9cdf1e44b86bd06ccd113d57, type: 3}
-  voiceLines: []
+  charIdle: ReedIdle
+  charReadyAnim: ReedReady

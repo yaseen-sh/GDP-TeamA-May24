@@ -15,4 +15,6 @@ public class CharTile : ScriptableObject
     public string charName; // Name of Character
     public Sprite charImage; // Sprite of Character
     public AudioClip selectLine; // Voice Line when Character is Selected
+    public string charIdle;
+    public string charReadyAnim;
 }
