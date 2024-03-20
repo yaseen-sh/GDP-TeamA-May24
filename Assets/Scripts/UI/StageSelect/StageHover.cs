@@ -27,7 +27,7 @@ public class StageHover : MonoBehaviour
         //images = charGrid.GetComponentsInChildren<Image>();
 
         defaultImage = buttonImage.sprite;
-        defaultImage = null;
+        //defaultImage = null;
         //defaultText = MainText.text;
         defaultText.text = "";
         Background1.text = "";
@@ -101,6 +101,7 @@ public class StageHover : MonoBehaviour
                 Background2.text = MainText.text;
                 //defaultText = MainText.text;
                 buttonImage.sprite = null;
+                //Debug.Log("Something");
             } 
             else
             {

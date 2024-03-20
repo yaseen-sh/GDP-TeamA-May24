@@ -22,7 +22,7 @@ public class startGame : MonoBehaviour
     {
         hoverObj = GameObject.Find("Buttons");
         hoverScript = hoverObj.GetComponent<StageHover>();
-        startGameText.SetActive(false);
+        startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "";//SetActive(false);
         selectedStage = "";
         hasSelectedStage = false;
         prevSelectedStage = "";
@@ -32,9 +32,9 @@ public class startGame : MonoBehaviour
     void Update()
     {
         if (hasSelectedStage)
-            startGameText.SetActive(true);
+            startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "Start Game";
         else
-            startGameText.SetActive(false);
+            startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "";
     }
 
     public void StageSelect()
