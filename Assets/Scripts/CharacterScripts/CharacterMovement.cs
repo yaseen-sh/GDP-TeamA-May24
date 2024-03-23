@@ -6,7 +6,7 @@ public class CharacterMovement : MonoBehaviour
     public Rigidbody2D rb;
     private float horizontal; //Input float for 2D movement
     public float speed;
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     public bool facingRight;
 
     Transform playerRotation; //Variable to control player's rotation

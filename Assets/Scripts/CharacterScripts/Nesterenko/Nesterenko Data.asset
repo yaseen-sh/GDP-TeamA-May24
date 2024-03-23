@@ -17,12 +17,12 @@ MonoBehaviour:
   selectLine: {fileID: 0}
   characterSpeed: 5
   lightAttackDamage: 50
-  lightAttackPosY: 0
-  lightAttackPosX: 0
-  lightAttackFrameCount: 0
-  lightAttackHitboxScale: 0
+  lightAttackPosY: 1
+  lightAttackPosX: 0.5
+  lightAttackFrameCount: 0.2
+  lightAttackHitboxScale: {x: 0.4, y: 0.2}
   heavyAttackDamage: 100
   heavyAttackPosY: 0
   heavyAttackPosX: 0
   heavyAttackFrameCount: 0
-  heavyAttackHitboxScale: 0
+  heavyAttackHitboxScale: {x: 0, y: 0}

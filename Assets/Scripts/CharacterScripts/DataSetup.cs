@@ -7,25 +7,34 @@ public class DataSetup : MonoBehaviour
 {
     [Header("List of CharTile Scriptable Objects")]
     [Space]
-    public List<CharTile> fighters = new List<CharTile>();
+    public List<CharacterDataLoader> fighters = new List<CharacterDataLoader>();
     [Space]
     public GameObject charTilePrefab;
     [Space]
     [Header("Player 1's Side")]
     public GameObject player1Char;
     public TextMeshProUGUI player1Name;
+    public CharacterAttack player1Moveset;
+    //Attack values
+    public int lightAttackDamage1;
+    public float lightAttackPosY1;
+    public float lightAttackPosX1;
+    public float lightAttackFrameCount1;
+    public Vector2 lightAttackHitboxScale1;
+
+    public int heavyAttackDamage1;
+    public float heavyAttackPosY1;
+    public float heavyAttackPosX1;
+    public float heavyAttackFrameCount1;
+    public Vector2 heavyAttackHitboxScale1;
 
     [Header("Player 2's Side")]
     public GameObject player2Char;
     public TextMeshProUGUI player2Name;
+    public CharacterAttack player2Moveset;
 
     [Header("default")]
     public Sprite defaultImage;
-
-    [Header("Used for Detecting if the Cursor is over a Tile")]
-    public List<GameObject> allTiles = new List<GameObject>();
-
-    public Button backButton;
 
     [Header("Ready?")]
     public GameObject ready;
@@ -36,12 +45,7 @@ public class DataSetup : MonoBehaviour
         ready.SetActive(false);
         player1Name.text = "";
         player2Name.text = "";
-        player1Char.GetComponent<Image>().sprite = defaultImage;
         player1Char.SetActive(false);
-        player2Char.GetComponent<Image>().sprite = defaultImage;
         player2Char.SetActive(false);
-        foreach (CharTile fighter in fighters)
-        {
-            Display(fighter);
-        }
     }
+}

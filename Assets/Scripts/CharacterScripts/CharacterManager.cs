@@ -73,20 +73,7 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    //Draw the Box Overlap as a gizmo to show where it currently is testing. Click the Gizmos button to see this
-    void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(0.75f, 0.0f, 0.0f, 0.75f);
-        
-        Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.localScale/2);
-        //Check that it is being run in Play Mode, so it doesn't try to draw this in Editor mode
-        if (m_Started)
-            //Draw a cube where the OverlapBox is (positioned where your GameObject is as well as a size)
-            Gizmos.DrawCube(Vector2.zero, new Vector2(boxSize.x * 1.25f, boxSize.y * 2.2f));//CHANGE VALUES FOR SPRITES
-        
-    }
-
-
+   
     public void SetPlayerHealth() // playerHealth call when on hit
     {
         if (roundStarted)

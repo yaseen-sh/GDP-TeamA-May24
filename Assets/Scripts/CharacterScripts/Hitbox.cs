@@ -16,14 +16,13 @@ public class Hitbox : MonoBehaviour
     public float radius = 0.5f;
     public GameObject hitboxPrefab;
     public Transform hitBoxSpawnLocation;// where the hit box spawns
-    public float hitboxDuration = 10f;
     public float hitboxPosX = 0.5f, hitboxPosY = 0.5f; //used to reposition hitbox 
     public Collider2D hitBoxCollider;
     public string actionName = "Action";// action names
     public int damage = 100;// amount of damage a attack does. for now 100
 
-    private int frameCount = 0; // counts duration of current attack
-    private float timer = .1f;
+    private float frameCount = 0f; // counts duration of current attack
+    private float timer = 0f;
     public GameObject currentHitBox;
     private Vector2 scaleChange;
     public GameObject hitBoxChild;
@@ -34,11 +33,12 @@ public class Hitbox : MonoBehaviour
 
 
     //Character Loader
-    public int lightAttackDamage = 0;
-    public float lightAttackPosY = 0;
-    public float lightAttackPosX = 0;
-    public float lightAttackFrameCount = 0;
-    public float lightAttackHitboxScale = 0;
+    //Default values
+    public int lightAttackDamage = 50;
+    public float lightAttackPosY = 0.5f;
+    public float lightAttackPosX = 0.5f;
+    public float lightAttackFrameCount = .2f;
+    public Vector2 lightAttackHitboxScale = new Vector2(1f,1f);
 
     public int heavyAttackDamage = 0;
     public float heavyAttackPosY = 0;
@@ -46,7 +46,7 @@ public class Hitbox : MonoBehaviour
     public float heavyAttackFrameCount = 0;
     public Vector2 heavyAttackHitboxScale = new Vector2 (0f,0f);
 
-
+    public CharacterDataLoader Data;
 
 
 
@@ -57,7 +57,6 @@ public class Hitbox : MonoBehaviour
     }
     private void Update()
     {
-        
         if (currentHitBox != null)
         {
             
@@ -66,13 +65,14 @@ public class Hitbox : MonoBehaviour
             //if (attackHappened then start frame counter
             //setup for each
             //time.deltatime
-            frameCount++;
-            timer -= Time.deltaTime;
-            //Debug.Log(timer);
-            if (timer <= 0f) // After hitbox duration, destroy hitbox and reset frame count
+            
+            timer += Time.deltaTime;
+            if (timer > frameCount) // After hitbox duration, destroy hitbox and reset frame count
             {
-                //Debug.Log("Frames per second: " + frameCount);
+
+                Debug.Log("Frames per second: " + frameCount + "\n" + "Timer: " + timer);
                 DestroyHitbox(currentHitBox);
+                timer = 0;
                 frameCount = 0;
                 isAttacking = false;
             }
@@ -99,20 +99,20 @@ public class Hitbox : MonoBehaviour
             case 1:
                 damage = lightAttackDamage;
                 //set hitbox parameters
-                timer = lightAttackFrameCount;
+                frameCount = lightAttackFrameCount;
                 if (movement.facingRight == true)
                 {
                     Debug.Log("FacingRightLightAttack");
                     hitboxPosX = lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
-                    scaleChange = heavyAttackHitboxScale;
+                    scaleChange = lightAttackHitboxScale;
                 }
                 else
                 {
                     Debug.Log("FacingLeftLightAttack");
                     hitboxPosX = -lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
-                    scaleChange = heavyAttackHitboxScale;
+                    scaleChange = lightAttackHitboxScale;
                 }
             break;
             //attacktype heavy
@@ -144,6 +144,7 @@ public class Hitbox : MonoBehaviour
         if (hitBoxChild.transform.childCount <= 0 )
         {
             //Check for the same hitbox hit 
+            //Debug.Log("Attacks");
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;

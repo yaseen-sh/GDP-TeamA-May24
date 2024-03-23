@@ -76,11 +76,18 @@ public class CharacterAttack : MonoBehaviour
             hitbox.isAttacking = true;
             hitbox.SpawnHitbox(1);//attack type 1;
                                   //Debug.Log("light punch");
-
             test = true;
         }
     }
-
+    /*
+     * You need an input buffer. Store every input that happens in order for however many frames your longest input sequence will be.
+     * Do this for every frame and every input for however many frames that is, and just get rid of the tail whenever you add a new input.
+     * Then you look to see if the input buffer up through the last input matches any known moves. you should be recording like “back” “down + back” etc as inputs.
+     * Note that presses can happen for multiple frames so you usually want to also buffer what you’re reading from the input buffer. 
+     * In other words, have a number of frames that are allowed as holds between new inputs in the middle of series where anything 
+     * below the threshold is considered part of the series (since inputs will not be exactly 1 frame each).
+     * There are many ways to specifically implement this but that’s a pretty basic overview of the algorithm to get you started.
+     */
     float StartFrames()
     {
         return 0;
