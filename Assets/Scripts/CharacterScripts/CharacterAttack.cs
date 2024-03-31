@@ -15,9 +15,8 @@ public class CharacterAttack : MonoBehaviour
     public LayerMask groundLayer; //ground layer so we know if we're above ground
     public bool isBlocking = false;
     public string actionName = "Action";// action names
-    public int damage = 100;// amount of damage a attack does. for now 100
     
-    private float frameCount = 10f; // counts duration of current attack
+    private float frameCount; // counts duration of current attack
     private GameObject currentHitBox;
     //private SpriteRenderer hitBoxRenderer;
     

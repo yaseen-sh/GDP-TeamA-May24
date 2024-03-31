@@ -14,6 +14,8 @@ public class CharacterDataLoader : ScriptableObject
     public Sprite charImage; // Sprite of Character
     public AudioClip selectLine; // Voice Line when Character is Selected
     public int characterSpeed;
+    public CharacterManager PlayerTag;
+    public CharacterManager OpponentTag;
     //Light Attack
     public int lightAttackDamage;
     public float lightAttackPosY;

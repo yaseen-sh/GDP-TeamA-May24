@@ -16,9 +16,9 @@ public class CharacterManager : MonoBehaviour
     public TMP_Text superMeterText;
 
     const float maxHealth = 1000;//should be reset to 1000 after end of round
-    public float currentHealth = maxHealth;
+    private float currentHealth = maxHealth;
     const float minMeter = 0;
-    public float currentMeter = minMeter;
+    private float currentMeter = minMeter;
     const float maxBlock = 100;//after each match the maxBlock should be reset to 100
     public float currentBlock = maxBlock;
     bool roundStarted = true;
@@ -45,8 +45,8 @@ public class CharacterManager : MonoBehaviour
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
         roundStarted = false;
         boxSize = new Vector2(1.25f, 1.25f);
-        SetPlayerHealth();
-        SetSuperMeter();
+        SetPlayerHealth(0);
+        SetSuperMeter(0);
     }
 
     // Update is called once per frame
@@ -73,21 +73,29 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-   
-    public void SetPlayerHealth() // playerHealth call when on hit
+   public float GetPlayerHealth()
+    {
+        return currentHealth;
+    }
+    public void SetPlayerHealth(int damage) // playerHealth call when on hit
     {
         if (roundStarted)
             currentHealth = maxHealth;
+        currentHealth -= damage;
         healthText.text = "Health: " + currentHealth.ToString();
         if (currentHealth <= 0)
             state.dead();
            
     }
-
-    public void SetSuperMeter() // meter used for special moves
+    public float GetPlayerSuper()
+    {
+        return currentMeter;
+    }
+    public void SetSuperMeter(int charge) // meter used for special moves
     {
         if (roundStarted)
             currentMeter = minMeter;
+        currentMeter += charge;
         superMeterText.text = "Super: " +  currentMeter.ToString();
     }
     float MovementSpeed()// variable movement speed

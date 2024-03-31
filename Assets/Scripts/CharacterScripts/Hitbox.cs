@@ -26,19 +26,19 @@ public class Hitbox : MonoBehaviour
     public GameObject currentHitBox;
     private Vector2 scaleChange;
     public GameObject hitBoxChild;
-    public CharacterManager Opponent;
+    public CharacterManager OpponentTag;
     public CharacterManager playerTag;
     public bool isAttacking = false;
     //private ColliderState _state;
 
-
+    public CharacterDataLoader Data;
     //Character Loader
     //Default values
-    public int lightAttackDamage = 50;
-    public float lightAttackPosY = 0.5f;
-    public float lightAttackPosX = 0.5f;
-    public float lightAttackFrameCount = .2f;
-    public Vector2 lightAttackHitboxScale = new Vector2(1f,1f);
+    public int lightAttackDamage = 0;
+    public float lightAttackPosY = 0;
+    public float lightAttackPosX = 0;
+    public float lightAttackFrameCount = 0;
+    public Vector2 lightAttackHitboxScale = new Vector2(0f,0f);
 
     public int heavyAttackDamage = 0;
     public float heavyAttackPosY = 0;
@@ -46,15 +46,28 @@ public class Hitbox : MonoBehaviour
     public float heavyAttackFrameCount = 0;
     public Vector2 heavyAttackHitboxScale = new Vector2 (0f,0f);
 
-    public CharacterDataLoader Data;
-
-
+    
 
     public CharacterMovement movement;
     private void Awake()
     {
         movement = GetComponent<CharacterMovement>();
+        
     }
+    private void Start()
+    {
+        lightAttackDamage = Data.lightAttackDamage;
+        lightAttackPosY = Data.lightAttackPosX ;
+        lightAttackPosX = Data.lightAttackPosY;
+        lightAttackFrameCount = Data.lightAttackFrameCount;
+        lightAttackHitboxScale = Data.lightAttackHitboxScale;
+
+        heavyAttackDamage = Data.heavyAttackDamage;
+        heavyAttackPosY = Data.heavyAttackPosY;
+        heavyAttackPosX = Data.heavyAttackPosX;
+        heavyAttackFrameCount = Data.heavyAttackFrameCount;
+        heavyAttackHitboxScale = Data.heavyAttackHitboxScale;
+}
     private void Update()
     {
         if (currentHitBox != null)
@@ -82,11 +95,11 @@ public class Hitbox : MonoBehaviour
     {
         //Debug.Log("ontrigger");
         if (coll.gameObject.CompareTag("HurtBox")&& isAttacking == true)
-        { 
+        {
             //Debug.Log(coll.gameObject.name);
-            
-            Opponent.currentHealth -= damage;
-            Opponent.SetPlayerHealth();
+
+            OpponentTag.GetPlayerHealth();
+            OpponentTag.SetPlayerHealth(damage);
             //Debug.Log("Hit Confirmed");
         }
     }

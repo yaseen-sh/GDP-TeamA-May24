@@ -32,17 +32,17 @@ public class Pushbox : MonoBehaviour
     {
         movement = GetComponentInParent<CharacterMovement>();
 
-        if(movement.facingRight && movement.isGrounded)
+        if(movement.facingRight && !movement.isJumping)//right
         {
             repelDirection1 = transform.position - otherTransform.position;
             repelDirection2 = transform.position + otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);
             otherRb.AddForce(repelDirection2.normalized * repelForce);
         }
-        else if (!movement.facingRight && movement.isGrounded)
+        else if (!movement.facingRight && !movement.isJumping)//left
         {
-            repelDirection1 = transform.position + otherTransform.position;
-            repelDirection2 = transform.position - otherTransform.position;
+            repelDirection1 = transform.position - otherTransform.position;
+            repelDirection2 = transform.position + otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);
             otherRb.AddForce(repelDirection2.normalized * repelForce);
         }

@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour
     private float horizontal; //Input float for 2D movement
     public float speed;
     public bool isGrounded = true;
+    public bool isJumping = false;
     public bool facingRight;
 
     Transform playerRotation; //Variable to control player's rotation
@@ -39,6 +40,10 @@ public class CharacterMovement : MonoBehaviour
                 //Debug.Log("Facing Left");
 
         }
+        if (isGrounded)
+        {
+            isJumping = false;
+        }
     }
    
     public void Movement(InputAction.CallbackContext context)
@@ -59,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (context.performed && isGrounded)
         {
+            isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
