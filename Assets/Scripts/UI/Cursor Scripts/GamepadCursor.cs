@@ -182,6 +182,8 @@ public class GamepadCursor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
+            if (gameObject.CompareTag("CursorP2")) return;
+
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 Debug.Log("Start Button Pressed");

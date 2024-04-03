@@ -31,25 +31,25 @@ public class SetupTitle : MonoBehaviour
             if (RectTransformUtility.RectangleContainsScreenPoint(pvpMode.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
             {
                 var buttonColor = pvpMode.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .5f);
+                buttonColor.normalColor = new Color(0, 0, 1, .2f);
                 pvpMode.GetComponent<Button>().colors = buttonColor;
             }
             else if (RectTransformUtility.RectangleContainsScreenPoint(story.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
             {
                 var buttonColor = story.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .5f);
+                buttonColor.normalColor = new Color(0, 0, 1, .2f);
                 story.GetComponent<Button>().colors = buttonColor;
             }
             else if (RectTransformUtility.RectangleContainsScreenPoint(credits.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
             {
                 var buttonColor = credits.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .5f);
+                buttonColor.normalColor = new Color(0, 0, 1, .2f);
                 credits.GetComponent<Button>().colors = buttonColor;
             }
             else if (RectTransformUtility.RectangleContainsScreenPoint(quit.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
             {
                 var buttonColor = quit.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .5f);
+                buttonColor.normalColor = new Color(0, 0, 1, .2f);
                 quit.GetComponent<Button>().colors = buttonColor;
             }
             else 
