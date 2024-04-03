@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     public float groundCheckRadius = 0.1f; //radius around groundcheck for testing 
     public float jumpForce = 20f;
     public CharacterAttack attack;
+    public CharacterDataLoader Data;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

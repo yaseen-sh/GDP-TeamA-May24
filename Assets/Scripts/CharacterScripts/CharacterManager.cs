@@ -23,7 +23,7 @@ public class CharacterManager : MonoBehaviour
     public float currentBlock = maxBlock;
     bool roundStarted = true;
 
-    public CharacterStates state;
+    public CharacterStateMachine state;
 
     /*HITBOX SPECIFIC SHIT*/
     bool m_Started = true;
@@ -37,7 +37,7 @@ public class CharacterManager : MonoBehaviour
     public enum ColliderState{ Closed, Open,Colliding}
     private void Awake()
     {
-        state = GetComponent<CharacterStates>();
+        state = GetComponent<CharacterStateMachine>();
     }
     void Start()
     {

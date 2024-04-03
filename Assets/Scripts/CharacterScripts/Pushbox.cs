@@ -30,7 +30,6 @@ public class Pushbox : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(waitTime);
-            print("WaitAndPrint " + Time.time);
         }
     }
     private void Repel(Transform otherTransform, Rigidbody2D otherRb)
@@ -51,8 +50,8 @@ public class Pushbox : MonoBehaviour
         else if (!movement.facingRight && !movement.isJumping)//left
         {
             Debug.Log("2");
-            repelDirection1 = transform.position - otherTransform.position;
-            repelDirection2 = transform.position + otherTransform.position;
+            repelDirection1 = transform.position + otherTransform.position;
+            repelDirection2 = transform.position - otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);
             otherRb.AddForce(repelDirection2.normalized * repelForce);
         }
