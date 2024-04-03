@@ -19,17 +19,14 @@ public class StageHover : MonoBehaviour
     //public static bool has_selected_once;
     public static string selectedStageName;
 
-    public TMP_Text defaultText;
-
     private void Start()
     {
         //stageNames = charGrid.GetComponentsInChildren<TMP_Text>();
         //images = charGrid.GetComponentsInChildren<Image>();
 
         defaultImage = buttonImage.sprite;
-        //defaultImage = null;
-        //defaultText = MainText.text;
-        defaultText.text = "";
+        buttonImage.enabled = false;
+
         Background1.text = "";
         Background2.text = "";
 
@@ -50,6 +47,7 @@ public class StageHover : MonoBehaviour
                 Background2.text = MainText.text;
                 buttonImage.sprite = stage.GetComponentsInChildren<Image>()[1].sprite;
                 defaultImage = buttonImage.sprite;
+                buttonImage.enabled = true;
                 selectedStageName = MainText.text;
                 hovered = true;
                 break;
@@ -61,6 +59,7 @@ public class StageHover : MonoBehaviour
                 Background2.text = MainText.text;
                 buttonImage.sprite = stage.GetComponentsInChildren<Image>()[1].sprite;
                 defaultImage = buttonImage.sprite;
+                buttonImage.enabled = true;
                 selectedStageName = MainText.text;
                 hovered = true;
                 break;
@@ -95,17 +94,14 @@ public class StageHover : MonoBehaviour
         {
             if (!startGame.hasSelectedStage)
             {
-                //MainText.text = defaultText.text;
                 MainText.text = "";
                 Background1.text = MainText.text;
                 Background2.text = MainText.text;
-                //defaultText = MainText.text;
                 buttonImage.sprite = null;
-                //Debug.Log("Something");
+                buttonImage.enabled = false;
             } 
             else
             {
-                //MainText.text = selectedStageName;
                 MainText.text = startGame.selectedStage;
                 Background1.text = MainText.text;
                 Background2.text = MainText.text;
@@ -113,14 +109,4 @@ public class StageHover : MonoBehaviour
             }
         }
     }
-    /*
-    public void StageSelect()
-    {
-        //defaultText.text = 
-        //selectedStageName = MainText.text;
-        Debug.Log(selectedStageName);
-        //defaultImage = buttonImage.sprite;
-        if (has_selected_once) has_selected_once = false;
-        else has_selected_once = true;
-    }*/
 }
