@@ -6,8 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player1;
     public GameObject player2;
-    
 
+    public CharacterDataLoader Data;
     void Awake()
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
