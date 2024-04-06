@@ -3,19 +3,32 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CursorP1
+  - CursorP2
+  - CharManager
+  - ButtonManager
+  - CharacterTile
+  - CharGrid
+  - CursorManager
+  - AudioManager
+  - HurtBox
+  - Player 1
+  - Player 2
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Ground
+  - CharacterTile
   - 
   - 
   - 
   - 
+  - Pushbox
   - 
   - 
   - 

@@ -185,6 +185,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b6f4ae0d-c9a0-41a6-957c-5f8507f5507e
     m_ActionName: Player1/Jumping[/XInputControllerWindows/buttonSouth,/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e6ee0c68-f92f-4b4d-bd51-e9bf7a8e63e4
+    m_ActionName: Player/AttackLight[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 20ee233c-2d53-4056-8639-19136af06970
+    m_ActionName: Player1/AttackLight[/Keyboard/j]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -204,6 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 359482652158760658}
   speed: 2
+  facingRight: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64

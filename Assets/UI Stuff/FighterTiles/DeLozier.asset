@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Greg DeLozier
   charImage: {fileID: 21300000, guid: 343ae50883be71f48b21bbafe2e2561c, type: 3}
+  selectLine: {fileID: 8300000, guid: b0041f4f9cdf1e44b86bd06ccd113d57, type: 3}
+  charIdle: DeLozierIdle
+  charReadyAnim: DeLozierReady
