@@ -23,13 +23,17 @@ public class GamepadJoin : MonoBehaviour
 
     public GameObject controllerConnected;
 
+    public InputDevice player1Controller;
+    public InputDevice player2Controller;
+    //public PlayerInput pla
+
     public void Awake()
     {
         currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
         if (inputManager == null)
         {
             inputManager = gameObject;
-            //DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -65,6 +69,14 @@ public class GamepadJoin : MonoBehaviour
         var playerNumberToAdd = PlayerInput.all.Count + 1;
         numberOfActivePlayers = playerNumberToAdd;
         Debug.Log("Number of Players Connected is: " + numberOfActivePlayers);
+        if (playerNumberToAdd == 1) {
+            player1Controller = device;
+            //PlayerPrefs.SetInt("Player1Input", playerNumberToAdd);
+        }
+        else {
+            player2Controller = device;
+            //PlayerPrefs.SetInt("Player2Input", playerNumberToAdd);
+        }
 
         string controlScheme = "Gamepad";
         if(SceneManager.GetActiveScene().name == "CharacterSelectPvP")
@@ -72,13 +84,27 @@ public class GamepadJoin : MonoBehaviour
             // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
             GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
 
-            currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-            if (!playerCursor.activeInHierarchy)
-            {
-                PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
-                theCursor.transform.parent = currentCanvas.transform;
-                theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            //if (playerNumberToAdd == 1)
+            //{
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+            //}
+            //else
+            //{
+            /*
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, player2Controller);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+            //}*/
         }
         else if (SceneManager.GetActiveScene().name == "TitleScreen")
         {
@@ -115,7 +141,40 @@ public class GamepadJoin : MonoBehaviour
                     theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
                 }
         }
+        else if (SceneManager.GetActiveScene().name == "Credits")
+        {
+            if (numberOfActivePlayers != 2)
+            {
 
+                // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
+                GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
+
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Story")
+        {
+            if (numberOfActivePlayers != 2)
+            {
+
+                // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
+                GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
+
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+        }
     }
     IEnumerator ShowControllerText()
     {

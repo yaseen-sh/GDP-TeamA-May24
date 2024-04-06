@@ -58,5 +58,6 @@ public class startGame : MonoBehaviour
     {
         Debug.Log("We would be loading "+selectedStage+" here");
         //SceneManager.LoadScene(selectedStage);
+        
     }
 }
