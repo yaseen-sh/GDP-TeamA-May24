@@ -74,6 +74,7 @@ public class SetupCharTiles : MonoBehaviour
     void Update()
     {
         // For the back button hover
+        /*
         if (GameObject.FindGameObjectWithTag("CursorP1") != null)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(backButton.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
@@ -88,7 +89,7 @@ public class SetupCharTiles : MonoBehaviour
                 defaultColor.normalColor = new Color(0, 0, 0, 0);
                 backButton.GetComponent<Button>().colors = defaultColor;
             }
-        }
+        }*/
         bool is1Hovered = true;
         bool is2Hovered = true;
         // Player 1 Controller

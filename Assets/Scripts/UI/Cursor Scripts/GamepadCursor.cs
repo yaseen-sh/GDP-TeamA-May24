@@ -124,10 +124,10 @@ public class GamepadCursor : MonoBehaviour
                 // Back Button
                 if (gameObject.CompareTag("CursorP1"))
                 {
-                    SetupCharTiles creditButtons = GameObject.FindGameObjectWithTag("CharGrid").GetComponent<SetupCharTiles>();
-                    if (RectTransformUtility.RectangleContainsScreenPoint(creditButtons.backButton.GetComponent<RectTransform>(), transform.position))
+                    BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
+                    if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
-                        creditButtons.backButton.GetComponent<Button>().onClick.Invoke();
+                        charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
                 }
             }
@@ -136,10 +136,10 @@ public class GamepadCursor : MonoBehaviour
                 // Back Button
                 if (gameObject.CompareTag("CursorP1"))
                 {
-                    SetupCharTiles storyButtons = GameObject.FindGameObjectWithTag("CharGrid").GetComponent<SetupCharTiles>();
-                    if (RectTransformUtility.RectangleContainsScreenPoint(storyButtons.backButton.GetComponent<RectTransform>(), transform.position))
+                    BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
+                    if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
-                        storyButtons.backButton.GetComponent<Button>().onClick.Invoke();
+                        charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
                 }
             }
@@ -148,7 +148,7 @@ public class GamepadCursor : MonoBehaviour
                 // Back Button
                 if (gameObject.CompareTag("CursorP1"))
                 {
-                    SetupCharTiles charButtons = GameObject.FindGameObjectWithTag("CharGrid").GetComponent<SetupCharTiles>();
+                    BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();

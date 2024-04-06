@@ -63,19 +63,5 @@ public class SetupTitle : MonoBehaviour
                 quit.GetComponent<Button>().colors = defaultColor;
             }
         }
-        else if (GameObject.FindGameObjectWithTag("CursorP1") != null && SceneManager.GetActiveScene().name == "Story") {
-            if (RectTransformUtility.RectangleContainsScreenPoint(credits.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
-            {
-                var buttonColor = credits.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .2f);
-                credits.GetComponent<Button>().colors = buttonColor;
-            }
-            else
-            {
-                var defaultColor = credits.GetComponent<Button>().colors;
-                defaultColor.normalColor = new Color(0, 0, 0, 0);
-                credits.GetComponent<Button>().colors = defaultColor;
-            }
-        }
     }
 }
