@@ -14,6 +14,7 @@ TagManager:
   - HurtBox
   - Player 1
   - Player 2
+  - Pushbox
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,6 @@ TagManager:
   - 
   - 
   - Pushbox
-  - 
-  - 
   - 
   - 
   - 

@@ -6,7 +6,8 @@ public class CharacterMovement : MonoBehaviour
     public Rigidbody2D rb;
     private float horizontal; //Input float for 2D movement
     public float speed;
-    private bool isGrounded = true;
+    public bool isGrounded = true;
+    public bool isJumping = false;
     public bool facingRight;
 
     Transform playerRotation; //Variable to control player's rotation
@@ -17,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     public float groundCheckRadius = 0.1f; //radius around groundcheck for testing 
     public float jumpForce = 20f;
     public CharacterAttack attack;
+    public CharacterDataLoader Data;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,6 +41,10 @@ public class CharacterMovement : MonoBehaviour
                 //Debug.Log("Facing Left");
 
         }
+        if (isGrounded)
+        {
+            isJumping = false;
+        }
     }
    
     public void Movement(InputAction.CallbackContext context)
@@ -59,6 +65,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (context.performed && isGrounded)
         {
+            isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
     }
