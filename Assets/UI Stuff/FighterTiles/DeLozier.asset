@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf89b08e17b7394cbc6838207ad682e, type: 3}
+  m_Name: DeLozier
+  m_EditorClassIdentifier: 
+  charName: Greg DeLozier
+  charImage: {fileID: 21300000, guid: 343ae50883be71f48b21bbafe2e2561c, type: 3}
+  selectLine: {fileID: 8300000, guid: b0041f4f9cdf1e44b86bd06ccd113d57, type: 3}
+  charIdle: DeLozierIdle
+  charReadyAnim: DeLozierReady
