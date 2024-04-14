@@ -23,7 +23,7 @@ public class CharacterManager : MonoBehaviour
     public float currentBlock = maxBlock;
     bool roundStarted = true;
 
-    public CharacterStateMachine state;
+   
 
     /*HITBOX SPECIFIC SHIT*/
     bool m_Started = true;
@@ -33,6 +33,7 @@ public class CharacterManager : MonoBehaviour
     public Vector2 hitBoxSize = Vector2.one;
     public CharacterDataLoader Data;
     // Start is called before the first frame update
+    public CharacterStateMachine state;
     private void Awake()
     {
         state = GetComponent<CharacterStateMachine>();
@@ -82,9 +83,9 @@ public class CharacterManager : MonoBehaviour
             currentHealth = maxHealth;
         currentHealth -= damage;
         healthText.text = "Health: " + currentHealth.ToString();
-       // if (currentHealth <= 0)
-            //state.dead();
-           
+        if (currentHealth <= 0)
+            state.SwitchState(state.DeadState);
+
     }
     public float GetPlayerSuper()
     {

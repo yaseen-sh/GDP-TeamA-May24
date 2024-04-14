@@ -31,10 +31,11 @@ public class CharacterAttack : MonoBehaviour
 
     private void Awake()
     {
-        
+        characterState = GetComponent<CharacterStateMachine>();
     }
     void Start()
     {
+       
         controller = GetComponent<CharacterManager>();
 
         hitBoxRenderer = GetComponent<SpriteRenderer>();
@@ -48,16 +49,6 @@ public class CharacterAttack : MonoBehaviour
         hitbox = GetComponent<Hitbox>();
         // controller.SetPlayerHealth();
         //controller.SetSuperMeter();
-    }
-    
-    private void Update()
-    {
-
-
-    }
-    void FixedUpdate()
-    {
-        
     }
 
     public void AttackLight(InputAction.CallbackContext context)
@@ -81,42 +72,5 @@ public class CharacterAttack : MonoBehaviour
             hitbox.isAttacking = true;
             hitbox.SpawnHitbox(2);
         }
-    }
-    /*
-     * You need an input buffer. Store every input that happens in order for however many frames your longest input sequence will be.
-     * Do this for every frame and every input for however many frames that is, and just get rid of the tail whenever you add a new input.
-     * Then you look to see if the input buffer up through the last input matches any known moves. you should be recording like “back” “down + back” etc as inputs.
-     * Note that presses can happen for multiple frames so you usually want to also buffer what you’re reading from the input buffer. 
-     * In other words, have a number of frames that are allowed as holds between new inputs in the middle of series where anything 
-     * below the threshold is considered part of the series (since inputs will not be exactly 1 frame each).
-     * There are many ways to specifically implement this but that’s a pretty basic overview of the algorithm to get you started.
-     */
-    float StartFrames()
-    {
-        return 0;
-    }
-    float ActiveFrames()
-    {
-        return 0;
-    }
-    float RecoveryFrames()
-    {
-        return 0;
-    }
-    float HitStunFrames()
-    {
-        return 0;
-    }
-    float BlockStunFrames()
-    {
-        return 0;
-    }
-    float attack()
-    {
-        return 0;
-    }
-    string AttackProperty()
-    {
-        return "";
     }
 }

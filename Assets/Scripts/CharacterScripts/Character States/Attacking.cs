@@ -10,7 +10,7 @@ public class Attacking : CharacterBaseState
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
-        movement.speed = 0;
+        //movement.speed = 0;
         //Play animation
         Debug.Log("AttackingState");
     }

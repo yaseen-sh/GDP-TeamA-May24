@@ -58,7 +58,10 @@ public class Hitbox : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<CharacterMovement>();
-        
+        //TODO
+        //on awake set the player and opponent tags
+        // playerTag = ;
+        // OpponentTag = ;
     }
     public void Start()
     {
@@ -82,10 +85,7 @@ public class Hitbox : MonoBehaviour
         heavyAttackHitboxScale = Data.heavyAttackHitboxScale;
 
 
-        //TODO
-        //on start set the player and opponent tags
-       // playerTag = ;
-       // OpponentTag = ;
+        
 }
     private void Update()
     {

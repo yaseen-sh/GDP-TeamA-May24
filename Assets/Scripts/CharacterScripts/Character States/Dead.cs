@@ -7,7 +7,7 @@ public class Dead : CharacterBaseState
     public override void EnterState(CharacterStateMachine state)
     {
         Debug.Log("DeadState");
-        throw new System.NotImplementedException();
+        
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)
