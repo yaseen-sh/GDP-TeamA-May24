@@ -24,11 +24,10 @@ public class CharacterAttack : MonoBehaviour
     protected bool shouldCombo;// if attack would combo into another
     protected int attackIndex;// the attack number in a combo string
 
+    CharacterStateMachine characterState;
     public Hitbox hitbox;
     public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
-    bool keyPressed;
-    bool test;
 
     private void Awake()
     {
@@ -53,11 +52,7 @@ public class CharacterAttack : MonoBehaviour
     
     private void Update()
     {
-        if (test)
-        {
-            //Debug.Log("AttackLightHappened");
-            test = false;
-        }
+
 
     }
     void FixedUpdate()
@@ -75,7 +70,16 @@ public class CharacterAttack : MonoBehaviour
             hitbox.isAttacking = true;
             hitbox.SpawnHitbox(1);//attack type 1;
                                   //Debug.Log("light punch");
-            test = true;
+
+            characterState.SwitchState(characterState.AttackingState);
+        }
+    }
+    public void AttackHeavy(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed())
+        {
+            hitbox.isAttacking = true;
+            hitbox.SpawnHitbox(2);
         }
     }
     /*

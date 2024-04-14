@@ -2,75 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attacking : IState
+public class Attacking : CharacterBaseState
 {
-    void IState.OnAttacking()
+    CharacterMovement movement;
+    Hitbox hitbox;
+    CharacterAttack attack;
+    public override void EnterState(CharacterStateMachine state)
     {
+        //Lock Movement
+        movement.speed = 0;
+        //Play animation
+        Debug.Log("AttackingState");
+    }
+
+    public override void UpdateState(CharacterStateMachine state)
+    {
+        //after windup and winddown 
+        //transition back to idle
+        if (hitbox.timer < 0)
+            state.SwitchState(state.IdleState);
+    }
+    public override void OnCollisionEnter(CharacterStateMachine state)
+    {
+
         throw new System.NotImplementedException();
     }
 
-    void IState.OnBlocking()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDamaged()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDead()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDisable()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnEnable()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnHitStunned()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnIdle()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnJump()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnKnockDown()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnMidAir()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnWakeUp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnWalk()
-    {
-        throw new System.NotImplementedException();
-    }
 }

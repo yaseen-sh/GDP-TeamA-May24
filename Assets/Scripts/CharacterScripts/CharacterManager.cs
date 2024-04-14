@@ -31,10 +31,8 @@ public class CharacterManager : MonoBehaviour
     private Vector2 scaleChange, positionChange;
     private Vector2 boxSize;
     public Vector2 hitBoxSize = Vector2.one;
-    private ColliderState _state;
     public CharacterDataLoader Data;
     // Start is called before the first frame update
-    public enum ColliderState{ Closed, Open,Colliding}
     private void Awake()
     {
         state = GetComponent<CharacterStateMachine>();

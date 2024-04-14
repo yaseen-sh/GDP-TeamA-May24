@@ -31,7 +31,10 @@ public class CharacterDataLoader : ScriptableObject
     public float lightAttackPosY;
     public float lightAttackPosX;
     public float lightAttackFrameCount;
+    public float lightAttackStartUpFrames;
+    public float lightAttackRecoveryFrames;
     public Vector2 lightAttackHitboxScale;
+    public float lightAttackHitStun;
     public Animator LightAnimator;
 
     //Heavy Attack
@@ -39,7 +42,10 @@ public class CharacterDataLoader : ScriptableObject
     public float heavyAttackPosY;
     public float heavyAttackPosX;
     public float heavyAttackFrameCount;
+    public float heavyAttackStartUpFrames;
+    public float heavyAttackRecoveryFrames;
     public Vector2 heavyAttackHitboxScale;
+    public float heavyAttackHitStun;
     public Animator HeavyAnimator;
     //Special Move stuff here
 

@@ -12,17 +12,15 @@ using UnityEngine.UI;
 //Context
 public class CharacterStateMachine : MonoBehaviour
 {
-    protected CharacterController player;
-    protected CharacterStateMachine stateMachine;
-    protected Animator animationController;
-    protected string animationName;
     public CharacterDataLoader Data;
+    protected CharacterController player;
+    
 
     protected bool isExitingState;
     protected bool isAnimationFinished;
     protected float startTime;
-    public IState CurrentState { get; private set; }
-    
+
+    public CharacterBaseState CurrentState;
     public Idle IdleState = new Idle();
     public FWalk FWalkState = new FWalk();
     public BWalk BWalkState = new BWalk();
@@ -36,36 +34,14 @@ public class CharacterStateMachine : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(IdleState);
+        //On start character starts in Idle
+        CurrentState = IdleState;
+        CurrentState.EnterState(this);
     }
-    public CharacterStateMachine(CharacterController _player, CharacterStateMachine _stateMachine, Animator _animationController, string _animationName)
+    public void SwitchState(CharacterBaseState state)
     {
-        player = _player;
-        stateMachine = _stateMachine;
-        animationController = _animationController;
-        animationName = _animationName;
+        CurrentState = state;
+        state.EnterState(this);
     }
-    public void ChangeState(IState newState)
-    {
-        CurrentState = newState;
-    }
-    
 }
 
-public interface IState
-    {
-        public void OnUpdate();
-        void OnDisable();
-        void OnEnable();
-        void OnIdle();
-        void OnWalk();
-        void OnJump();
-        void OnMidAir();
-        void OnAttacking();
-        void OnBlocking();
-        void OnHitStunned();
-        void OnDamaged();
-        void OnWakeUp();
-        void OnKnockDown();
-        void OnDead();
-}

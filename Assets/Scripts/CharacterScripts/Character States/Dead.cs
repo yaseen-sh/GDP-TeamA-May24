@@ -2,74 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dead : IState
+public class Dead : CharacterBaseState
 {
-    void IState.OnAttacking()
+    public override void EnterState(CharacterStateMachine state)
+    {
+        Debug.Log("DeadState");
+        throw new System.NotImplementedException();
+    }
+
+    public override void OnCollisionEnter(CharacterStateMachine state)
     {
         throw new System.NotImplementedException();
     }
 
-    void IState.OnBlocking()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDamaged()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDead()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDisable()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnEnable()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnHitStunned()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnIdle()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnJump()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnKnockDown()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnMidAir()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnWakeUp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnWalk()
+    public override void UpdateState(CharacterStateMachine state)
     {
         throw new System.NotImplementedException();
     }
