@@ -20,6 +20,9 @@ public class Hitbox : MonoBehaviour
     public Collider2D hitBoxCollider;
     public string actionName = "Action";// action names
     public int damage = 100;// amount of damage a attack does. for now 100
+    public float hitStun = 0;
+    public float RecoveryFrames = 0;
+    public float StartUpFrames = 0;
 
     private float frameCount = 0f; // counts duration of current attack
     public float timer = 0f;
@@ -58,10 +61,7 @@ public class Hitbox : MonoBehaviour
     private void Awake()
     {
         movement = GetComponent<CharacterMovement>();
-        //TODO
-        //on awake set the player and opponent tags
-        // playerTag = ;
-        // OpponentTag = ;
+        
     }
     public void Start()
     {
@@ -85,7 +85,10 @@ public class Hitbox : MonoBehaviour
         heavyAttackHitboxScale = Data.heavyAttackHitboxScale;
 
 
-        
+        //TODO
+        //on start set the player and opponent tags
+       // playerTag = ;
+       // OpponentTag = ;
 }
     private void Update()
     {
@@ -138,6 +141,8 @@ public class Hitbox : MonoBehaviour
                     hitboxPosX = lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
                     scaleChange = lightAttackHitboxScale;
+                    RecoveryFrames = lightAttackRecoveryFrames;
+                    StartUpFrames = lightAttackStartUpFrames;
                     
                 }
                 else
@@ -146,17 +151,31 @@ public class Hitbox : MonoBehaviour
                     hitboxPosX = -lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
                     scaleChange = lightAttackHitboxScale;
+                    RecoveryFrames = lightAttackRecoveryFrames;
+                    StartUpFrames = lightAttackStartUpFrames;
                 }
             break;
             //attacktype heavy
             case 2:
-                damage = 100;
+                damage = heavyAttackDamage;
+                frameCount = heavyAttackFrameCount;
                 if (movement.facingRight == true)
                 {
                     Debug.Log("FacingRightHeavyAttack");
+                    hitboxPosX = heavyAttackPosX;
+                    hitboxPosY = heavyAttackPosY;
+                    scaleChange = lightAttackHitboxScale;
+                    RecoveryFrames = heavyAttackRecoveryFrames;
+                    StartUpFrames = heavyAttackStartUpFrames;
+                    
                 }
                 else
                 {
+                    hitboxPosX = -heavyAttackPosX;
+                    hitboxPosY = heavyAttackPosY;
+                    scaleChange = lightAttackHitboxScale;
+                    RecoveryFrames = heavyAttackRecoveryFrames;
+                    StartUpFrames = heavyAttackStartUpFrames;
                     Debug.Log("FacingLeftHeavyAttack");
                 }
                 break;

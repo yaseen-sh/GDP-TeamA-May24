@@ -1,14 +1,15 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle : CharacterBaseState
+public class Crouch : CharacterBaseState
 {
     public override void EnterState(CharacterStateMachine state)
     {
-        //Play idle animation
+        //Play crouch animation
         //CharacterAnim.idle();
-        Debug.Log("Idling");
+        Debug.Log("CrouchingState");
+        //change the hitbox accordingly
     }
 
     public override void UpdateState(CharacterStateMachine state)

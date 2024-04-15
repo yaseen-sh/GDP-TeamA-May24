@@ -1,31 +1,26 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attacking : CharacterBaseState
+public class HeavyAttackingState : CharacterBaseState
 {
     CharacterMovement movement;
     Hitbox hitbox;
     CharacterAttack attack;
     public override void EnterState(CharacterStateMachine state)
     {
-        //Lock Movement
-        //movement.speed = 0;
-        //Play animation
-        Debug.Log("AttackingState");
+        //Play idle animation
+        //CharacterAnim.idle();
+        Debug.Log("HeavyAttacking");
     }
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        //after windup and winddown 
-        //transition back to idle
-        if (hitbox.timer < 0)
-            state.SwitchState(state.IdleState);
-    }
-    public override void OnCollisionEnter(CharacterStateMachine state)
-    {
-
         throw new System.NotImplementedException();
     }
 
+    public override void OnCollisionEnter(CharacterStateMachine state)
+    {
+        throw new System.NotImplementedException();
+    }
 }

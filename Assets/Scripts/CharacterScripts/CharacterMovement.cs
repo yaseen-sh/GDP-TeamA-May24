@@ -19,10 +19,12 @@ public class CharacterMovement : MonoBehaviour
     public float jumpForce = 20f;
     public CharacterAttack attack;
     public CharacterDataLoader Data;
+    CharacterStateMachine state;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerRotation = GetComponent<Transform>();
+        state = GetComponent<CharacterStateMachine>();
     }
 
     void Update()
@@ -53,7 +55,7 @@ public class CharacterMovement : MonoBehaviour
 
         //for crouching, is the player holding down s?
         if(context.ReadValue<Vector2>().y < 0){
-            Crouch();
+            state.SwitchState(state.CrouchState);
         }
     }
 
@@ -67,12 +69,7 @@ public class CharacterMovement : MonoBehaviour
         {
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            state.SwitchState(state.JumpState);
         }
-    }
-
-    public void Crouch(){
-        //Set animation trigger for crouch
-        //collider related changes
-        Debug.Log("Crouching");
     }
 }

@@ -22,11 +22,13 @@ public class CharacterStateMachine : MonoBehaviour
 
     public CharacterBaseState CurrentState;
     public Idle IdleState = new Idle();
+    public Crouch CrouchState = new Crouch();
     public FWalk FWalkState = new FWalk();
     public BWalk BWalkState = new BWalk();
     public Jump JumpState = new Jump();
     public MidAir MidAirState = new MidAir();
-    public Attacking AttackingState = new Attacking();
+    public LightAttacking LightAttackingState = new LightAttacking();
+    public HeavyAttacking HeavyAttackingState = new HeavyAttacking();
     public Blocking BlockingState = new Blocking();
     public Damaged DamagedState = new Damaged();
     public Wakeup WakeupState = new Wakeup();

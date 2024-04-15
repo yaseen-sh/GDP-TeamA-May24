@@ -62,7 +62,7 @@ public class CharacterAttack : MonoBehaviour
             hitbox.SpawnHitbox(1);//attack type 1;
                                   //Debug.Log("light punch");
 
-            characterState.SwitchState(characterState.AttackingState);
+            characterState.SwitchState(characterState.LightAttackingState);
         }
     }
     public void AttackHeavy(InputAction.CallbackContext context)
@@ -71,6 +71,8 @@ public class CharacterAttack : MonoBehaviour
         {
             hitbox.isAttacking = true;
             hitbox.SpawnHitbox(2);
+
+            characterState.SwitchState(characterState.HeavyAttackingState);
         }
     }
 }

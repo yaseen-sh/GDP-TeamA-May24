@@ -56,7 +56,6 @@ public class CharacterManager : MonoBehaviour
         //SuperMeter();
        // MyCollisions();
     }
-
     void MyCollisions()
     {
         //Use the OverlapBox to detect if there are any other colliders within this box area.
@@ -97,26 +96,5 @@ public class CharacterManager : MonoBehaviour
             currentMeter = minMeter;
         currentMeter += charge;
         superMeterText.text = "Super: " +  currentMeter.ToString();
-    }
-    float MovementSpeed()// variable movement speed
-    {
-        return 0;
-    }
-    float BlockMeter()// a regenerative "shield" that degrades after each hit sustained
-    {
-        /*
-         * Do some stuff to decrement every time player blocks an attack
-         */
-        return currentMeter;
-    }
-    bool FacingRight()//if character is facing right, normal controls, else invert left right
-    {
-        return true; 
-    }
-
-    string status()// reports the current state of character. Used for testing/labbing mainly
-    {
-        string currentStatus = "Idle";
-        return currentStatus;
     }
 }
