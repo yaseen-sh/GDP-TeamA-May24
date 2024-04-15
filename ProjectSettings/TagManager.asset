@@ -11,6 +11,7 @@ TagManager:
   - CharacterTile
   - CharGrid
   - CursorManager
+  - AudioManager
   - HurtBox
   - Player 1
   - Player 2

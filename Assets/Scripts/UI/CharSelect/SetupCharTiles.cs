@@ -36,6 +36,9 @@ public class SetupCharTiles : MonoBehaviour
     [Header("Used for Detecting if the Cursor is over a Tile")]
     public List<GameObject> allTiles = new List<GameObject>();
 
+    public Dictionary<string, string> charIdles = new Dictionary<string, string>(); // Dictionary of Names of Char Idles Animations
+    public Dictionary<string, string> charPicks = new Dictionary<string, string>(); // Dictionary of Names of Char Ready Animations
+
     public Button backButton;
 
     [Header("Ready?")]
@@ -62,12 +65,16 @@ public class SetupCharTiles : MonoBehaviour
         tile.GetComponentInChildren<TextMeshProUGUI>().text = fighter.charName;
         tile.GetComponentInChildren<Image>().sprite = fighter.charImage;
         tile.GetComponent<AudioSource>().clip = fighter.selectLine;
+        charIdles.Add(fighter.charName, fighter.charIdle);
+        charPicks.Add(fighter.charName, fighter.charReadyAnim);
+
         allTiles.Add(tile);
     }
 
     void Update()
     {
         // For the back button hover
+        /*
         if (GameObject.FindGameObjectWithTag("CursorP1") != null)
         {
             if (RectTransformUtility.RectangleContainsScreenPoint(backButton.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
@@ -82,7 +89,7 @@ public class SetupCharTiles : MonoBehaviour
                 defaultColor.normalColor = new Color(0, 0, 0, 0);
                 backButton.GetComponent<Button>().colors = defaultColor;
             }
-        }
+        }*/
         bool is1Hovered = true;
         bool is2Hovered = true;
         // Player 1 Controller
@@ -99,10 +106,16 @@ public class SetupCharTiles : MonoBehaviour
                     player1Char.SetActive(true);
                     player1Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                     player1Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
+
+                    if(charIdles[player1Name.text] != null) player1Char.GetComponent<Animator>().Play(charIdles[player1Name.text]);
                     is1Hovered = true;
                     break;
                 }
             }
+        }
+        if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected)
+        {
+            if (charIdles[player1Name.text] != null) player1Char.GetComponent<Animator>().Play(charPicks[player1Name.text]);
         }
         // Player 2 Controller
         if (!GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected && GameObject.FindGameObjectWithTag("CursorP2") != null)
@@ -118,10 +131,16 @@ public class SetupCharTiles : MonoBehaviour
                     player2Char.SetActive(true);
                     player2Name.text = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                     player2Char.GetComponent<Image>().sprite = fighter.GetComponentInChildren<Image>().sprite;
+
+                    if (charIdles[player2Name.text] != null) player2Char.GetComponent<Animator>().Play(charIdles[player2Name.text]);
                     is2Hovered = true;
                     break;
                 }
             }
+        }
+        if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
+        {
+            if (charIdles[player2Name.text] != null) player2Char.GetComponent<Animator>().Play(charPicks[player2Name.text]);
         }
         // Case if player 1 and player 2 are not hovered (set all tiles back to Orignal Color)
         if (!is1Hovered && !is2Hovered)

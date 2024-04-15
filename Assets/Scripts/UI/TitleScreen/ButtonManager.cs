@@ -23,6 +23,7 @@ public class ButtonManager : MonoBehaviour
     public void CharacterSelectPvP()
     {
         SceneManager.LoadScene("CharacterSelectPvP");
+        Destroy(GameObject.FindGameObjectWithTag("CharManager"));
         GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
     public void FightScene()
@@ -32,6 +33,11 @@ public class ButtonManager : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene("Credits");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
+    }
+    public void Story()
+    {
+        SceneManager.LoadScene("Story");
         GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
     public void Quit()
