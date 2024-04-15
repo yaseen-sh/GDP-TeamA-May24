@@ -2,73 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wakeup : IState
+public class Wakeup : CharacterBaseState
 {
-    void IState.OnHitStunned()
-    {
-
-    }
-    void IState.OnAttacking()
+    public override void EnterState(CharacterStateMachine state)
     {
         throw new System.NotImplementedException();
     }
 
-    void IState.OnBlocking()
+    public override void OnCollisionEnter(CharacterStateMachine state)
     {
         throw new System.NotImplementedException();
     }
 
-    void IState.OnDamaged()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDead()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnDisable()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnEnable()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnIdle()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnJump()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnKnockDown()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnMidAir()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnUpdate()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnWakeUp()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    void IState.OnWalk()
+    public override void UpdateState(CharacterStateMachine state)
     {
         throw new System.NotImplementedException();
     }

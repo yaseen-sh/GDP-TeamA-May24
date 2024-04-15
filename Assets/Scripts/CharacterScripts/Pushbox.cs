@@ -41,7 +41,7 @@ public class Pushbox : MonoBehaviour
         if (movement.facingRight && !movement.isJumping)//right
         {
            
-            Debug.Log("1");
+           Debug.Log("1");
             repelDirection1 = transform.position - otherTransform.position;
             repelDirection2 = transform.position + otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);
@@ -49,7 +49,7 @@ public class Pushbox : MonoBehaviour
         }
         else if (!movement.facingRight && !movement.isJumping)//left
         {
-            Debug.Log("2");
+           Debug.Log("2");
             repelDirection1 = transform.position + otherTransform.position;
             repelDirection2 = transform.position - otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);

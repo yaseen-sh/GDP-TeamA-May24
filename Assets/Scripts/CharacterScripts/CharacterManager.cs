@@ -23,7 +23,7 @@ public class CharacterManager : MonoBehaviour
     public float currentBlock = maxBlock;
     bool roundStarted = true;
 
-    public CharacterStateMachine state;
+   
 
     /*HITBOX SPECIFIC SHIT*/
     bool m_Started = true;
@@ -31,10 +31,9 @@ public class CharacterManager : MonoBehaviour
     private Vector2 scaleChange, positionChange;
     private Vector2 boxSize;
     public Vector2 hitBoxSize = Vector2.one;
-    private ColliderState _state;
     public CharacterDataLoader Data;
     // Start is called before the first frame update
-    public enum ColliderState{ Closed, Open,Colliding}
+    public CharacterStateMachine state;
     private void Awake()
     {
         state = GetComponent<CharacterStateMachine>();
@@ -57,7 +56,6 @@ public class CharacterManager : MonoBehaviour
         //SuperMeter();
        // MyCollisions();
     }
-
     void MyCollisions()
     {
         //Use the OverlapBox to detect if there are any other colliders within this box area.
@@ -84,9 +82,9 @@ public class CharacterManager : MonoBehaviour
             currentHealth = maxHealth;
         currentHealth -= damage;
         healthText.text = "Health: " + currentHealth.ToString();
-       // if (currentHealth <= 0)
-            //state.dead();
-           
+        if (currentHealth <= 0)
+            state.SwitchState(state.DeadState);
+
     }
     public float GetPlayerSuper()
     {
@@ -98,26 +96,5 @@ public class CharacterManager : MonoBehaviour
             currentMeter = minMeter;
         currentMeter += charge;
         superMeterText.text = "Super: " +  currentMeter.ToString();
-    }
-    float MovementSpeed()// variable movement speed
-    {
-        return 0;
-    }
-    float BlockMeter()// a regenerative "shield" that degrades after each hit sustained
-    {
-        /*
-         * Do some stuff to decrement every time player blocks an attack
-         */
-        return currentMeter;
-    }
-    bool FacingRight()//if character is facing right, normal controls, else invert left right
-    {
-        return true; 
-    }
-
-    string status()// reports the current state of character. Used for testing/labbing mainly
-    {
-        string currentStatus = "Idle";
-        return currentStatus;
     }
 }
