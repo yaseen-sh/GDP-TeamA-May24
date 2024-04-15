@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.8684, y: 395.6328}
-  m_SizeDelta: {x: 474.2682, y: 69.6067}
+  m_AnchoredPosition: {x: -0.9862, y: 424.9641}
+  m_SizeDelta: {x: 565.1754, y: 128.2694}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &104547139
 MonoBehaviour:
@@ -189,8 +189,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4285792771
-  m_fontColor: {r: 0.013403087, g: 0.009476671, b: 0.4566037, a: 1}
+    rgba: 4286775040
+  m_fontColor: {r: 0, g: 1, b: 0.5103874, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -207,8 +207,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -838,8 +838,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 300.83, y: -445.21}
-  m_SizeDelta: {x: 601.66, y: 890.43}
+  m_AnchoredPosition: {x: 292.33, y: -445.21}
+  m_SizeDelta: {x: 584.66, y: 890.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &458132237
 MonoBehaviour:
@@ -861,7 +861,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 270}
+  m_CellSize: {x: 290, y: 370}
   m_Spacing: {x: 0, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -880,7 +880,6 @@ MonoBehaviour:
   fighters:
   - {fileID: 11400000, guid: 2e99f2a7b7d44c14294200b1a11aa7c4, type: 2}
   - {fileID: 11400000, guid: 9f5e53b12692ac34caf446482c568f4e, type: 2}
-  - {fileID: 11400000, guid: 7de82e6c56a9c27408a7e71a5855e1fd, type: 2}
   - {fileID: 11400000, guid: 3fd82658bd9b12345b9a4b8f9b5f8f9e, type: 2}
   - {fileID: 11400000, guid: f27eb273f125d9f42a6ba658719bccb5, type: 2}
   charTilePrefab: {fileID: 3191900305088368295, guid: 481b0513d46702e438fa02459793d659, type: 3}
@@ -1071,7 +1070,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966491549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1079,8 +1078,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.5831, y: 397.702}
-  m_SizeDelta: {x: 504.3394, y: 73.745}
+  m_AnchoredPosition: {x: -16.4944, y: 429.1945}
+  m_SizeDelta: {x: 590.8626, y: 136.7303}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966491551
 MonoBehaviour:
@@ -1111,8 +1110,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4286185516
-  m_fontColor: {r: 0.17135446, g: 0, b: 0.4792453, a: 1}
+    rgba: 4286775040
+  m_fontColor: {r: 0, g: 1, b: 0.5103874, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1129,8 +1128,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1262,8 +1261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.828, y: -79.297}
-  m_SizeDelta: {x: 601.6559, y: 890.43}
+  m_AnchoredPosition: {x: -0.000002861023, y: -79.250015}
+  m_SizeDelta: {x: 584.6559, y: 888.43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1112032187
 MonoBehaviour:
@@ -1643,7 +1642,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: 0779accf0c1512742bf3abae58a6716a, type: 3}
+  m_Texture: {fileID: 2800000, guid: b296844002aaf134a868b824a48c9030, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0

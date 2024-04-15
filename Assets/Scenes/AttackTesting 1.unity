@@ -788,6 +788,10 @@ PrefabInstance:
       value: -0.1568289
       objectReference: {fileID: 0}
     - target: {fileID: 4159394913281537538, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      propertyPath: Data
+      value: 
+      objectReference: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
+    - target: {fileID: 4159394913281537538, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 1617397697}
@@ -1168,6 +1172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 1617397694}
   player2: {fileID: 1472363748}
+  Data: {fileID: 0}
 --- !u!114 &1600685874
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Wakeup : IState
 {
+    void IState.OnHitStunned()
+    {
+
+    }
     void IState.OnAttacking()
     {
         throw new System.NotImplementedException();
