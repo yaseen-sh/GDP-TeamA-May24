@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class NesterankoAnimation : MonoBehaviour
 {
-    Animator anime;
+    public Animator anime;
     CharacterDataLoader data;
-
+    
     private void Start()
     {
         anime = GetComponent<Animator>();

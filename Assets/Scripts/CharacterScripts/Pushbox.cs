@@ -42,7 +42,8 @@ public class Pushbox : MonoBehaviour
         {
            
            Debug.Log("1");
-            Debug.
+            //Pushbox debug check for which player is pushing which direction
+           // Debug.Log(movement.)
             repelDirection1 = transform.position - otherTransform.position;
             repelDirection2 = transform.position + otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);

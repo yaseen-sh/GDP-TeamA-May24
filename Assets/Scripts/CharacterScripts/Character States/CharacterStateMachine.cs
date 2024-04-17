@@ -44,6 +44,7 @@ public class CharacterStateMachine : MonoBehaviour
     {
         CurrentState = state;
         state.EnterState(this);
+        Debug.Log("Current State is: " + CurrentState);
     }
 }
 

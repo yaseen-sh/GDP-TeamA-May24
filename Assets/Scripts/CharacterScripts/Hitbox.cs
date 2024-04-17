@@ -104,7 +104,6 @@ public class Hitbox : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > frameCount) // After hitbox duration, destroy hitbox and reset frame count
             {
-
                 Debug.Log("Frames per second: " + frameCount + "\n" + "Timer: " + timer);
                 DestroyHitbox(currentHitBox);
                 timer = 0;
@@ -193,10 +192,9 @@ public class Hitbox : MonoBehaviour
         }
             
                                              //Tweak size of prefab based off of attack
-        if (hitBoxChild.transform.childCount <= 0 )
+
+        if (hitBoxChild.transform.childCount <= 0 )//Add timer for animation
         {
-            //Check for the same hitbox hit 
-            //Debug.Log("Attacks");
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;

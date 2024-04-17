@@ -18,9 +18,9 @@ public class LightAttacking : CharacterBaseState
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
-        //movement.speed = 0;
+       // movement.enabled = false;
         //Play animation
-        anime.lightAttack();
+        //anime.lightAttack();
         Debug.Log("LightAttackingState");
     }
 
@@ -28,6 +28,7 @@ public class LightAttacking : CharacterBaseState
     {
         //after windup and winddown 
         //transition back to idle
+        Debug.Log(hitbox.timer);
         if (hitbox.timer < 0)
             state.SwitchState(state.IdleState);
     }

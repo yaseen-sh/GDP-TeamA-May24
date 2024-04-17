@@ -13,7 +13,7 @@ public class Idle : CharacterBaseState
     {
         //Play idle animation
         //CharacterAnim.idle();
-       // anime.Idle();
+        anime.Idle();
         Debug.Log("Idling");
     }
 
