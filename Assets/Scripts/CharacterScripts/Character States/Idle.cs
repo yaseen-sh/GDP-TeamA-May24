@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Idle : CharacterBaseState
 {
+    NesterankoAnimation anime = new NesterankoAnimation();
+    public void awake()
+    {
+        
+    }
     public override void EnterState(CharacterStateMachine state)
     {
         //Play idle animation
         //CharacterAnim.idle();
+       // anime.Idle();
         Debug.Log("Idling");
     }
 

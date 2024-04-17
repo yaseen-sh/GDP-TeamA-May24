@@ -6,7 +6,7 @@ public class Jump : CharacterBaseState
 {
     public override void EnterState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("JumpingState");
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)

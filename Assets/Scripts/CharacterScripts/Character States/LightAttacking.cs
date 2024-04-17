@@ -7,11 +7,20 @@ public class LightAttacking : CharacterBaseState
     CharacterMovement movement;
     Hitbox hitbox;
     CharacterAttack attack;
+    NesterankoAnimation anime = new NesterankoAnimation();
+    Animator animate;
+
+    public void awake()
+    {
+        animate = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Animator>();
+
+    }
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
         //movement.speed = 0;
         //Play animation
+        anime.lightAttack();
         Debug.Log("LightAttackingState");
     }
 

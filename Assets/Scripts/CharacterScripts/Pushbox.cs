@@ -42,6 +42,7 @@ public class Pushbox : MonoBehaviour
         {
            
            Debug.Log("1");
+            Debug.
             repelDirection1 = transform.position - otherTransform.position;
             repelDirection2 = transform.position + otherTransform.position;
             parent.AddForce(repelDirection1.normalized * repelForce);

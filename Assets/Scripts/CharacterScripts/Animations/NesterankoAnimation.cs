@@ -5,6 +5,7 @@ using UnityEngine;
 public class NesterankoAnimation : MonoBehaviour
 {
     Animator anime;
+    CharacterDataLoader data;
 
     private void Start()
     {
