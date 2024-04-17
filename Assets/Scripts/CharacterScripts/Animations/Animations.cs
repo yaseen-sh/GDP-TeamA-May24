@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NesterankoAnimation : MonoBehaviour
+public class Animations : MonoBehaviour
 {
     Animator anime;
 
