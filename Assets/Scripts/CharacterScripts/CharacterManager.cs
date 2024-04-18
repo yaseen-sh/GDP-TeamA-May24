@@ -44,7 +44,7 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         // Sets the frame rate to 60fps.
-        Application.targetFrameRate = 60;
+      
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
         roundStarted = false;
         boxSize = new Vector2(1.25f, 1.25f);

@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public GameObject player2;
 
     public CharacterDataLoader Data;
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
     void Awake()
     {
         player1 = GameObject.FindGameObjectWithTag("Player 1");
