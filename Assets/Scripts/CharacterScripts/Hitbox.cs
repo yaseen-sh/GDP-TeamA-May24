@@ -25,7 +25,7 @@ public class Hitbox : MonoBehaviour
     public float StartUpFrames = 0;
 
     private float frameCount = 0f; // counts duration of current attack
-    public float timer = 0f;
+    public float totalTimer = 0f;
     public GameObject currentHitBox;
     private Vector2 scaleChange;
     public GameObject hitBoxChild;
@@ -101,12 +101,12 @@ public class Hitbox : MonoBehaviour
             //setup for each
             //time.deltatime
             
-            timer += Time.deltaTime;
-            if (timer > frameCount) // After hitbox duration, destroy hitbox and reset frame count
+            totalTimer += Time.deltaTime;
+            if (totalTimer > frameCount) // After hitbox duration, destroy hitbox and reset frame count
             {
-                Debug.Log("Frames per second: " + frameCount + "\n" + "Timer: " + timer);
+                Debug.Log("Frames per second: " + frameCount + "\n" + "totalTimer: " + totalTimer);
                 DestroyHitbox(currentHitBox);
-                timer = 0;
+                totalTimer = 0;
                 frameCount = 0;
                 isAttacking = false;
             }
@@ -121,7 +121,6 @@ public class Hitbox : MonoBehaviour
 
             OpponentTag.GetPlayerHealth();
             OpponentTag.SetPlayerHealth(damage);
-
             //Debug.Log("Hit Confirmed");
         }
     }
@@ -194,7 +193,7 @@ public class Hitbox : MonoBehaviour
             
                                              //Tweak size of prefab based off of attack
 
-        if (hitBoxChild.transform.childCount <= 0 )//Add timer for animation
+        if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);

@@ -8,6 +8,7 @@ public class CharacterMovement : MonoBehaviour
     public float speed;
     public bool isGrounded = true;
     public bool isJumping = false;
+    public bool isCrouching = false;
     public bool facingRight;
 
     Transform playerRotation; //Variable to control player's rotation
@@ -34,13 +35,14 @@ public class CharacterMovement : MonoBehaviour
         {
             
                 playerRotation.rotation = Quaternion.Euler(0, 180, 0);
-                //Debug.Log("Facing Right");
+            //Debug.Log("Facing Right");
+            //state.SwitchState(state.FWalkState);
         }
         else
         {
-           
                 playerRotation.rotation = Quaternion.Euler(0, 0, 0);
-                //Debug.Log("Facing Left");
+            //Debug.Log("Facing Left");
+            //state.SwitchState(state.BWalkState);
 
         }
         if (isGrounded)
@@ -55,7 +57,12 @@ public class CharacterMovement : MonoBehaviour
 
         //for crouching, is the player holding down s?
         if(context.ReadValue<Vector2>().y < 0){
+            isCrouching = true;
             state.SwitchState(state.CrouchState);
+        }
+        else
+        {
+            isCrouching = false;
         }
     }
 

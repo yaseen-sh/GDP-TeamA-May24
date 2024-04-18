@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class BWalk : CharacterBaseState
 {
+    Animations anime;
     public override void EnterState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        anime = state.character.GetComponent<Animations>();
+        anime.BWalk();
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)
@@ -16,6 +18,5 @@ public class BWalk : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
     }
 }

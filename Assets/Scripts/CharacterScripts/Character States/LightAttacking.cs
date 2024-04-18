@@ -11,8 +11,9 @@ public class LightAttacking : CharacterBaseState
     CharacterAttack attack;
     Animations anime;
 
-    public void start()
+    public void awake()
     {
+        
 
     }
   
@@ -22,17 +23,15 @@ public class LightAttacking : CharacterBaseState
         //Lock Movement
         //movement.enabled = false;
         //Play 
+        hitbox = state.character.GetComponent<Hitbox>();
         anime = state.character.GetComponent<Animations>();
         anime.lightAttack();
-        Debug.Log("LightAttackingState");
     }
-
     public override void UpdateState(CharacterStateMachine state)
     {
         //after windup and winddown 
         //transition back to idle
-        Debug.Log(hitbox.timer);
-        if (hitbox.timer < 0)
+        if (hitbox.totalTimer <= 0)
             state.SwitchState(state.IdleState);
     }
     public override void OnCollisionEnter(CharacterStateMachine state)

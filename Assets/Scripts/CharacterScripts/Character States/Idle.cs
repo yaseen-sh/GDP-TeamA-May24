@@ -9,7 +9,6 @@ public class Idle : CharacterBaseState
     GameObject character;
     public void awake()
     {
-
         
     }
     public override void EnterState(CharacterStateMachine state)
@@ -18,12 +17,10 @@ public class Idle : CharacterBaseState
         //CharacterAnim.idle();
         anime = state.character.GetComponent<Animations>();
         anime.Idle();
-        Debug.Log("Idling");
     }
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)
