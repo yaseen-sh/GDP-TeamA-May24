@@ -853,8 +853,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.252602, y: -1411.175}
-  m_SizeDelta: {x: 667.2076, y: 1688.75}
+  m_AnchoredPosition: {x: -5.5026016, y: -1623.05}
+  m_SizeDelta: {x: 700.7076, y: 2112.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753662268
 MonoBehaviour:
@@ -891,10 +891,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Kent Fighters: Binary Brawl\n\nCredits\n\nTeam A \n\"Productions\"\n\nYaseen
-    Shaikh\nBrendon Nguyen\nChris Cubick\nDylan Sarell\nKedrick Karasek\nRosa Kilmer\n\nAssets\nMusic:\nArt:
+  m_text: "Kent Fighters: Binary Brawl\n\nCredits\n\nTeam A \n\"Productions\"\n\nChris
+    Cubick\nKedrick Karasek\nRosa Kilmer\nBrendon Nguyen\nDylan Sarell\nYaseen Shaikh\n\nAssets\nMusic:\nArt:
     \n\nCharacter Likeness\nMeldin Bektic\nBranson Boggia\nMikhail Nesterenko\nBill
-    Reed"
+    Reed\n\nImages Used\nKent State Gateway Arch - KSU\nRisman Plaza - KSU\nMSB 228
+    - KSU\nEsports Area -KSU"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}
   m_sharedMaterial: {fileID: -6869724750558662721, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}

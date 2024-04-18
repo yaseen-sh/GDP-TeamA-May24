@@ -40,6 +40,11 @@ public class GamepadCursor : MonoBehaviour
     [SerializeField]
     private Sprite cursorSprite;
 
+    public void Awake()
+    {
+
+    }
+
     private void Update()
     {
         if (moving && !charSelected)

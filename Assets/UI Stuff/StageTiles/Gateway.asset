@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gateway
   m_EditorClassIdentifier: 
   stageName: Gateway
-  stagePicture: {fileID: 21300000, guid: 95f564ee549f51747993d8baf289d577, type: 3}
+  stagePicture: {fileID: 21300000, guid: 0779accf0c1512742bf3abae58a6716a, type: 3}
   selectStage:
     m_PersistentCalls:
       m_Calls:

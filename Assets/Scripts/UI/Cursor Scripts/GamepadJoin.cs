@@ -27,6 +27,8 @@ public class GamepadJoin : MonoBehaviour
     public InputDevice player2Controller;
     //public PlayerInput pla
 
+    public Dictionary<int, InputDevice> playerControllers = new Dictionary<int, InputDevice>();
+
     public void Awake()
     {
         currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();

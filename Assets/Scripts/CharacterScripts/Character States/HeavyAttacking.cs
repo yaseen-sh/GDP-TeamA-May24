@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeavyAttackingState : CharacterBaseState
+public class HeavyAttacking : CharacterBaseState
 {
     CharacterMovement movement;
     Hitbox hitbox;

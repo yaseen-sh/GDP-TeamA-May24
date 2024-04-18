@@ -64,7 +64,7 @@ public class SetupCharTiles : MonoBehaviour
         GameObject tile = Instantiate(charTilePrefab, transform);
         tile.GetComponentInChildren<TextMeshProUGUI>().text = fighter.charName;
         tile.GetComponentInChildren<Image>().sprite = fighter.charImage;
-        tile.GetComponent<AudioSource>().clip = fighter.selectLine;
+        tile.GetComponent<AudioSource>().clip = fighter.selectLine[0];
         charIdles.Add(fighter.charName, fighter.charIdle);
         charPicks.Add(fighter.charName, fighter.charReadyAnim);
 
@@ -73,23 +73,6 @@ public class SetupCharTiles : MonoBehaviour
 
     void Update()
     {
-        // For the back button hover
-        /*
-        if (GameObject.FindGameObjectWithTag("CursorP1") != null)
-        {
-            if (RectTransformUtility.RectangleContainsScreenPoint(backButton.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
-            {
-                var buttonColor = backButton.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .5f);
-                backButton.GetComponent<Button>().colors = buttonColor;
-            }
-            else
-            {
-                var defaultColor = backButton.GetComponent<Button>().colors;
-                defaultColor.normalColor = new Color(0, 0, 0, 0);
-                backButton.GetComponent<Button>().colors = defaultColor;
-            }
-        }*/
         bool is1Hovered = true;
         bool is2Hovered = true;
         // Player 1 Controller

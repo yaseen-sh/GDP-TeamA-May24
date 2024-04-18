@@ -57,7 +57,9 @@ public class startGame : MonoBehaviour
     public void LoadStage()
     {
         Debug.Log("We would be loading "+selectedStage+" here");
-        //SceneManager.LoadScene(selectedStage);
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusic();
+        Destroy(GameObject.Find("AudioManager"));
+        SceneManager.LoadScene(selectedStage);
         
     }
 }
