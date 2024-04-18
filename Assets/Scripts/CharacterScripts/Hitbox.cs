@@ -121,6 +121,7 @@ public class Hitbox : MonoBehaviour
 
             OpponentTag.GetPlayerHealth();
             OpponentTag.SetPlayerHealth(damage);
+
             //Debug.Log("Hit Confirmed");
         }
     }

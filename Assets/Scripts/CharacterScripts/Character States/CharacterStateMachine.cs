@@ -14,11 +14,12 @@ public class CharacterStateMachine : MonoBehaviour
 {
     public CharacterDataLoader Data;
     protected CharacterController player;
-    
 
+    public GameObject character;
     protected bool isExitingState;
     protected bool isAnimationFinished;
     protected float startTime;
+
 
     public CharacterBaseState CurrentState;
     public Idle IdleState = new Idle();
@@ -26,7 +27,6 @@ public class CharacterStateMachine : MonoBehaviour
     public FWalk FWalkState = new FWalk();
     public BWalk BWalkState = new BWalk();
     public Jump JumpState = new Jump();
-    public MidAir MidAirState = new MidAir();
     public LightAttacking LightAttackingState = new LightAttacking();
     public HeavyAttacking HeavyAttackingState = new HeavyAttacking();
     public Blocking BlockingState = new Blocking();
@@ -36,6 +36,7 @@ public class CharacterStateMachine : MonoBehaviour
 
     private void Start()
     {
+        character = gameObject;
         //On start character starts in Idle
         CurrentState = IdleState;
         CurrentState.EnterState(this);

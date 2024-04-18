@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Idle : CharacterBaseState
 {
-    NesterankoAnimation anime = new NesterankoAnimation();
+    Animations anime;
+    GameObject character;
     public void awake()
     {
+
         
     }
     public override void EnterState(CharacterStateMachine state)
     {
         //Play idle animation
         //CharacterAnim.idle();
+        anime = state.character.GetComponent<Animations>();
         anime.Idle();
         Debug.Log("Idling");
     }

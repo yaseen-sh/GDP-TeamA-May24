@@ -7,7 +7,7 @@ public class Animations : MonoBehaviour
     public Animator anime;
     CharacterDataLoader data;
     
-    private void Start()
+    private void Awake()
     {
         anime = GetComponent<Animator>();
     }

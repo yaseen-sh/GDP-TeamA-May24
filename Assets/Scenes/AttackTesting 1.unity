@@ -858,7 +858,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 577742727862747637, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1472363761}
+    - targetCorrespondingSourceObject: {fileID: 577742727862747637, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1472363762}
   m_SourcePrefab: {fileID: 100100000, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
 --- !u!1 &857700819
 GameObject:
@@ -1010,6 +1016,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65fffb217b2f64846b258cfe1ee41b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1472363761
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472363748}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bc08cc109740f83458cb63d4489d1d0f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1472363762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472363748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c3c986c658402b409dc97351efbae54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anime: {fileID: 0}
 --- !u!1 &1578131942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c986c658402b409dc97351efbae54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anime: {fileID: 0}
 --- !u!1001 &1887083144
 PrefabInstance:
   m_ObjectHideFlags: 0

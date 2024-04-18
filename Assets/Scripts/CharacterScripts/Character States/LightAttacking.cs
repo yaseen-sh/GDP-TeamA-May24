@@ -1,26 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LightAttacking : CharacterBaseState
 {
+    public GameObject character;
     CharacterMovement movement;
     Hitbox hitbox;
     CharacterAttack attack;
-    NesterankoAnimation anime = new NesterankoAnimation();
-    Animator animate;
+    Animations anime;
 
-    public void awake()
+    public void start()
     {
-        animate = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Animator>();
 
     }
+  
+
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
-       // movement.enabled = false;
-        //Play animation
-        //anime.lightAttack();
+        //movement.enabled = false;
+        //Play 
+        anime = state.character.GetComponent<Animations>();
+        anime.lightAttack();
         Debug.Log("LightAttackingState");
     }
 
