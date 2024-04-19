@@ -22,7 +22,7 @@ public class startGame : MonoBehaviour
     {
         hoverObj = GameObject.Find("Buttons");
         hoverScript = hoverObj.GetComponent<StageHover>();
-        startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "";//SetActive(false);
+        startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "";
         selectedStage = "";
         hasSelectedStage = false;
         prevSelectedStage = "";
@@ -57,9 +57,11 @@ public class startGame : MonoBehaviour
     public void LoadStage()
     {
         Debug.Log("We would be loading "+selectedStage+" here");
-        GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusic();
-        Destroy(GameObject.Find("AudioManager"));
+        if (GameObject.Find("AudioManager") != null)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusic();
+            Destroy(GameObject.Find("AudioManager"));
+        }
         SceneManager.LoadScene(selectedStage);
-        
     }
 }

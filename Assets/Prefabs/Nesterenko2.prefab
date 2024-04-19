@@ -121,22 +121,32 @@ MonoBehaviour:
   hitBoxCollider: {fileID: 0}
   actionName: Action
   damage: 100
+  hitStun: 0
+  RecoveryFrames: 0
+  StartUpFrames: 0
+  timer: 0
   currentHitBox: {fileID: 0}
   hitBoxChild: {fileID: 1394446909833907864}
-  Opponent: {fileID: 0}
+  OpponentTag: {fileID: 0}
   playerTag: {fileID: 6024589478923480192}
   isAttacking: 0
+  Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
   lightAttackDamage: 0
   lightAttackPosY: 0
   lightAttackPosX: 0
   lightAttackFrameCount: 0
+  lightAttackStartUpFrames: 0
+  lightAttackRecoveryFrames: 0
+  lightAttackHitStun: 0
   lightAttackHitboxScale: {x: 1, y: 1}
   heavyAttackDamage: 0
   heavyAttackPosY: 0
   heavyAttackPosX: 0
   heavyAttackFrameCount: 0
+  heavyAttackStartUpFrames: 0
+  heavyAttackRecoveryFrames: 0
+  heavyAttackHitStun: 0
   heavyAttackHitboxScale: {x: 0, y: 0}
-  Data: {fileID: 0}
   movement: {fileID: 0}
 --- !u!114 &3330295074963464004
 MonoBehaviour:
@@ -235,6 +245,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 20ee233c-2d53-4056-8639-19136af06970
     m_ActionName: Player1/AttackLight[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ce3d3ab1-7238-46e1-abd9-76107c8475da
+    m_ActionName: Player/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -255,6 +281,7 @@ MonoBehaviour:
   rb: {fileID: 6005894754886322277}
   speed: 5
   isGrounded: 1
+  isJumping: 0
   facingRight: 0
   groundLayer:
     serializedVersion: 2
@@ -263,6 +290,7 @@ MonoBehaviour:
   groundCheckRadius: 0.1
   jumpForce: 20
   attack: {fileID: 520575334858600176}
+  Data: {fileID: 0}
 --- !u!50 &6005894754886322277
 Rigidbody2D:
   serializedVersion: 4
@@ -307,7 +335,6 @@ MonoBehaviour:
     m_Bits: 8
   isBlocking: 0
   actionName: Action
-  damage: 100
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
 --- !u!114 &6024589478923480192
@@ -326,14 +353,13 @@ MonoBehaviour:
   playerPushBox: {fileID: 1293744640342681270}
   healthText: {fileID: 0}
   superMeterText: {fileID: 0}
-  currentHealth: 1000
-  currentMeter: 0
   currentBlock: 100
-  state: {fileID: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 0
   hitBoxSize: {x: 1, y: 1}
+  Data: {fileID: 0}
+  state: {fileID: 0}
 --- !u!114 &7790050326956709410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,9 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fce5c7ae81bc74eb59c6dfb6e0b20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Keys: 
-  controlsTestText: {fileID: 0}
-  controller: {fileID: 0}
+  Data: {fileID: 0}
 --- !u!61 &3935916367781342058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -381,7 +405,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08475618, y: -0.112722605}
+  m_Offset: {x: 0.07526639, y: -0.1568289}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -392,7 +416,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20815381, y: 0.77455467}
+  m_Size: {x: 0.17, y: 0.7118933}
   m_EdgeRadius: 0
 --- !u!1 &1394446909833907864
 GameObject:

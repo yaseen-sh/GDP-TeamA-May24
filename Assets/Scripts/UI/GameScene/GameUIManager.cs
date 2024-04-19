@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Users;
+using UnityEngine.SceneManagement;
 
 public class GameUIManager : MonoBehaviour
 {
@@ -80,6 +83,14 @@ public class GameUIManager : MonoBehaviour
         if (timer <= -1)
         {
             newRound = true;
+        }
+    }
+
+    public void Pause(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed())
+        {
+            SceneManager.LoadScene("TitleScreen");
         }
     }
 }

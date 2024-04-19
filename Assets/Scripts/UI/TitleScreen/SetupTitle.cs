@@ -20,6 +20,10 @@ public class SetupTitle : MonoBehaviour
 
     private void Start()
     {
+        CSSManager.player1Fighter = null;
+        CSSManager.player1Selected = false;
+        CSSManager.player2Fighter = null;
+        CSSManager.player2Selected = false;
         GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
 
