@@ -28,7 +28,8 @@ public class CharacterAttack : MonoBehaviour
     public Hitbox hitbox;
     public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
-
+    //needed for stopping input
+    private PlayerInput playerInput;
     private void Awake()
     {
         characterState = GetComponent<CharacterStateMachine>();
@@ -74,5 +75,15 @@ public class CharacterAttack : MonoBehaviour
 
             characterState.SwitchState(characterState.HeavyAttackingState);
         }
+    }
+    IEnumerator DisableInputForDuration(float duration)
+    {
+        playerInput.enabled = false; //pausing input
+
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+
+        playerInput.enabled = true; //resuming input
+
     }
 }

@@ -10,14 +10,6 @@ public class LightAttacking : CharacterBaseState
     Hitbox hitbox;
     CharacterAttack attack;
     Animations anime;
-
-    public void awake()
-    {
-        
-
-    }
-  
-
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
@@ -31,12 +23,11 @@ public class LightAttacking : CharacterBaseState
     {
         //after windup and winddown 
         //transition back to idle
-        if (hitbox.totalTimer <= 0)
+        if (hitbox.activeHitboxFrames == 0)
             state.SwitchState(state.IdleState);
     }
     public override void OnCollisionEnter(CharacterStateMachine state)
     {
-
         throw new System.NotImplementedException();
     }
 

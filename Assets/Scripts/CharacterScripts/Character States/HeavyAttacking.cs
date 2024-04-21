@@ -17,7 +17,7 @@ public class HeavyAttacking : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        if (hitbox.totalTimer <= 0)
+        if (hitbox.activeHitboxFrames <= 0)
             state.SwitchState(state.IdleState);
     }
 

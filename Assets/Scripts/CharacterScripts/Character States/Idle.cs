@@ -13,8 +13,6 @@ public class Idle : CharacterBaseState
     }
     public override void EnterState(CharacterStateMachine state)
     {
-        //Play idle animation
-        //CharacterAnim.idle();
         anime = state.character.GetComponent<Animations>();
         anime.Idle();
     }
