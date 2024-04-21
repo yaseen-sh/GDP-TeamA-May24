@@ -25,7 +25,6 @@ public class GamepadJoin : MonoBehaviour
 
     public InputDevice player1Controller;
     public InputDevice player2Controller;
-    //public PlayerInput pla
 
     public static Dictionary<int, InputDevice> playerControllers = new Dictionary<int, InputDevice>();
 
