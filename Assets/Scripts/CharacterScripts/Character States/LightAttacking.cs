@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LightAttacking : CharacterBaseState
 {
@@ -11,6 +12,7 @@ public class LightAttacking : CharacterBaseState
     CharacterAttack attack;
     Animations anime;
     IEnumerator coroutine;
+    PlayerInput playerInput;
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
@@ -19,9 +21,8 @@ public class LightAttacking : CharacterBaseState
         hitbox = state.character.GetComponent<Hitbox>();
         anime = state.character.GetComponent<Animations>();
         attack = state.character.GetComponent <CharacterAttack>();
-        coroutine = attack.DisableInputForDuration(hitbox.totalFrameCount);
-        StartCoroutine(coroutine);
-
+        playerInput = state.character.GetComponent<PlayerInput>();  
+        state.StartCo(hitbox.totalFrameCount);
         anime.lightAttack();
     }
 

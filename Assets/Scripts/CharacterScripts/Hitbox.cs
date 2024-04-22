@@ -127,11 +127,14 @@ public class Hitbox : MonoBehaviour
     }
     public void SpawnHitbox(int attackType)
     {
+
         //Debug.Log("HitBoxSpawned");
         switch (attackType)
         {
+
             //attacktype Light
             case 1:
+                
                 damage = lightAttackDamage;
                 //set hitbox parameters
                 frameCount = lightAttackFrameCount;
@@ -190,7 +193,7 @@ public class Hitbox : MonoBehaviour
 
         if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
-            StartUp(StartUpFrames);
+            
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;
@@ -212,11 +215,5 @@ public class Hitbox : MonoBehaviour
             //Debug.Log("Hitbox Destroyed");
         }
     }
-
-    IEnumerator StartUp(float frames)
-    {
-        Debug.Log("Start Up Frames: " + frames);
-        yield return new WaitForSeconds(frames);
-    }
-
+    
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 
@@ -20,7 +21,7 @@ public class CharacterStateMachine : MonoBehaviour
     protected bool isAnimationFinished;
     protected float startTime;
 
-
+    private PlayerInput playerInput;
     public CharacterBaseState CurrentState;
     public Idle IdleState = new Idle();
     public Crouch CrouchState = new Crouch();
@@ -41,6 +42,7 @@ public class CharacterStateMachine : MonoBehaviour
         //On start character starts in Idle
         CurrentState = IdleState;
         CurrentState.EnterState(this);
+        playerInput = gameObject.GetComponent<PlayerInput>();
     }
     public void SwitchState(CharacterBaseState state)
     {
@@ -54,5 +56,18 @@ public class CharacterStateMachine : MonoBehaviour
         //Debug.Log(stateTimer);
         CurrentState.UpdateState(this);
     }
+    public IEnumerator DisableInputForDuration(float duration)
+    {
+        playerInput.enabled = false; //pausing input
+        // Wait for the specified duration
+        yield return new WaitForSeconds(duration);
+        playerInput.enabled = true; //resuming input
+    }
+    public void StartCo(float duration)
+    {
+        StartCoroutine(DisableInputForDuration(duration));
+    }
+
+
 }
 
