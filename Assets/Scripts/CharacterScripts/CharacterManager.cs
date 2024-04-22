@@ -13,6 +13,10 @@ public class CharacterManager : MonoBehaviour
     public GameObject playerPushBox; // Used when both players are too close to each other they will be pushed apart or swap sides.
 
     public TMP_Text healthText;
+    private GameObject healthBar;
+    public GameObject heathPrefab;
+
+
     public TMP_Text superMeterText;
 
     const float maxHealth = 1000;//should be reset to 1000 after end of round
@@ -37,6 +41,7 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
         state = GetComponent<CharacterStateMachine>();
+        healthBar = Instantiate(heathPrefab, GameObject.FindGameObjectWithTag("HealthBar").transform);
     }
     void Start()
     {
@@ -53,7 +58,7 @@ public class CharacterManager : MonoBehaviour
     void FixedUpdate()
     {
        // setPlayerHealth();
-        //SuperMeter();
+       //SuperMeter();
        // MyCollisions();
     }
     void MyCollisions()
@@ -81,7 +86,8 @@ public class CharacterManager : MonoBehaviour
         if (roundStarted)
             currentHealth = maxHealth;
         currentHealth -= damage;
-        healthText.text = "Health: " + currentHealth.ToString();
+        //healthText.text = "Health: " + currentHealth.ToString();
+        healthBar.GetComponent<Slider>().value = currentHealth;
         if (currentHealth <= 0)
             state.SwitchState(state.DeadState);
 
@@ -95,6 +101,6 @@ public class CharacterManager : MonoBehaviour
         if (roundStarted)
             currentMeter = minMeter;
         currentMeter += charge;
-        superMeterText.text = "Super: " +  currentMeter.ToString();
+        //superMeterText.text = "Super: " +  currentMeter.ToString();
     }
 }

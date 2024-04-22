@@ -128,7 +128,7 @@ MonoBehaviour:
   timer: 0
   currentHitBox: {fileID: 0}
   hitBoxChild: {fileID: 5959563855960602537}
-  OpponentTag: {fileID: 0}
+  OpponentTag: {fileID: 6024589478923480192, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
   playerTag: {fileID: 6751926040957665506}
   isAttacking: 0
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
@@ -246,6 +246,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 20ee233c-2d53-4056-8639-19136af06970
     m_ActionName: Player1/AttackLight[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce3d3ab1-7238-46e1-abd9-76107c8475da
+    m_ActionName: Player/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -337,7 +341,9 @@ MonoBehaviour:
   playerHurtBox: {fileID: 3070433482442735624}
   playerPushBox: {fileID: 4405107839453100835}
   healthText: {fileID: 0}
+  heathPrefab: {fileID: 3179652527293676450, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
   superMeterText: {fileID: 0}
+  maxHealth: 1000
   currentBlock: 100
   m_LayerMask:
     serializedVersion: 2

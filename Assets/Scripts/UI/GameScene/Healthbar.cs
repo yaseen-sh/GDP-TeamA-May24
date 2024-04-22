@@ -7,8 +7,8 @@ public class Healthbar : MonoBehaviour
 {
     public static int direction = 1;
     private Image filledBar;
-    private Slider sliderBar;
-    public GameObject filledBarGO;
+    public Slider sliderBar;
+    //public GameObject filledBarGO;
     public double filledPercent = 100;
     public double newPercent = 100;
 
@@ -17,7 +17,7 @@ public class Healthbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sliderBar = filledBarGO.GetComponent<Slider>();
+        //sliderBar = filledBarGO.GetComponent<Slider>();
         //filledBar.type = Image.Type.Filled;
     }
     
@@ -32,12 +32,12 @@ public class Healthbar : MonoBehaviour
         }
     }
 
-    void SubtractHealth(int initialHealth, int DecreaseAmount)
+    public void SubtractHealth(int initialHealth, int DecreaseAmount)
     {
         newPercent = filledPercent - DecreaseAmount/initialHealth;
     }
 
-    void resetHealth()
+    public void resetHealth()
     {
         filledPercent = 100;
         newPercent = 100;

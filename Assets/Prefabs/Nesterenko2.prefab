@@ -127,7 +127,7 @@ MonoBehaviour:
   timer: 0
   currentHitBox: {fileID: 0}
   hitBoxChild: {fileID: 1394446909833907864}
-  OpponentTag: {fileID: 0}
+  OpponentTag: {fileID: 6751926040957665506, guid: ec668d57915fb7d428c64dece4c8b1a2, type: 3}
   playerTag: {fileID: 6024589478923480192}
   isAttacking: 0
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
@@ -352,6 +352,7 @@ MonoBehaviour:
   playerHurtBox: {fileID: 4721342976139048492}
   playerPushBox: {fileID: 1293744640342681270}
   healthText: {fileID: 0}
+  heathPrefab: {fileID: 8102807398023398880, guid: 5d58a7a0d3762644a9b95d7a89595a96, type: 3}
   superMeterText: {fileID: 0}
   currentBlock: 100
   m_LayerMask:

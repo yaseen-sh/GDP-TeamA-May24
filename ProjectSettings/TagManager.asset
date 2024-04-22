@@ -16,6 +16,8 @@ TagManager:
   - Player 1
   - Player 2
   - Pushbox
+  - HitBox
+  - HealthBar
   layers:
   - Default
   - TransparentFX
