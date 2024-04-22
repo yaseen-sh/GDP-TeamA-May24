@@ -14,28 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Nesterenko
   charImage: {fileID: 0}
-  selectLine: {fileID: 0}
+  VoiceLine: []
   characterSpeed: 5
   PlayerTag: {fileID: 0}
   OpponentTag: {fileID: 0}
-  ForwardWalkAnimator: {fileID: 0}
-  BackwardWalkAnimator: {fileID: 0}
-  BlockAnimator: {fileID: 0}
-  IdleAnimator: {fileID: 0}
-  JumpAnimator: {fileID: 0}
-  CrouchAnimator: {fileID: 0}
-  KnockdownAnimator: {fileID: 0}
-  KnockoutAnimator: {fileID: 0}
-  DamagedAnimator: {fileID: 0}
+  animations: {fileID: 0}
   lightAttackDamage: 50
   lightAttackPosY: 1
-  lightAttackPosX: 0.5
-  lightAttackFrameCount: 0.1
+  lightAttackPosX: 1
+  lightAttackFrameCount: 0.3
+  lightAttackStartUpFrames: 0.4
+  lightAttackRecoveryFrames: 0.7
   lightAttackHitboxScale: {x: 0.4, y: 0.2}
-  LightAnimator: {fileID: 0}
+  lightAttackHitStun: 0
   heavyAttackDamage: 100
   heavyAttackPosY: 0
   heavyAttackPosX: 0
   heavyAttackFrameCount: 0
+  heavyAttackStartUpFrames: 0
+  heavyAttackRecoveryFrames: 0
   heavyAttackHitboxScale: {x: 0, y: 0}
-  HeavyAnimator: {fileID: 0}
+  heavyAttackHitStun: 0

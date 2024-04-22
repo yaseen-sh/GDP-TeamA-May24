@@ -34,6 +34,7 @@ public class CharacterStateMachine : MonoBehaviour
     public Wakeup WakeupState = new Wakeup();
     public Dead DeadState = new Dead();
 
+    public float stateTimer = 0f;
     private void Start()
     {
         character = gameObject;
@@ -49,6 +50,8 @@ public class CharacterStateMachine : MonoBehaviour
     }
     public void Update()
     {
+        stateTimer += Time.deltaTime;
+        //Debug.Log(stateTimer);
         CurrentState.UpdateState(this);
     }
 }

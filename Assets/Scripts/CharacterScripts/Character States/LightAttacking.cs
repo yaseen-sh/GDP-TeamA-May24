@@ -10,6 +10,7 @@ public class LightAttacking : CharacterBaseState
     Hitbox hitbox;
     CharacterAttack attack;
     Animations anime;
+    IEnumerator coroutine;
     public override void EnterState(CharacterStateMachine state)
     {
         //Lock Movement
@@ -17,14 +18,22 @@ public class LightAttacking : CharacterBaseState
         //Play 
         hitbox = state.character.GetComponent<Hitbox>();
         anime = state.character.GetComponent<Animations>();
+        attack = state.character.GetComponent <CharacterAttack>();
+        coroutine = attack.DisableInputForDuration(hitbox.totalFrameCount);
+        StartCoroutine(coroutine);
+
         anime.lightAttack();
     }
+
     public override void UpdateState(CharacterStateMachine state)
     {
         //after windup and winddown 
         //transition back to idle
-        if (hitbox.activeHitboxFrames == 0)
+        if (state.stateTimer >= hitbox.totalFrameCount)
+        {
+            state.stateTimer = 0;
             state.SwitchState(state.IdleState);
+        }
     }
     public override void OnCollisionEnter(CharacterStateMachine state)
     {

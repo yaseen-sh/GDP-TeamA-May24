@@ -19,6 +19,7 @@ public class Idle : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
+        state.stateTimer = 0f;
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)

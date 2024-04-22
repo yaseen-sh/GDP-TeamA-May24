@@ -60,10 +60,9 @@ public class CharacterAttack : MonoBehaviour
             //frameCount = 0; // Reset frame count
             //if(keyPressed == false)
             hitbox.isAttacking = true;
+            characterState.SwitchState(characterState.LightAttackingState);
             hitbox.SpawnHitbox(1);//attack type 1;
                                   //Debug.Log("light punch");
-
-            characterState.SwitchState(characterState.LightAttackingState);
         }
     }
     public void AttackHeavy(InputAction.CallbackContext context)
@@ -76,7 +75,7 @@ public class CharacterAttack : MonoBehaviour
             characterState.SwitchState(characterState.HeavyAttackingState);
         }
     }
-    IEnumerator DisableInputForDuration(float duration)
+    public IEnumerator DisableInputForDuration(float duration)
     {
         playerInput.enabled = false; //pausing input
 

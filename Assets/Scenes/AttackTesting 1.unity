@@ -771,6 +771,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nesterenko2
       objectReference: {fileID: 0}
+    - target: {fileID: 1338787493521742421, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.39891464
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338787493521742421, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0774
+      objectReference: {fileID: 0}
     - target: {fileID: 3935916367781342058, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
       propertyPath: m_Size.x
       value: 0.17
@@ -1305,6 +1313,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
+  character: {fileID: 0}
+  stateTimer: 0
 --- !u!95 &1617397708
 Animator:
   serializedVersion: 5
@@ -1354,6 +1364,14 @@ PrefabInstance:
     - target: {fileID: 577742727862747637, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
       propertyPath: m_TagString
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338787493521742421, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.40168238
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338787493521742421, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.076
       objectReference: {fileID: 0}
     - target: {fileID: 3187021693580342971, guid: 199288cb6d3eebb49a8f6aa2b31088c6, type: 3}
       propertyPath: Data

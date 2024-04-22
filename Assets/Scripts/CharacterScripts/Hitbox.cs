@@ -190,7 +190,7 @@ public class Hitbox : MonoBehaviour
 
         if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
-            //StartUp(StartUpFrames);
+            StartUp(StartUpFrames);
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;
