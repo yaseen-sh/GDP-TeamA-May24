@@ -343,7 +343,6 @@ MonoBehaviour:
   healthText: {fileID: 0}
   heathPrefab: {fileID: 3179652527293676450, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
   superMeterText: {fileID: 0}
-  maxHealth: 1000
   currentBlock: 100
   m_LayerMask:
     serializedVersion: 2

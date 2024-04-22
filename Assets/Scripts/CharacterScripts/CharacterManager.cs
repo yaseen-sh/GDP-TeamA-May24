@@ -15,6 +15,8 @@ public class CharacterManager : MonoBehaviour
     public TMP_Text healthText;
     private GameObject healthBar;
     public GameObject heathPrefab;
+    [SerializeField]
+    private Slider slide;
 
 
     public TMP_Text superMeterText;
@@ -41,10 +43,13 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
         state = GetComponent<CharacterStateMachine>();
-        healthBar = Instantiate(heathPrefab, GameObject.FindGameObjectWithTag("HealthBar").transform);
+        //healthBar = Instantiate(heathPrefab, GameObject.FindGameObjectWithTag("HealthBar").transform);
     }
     void Start()
     {
+        healthBar = Instantiate(heathPrefab, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+        slide = healthBar.GetComponent<Slider>();
+        Debug.Log(slide);
         // Sets the frame rate to 60fps.
         Application.targetFrameRate = 60;
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
@@ -84,10 +89,14 @@ public class CharacterManager : MonoBehaviour
     public void SetPlayerHealth(int damage) // playerHealth call when on hit
     {
         if (roundStarted)
-            currentHealth = maxHealth;
+        {
+            currentHealth = maxHealth; 
+            roundStarted = false;
+        }
         currentHealth -= damage;
         //healthText.text = "Health: " + currentHealth.ToString();
-        healthBar.GetComponent<Slider>().value = currentHealth;
+        Debug.Log(slide);
+        slide.value = currentHealth;
         if (currentHealth <= 0)
             state.SwitchState(state.DeadState);
 

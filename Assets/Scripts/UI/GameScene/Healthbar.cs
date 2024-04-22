@@ -22,7 +22,7 @@ public class Healthbar : MonoBehaviour
     }
     
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         if(filledPercent > newPercent)
         {
@@ -41,5 +41,5 @@ public class Healthbar : MonoBehaviour
     {
         filledPercent = 100;
         newPercent = 100;
-    }
+    }*/
 }

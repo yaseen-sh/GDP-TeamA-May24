@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     private PlayerInput player2Controls;
 
     public CharacterDataLoader Data;
+
+    public Slider healthBar1;
+    public Slider healthBar2;
 
     void Awake()
     {
