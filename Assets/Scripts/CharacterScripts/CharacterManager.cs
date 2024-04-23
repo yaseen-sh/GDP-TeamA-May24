@@ -22,12 +22,12 @@ public class CharacterManager : MonoBehaviour
     public TMP_Text superMeterText;
 
     const float maxHealth = 1000;//should be reset to 1000 after end of round
-    private float currentHealth = maxHealth;
+    public float currentHealth = maxHealth;
     const float minMeter = 0;
     private float currentMeter = minMeter;
     const float maxBlock = 100;//after each match the maxBlock should be reset to 100
     public float currentBlock = maxBlock;
-    bool roundStarted = true;
+    public bool roundStarted = true;
 
    
 
@@ -43,13 +43,9 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
         state = GetComponent<CharacterStateMachine>();
-        //healthBar = Instantiate(heathPrefab, GameObject.FindGameObjectWithTag("HealthBar").transform);
     }
     void Start()
     {
-        healthBar = Instantiate(heathPrefab, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
-        slide = healthBar.GetComponent<Slider>();
-        Debug.Log(slide);
         // Sets the frame rate to 60fps.
         Application.targetFrameRate = 60;
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
@@ -62,9 +58,14 @@ public class CharacterManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-       // setPlayerHealth();
-       //SuperMeter();
-       // MyCollisions();
+        if (roundStarted)
+        {
+            currentHealth = maxHealth;
+            roundStarted = false;
+        }
+        // setPlayerHealth();
+        //SuperMeter();
+        // MyCollisions();
     }
     void MyCollisions()
     {
@@ -88,18 +89,36 @@ public class CharacterManager : MonoBehaviour
     }
     public void SetPlayerHealth(int damage) // playerHealth call when on hit
     {
-        if (roundStarted)
+        /*if (roundStarted)
         {
             currentHealth = maxHealth; 
             roundStarted = false;
+        }*/
+        if (gameObject.CompareTag("Player 1"))
+        {
+            currentHealth = GameManager.health1;
         }
-        currentHealth -= damage;
-        //healthText.text = "Health: " + currentHealth.ToString();
-        Debug.Log(slide);
-        slide.value = currentHealth;
-        if (currentHealth <= 0)
-            state.SwitchState(state.DeadState);
+        else if (gameObject.CompareTag("Player 2"))
+        {
+            currentHealth = GameManager.health2;
+        }
 
+        currentHealth -= damage;
+
+        if (gameObject.CompareTag("Player 1"))
+        {
+            GameManager.health1 = currentHealth;
+        }
+        else if (gameObject.CompareTag("Player 2"))
+        {
+            GameManager.health2 = currentHealth;
+        }
+        if (currentHealth <= 0)
+        {
+            GameManager.roundOver = true;
+            roundStarted = true;
+            //state.SwitchState(state.DeadState);
+        }
     }
     public float GetPlayerSuper()
     {

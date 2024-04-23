@@ -64,7 +64,10 @@ public class SetupCharTiles : MonoBehaviour
         GameObject tile = Instantiate(charTilePrefab, transform);
         tile.GetComponentInChildren<TextMeshProUGUI>().text = fighter.charName;
         tile.GetComponentInChildren<Image>().sprite = fighter.charImage;
-        tile.GetComponent<AudioSource>().clip = fighter.selectLine[0];
+        for (int i = 0; i < fighter.selectLine.Length; ++i)
+        {
+            tile.GetComponents<AudioSource>()[i].clip = fighter.selectLine[i];
+        }
         charIdles.Add(fighter.charName, fighter.charIdle);
         charPicks.Add(fighter.charName, fighter.charReadyAnim);
 

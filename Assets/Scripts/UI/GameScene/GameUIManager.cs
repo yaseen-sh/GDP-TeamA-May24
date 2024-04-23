@@ -19,7 +19,9 @@ public class GameUIManager : MonoBehaviour
 
     private string round = "ROUND";
     //private string fighttext = "fighttext";
-    bool newRound = false;
+    public static bool newRound = false;
+    public bool roundCoRoutine = false;
+
     void Start()
     {
         roundText.text = "";
@@ -29,20 +31,23 @@ public class GameUIManager : MonoBehaviour
         timerText.text = "99";
         timer = 99;
         StartCoroutine(showRoundText());
-        StartCoroutine(timerCountDown());
+        //StartCoroutine(timerCountDown());
     }
     void Update()
     {
         if (newRound)
         {
             timer = 99;
+            roundCoRoutine = true;
+            StopAllCoroutines();
             StartCoroutine(showRoundText());
             StartCoroutine(timerCountDown());
             roundNumber++;
             newRound = false;
+
         }
     }
-    IEnumerator showRoundText()
+    public IEnumerator showRoundText()
     {
         foreach(char letter in round.ToCharArray())
         {
@@ -69,16 +74,23 @@ public class GameUIManager : MonoBehaviour
         roundText.text = "";
         brawlText.GetComponent<Animator>().enabled = false;
         roundNumberText.GetComponent<Animator>().enabled = false;
+        StartCoroutine(timerCountDown());
     }
 
     IEnumerator timerCountDown()
     {
-        yield return new WaitForSeconds(4.5f);
+        //yield return new WaitForSeconds(4.5f);
         while (timer > -1)
         {
             timerText.text = timer.ToString();
             yield return new WaitForSeconds(1);
             --timer;
+            if (roundCoRoutine)
+            {
+                Debug.Log("New Round");
+                roundCoRoutine = false;
+                yield break;
+            }
         }
         if (timer <= -1)
         {

@@ -15,6 +15,7 @@ MonoBehaviour:
   charName: Mikhail Nesterenko
   charImage: {fileID: -1761982171, guid: 59383200078ff3d4392522a20be3e670, type: 3}
   selectLine:
-  - {fileID: 8300000, guid: b0041f4f9cdf1e44b86bd06ccd113d57, type: 3}
+  - {fileID: 8300000, guid: 882bc5e30768f7e418bae070f632590f, type: 3}
+  - {fileID: 8300000, guid: 0404f115e139c6046aa3656018eaa7ef, type: 3}
   charIdle: NestyIdle
   charReadyAnim: NestyReady

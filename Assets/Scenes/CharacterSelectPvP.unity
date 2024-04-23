@@ -1387,10 +1387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae62d9dc71d14ed4e8181c2683710dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Selected: 0
-  player1Fighter: {fileID: 0}
-  player2Selected: 0
-  player2Fighter: {fileID: 0}
 --- !u!1 &1112032185
 GameObject:
   m_ObjectHideFlags: 0

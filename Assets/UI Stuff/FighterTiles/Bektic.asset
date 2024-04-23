@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Bektic
   m_EditorClassIdentifier: 
   charName: Meldin & Medo
-  charImage: {fileID: 21300000, guid: fb73eb813fb70f942b4350960817c4ec, type: 3}
+  charImage: {fileID: -1707547666, guid: 91be937c7df08c4498ee609efc477e7a, type: 3}
   selectLine:
-  - {fileID: 8300000, guid: b0041f4f9cdf1e44b86bd06ccd113d57, type: 3}
+  - {fileID: 8300000, guid: ba9192f437fbcb74c86ca3756c2db138, type: 3}
+  - {fileID: 8300000, guid: ba9192f437fbcb74c86ca3756c2db138, type: 3}
   charIdle: BekticIdle
   charReadyAnim: BekticReady

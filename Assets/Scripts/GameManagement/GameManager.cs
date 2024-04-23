@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Fighters")]
     public GameObject player1;
     public GameObject player2;
 
@@ -15,13 +18,41 @@ public class GameManager : MonoBehaviour
 
     public CharacterDataLoader Data;
 
-    public Slider healthBar1;
-    public Slider healthBar2;
+    private Slider healthBar1;
+    private Slider healthBar2;
+
+    public GameObject heathPrefab1;
+    public GameObject heathPrefab2;
+
+    public Gradient healthColor1;
+    public Gradient healthColor2;
+
+    private Image fill1;
+    private Image fill2;
+
+    float maxhealth = 1000;
+
+    public static float health1 = 1000;
+    public static float health2 = 1000;
+
+    public TextMeshProUGUI winnerText;
+    public static bool roundOver;
+
+    [Header("Player 1 Icon and Name")]
+    public TextMeshProUGUI player1Text;
+    public Image player1Icon;
+    public List<Image> player1Lives;
+
+    [Header("Player 2 Icon and Name")]
+    public TextMeshProUGUI player2Text;
+    public Image player2Icon;
+    public List<Image> player2Lives;
+
+    private int roundNumber;
+    bool onlyOnce = true;
 
     void Awake()
     {
-        //player1 = GameObject.FindGameObjectWithTag("Player 1");
-        //player2 = GameObject.FindGameObjectWithTag("Player 2");
         player1Controls = PlayerInput.Instantiate(player1, 1, "Gamepad", -1, GamepadJoin.playerControllers[1]);
         player1Controls.GetComponent<SpriteRenderer>().sprite = CSSManager.player1Fighter;
         //var inputUser = player1Controls.user;
@@ -30,9 +61,25 @@ public class GameManager : MonoBehaviour
 
         player2Controls = PlayerInput.Instantiate(player2, 2, "Gamepad", -1, GamepadJoin.playerControllers[2]);
         player2Controls.GetComponent<SpriteRenderer>().sprite = CSSManager.player2Fighter;
-        //var inputUser2 = player2Controls.user;
-        // player2Controls.SwitchCurrentControlScheme("Gamepad");
-        //InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[2], inputUser2, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+
+        GameObject bar1 = Instantiate(heathPrefab1, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+        healthBar1 = bar1.GetComponent<Slider>();
+
+        GameObject bar2 = Instantiate(heathPrefab2, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+        healthBar2 = bar2.GetComponent<Slider>();
+
+        fill1 = bar1.GetComponentInChildren<Image>();
+        fill2 = bar2.GetComponentInChildren<Image>();
+        winnerText.text = "";
+
+        player1Text.text = CSSManager.player1FighterName;
+        player2Text.text = CSSManager.player2FighterName;
+
+        player1Icon.sprite = CSSManager.player1Fighter;
+        player2Icon.sprite = CSSManager.player2Fighter;
+
+        roundNumber = 1;
+        onlyOnce = true;
     }
 
     // Update is called once per frame
@@ -48,5 +95,89 @@ public class GameManager : MonoBehaviour
             player1Controls.GetComponent<CharacterMovement>().facingRight = false;
             player2Controls.GetComponent<CharacterMovement>().facingRight = true;
         }
+        healthBar1.value = health1;
+        healthBar2.value = health2;
+        fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
+        fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
+        if (roundOver)
+        {
+            if (health1 <= 0 && health2 > 0)
+            {
+                winnerText.text = CSSManager.player2FighterName + " Wins!";
+                
+                //player1Lives[0].enabled = false;
+                if (player1Lives.Count == 2)
+                {
+                    player1Lives[0].enabled = false;
+                    player1Lives.RemoveAt(0);
+                }
+                else if (player1Lives.Count == 1)
+                {
+                    player1Lives[0].enabled = false;
+                    player1Lives.RemoveAt(1);
+                }
+
+            }
+            else if (health2 <= 0 && health1 > 0)
+            {
+                winnerText.text = CSSManager.player1FighterName + " Wins!";
+                if (player2Lives.Count == 2)
+                {
+                    player2Lives[0].enabled = false;
+                    player2Lives.RemoveAt(0);
+                }
+                else if (player2Lives.Count == 1)
+                {
+                    player2Lives[0].enabled = false;
+                    player2Lives.RemoveAt(0);
+                }
+            }
+            else
+            {
+                winnerText.text = "Draw";
+            }
+            health1 = maxhealth;
+            health2 = maxhealth;
+            roundOver = false;
+            ++roundNumber;
+
+            if (player1Lives.Count == 0 && onlyOnce)
+            {
+                StartCoroutine(EndGame(CSSManager.player2FighterName));
+                onlyOnce = false;
+            }
+            else if (player2Lives.Count == 0 && onlyOnce)
+            {
+                StartCoroutine(EndGame(CSSManager.player1FighterName));
+                onlyOnce = false;
+            }
+            else
+            {
+                StartCoroutine(WaitBetweenRounds());
+            }
+        }
+    }
+    IEnumerator WaitBetweenRounds()
+    {
+        yield return new WaitForSeconds(5f);
+        GameUIManager.newRound = true;
+        winnerText.text = "";
+        StartCoroutine(DisableControls());
+    }
+    IEnumerator DisableControls()
+    {
+        //player1Controls.enabled = false;
+        //player2Controls.enabled = false;
+        player1Controls.transform.position = player1.transform.position;
+        player2Controls.transform.position = player2.transform.position;
+        yield return new WaitForSeconds(5f);
+        //player1Controls.enabled = true;
+        //player2Controls.enabled = true;
+    }
+    IEnumerator EndGame(string playerWhoWon)
+    {
+        winnerText.text = playerWhoWon + " Is The Binary Camp!";
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("TitleScreen");
     }
 }

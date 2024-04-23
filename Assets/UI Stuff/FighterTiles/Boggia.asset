@@ -15,6 +15,7 @@ MonoBehaviour:
   charName: Branson Boggia
   charImage: {fileID: -986091066, guid: 60592c97800ae484e901b743a7e62677, type: 3}
   selectLine:
-  - {fileID: 8300000, guid: b0041f4f9cdf1e44b86bd06ccd113d57, type: 3}
+  - {fileID: 8300000, guid: 4e6d7b79381703341b468db6714892af, type: 3}
+  - {fileID: 8300000, guid: 992f568a1d93f1643a2d69f1364f4afc, type: 3}
   charIdle: BoggiaIdle
   charReadyAnim: BoggiaReady

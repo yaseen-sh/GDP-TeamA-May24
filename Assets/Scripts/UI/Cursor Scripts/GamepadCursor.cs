@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
-using System;
+//using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -27,7 +27,7 @@ public class GamepadCursor : MonoBehaviour
     [Space]
 
     public GameObject playerSelection;
-    public static EventHandler DoneSelectingEvent;
+    //public static EventHandler DoneSelectingEvent;
 
     [Header("Title Screen Required text")]
     public GameObject player2Required;
@@ -173,7 +173,7 @@ public class GamepadCursor : MonoBehaviour
                             {
                                 buttonColor.normalColor = new Color(0, 0, .2f, .5f);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor;
-                                fighter.GetComponent<AudioSource>().Play(); // Selected Voice Line Plays
+                                fighter.GetComponents<AudioSource>()[Random.Range(0, fighter.GetComponents<AudioSource>().Length)].Play(); // Selected Voice Line Plays
                             }
                             else
                             {
@@ -184,6 +184,7 @@ public class GamepadCursor : MonoBehaviour
                             CSSManager.player1Selected = charSelected;
                             //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player1FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                         }
                         else if (gameObject.CompareTag("CursorP2"))
                         {
@@ -203,6 +204,7 @@ public class GamepadCursor : MonoBehaviour
                             CSSManager.player2Selected = charSelected;
                             //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player2FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                         }
                         return;
                     }
