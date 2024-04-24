@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.Users;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEditor;
 
 /*
     This should allow the user to select buttons with cursor using the gamepad left stick. 
@@ -185,6 +186,7 @@ public class GamepadCursor : MonoBehaviour
                             //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player1FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                            CSSManager.player1Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player1FighterName}");
                         }
                         else if (gameObject.CompareTag("CursorP2"))
                         {
@@ -205,6 +207,7 @@ public class GamepadCursor : MonoBehaviour
                             //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player2FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                            CSSManager.player2Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player2FighterName + "2"}");
                         }
                         return;
                     }

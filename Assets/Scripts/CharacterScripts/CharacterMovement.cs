@@ -21,6 +21,10 @@ public class CharacterMovement : MonoBehaviour
     public CharacterAttack attack;
     public CharacterDataLoader Data;
     CharacterStateMachine state;
+
+
+    bool isStopMove = false;
+    //public GameManager managerOfGames;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
+        isStopMove = GameManager.roundOver;
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (facingRight)
         {
@@ -53,30 +58,38 @@ public class CharacterMovement : MonoBehaviour
    
     public void Movement(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
-
-        //for crouching, is the player holding down s?
-        if(context.ReadValue<Vector2>().y < 0){
-            isCrouching = true;
-            state.SwitchState(state.CrouchState);
-        }
-        else
+        if (!isStopMove)
         {
-            isCrouching = false;
+            horizontal = context.ReadValue<Vector2>().x;
+
+            //for crouching, is the player holding down s?
+            if (context.ReadValue<Vector2>().y < 0)
+            {
+                isCrouching = true;
+                state.SwitchState(state.CrouchState);
+            }
+            else
+            {
+                isCrouching = false;
+            }
         }
     }
 
     public void Jump (InputAction.CallbackContext context)
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        //Debug.Log(isGrounded);
-
-        if (context.performed && isGrounded)
+        Debug.Log(isStopMove);
+        if (!isStopMove)
         {
-            isJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            state.SwitchState(state.JumpState);
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+            //Debug.Log(isGrounded);
+
+            if (context.performed && isGrounded)
+            {
+                isJumping = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                state.SwitchState(state.JumpState);
+            }
         }
     }
 }

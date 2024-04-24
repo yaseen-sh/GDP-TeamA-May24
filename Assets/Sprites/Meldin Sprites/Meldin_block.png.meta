@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 26252d8ddaaab4d429577293c6a73757
+guid: 9f1feb07ce7220b469afe23d76775654
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,32 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -136,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: block_0
+      name: Meldin_block_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55b4bda6800d1fe438ef35d22b38995a
-      internalID: 1077350140
+      spriteID: f100b6008d57a7e4995423fb10330b89
+      internalID: 1224136799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: block_1
+      name: Meldin_block_1
       rect:
         serializedVersion: 2
         x: 128
@@ -171,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 877c78235a26ac6469af7e4178e4133d
-      internalID: 505975108
+      spriteID: e1701e30c7beef64d8d2d05e02e8173d
+      internalID: -602701933
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: block_2
+      name: Meldin_block_2
       rect:
         serializedVersion: 2
         x: 256
@@ -192,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4a2225d03c8aa64b83dd16d0aec4281
-      internalID: -848526037
+      spriteID: 2f4352769502b2147a99c194c804d0ab
+      internalID: 1631666972
       vertices: []
       indices: 
       edges: []
@@ -209,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      block_0: 1077350140
-      block_1: 505975108
-      block_2: -848526037
+      Meldin_block_0: 1224136799
+      Meldin_block_1: -602701933
+      Meldin_block_2: 1631666972
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

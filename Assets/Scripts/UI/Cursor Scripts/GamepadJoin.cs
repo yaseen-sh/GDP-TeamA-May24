@@ -63,6 +63,10 @@ public class GamepadJoin : MonoBehaviour
             }
         }
 
+
+        if (SceneManager.GetActiveScene().name == "BrawlScene")
+            return;
+
         // only works for devices with controller or gamepad in the name.
         if (!device.displayName.Contains("Controller") && !device.displayName.Contains("Gamepad"))
             return;

@@ -13,11 +13,13 @@ public class CSSManager : MonoBehaviour
     public static bool player1Selected = false; 
     public static Sprite player1Fighter;
     public static string player1FighterName;
+    public static GameObject player1Object;
 
     [Header("Player 2 Variables")]
     public static bool player2Selected = false;
     public static Sprite player2Fighter;
     public static string player2FighterName;
+    public static GameObject player2Object;
 
     [Header("Selected Stage")]
     public static Sprite stage;

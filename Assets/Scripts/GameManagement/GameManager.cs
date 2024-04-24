@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    public Transform player1Pos;
+    public Transform player2Pos;
+
     private PlayerInput player1Controls;
     private PlayerInput player2Controls;
 
@@ -57,14 +60,16 @@ public class GameManager : MonoBehaviour
     }
     void Awake()
     {
+        player1 = CSSManager.player1Object;
         player1Controls = PlayerInput.Instantiate(player1, 1, "Controller", -1, GamepadJoin.playerControllers[1]);
-        player1Controls.GetComponent<SpriteRenderer>().sprite = CSSManager.player1Fighter;
+        player1Controls.transform.position = player1Pos.position;
         var inputUser = player1Controls.user;
         player1Controls.SwitchCurrentControlScheme("Controller");
         InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[1], inputUser, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
 
+        player2 = CSSManager.player2Object;
         player2Controls = PlayerInput.Instantiate(player2, 2, "Controller", -1, GamepadJoin.playerControllers[2]);
-        player2Controls.GetComponent<SpriteRenderer>().sprite = CSSManager.player2Fighter;
+        player2Controls.transform.position = player2Pos.position;
         var inputUser2 = player2Controls.user;
         player2Controls.SwitchCurrentControlScheme("Controller");
         InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[2], inputUser2, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
@@ -112,6 +117,7 @@ public class GameManager : MonoBehaviour
         {
             if (health1 <= 0 && health2 > 0)
             {
+                winnerText.color = new Color(1f, 0, 0, 1f);
                 winnerText.text = CSSManager.player2FighterName + " Wins!";
                 
                 if (player1Lives.Count == 2)
@@ -128,6 +134,7 @@ public class GameManager : MonoBehaviour
             }
             else if (health2 <= 0 && health1 > 0)
             {
+                winnerText.color = new Color(0, 0, 1f, 1f);
                 winnerText.text = CSSManager.player1FighterName + " Wins!";
                 if (player2Lives.Count == 2)
                 {
@@ -173,20 +180,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         GameUIManager.newRound = true;
         winnerText.text = "";
-        player1Controls.transform.position = player1.transform.position;
-        player2Controls.transform.position = player2.transform.position;
+        player1Controls.transform.position = player1Pos.position;
+        player2Controls.transform.position = player2Pos.position;
         StartCoroutine(DisableControls());
     }
     IEnumerator DisableControls()
     {
         yield return new WaitForSeconds(5f);
-        player1Controls.enabled = true;
-        player2Controls.enabled = true;
+        //player1Controls.enabled = true;
+        //player2Controls.enabled = true;
     }
     IEnumerator EndGame(string playerWhoWon)
     {
-        player1Controls.enabled = false;
-        player2Controls.enabled = false;
+        //player1Controls.enabled = false;
+        //player2Controls.enabled = false;
         winnerText.text = playerWhoWon + " Is The Binary Camp!";
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("TitleScreen");

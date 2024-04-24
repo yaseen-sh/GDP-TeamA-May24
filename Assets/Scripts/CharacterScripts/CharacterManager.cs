@@ -12,11 +12,11 @@ public class CharacterManager : MonoBehaviour
     public GameObject playerHurtBox;
     public GameObject playerPushBox; // Used when both players are too close to each other they will be pushed apart or swap sides.
 
-    public TMP_Text healthText;
-    private GameObject healthBar;
-    public GameObject heathPrefab;
-    [SerializeField]
-    private Slider slide;
+    //public TMP_Text healthText;
+    //private GameObject healthBar;
+    //public GameObject heathPrefab;
+    //[SerializeField]
+    //private Slider slide;
 
 
     public TMP_Text superMeterText;
@@ -70,7 +70,7 @@ public class CharacterManager : MonoBehaviour
         //SuperMeter();
         // MyCollisions();
     }
-    void MyCollisions()
+    /*void MyCollisions()
     {
         //Use the OverlapBox to detect if there are any other colliders within this box area.
         //Use the GameObject's centre, half the size (as a radius) and rotation. This creates an invisible box around your GameObject.
@@ -84,7 +84,7 @@ public class CharacterManager : MonoBehaviour
             //Increase the number of Colliders in the array
             i++;
         }
-    }
+    }*/
 
    public float GetPlayerHealth()
     {

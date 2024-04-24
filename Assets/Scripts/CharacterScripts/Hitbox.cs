@@ -88,9 +88,17 @@ public class Hitbox : MonoBehaviour
 
         //TODO
         //on start set the player and opponent tags
-       // playerTag = ;
-       // OpponentTag = ;
-}
+        if (gameObject.tag == "Player 1")
+        {
+            playerTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
+            OpponentTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
+        }
+        else
+        {
+            playerTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
+            OpponentTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
+        }
+    }
     private void Update()
     {
         if (currentHitBox != null)

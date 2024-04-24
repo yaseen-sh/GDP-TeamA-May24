@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 9087430873852648489}
   - component: {fileID: 7355270301737394939}
   m_Layer: 0
-  m_Name: Nesterenko
+  m_Name: Mikhail Nesterenko
   m_TagString: Player 1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,11 +130,11 @@ MonoBehaviour:
   totalFrameCount: 0
   currentHitBox: {fileID: 0}
   hitBoxChild: {fileID: 1394446909833907864}
-  OpponentTag: {fileID: 0}
+  OpponentTag: {fileID: 6024589478923480192}
   playerTag: {fileID: 6024589478923480192}
   isAttacking: 0
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
-  lightAttackDamage: 0
+  lightAttackDamage: 1
   lightAttackPosY: 0
   lightAttackPosX: 0
   lightAttackFrameCount: 0
@@ -248,6 +248,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 20ee233c-2d53-4056-8639-19136af06970
     m_ActionName: Player1/AttackLight[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce3d3ab1-7238-46e1-abd9-76107c8475da
+    m_ActionName: Player/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -340,8 +344,12 @@ MonoBehaviour:
   playerHurtBox: {fileID: 4721342976139048492}
   playerPushBox: {fileID: 1293744640342681270}
   healthText: {fileID: 0}
+  heathPrefab: {fileID: 3179652527293676450, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
+  slide: {fileID: 0}
   superMeterText: {fileID: 0}
+  currentHealth: 1000
   currentBlock: 100
+  roundStarted: 1
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -421,7 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3c986c658402b409dc97351efbae54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anime: {fileID: 0}
+  anime: {fileID: 7355270301737394939}
 --- !u!95 &7355270301737394939
 Animator:
   serializedVersion: 5
@@ -636,7 +644,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &27720496080042308
