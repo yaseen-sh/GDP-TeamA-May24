@@ -3816,6 +3816,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1406616198}
     m_Modifications:
+    - target: {fileID: 1287597992277723347, guid: 5d58a7a0d3762644a9b95d7a89595a96, type: 3}
+      propertyPath: m_MaxValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5632420600716043892, guid: 5d58a7a0d3762644a9b95d7a89595a96, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4020,6 +4024,14 @@ PrefabInstance:
     - target: {fileID: 3179652527293676450, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
       propertyPath: m_Name
       value: HealthBar1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617276046496384681, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617276046496384681, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
+      propertyPath: m_MaxValue
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -110,7 +110,6 @@ public class GameManager : MonoBehaviour
             {
                 winnerText.text = CSSManager.player2FighterName + " Wins!";
                 
-                //player1Lives[0].enabled = false;
                 if (player1Lives.Count == 2)
                 {
                     player1Lives[0].enabled = false;
