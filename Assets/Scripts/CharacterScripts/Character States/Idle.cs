@@ -1,19 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class Idle : CharacterBaseState
 {
+    Animations anime;
+    GameObject character;
+    public void awake()
+    {
+        
+    }
     public override void EnterState(CharacterStateMachine state)
     {
-        //Play idle animation
-        //CharacterAnim.idle();
-        Debug.Log("Idling");
+        anime = state.character.GetComponent<Animations>();
+        anime.Idle();
     }
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        state.stateTimer = 0f;
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)

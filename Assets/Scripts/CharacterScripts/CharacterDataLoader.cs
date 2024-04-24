@@ -17,15 +17,7 @@ public class CharacterDataLoader : ScriptableObject
     public CharacterManager PlayerTag;
     public CharacterManager OpponentTag;
     //Movement
-    public Animator ForwardWalkAnimator;
-    public Animator BackwardWalkAnimator;
-    public Animator BlockAnimator;
-    public Animator IdleAnimator;
-    public Animator JumpAnimator;
-    public Animator CrouchAnimator;
-    public Animator KnockdownAnimator;
-    public Animator KnockoutAnimator;
-    public Animator DamagedAnimator;
+    public Animator animations;
     //Light Attack
     public int lightAttackDamage;
     public float lightAttackPosY;
@@ -35,7 +27,6 @@ public class CharacterDataLoader : ScriptableObject
     public float lightAttackRecoveryFrames;
     public Vector2 lightAttackHitboxScale;
     public float lightAttackHitStun;
-    public Animator LightAnimator;
 
     //Heavy Attack
     public int heavyAttackDamage;
@@ -46,7 +37,6 @@ public class CharacterDataLoader : ScriptableObject
     public float heavyAttackRecoveryFrames;
     public Vector2 heavyAttackHitboxScale;
     public float heavyAttackHitStun;
-    public Animator HeavyAnimator;
     //Special Move stuff here
 
 }

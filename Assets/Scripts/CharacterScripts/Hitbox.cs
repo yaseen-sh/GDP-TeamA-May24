@@ -25,7 +25,8 @@ public class Hitbox : MonoBehaviour
     public float StartUpFrames = 0;
 
     private float frameCount = 0f; // counts duration of current attack
-    public float timer = 0f;
+    public float activeHitboxFrames = 0f;
+    public float totalFrameCount = 0f;
     public GameObject currentHitBox;
     private Vector2 scaleChange;
     public GameObject hitBoxChild;
@@ -94,20 +95,19 @@ public class Hitbox : MonoBehaviour
     {
         if (currentHitBox != null)
         {
-            
+
             //framecount -= time.deltatime;
             //if(frame <= 0; framecount = 0)
             //if (attackHappened then start frame counter
             //setup for each
             //time.deltatime
-            
-            timer += Time.deltaTime;
-            if (timer > frameCount) // After hitbox duration, destroy hitbox and reset frame count
-            {
 
-                Debug.Log("Frames per second: " + frameCount + "\n" + "Timer: " + timer);
+            activeHitboxFrames += Time.deltaTime;
+            if (activeHitboxFrames > frameCount) // After hitbox duration, destroy hitbox and reset frame count
+            {
+                Debug.Log("Frames per second: " + frameCount + "\n" + "totalTimer: " + activeHitboxFrames);
                 DestroyHitbox(currentHitBox);
-                timer = 0;
+                activeHitboxFrames = 0;
                 frameCount = 0;
                 isAttacking = false;
             }
@@ -127,56 +127,53 @@ public class Hitbox : MonoBehaviour
     }
     public void SpawnHitbox(int attackType)
     {
+
         //Debug.Log("HitBoxSpawned");
         switch (attackType)
         {
+
             //attacktype Light
             case 1:
+                
                 damage = lightAttackDamage;
                 //set hitbox parameters
                 frameCount = lightAttackFrameCount;
+                scaleChange = lightAttackHitboxScale;
+                RecoveryFrames = lightAttackRecoveryFrames;
+                StartUpFrames = lightAttackStartUpFrames;
+                totalFrameCount = RecoveryFrames + StartUpFrames + frameCount;
                 if (movement.facingRight == true)
                 {
-                    Debug.Log("FacingRightLightAttack");
+                    //Debug.Log("FacingRightLightAttack");
                     hitboxPosX = lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
-                    scaleChange = lightAttackHitboxScale;
-                    RecoveryFrames = lightAttackRecoveryFrames;
-                    StartUpFrames = lightAttackStartUpFrames;
-                    
                 }
                 else
                 {
-                    Debug.Log("FacingLeftLightAttack");
+                    //Debug.Log("FacingLeftLightAttack");
                     hitboxPosX = -lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
-                    scaleChange = lightAttackHitboxScale;
-                    RecoveryFrames = lightAttackRecoveryFrames;
-                    StartUpFrames = lightAttackStartUpFrames;
                 }
             break;
             //attacktype heavy
             case 2:
                 damage = heavyAttackDamage;
                 frameCount = heavyAttackFrameCount;
+                scaleChange = heavyAttackHitboxScale;
+                RecoveryFrames = heavyAttackRecoveryFrames;
+                StartUpFrames = heavyAttackStartUpFrames;
+                totalFrameCount = RecoveryFrames + StartUpFrames + frameCount;
                 if (movement.facingRight == true)
                 {
-                    Debug.Log("FacingRightHeavyAttack");
+                    //Debug.Log("FacingRightHeavyAttack");
                     hitboxPosX = heavyAttackPosX;
                     hitboxPosY = heavyAttackPosY;
-                    scaleChange = lightAttackHitboxScale;
-                    RecoveryFrames = heavyAttackRecoveryFrames;
-                    StartUpFrames = heavyAttackStartUpFrames;
-                    
                 }
                 else
                 {
                     hitboxPosX = -heavyAttackPosX;
                     hitboxPosY = heavyAttackPosY;
-                    scaleChange = lightAttackHitboxScale;
-                    RecoveryFrames = heavyAttackRecoveryFrames;
-                    StartUpFrames = heavyAttackStartUpFrames;
-                    Debug.Log("FacingLeftHeavyAttack");
+                    //Debug.Log("FacingLeftHeavyAttack");
                 }
                 break;
             //attacktype etc
@@ -191,12 +188,12 @@ public class Hitbox : MonoBehaviour
                 }
                 break;
         }
-            
+       
                                              //Tweak size of prefab based off of attack
-        if (hitBoxChild.transform.childCount <= 0 )
+
+        if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
-            //Check for the same hitbox hit 
-            //Debug.Log("Attacks");
+            
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;
@@ -218,5 +215,5 @@ public class Hitbox : MonoBehaviour
             //Debug.Log("Hitbox Destroyed");
         }
     }
-
+    
 }

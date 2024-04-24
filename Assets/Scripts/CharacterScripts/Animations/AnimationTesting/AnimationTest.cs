@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class AnimationTest : MonoBehaviour
 {
-    public GameObject Nesteranko;
-    //public GameObject Branson;
+   // public GameObject Nesteranko;
+    public GameObject Branson;
     //public GameObject Meldin;
     //public GameObject Reed;
 
@@ -12,8 +12,8 @@ public class AnimationTest : MonoBehaviour
     {
         if(context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Idle();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().Idle();
+            Branson.GetComponent<Animations>().Idle();
             //Meldin
             //Reed
         }
@@ -23,8 +23,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().FWalk();
-            //Branson
+           // Nesteranko.GetComponent<Animations>().FWalk();
+            Branson.GetComponent<Animations>().FWalk();
             //Meldin
             //Reed
         }
@@ -34,8 +34,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().BWalk();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().BWalk();
+            Branson.GetComponent<Animations>().BWalk();
             //Meldin
             //Reed
         }
@@ -45,8 +45,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Block();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().Block();
+            Branson.GetComponent<Animations>().Block();
             //Meldin
             //Reed
         }
@@ -56,7 +56,7 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Straight();
+            //Nesteranko.GetComponent<Animations>().Straight();
         }
     }
 
@@ -64,8 +64,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Damaged();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().Damaged();
+            Branson.GetComponent<Animations>().Damaged();
             //Meldin
             //Reed
         }
@@ -75,8 +75,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().lightAttack();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().lightAttack();
+            Branson.GetComponent<Animations>().lightAttack();
             //Meldin
             //Reed
         }
@@ -86,8 +86,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().heavyAttack();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().heavyAttack();
+            Branson.GetComponent<Animations>().heavyAttack();
             //Meldin
             //Reed
         }
@@ -97,8 +97,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Knockdown();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().Knockdown();
+            Branson.GetComponent<Animations>().Knockdown();
             //Meldin
             //Reed
         }
@@ -108,8 +108,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().KO();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().KO();
+            Branson.GetComponent<Animations>().KO();
             //Meldin
             //Reed
         }
@@ -119,8 +119,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Crouch();
-            //Branson
+           // Nesteranko.GetComponent<Animations>().Crouch();
+            Branson.GetComponent<Animations>().Crouch();
             //Meldin
             //Reed
         }
@@ -130,8 +130,8 @@ public class AnimationTest : MonoBehaviour
     {
         if (context.performed)
         {
-            Nesteranko.GetComponent<NesterankoAnimation>().Jump();
-            //Branson
+            //Nesteranko.GetComponent<Animations>().Jump();
+            Branson.GetComponent<Animations>().Jump();
             //Meldin
             //Reed
         }

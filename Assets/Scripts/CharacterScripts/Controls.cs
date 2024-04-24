@@ -221,7 +221,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""04e48a23-33ca-46a5-8054-57755eaec077"",
+                    ""id"": ""6f1ea036-5507-4758-8516-61cfde5c1cd8"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",

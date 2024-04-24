@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Jump : CharacterBaseState
 {
+    Animations anime;
+    CharacterMovement movement;
     public override void EnterState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        movement = state.character.GetComponent<CharacterMovement>();
+        anime = state.character.GetComponent<Animations>();
+        anime.Jump();
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)
@@ -14,8 +18,13 @@ public class Jump : CharacterBaseState
         throw new System.NotImplementedException();
     }
 
-    public override void UpdateState(CharacterStateMachine state)
+    public override void UpdateState(CharacterStateMachine state)// landing
     {
-        throw new System.NotImplementedException();
+        
+        if (movement.isJumping == false)
+        {
+            Debug.Log(movement.isJumping);
+            state.SwitchState(state.IdleState);
+        }
     }
 }

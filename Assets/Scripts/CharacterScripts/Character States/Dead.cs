@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Dead : CharacterBaseState
 {
+    Animations anime;
     public override void EnterState(CharacterStateMachine state)
     {
-        Debug.Log("DeadState");
-        
+        anime = state.character.GetComponent<Animations>();
+        anime.KO();
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)
@@ -17,6 +19,7 @@ public class Dead : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        //End the round
+
     }
 }

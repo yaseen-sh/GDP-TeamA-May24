@@ -28,7 +28,9 @@ public class CharacterAttack : MonoBehaviour
     public Hitbox hitbox;
     public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
-
+    private int attackID;
+    //needed for stopping input
+   
     private void Awake()
     {
         characterState = GetComponent<CharacterStateMachine>();
@@ -59,20 +61,29 @@ public class CharacterAttack : MonoBehaviour
             //frameCount = 0; // Reset frame count
             //if(keyPressed == false)
             hitbox.isAttacking = true;
-            hitbox.SpawnHitbox(1);//attack type 1;
-                                  //Debug.Log("light punch");
-
             characterState.SwitchState(characterState.LightAttackingState);
+            attackID = 1;
+            StartCoroutine(StartUp(hitbox.StartUpFrames,attackID));
+            
+                                  //Debug.Log("light punch");
         }
     }
     public void AttackHeavy(InputAction.CallbackContext context)
     {
         if (context.action.IsPressed())
         {
-            hitbox.isAttacking = true;
-            hitbox.SpawnHitbox(2);
-
+            hitbox.isAttacking = true;            
             characterState.SwitchState(characterState.HeavyAttackingState);
+            attackID = 2;
+            StartCoroutine(StartUp(hitbox.StartUpFrames, attackID));
         }
     }
+    IEnumerator StartUp(float frames, int ID )
+    {
+        yield return new WaitForSeconds(frames);
+
+        Debug.Log("Start Up Frames: " + frames);
+        hitbox.SpawnHitbox(ID);//attack type 1;
+    }
+
 }

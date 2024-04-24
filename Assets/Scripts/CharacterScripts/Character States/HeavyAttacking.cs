@@ -7,16 +7,18 @@ public class HeavyAttacking : CharacterBaseState
     CharacterMovement movement;
     Hitbox hitbox;
     CharacterAttack attack;
+    Animations anime;
     public override void EnterState(CharacterStateMachine state)
     {
-        //Play idle animation
-        //CharacterAnim.idle();
-        Debug.Log("HeavyAttacking");
+        hitbox = state.character.GetComponent<Hitbox>();
+        anime = state.character.GetComponent<Animations>();
+        anime.heavyAttack();
     }
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        if (hitbox.activeHitboxFrames <= 0)
+            state.SwitchState(state.IdleState);
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)

@@ -51,6 +51,10 @@ public class GameManager : MonoBehaviour
     private int roundNumber;
     bool onlyOnce = true;
 
+    private void Start()
+    {
+        Application.targetFrameRate = 60;
+    }
     void Awake()
     {
         player1Controls = PlayerInput.Instantiate(player1, 1, "Controller", -1, GamepadJoin.playerControllers[1]);

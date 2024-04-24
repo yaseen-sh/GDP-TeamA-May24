@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NesterankoAnimation : MonoBehaviour
+public class Animations : MonoBehaviour
 {
-    Animator anime;
-
-    private void Start()
+    public Animator anime;
+    CharacterDataLoader data;
+    
+    private void Awake()
     {
         anime = GetComponent<Animator>();
     }
