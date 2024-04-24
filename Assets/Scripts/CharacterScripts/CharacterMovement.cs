@@ -9,7 +9,9 @@ public class CharacterMovement : MonoBehaviour
     public bool isGrounded = true;
     public bool isJumping = false;
     public bool isCrouching = false;
+    public bool isBlocking = false;
     public bool facingRight;
+    public float moveValue;
 
     Transform playerRotation; //Variable to control player's rotation
 
@@ -30,24 +32,34 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-        if (facingRight)
+        if (!isCrouching && !isBlocking)
         {
-            
-                playerRotation.rotation = Quaternion.Euler(0, 180, 0);
-            //Debug.Log("Facing Right");
-            //state.SwitchState(state.FWalkState);
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            if (moveValue > 0)
+            {
+                state.SwitchState(state.FWalkState);
+            }
+            else if (moveValue < 0)
+            {
+                state.SwitchState(state.BWalkState);
+            }
+            //Debug.Log(horizontal);
+        }
+        if (facingRight)
+        { 
+            playerRotation.rotation = Quaternion.Euler(0, 180, 0);
+            moveValue = horizontal;
         }
         else
         {
-                playerRotation.rotation = Quaternion.Euler(0, 0, 0);
-            //Debug.Log("Facing Left");
-            //state.SwitchState(state.BWalkState);
-
+            playerRotation.rotation = Quaternion.Euler(0, 0, 0);
+            moveValue = horizontal * -1;
         }
         if (isGrounded)
         {
-            isJumping = false;
+            //Make a pause for a certain amount of time (length of jump)
+            //Call SwitchState
+            Debug.Log("Grounded");
         }
     }
    
@@ -70,13 +82,25 @@ public class CharacterMovement : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        //Debug.Log(isGrounded);
-
-        if (context.performed && isGrounded)
+        if (context.performed && isGrounded && !isBlocking)
         {
+            Debug.Log("Jump " + isGrounded);
             isJumping = true;
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             state.SwitchState(state.JumpState);
+        }
+    }
+
+    public void Block(InputAction.CallbackContext context)
+    {
+        if(context.performed && isGrounded && !isCrouching)
+        {
+            isBlocking = true;
+            state.SwitchState(state.BlockingState);
+        }
+        else
+        {
+            isBlocking = false;
         }
     }
 }
