@@ -1199,6 +1199,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nesterenko1
       objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330295074963464004, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3935916367781342058, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
       propertyPath: m_Size.x
       value: 0.4964278

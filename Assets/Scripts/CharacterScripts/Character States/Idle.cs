@@ -7,13 +7,10 @@ public class Idle : CharacterBaseState
 {
     Animations anime;
     GameObject character;
-    public void awake()
-    {
-        
-    }
     public override void EnterState(CharacterStateMachine state)
     {
         anime = state.character.GetComponent<Animations>();
+        character = state.character.GetComponent<GameObject>();
         anime.Idle();
     }
 
@@ -24,6 +21,6 @@ public class Idle : CharacterBaseState
 
     public override void OnCollisionEnter(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        state.character.
     }
 }
