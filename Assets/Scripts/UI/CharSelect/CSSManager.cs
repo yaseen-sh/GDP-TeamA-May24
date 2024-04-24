@@ -19,6 +19,9 @@ public class CSSManager : MonoBehaviour
     public static Sprite player2Fighter;
     public static string player2FighterName;
 
+    [Header("Selected Stage")]
+    public static Sprite stage;
+
     public void Start()
     {
         /*

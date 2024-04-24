@@ -53,14 +53,17 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        player1Controls = PlayerInput.Instantiate(player1, 1, "Gamepad", -1, GamepadJoin.playerControllers[1]);
+        player1Controls = PlayerInput.Instantiate(player1, 1, "Controller", -1, GamepadJoin.playerControllers[1]);
         player1Controls.GetComponent<SpriteRenderer>().sprite = CSSManager.player1Fighter;
-        //var inputUser = player1Controls.user;
-        //player1Controls.SwitchCurrentControlScheme("Gamepad");
-        //InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[1], inputUser, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        var inputUser = player1Controls.user;
+        player1Controls.SwitchCurrentControlScheme("Controller");
+        InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[1], inputUser, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
 
-        player2Controls = PlayerInput.Instantiate(player2, 2, "Gamepad", -1, GamepadJoin.playerControllers[2]);
+        player2Controls = PlayerInput.Instantiate(player2, 2, "Controller", -1, GamepadJoin.playerControllers[2]);
         player2Controls.GetComponent<SpriteRenderer>().sprite = CSSManager.player2Fighter;
+        var inputUser2 = player2Controls.user;
+        player2Controls.SwitchCurrentControlScheme("Controller");
+        InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[2], inputUser2, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
 
         GameObject bar1 = Instantiate(heathPrefab1, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
         healthBar1 = bar1.GetComponent<Slider>();
@@ -77,6 +80,8 @@ public class GameManager : MonoBehaviour
 
         player1Icon.sprite = CSSManager.player1Fighter;
         player2Icon.sprite = CSSManager.player2Fighter;
+
+        GameObject.Find("StageBackground").GetComponent<Image>().sprite = CSSManager.stage;
 
         roundNumber = 1;
         onlyOnce = true;
@@ -114,7 +119,7 @@ public class GameManager : MonoBehaviour
                 else if (player1Lives.Count == 1)
                 {
                     player1Lives[0].enabled = false;
-                    player1Lives.RemoveAt(1);
+                    player1Lives.RemoveAt(0);
                 }
 
             }
@@ -136,6 +141,7 @@ public class GameManager : MonoBehaviour
             {
                 winnerText.text = "Draw";
             }
+
             health1 = maxhealth;
             health2 = maxhealth;
             roundOver = false;
@@ -159,23 +165,25 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitBetweenRounds()
     {
+        player1Controls.enabled = false;
+        player2Controls.enabled = false;
         yield return new WaitForSeconds(5f);
         GameUIManager.newRound = true;
         winnerText.text = "";
+        player1Controls.transform.position = player1.transform.position;
+        player2Controls.transform.position = player2.transform.position;
         StartCoroutine(DisableControls());
     }
     IEnumerator DisableControls()
     {
-        //player1Controls.enabled = false;
-        //player2Controls.enabled = false;
-        player1Controls.transform.position = player1.transform.position;
-        player2Controls.transform.position = player2.transform.position;
         yield return new WaitForSeconds(5f);
-        //player1Controls.enabled = true;
-        //player2Controls.enabled = true;
+        player1Controls.enabled = true;
+        player2Controls.enabled = true;
     }
     IEnumerator EndGame(string playerWhoWon)
     {
+        player1Controls.enabled = false;
+        player2Controls.enabled = false;
         winnerText.text = playerWhoWon + " Is The Binary Camp!";
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("TitleScreen");
