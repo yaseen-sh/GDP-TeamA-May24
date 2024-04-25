@@ -19,7 +19,7 @@ MonoBehaviour:
   PlayerTag: {fileID: 0}
   OpponentTag: {fileID: 0}
   animations: {fileID: 0}
-  lightAttackDamage: 50
+  lightAttackDamage: 1
   lightAttackPosY: 1
   lightAttackPosX: 1
   lightAttackFrameCount: 0.3
@@ -27,7 +27,7 @@ MonoBehaviour:
   lightAttackRecoveryFrames: 0.7
   lightAttackHitboxScale: {x: 0.4, y: 0.2}
   lightAttackHitStun: 0
-  heavyAttackDamage: 100
+  heavyAttackDamage: 1
   heavyAttackPosY: 0
   heavyAttackPosX: 0
   heavyAttackFrameCount: 0

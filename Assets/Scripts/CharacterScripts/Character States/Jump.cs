@@ -21,9 +21,11 @@ public class Jump : CharacterBaseState
     public override void UpdateState(CharacterStateMachine state)// landing
     {
         
-        if (movement.isJumping == false)
+        if (movement.isGrounded == true)
         {
-            Debug.Log(movement.isJumping);
+            movement.isJumping = false;
+            Debug.Log("landing " + movement.isJumping);
+            state.SwitchState(state.IdleState);
             state.SwitchState(state.IdleState);
         }
     }

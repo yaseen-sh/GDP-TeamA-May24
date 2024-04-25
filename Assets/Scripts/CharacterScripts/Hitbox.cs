@@ -74,7 +74,7 @@ public class Hitbox : MonoBehaviour
         lightAttackRecoveryFrames = Data.lightAttackRecoveryFrames;
         lightAttackHitStun = Data.lightAttackHitStun;
         lightAttackHitboxScale = Data.lightAttackHitboxScale;
-
+        
 
         heavyAttackDamage = Data.heavyAttackDamage;
         heavyAttackPosY = Data.heavyAttackPosY;
@@ -127,9 +127,8 @@ public class Hitbox : MonoBehaviour
         if (coll.gameObject.CompareTag("HurtBox")&& isAttacking == true)
         {
             //Debug.Log(coll.gameObject.name);
-
             OpponentTag.GetPlayerHealth();
-            OpponentTag.SetPlayerHealth(damage);
+            OpponentTag.SetPlayerHealth(damage, hitStun);
             //Debug.Log("Hit Confirmed");
         }
     }
@@ -150,6 +149,7 @@ public class Hitbox : MonoBehaviour
                 RecoveryFrames = lightAttackRecoveryFrames;
                 StartUpFrames = lightAttackStartUpFrames;
                 totalFrameCount = RecoveryFrames + StartUpFrames + frameCount;
+                hitStun = lightAttackHitStun;
                 if (movement.facingRight == true)
                 {
                     //Debug.Log("FacingRightLightAttack");
@@ -171,6 +171,7 @@ public class Hitbox : MonoBehaviour
                 RecoveryFrames = heavyAttackRecoveryFrames;
                 StartUpFrames = heavyAttackStartUpFrames;
                 totalFrameCount = RecoveryFrames + StartUpFrames + frameCount;
+                hitStun = heavyAttackHitStun;
                 if (movement.facingRight == true)
                 {
                     //Debug.Log("FacingRightHeavyAttack");
