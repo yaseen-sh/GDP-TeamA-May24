@@ -33,10 +33,10 @@ public class GameManager : MonoBehaviour
     private Image fill1;
     private Image fill2;
 
-    float maxhealth = 1000;
+    float maxhealth = 3;
 
-    public static float health1 = 1000;
-    public static float health2 = 1000;
+    public static float health1 = 3;
+    public static float health2 = 3;
 
     public TextMeshProUGUI winnerText;
     public static bool roundOver;

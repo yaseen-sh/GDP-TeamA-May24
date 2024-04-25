@@ -21,7 +21,7 @@ public class CharacterManager : MonoBehaviour
 
     public TMP_Text superMeterText;
 
-    const float maxHealth = 1000;//should be reset to 1000 after end of round
+    const float maxHealth = 3;//should be reset to 1000 after end of round
     public float currentHealth = maxHealth;
     const float minMeter = 0;
     private float currentMeter = minMeter;
@@ -112,8 +112,6 @@ public class CharacterManager : MonoBehaviour
             currentHealth -= damage;
             state.SwitchState(state.DamagedState);
         }
-           
-        //healthText.text = "Health: " + currentHealth.ToString();
 
         //currentHealth -= damage;
 
