@@ -60,40 +60,50 @@ public class GameManager : MonoBehaviour
     }
     void Awake()
     {
-        player1 = CSSManager.player1Object;
-        player1Controls = PlayerInput.Instantiate(player1, 1, "Controller", -1, GamepadJoin.playerControllers[1]);
-        player1Controls.transform.position = player1Pos.position;
-        var inputUser = player1Controls.user;
-        player1Controls.SwitchCurrentControlScheme("Controller");
-        InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[1], inputUser, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+        if (GamepadJoin.playerControllers.ContainsKey(1))
+        {
+            player1 = CSSManager.player1Object;
+            player1Controls = PlayerInput.Instantiate(player1, 1, "Controller", -1, GamepadJoin.playerControllers[1]);
+            player1Controls.transform.position = player1Pos.position;
+            var inputUser = player1Controls.user;
+            player1Controls.SwitchCurrentControlScheme("Controller");
+            InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[1], inputUser, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
 
-        player2 = CSSManager.player2Object;
-        player2Controls = PlayerInput.Instantiate(player2, 2, "Controller", -1, GamepadJoin.playerControllers[2]);
-        player2Controls.transform.position = player2Pos.position;
-        var inputUser2 = player2Controls.user;
-        player2Controls.SwitchCurrentControlScheme("Controller");
-        InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[2], inputUser2, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
+            player2 = CSSManager.player2Object;
+            player2Controls = PlayerInput.Instantiate(player2, 2, "Controller", -1, GamepadJoin.playerControllers[2]);
+            player2Controls.transform.position = player2Pos.position;
+            var inputUser2 = player2Controls.user;
+            player2Controls.SwitchCurrentControlScheme("Controller");
+            InputUser.PerformPairingWithDevice(GamepadJoin.playerControllers[2], inputUser2, InputUserPairingOptions.UnpairCurrentDevicesFromUser);
 
-        GameObject bar1 = Instantiate(heathPrefab1, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
-        healthBar1 = bar1.GetComponent<Slider>();
+            GameObject bar1 = Instantiate(heathPrefab1, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+            healthBar1 = bar1.GetComponent<Slider>();
 
-        GameObject bar2 = Instantiate(heathPrefab2, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
-        healthBar2 = bar2.GetComponent<Slider>();
+            GameObject bar2 = Instantiate(heathPrefab2, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+            healthBar2 = bar2.GetComponent<Slider>();
 
-        fill1 = bar1.GetComponentInChildren<Image>();
-        fill2 = bar2.GetComponentInChildren<Image>();
-        winnerText.text = "";
+            fill1 = bar1.GetComponentInChildren<Image>();
+            fill2 = bar2.GetComponentInChildren<Image>();
+            winnerText.text = "";
 
-        player1Text.text = CSSManager.player1FighterName;
-        player2Text.text = CSSManager.player2FighterName;
+            player1Text.text = CSSManager.player1FighterName;
+            player2Text.text = CSSManager.player2FighterName;
 
-        player1Icon.sprite = CSSManager.player1Fighter;
-        player2Icon.sprite = CSSManager.player2Fighter;
+            player1Icon.sprite = CSSManager.player1Fighter;
+            player2Icon.sprite = CSSManager.player2Fighter;
 
-        GameObject.Find("StageBackground").GetComponent<Image>().sprite = CSSManager.stage;
+            GameObject.Find("StageBackground").GetComponent<Image>().sprite = CSSManager.stage;
 
-        roundNumber = 1;
-        onlyOnce = true;
+            roundNumber = 1;
+            onlyOnce = true;
+        } 
+        else
+        {
+            Instantiate(player1, player1Pos);
+            Instantiate(player2, player2Pos);
+            player1Controls = player1.GetComponent<PlayerInput>();
+            player2Controls = player2.GetComponent<PlayerInput>();
+        }
     }
 
     // Update is called once per frame
@@ -109,67 +119,70 @@ public class GameManager : MonoBehaviour
             player1Controls.GetComponent<CharacterMovement>().facingRight = false;
             player2Controls.GetComponent<CharacterMovement>().facingRight = true;
         }
-        healthBar1.value = health1;
-        healthBar2.value = health2;
-        fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
-        fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
-        if (roundOver)
+        if (SceneManager.GetActiveScene().name == "BrawlScene")
         {
-            if (health1 <= 0 && health2 > 0)
+            healthBar1.value = health1;
+            healthBar2.value = health2;
+            fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
+            fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
+            if (roundOver)
             {
-                winnerText.color = new Color(1f, 0, 0, 1f);
-                winnerText.text = CSSManager.player2FighterName + " Wins!";
-                
-                if (player1Lives.Count == 2)
+                if (health1 <= 0 && health2 > 0)
                 {
-                    player1Lives[0].enabled = false;
-                    player1Lives.RemoveAt(0);
+                    winnerText.color = new Color(1f, 0, 0, 1f);
+                    winnerText.text = CSSManager.player2FighterName + " Wins!";
+
+                    if (player1Lives.Count == 2)
+                    {
+                        player1Lives[0].enabled = false;
+                        player1Lives.RemoveAt(0);
+                    }
+                    else if (player1Lives.Count == 1)
+                    {
+                        player1Lives[0].enabled = false;
+                        player1Lives.RemoveAt(0);
+                    }
+
                 }
-                else if (player1Lives.Count == 1)
+                else if (health2 <= 0 && health1 > 0)
                 {
-                    player1Lives[0].enabled = false;
-                    player1Lives.RemoveAt(0);
+                    winnerText.color = new Color(0, 0, 1f, 1f);
+                    winnerText.text = CSSManager.player1FighterName + " Wins!";
+                    if (player2Lives.Count == 2)
+                    {
+                        player2Lives[0].enabled = false;
+                        player2Lives.RemoveAt(0);
+                    }
+                    else if (player2Lives.Count == 1)
+                    {
+                        player2Lives[0].enabled = false;
+                        player2Lives.RemoveAt(0);
+                    }
+                }
+                else
+                {
+                    winnerText.text = "Draw";
                 }
 
-            }
-            else if (health2 <= 0 && health1 > 0)
-            {
-                winnerText.color = new Color(0, 0, 1f, 1f);
-                winnerText.text = CSSManager.player1FighterName + " Wins!";
-                if (player2Lives.Count == 2)
-                {
-                    player2Lives[0].enabled = false;
-                    player2Lives.RemoveAt(0);
-                }
-                else if (player2Lives.Count == 1)
-                {
-                    player2Lives[0].enabled = false;
-                    player2Lives.RemoveAt(0);
-                }
-            }
-            else
-            {
-                winnerText.text = "Draw";
-            }
+                health1 = maxhealth;
+                health2 = maxhealth;
+                roundOver = false;
+                ++roundNumber;
 
-            health1 = maxhealth;
-            health2 = maxhealth;
-            roundOver = false;
-            ++roundNumber;
-
-            if (player1Lives.Count == 0 && onlyOnce)
-            {
-                StartCoroutine(EndGame(CSSManager.player2FighterName));
-                onlyOnce = false;
-            }
-            else if (player2Lives.Count == 0 && onlyOnce)
-            {
-                StartCoroutine(EndGame(CSSManager.player1FighterName));
-                onlyOnce = false;
-            }
-            else
-            {
-                StartCoroutine(WaitBetweenRounds());
+                if (player1Lives.Count == 0 && onlyOnce)
+                {
+                    StartCoroutine(EndGame(CSSManager.player2FighterName));
+                    onlyOnce = false;
+                }
+                else if (player2Lives.Count == 0 && onlyOnce)
+                {
+                    StartCoroutine(EndGame(CSSManager.player1FighterName));
+                    onlyOnce = false;
+                }
+                else
+                {
+                    StartCoroutine(WaitBetweenRounds());
+                }
             }
         }
     }

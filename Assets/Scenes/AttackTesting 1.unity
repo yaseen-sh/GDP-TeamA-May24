@@ -1040,6 +1040,10 @@ PrefabInstance:
       value: Nesterenko2
       objectReference: {fileID: 0}
     - target: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
       propertyPath: m_TagString
       value: Player 2
       objectReference: {fileID: 0}
@@ -1146,8 +1150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b0aa19fd16f83429fa80228ac391f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 1617397694}
-  player2: {fileID: 1767068699}
+  player1: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+  player2: {fileID: 577742727862747637, guid: 8d33940e1bbd1ba4f85f9eba2d71d7b2, type: 3}
+  player1Pos: {fileID: 0}
+  player2Pos: {fileID: 0}
   Data: {fileID: 0}
   heathPrefab1: {fileID: 0}
   heathPrefab2: {fileID: 0}
@@ -1233,33 +1239,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1617397694 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
-  m_PrefabInstance: {fileID: 1887083144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1617397697 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6024589478923480192, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
   m_PrefabInstance: {fileID: 1887083144}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1617397694}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65fffb217b2f64846b258cfe1ee41b58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1767068699 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
-  m_PrefabInstance: {fileID: 1589873465}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1767068704 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6024589478923480192, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
   m_PrefabInstance: {fileID: 1589873465}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1767068699}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 65fffb217b2f64846b258cfe1ee41b58, type: 3}
@@ -1276,6 +1272,10 @@ PrefabInstance:
     - target: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
       propertyPath: m_Name
       value: Nesterenko1
+      objectReference: {fileID: 0}
+    - target: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3935916367781342058, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
       propertyPath: m_Size.x
