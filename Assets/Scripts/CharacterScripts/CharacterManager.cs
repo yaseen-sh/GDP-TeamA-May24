@@ -48,7 +48,7 @@ public class CharacterManager : MonoBehaviour
         //Use this to ensure that the Gizmos are being drawn when in Play Mode
         roundStarted = false;
         boxSize = new Vector2(1.25f, 1.25f);
-        SetPlayerHealth(0);
+        SetPlayerHealth(0,0);
         SetSuperMeter(0);
     }
 
@@ -57,7 +57,7 @@ public class CharacterManager : MonoBehaviour
     {
         return currentHealth;
     }
-    public void SetPlayerHealth(int damage) // playerHealth call when on hit
+    public void SetPlayerHealth(int damage, float hitStun) // playerHealth call when on hit
     {
         if (roundStarted)
             currentHealth = maxHealth;
