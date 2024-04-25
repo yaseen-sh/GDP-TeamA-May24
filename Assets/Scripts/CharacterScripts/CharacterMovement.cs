@@ -59,7 +59,7 @@ public class CharacterMovement : MonoBehaviour
         {
             //Make a pause for a certain amount of time (length of jump)
             //Call SwitchState
-            Debug.Log("Grounded");
+            //Debug.Log("Grounded");
         }
     }
    

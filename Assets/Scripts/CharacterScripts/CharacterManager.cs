@@ -61,7 +61,13 @@ public class CharacterManager : MonoBehaviour
     {
         if (roundStarted)
             currentHealth = maxHealth;
-        currentHealth -= damage;
+        if (damage > 0)
+        {
+            Debug.Log(damage);
+            currentHealth -= damage;
+            state.SwitchState(state.DamagedState);
+        }
+           
         healthText.text = "Health: " + currentHealth.ToString();
         if (currentHealth <= 0)
             state.SwitchState(state.DeadState);

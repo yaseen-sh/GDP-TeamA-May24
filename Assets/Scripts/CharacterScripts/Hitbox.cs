@@ -119,7 +119,6 @@ public class Hitbox : MonoBehaviour
         if (coll.gameObject.CompareTag("HurtBox")&& isAttacking == true)
         {
             //Debug.Log(coll.gameObject.name);
-
             OpponentTag.GetPlayerHealth();
             OpponentTag.SetPlayerHealth(damage);
             //Debug.Log("Hit Confirmed");
