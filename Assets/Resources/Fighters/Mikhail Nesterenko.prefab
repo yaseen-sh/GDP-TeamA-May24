@@ -343,9 +343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHurtBox: {fileID: 4721342976139048492}
   playerPushBox: {fileID: 1293744640342681270}
-  healthText: {fileID: 0}
-  heathPrefab: {fileID: 3179652527293676450, guid: bc4abdf63fd2f8549970c1298eb32e4f, type: 3}
-  slide: {fileID: 0}
   superMeterText: {fileID: 0}
   currentHealth: 1000
   currentBlock: 100
@@ -573,6 +570,7 @@ GameObject:
   - component: {fileID: 1338787493521742421}
   - component: {fileID: 6185080300287056584}
   - component: {fileID: 27720496080042308}
+  - component: {fileID: 7846511457572517014}
   m_Layer: 9
   m_Name: HurtBox
   m_TagString: HurtBox
@@ -692,6 +690,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7846511457572517014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721342976139048492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e819fcd3a9da340982aad08b76cfcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8458352548286077148
 GameObject:
   m_ObjectHideFlags: 0
