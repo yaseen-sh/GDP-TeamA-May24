@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class HurtBoxSize : MonoBehaviour
     private Vector2 hurtboxMoveBack = new Vector2(0f, .3f);
     private bool hasMovedDown = false;
     private bool hasMovedUp = true;
+    public float x;
+    public float y;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +40,7 @@ public class HurtBoxSize : MonoBehaviour
     {
         if (state.isCrouching)
         {
-            ChangeHurtBox(1f, 0.5474358f);
+            ChangeHurtBox(x, y);
             if (!hasMovedDown)
             {
                 hurtBox.offset += hurtboxMoveDown;
