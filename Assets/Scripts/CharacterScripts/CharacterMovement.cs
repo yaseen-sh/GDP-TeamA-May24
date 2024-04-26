@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -21,8 +22,8 @@ public class CharacterMovement : MonoBehaviour
     public CharacterAttack attack;
     public CharacterDataLoader Data;
     CharacterStateMachine state;
-
-
+    public float moveValue;
+    public 
     bool isStopMove = false;
     //public GameManager managerOfGames;
     void Start()
@@ -34,25 +35,28 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        isStopMove = GameManager.roundOver;
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isCrouching)
+        { 
+    rb.velocity = new Vector2(horizontal* speed, rb.velocity.y);
+            if (moveValue > 0)
+            {
+                state.SwitchState(state.FWalkState);
+            }
+            else if (moveValue < 0)
+            {
+                 state.SwitchState(state.BWalkState);
+            }
+            //Debug.Log(horizontal);
+        }
         if (facingRight)
         {
-            
-                playerRotation.rotation = Quaternion.Euler(0, 180, 0);
-            //Debug.Log("Facing Right");
-            //state.SwitchState(state.FWalkState);
+            playerRotation.rotation = Quaternion.Euler(0, 180, 0);
+        moveValue = horizontal;
         }
         else
         {
-                playerRotation.rotation = Quaternion.Euler(0, 0, 0);
-            //Debug.Log("Facing Left");
-            //state.SwitchState(state.BWalkState);
-
-        }
-        if (isGrounded)
-        {
-            isJumping = false;
+            playerRotation.rotation = Quaternion.Euler(0, 0, 0);
+            moveValue = horizontal * -1;
         }
     }
    

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Blocking : CharacterBaseState
 {
+    Animations anime;
     public override void EnterState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        anime = state.character.GetComponent<Animations>();
+        anime.Block();
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)

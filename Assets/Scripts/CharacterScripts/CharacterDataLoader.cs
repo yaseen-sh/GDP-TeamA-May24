@@ -38,7 +38,14 @@ public class CharacterDataLoader : ScriptableObject
     public Vector2 heavyAttackHitboxScale;
     public float heavyAttackHitStun;
     //Special Move stuff here
-
+    public int superAttackDamage;
+    public float superAttackPosY;
+    public float superAttackPosX;
+    public float superAttackFrameCount;
+    public float superAttackStartUpFrames;
+    public float superAttackRecoveryFrames;
+    public Vector2 superAttackHitboxScale;
+    public float superAttackHitStun;
     //block
     public float blockPosY;
     public float blockPosX;
