@@ -39,4 +39,10 @@ public class CharacterDataLoader : ScriptableObject
     public float heavyAttackHitStun;
     //Special Move stuff here
 
+    //block
+    public float blockPosY;
+    public float blockPosX;
+    public Vector3 blockBoxScale;
+    public float blockRecoveryFrames;
+
 }
