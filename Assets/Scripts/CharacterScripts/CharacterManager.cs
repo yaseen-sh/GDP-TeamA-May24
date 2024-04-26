@@ -12,13 +12,7 @@ public class CharacterManager : MonoBehaviour
     public GameObject playerHurtBox;
     public GameObject playerPushBox; // Used when both players are too close to each other they will be pushed apart or swap sides.
 
-    //public TMP_Text healthText;
-    //private GameObject healthBar;
-    //public GameObject heathPrefab;
-    //[SerializeField]
-    //private Slider slide;
-
-
+    public TMP_Text healthText;
     public TMP_Text superMeterText;
 
     const float maxHealth = 3;//should be reset to 1000 after end of round
@@ -27,7 +21,7 @@ public class CharacterManager : MonoBehaviour
     private float currentMeter = minMeter;
     const float maxBlock = 100;//after each match the maxBlock should be reset to 100
     public float currentBlock = maxBlock;
-    public bool roundStarted = true;
+    bool roundStarted = true;
 
    
 
@@ -59,33 +53,6 @@ public class CharacterManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (roundStarted)
-        {
-            currentHealth = maxHealth;
-            roundStarted = false;
-        }
-        // setPlayerHealth();
-        //SuperMeter();
-        // MyCollisions();
-    }
-    /*void MyCollisions()
-    {
-        //Use the OverlapBox to detect if there are any other colliders within this box area.
-        //Use the GameObject's centre, half the size (as a radius) and rotation. This creates an invisible box around your GameObject.
-        Collider[] hitColliders = Physics.OverlapBox(gameObject.transform.position, transform.localScale / 2, Quaternion.identity, m_LayerMask);
-        int i = 0;
-        //Check when there is a new collider coming into contact with the box
-        while (i < hitColliders.Length)
-        {
-            //Output all of the collider names
-            Debug.Log("Hit : " + hitColliders[i].name + i);
-            //Increase the number of Colliders in the array
-            i++;
-        }
-    }*/
-
    public float GetPlayerHealth()
     {
         return currentHealth;
@@ -141,6 +108,6 @@ public class CharacterManager : MonoBehaviour
         if (roundStarted)
             currentMeter = minMeter;
         currentMeter += charge;
-        //superMeterText.text = "Super: " +  currentMeter.ToString();
+        superMeterText.text = "Super: " +  currentMeter.ToString();
     }
 }

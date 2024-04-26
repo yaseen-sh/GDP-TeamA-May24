@@ -56,6 +56,12 @@ public class Hitbox : MonoBehaviour
     public float heavyAttackHitStun = 0;
     public Vector2 heavyAttackHitboxScale = new Vector2 (0f,0f);
 
+    //blocking
+    public float blockPosY = 0;
+    public float blockPosX = 0;
+    public Vector3 blockBoxScale = new Vector3(0f, 0f);
+
+
     
 
     public CharacterMovement movement;
@@ -84,6 +90,10 @@ public class Hitbox : MonoBehaviour
         heavyAttackRecoveryFrames = Data.heavyAttackRecoveryFrames;
         heavyAttackHitStun = Data.heavyAttackHitStun;
         heavyAttackHitboxScale = Data.heavyAttackHitboxScale;
+
+        blockPosX = Data.blockPosX;
+        blockPosY = Data.blockPosY;
+        blockBoxScale = Data.blockBoxScale;
 
 
         //TODO
@@ -195,6 +205,9 @@ public class Hitbox : MonoBehaviour
                 {
                     Debug.Log("FacingLeftLightAttack");
                 }
+                break;
+            case 4:
+
                 break;
         }
        

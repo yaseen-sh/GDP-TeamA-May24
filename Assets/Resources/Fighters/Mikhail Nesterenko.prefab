@@ -150,6 +150,9 @@ MonoBehaviour:
   heavyAttackRecoveryFrames: 0
   heavyAttackHitStun: 0
   heavyAttackHitboxScale: {x: 0, y: 0}
+  blockPosY: 0
+  blockPosX: 0
+  blockBoxScale: {x: 0, y: 0, z: 0}
   movement: {fileID: 0}
 --- !u!114 &3330295074963464004
 MonoBehaviour:
@@ -249,9 +252,21 @@ MonoBehaviour:
     m_ActionId: 20ee233c-2d53-4056-8639-19136af06970
     m_ActionName: Player1/AttackLight[/Keyboard/j]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ce3d3ab1-7238-46e1-abd9-76107c8475da
-    m_ActionName: Player/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start]
+      m_Calls:
+      - m_Target: {fileID: 520575334858600176}
+        m_TargetAssemblyTypeName: CharacterAttack, Assembly-CSharp
+        m_MethodName: AttackHeavy
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c498d656-aa18-422d-a95f-8bd1aa96e2f1
+    m_ActionName: Player/AttackHeavy[/Keyboard/k]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -274,7 +289,7 @@ MonoBehaviour:
   isGrounded: 1
   isJumping: 0
   isCrouching: 0
-  facingRight: 0
+  facingRight: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -283,6 +298,8 @@ MonoBehaviour:
   jumpForce: 20
   attack: {fileID: 520575334858600176}
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
+  moveValue: 0
+  isStopMove: 0
 --- !u!50 &6005894754886322277
 Rigidbody2D:
   serializedVersion: 4
@@ -343,10 +360,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHurtBox: {fileID: 4721342976139048492}
   playerPushBox: {fileID: 1293744640342681270}
+  healthText: {fileID: 0}
   superMeterText: {fileID: 0}
-  currentHealth: 1000
   currentBlock: 100
-  roundStarted: 1
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 0
@@ -414,6 +430,7 @@ MonoBehaviour:
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
   character: {fileID: 0}
   stateTimer: 0
+  anime: {fileID: 0}
 --- !u!114 &9087430873852648489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,6 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e819fcd3a9da340982aad08b76cfcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: 1
+  y: 0.55
 --- !u!1 &8458352548286077148
 GameObject:
   m_ObjectHideFlags: 0

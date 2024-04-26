@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -9,9 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public bool isGrounded = true;
     public bool isJumping = false;
     public bool isCrouching = false;
-    public bool isBlocking = false;
     public bool facingRight;
-    public float moveValue;
 
     Transform playerRotation; //Variable to control player's rotation
 
@@ -23,8 +22,8 @@ public class CharacterMovement : MonoBehaviour
     public CharacterAttack attack;
     public CharacterDataLoader Data;
     CharacterStateMachine state;
-
-
+    public float moveValue;
+    public 
     bool isStopMove = false;
     //public GameManager managerOfGames;
     void Start()
@@ -36,34 +35,28 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if (!isCrouching && !isBlocking)
-        {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (!isCrouching)
+        { 
+    rb.velocity = new Vector2(horizontal* speed, rb.velocity.y);
             if (moveValue > 0)
             {
                 state.SwitchState(state.FWalkState);
             }
             else if (moveValue < 0)
             {
-                state.SwitchState(state.BWalkState);
+                 state.SwitchState(state.BWalkState);
             }
             //Debug.Log(horizontal);
         }
         if (facingRight)
-        { 
+        {
             playerRotation.rotation = Quaternion.Euler(0, 180, 0);
-            moveValue = horizontal;
+        moveValue = horizontal;
         }
         else
         {
             playerRotation.rotation = Quaternion.Euler(0, 0, 0);
             moveValue = horizontal * -1;
-        }
-        if (isGrounded)
-        {
-            //Make a pause for a certain amount of time (length of jump)
-            //Call SwitchState
-            //Debug.Log("Grounded");
         }
     }
    
@@ -88,27 +81,19 @@ public class CharacterMovement : MonoBehaviour
 
     public void Jump (InputAction.CallbackContext context)
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        //Debug.Log(isStopMove);
+        //if (!isStopMove)
+        //{
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (context.performed && isGrounded && !isBlocking)
-        {
-            Debug.Log("Jump " + isGrounded);
-            isJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            state.SwitchState(state.JumpState);
-        }
-    }
+            //Debug.Log(isGrounded);
 
-    public void Block(InputAction.CallbackContext context)
-    {
-        if(context.performed && isGrounded && !isCrouching)
-        {
-            isBlocking = true;
-            state.SwitchState(state.BlockingState);
-        }
-        else
-        {
-            isBlocking = false;
-        }
+            if (context.performed && isGrounded)
+            {
+                isJumping = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                state.SwitchState(state.JumpState);
+            }
+        //}
     }
 }
