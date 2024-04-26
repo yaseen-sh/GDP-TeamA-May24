@@ -55,9 +55,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""AttackHeavy"",
                     ""type"": ""Button"",
-                    ""id"": ""ce3d3ab1-7238-46e1-abd9-76107c8475da"",
+                    ""id"": ""c498d656-aa18-422d-a95f-8bd1aa96e2f1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -232,12 +232,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""19b20257-bfda-4e94-8026-3b15f9a0d575"",
-                    ""path"": ""<Gamepad>/start"",
+                    ""id"": ""c82c23f0-6cf8-417e-add2-ee748864ae2f"",
+                    ""path"": ""<Keyboard>/k"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
+                    ""action"": ""AttackHeavy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -463,7 +463,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
         m_Player_AttackLight = m_Player.FindAction("AttackLight", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_AttackHeavy = m_Player.FindAction("AttackHeavy", throwIfNotFound: true);
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
@@ -533,7 +533,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jumping;
     private readonly InputAction m_Player_AttackLight;
-    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_AttackHeavy;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -541,7 +541,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
         public InputAction @AttackLight => m_Wrapper.m_Player_AttackLight;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @AttackHeavy => m_Wrapper.m_Player_AttackHeavy;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -560,9 +560,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AttackLight.started += instance.OnAttackLight;
             @AttackLight.performed += instance.OnAttackLight;
             @AttackLight.canceled += instance.OnAttackLight;
-            @Pause.started += instance.OnPause;
-            @Pause.performed += instance.OnPause;
-            @Pause.canceled += instance.OnPause;
+            @AttackHeavy.started += instance.OnAttackHeavy;
+            @AttackHeavy.performed += instance.OnAttackHeavy;
+            @AttackHeavy.canceled += instance.OnAttackHeavy;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -576,9 +576,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AttackLight.started -= instance.OnAttackLight;
             @AttackLight.performed -= instance.OnAttackLight;
             @AttackLight.canceled -= instance.OnAttackLight;
-            @Pause.started -= instance.OnPause;
-            @Pause.performed -= instance.OnPause;
-            @Pause.canceled -= instance.OnPause;
+            @AttackHeavy.started -= instance.OnAttackHeavy;
+            @AttackHeavy.performed -= instance.OnAttackHeavy;
+            @AttackHeavy.canceled -= instance.OnAttackHeavy;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -681,7 +681,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJumping(InputAction.CallbackContext context);
         void OnAttackLight(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
+        void OnAttackHeavy(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {
