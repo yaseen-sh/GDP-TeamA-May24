@@ -56,6 +56,12 @@ public class Hitbox : MonoBehaviour
     public float heavyAttackHitStun = 0;
     public Vector2 heavyAttackHitboxScale = new Vector2 (0f,0f);
 
+    //blocking
+    public float blockPosY = 0;
+    public float blockPosX = 0;
+    public Vector3 blockBoxScale = new Vector3(0f, 0f);
+
+
     
 
     public CharacterMovement movement;
@@ -85,12 +91,24 @@ public class Hitbox : MonoBehaviour
         heavyAttackHitStun = Data.heavyAttackHitStun;
         heavyAttackHitboxScale = Data.heavyAttackHitboxScale;
 
+        blockPosX = Data.blockPosX;
+        blockPosY = Data.blockPosY;
+        blockBoxScale = Data.blockBoxScale;
+
 
         //TODO
         //on start set the player and opponent tags
-       // playerTag = ;
-       // OpponentTag = ;
-}
+        if (gameObject.tag == "Player 1")
+        {
+            playerTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
+            OpponentTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
+        }
+        else
+        {
+            playerTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
+            OpponentTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
+        }
+    }
     private void Update()
     {
         if (currentHitBox != null)
@@ -187,6 +205,9 @@ public class Hitbox : MonoBehaviour
                 {
                     Debug.Log("FacingLeftLightAttack");
                 }
+                break;
+            case 4:
+
                 break;
         }
        

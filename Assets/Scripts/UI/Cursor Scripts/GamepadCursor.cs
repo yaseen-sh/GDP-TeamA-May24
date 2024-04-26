@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
-using System;
+//using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEditor;
 
 /*
     This should allow the user to select buttons with cursor using the gamepad left stick. 
@@ -27,7 +28,7 @@ public class GamepadCursor : MonoBehaviour
     [Space]
 
     public GameObject playerSelection;
-    public static EventHandler DoneSelectingEvent;
+    //public static EventHandler DoneSelectingEvent;
 
     [Header("Title Screen Required text")]
     public GameObject player2Required;
@@ -39,6 +40,11 @@ public class GamepadCursor : MonoBehaviour
 
     [SerializeField]
     private Sprite cursorSprite;
+
+    public void Awake()
+    {
+
+    }
 
     private void Update()
     {
@@ -65,7 +71,7 @@ public class GamepadCursor : MonoBehaviour
             if (slider != null) Destroy(slider);
         }
 
-        if (SceneManager.GetActiveScene().name == "TempStageSelect") { gameObject.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0); }
+        if (SceneManager.GetActiveScene().name == "StageSelect") { gameObject.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0); }
         else { gameObject.GetComponentInChildren<Image>().sprite = cursorSprite; }
     }
 
@@ -168,15 +174,19 @@ public class GamepadCursor : MonoBehaviour
                             {
                                 buttonColor.normalColor = new Color(0, 0, .2f, .5f);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor;
-                                fighter.GetComponent<AudioSource>().Play(); // Selected Voice Line Plays
+                                fighter.GetComponents<AudioSource>()[Random.Range(0, fighter.GetComponents<AudioSource>().Length)].Play(); // Selected Voice Line Plays
                             }
                             else
                             {
                                 buttonColor.normalColor = new Color(0, 0, 0, 0);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor;
                             }
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected = charSelected;
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected = charSelected;
+                            CSSManager.player1Selected = charSelected;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player1FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                            CSSManager.player1Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player1FighterName}");
                         }
                         else if (gameObject.CompareTag("CursorP2"))
                         {
@@ -192,8 +202,12 @@ public class GamepadCursor : MonoBehaviour
                                 buttonColor2.normalColor = new Color(0, 0, 0, 0);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor2;
                             }
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected = charSelected;
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected = charSelected;
+                            CSSManager.player2Selected = charSelected;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player2FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                            CSSManager.player2Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player2FighterName + "2"}");
                         }
                         return;
                     }
@@ -211,10 +225,10 @@ public class GamepadCursor : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 Debug.Log("Start Button Pressed");
-                if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected &&
-                    GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
+                if (/*GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected &&
+                    GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected*/ CSSManager.player1Selected && CSSManager.player2Selected)
                 {
-                    SceneManager.LoadScene("TempStageSelect");
+                    SceneManager.LoadScene("StageSelect");
                 }
             }
         }
@@ -232,7 +246,7 @@ public class GamepadCursor : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 if (currentScene.name == "CharacterSelectPvP") { SceneManager.LoadScene("TitleScreen"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
-                else if (currentScene.name == "TempStageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
+                else if (currentScene.name == "StageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
                 else if (currentScene.name == "Credits") { SceneManager.LoadScene("TitleScreen"); }
                 else if (currentScene.name == "Story") { SceneManager.LoadScene("TitleScreen"); }
             }

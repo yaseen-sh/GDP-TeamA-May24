@@ -10,15 +10,23 @@ using TMPro;
 public class CSSManager : MonoBehaviour
 {
     [Header("Player 1 Variables")]
-    public bool player1Selected = false; 
-    public Sprite player1Fighter;
+    public static bool player1Selected = false; 
+    public static Sprite player1Fighter;
+    public static string player1FighterName;
+    public static GameObject player1Object;
 
     [Header("Player 2 Variables")]
-    public bool player2Selected = false;
-    public Sprite player2Fighter;
+    public static bool player2Selected = false;
+    public static Sprite player2Fighter;
+    public static string player2FighterName;
+    public static GameObject player2Object;
+
+    [Header("Selected Stage")]
+    public static Sprite stage;
 
     public void Start()
     {
+        /*
         //DontDestroyOnLoad(gameObject);
         if (GameObject.FindGameObjectsWithTag("CharManager").Length > 1)
         {
@@ -31,6 +39,6 @@ public class CSSManager : MonoBehaviour
         else
         {
             DontDestroyOnLoad(transform.gameObject);
-        }
+        }*/
     }
 }

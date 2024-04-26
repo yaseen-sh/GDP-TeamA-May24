@@ -98,6 +98,59 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577742727862747637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf53ac0461afea4fa4ae6bacafa3c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  useSphere: 0
+  hitboxSize: {x: 1, y: 1}
+  radius: 0.5
+  hitboxPrefab: {fileID: 7534746022721900129, guid: 6ddecd71ac375ab4a8218a3cec209e30, type: 3}
+  hitBoxSpawnLocation: {fileID: 5136994986536587821}
+  hitboxPosX: 0.5
+  hitboxPosY: 0.5
+  hitBoxCollider: {fileID: 0}
+  actionName: Action
+  damage: 100
+  hitStun: 0
+  RecoveryFrames: 0
+  StartUpFrames: 0
+  timer: 0
+  currentHitBox: {fileID: 0}
+  hitBoxChild: {fileID: 1394446909833907864}
+  OpponentTag: {fileID: 6751926040957665506, guid: ec668d57915fb7d428c64dece4c8b1a2, type: 3}
+  playerTag: {fileID: 6024589478923480192}
+  isAttacking: 0
+  Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
+  lightAttackDamage: 0
+  lightAttackPosY: 0
+  lightAttackPosX: 0
+  lightAttackFrameCount: 0
+  lightAttackStartUpFrames: 0
+  lightAttackRecoveryFrames: 0
+  lightAttackHitStun: 0
+  lightAttackHitboxScale: {x: 1, y: 1}
+  heavyAttackDamage: 0
+  heavyAttackPosY: 0
+  heavyAttackPosX: 0
+  heavyAttackFrameCount: 0
+  heavyAttackStartUpFrames: 0
+  heavyAttackRecoveryFrames: 0
+  heavyAttackHitStun: 0
+  heavyAttackHitboxScale: {x: 0, y: 0}
+  movement: {fileID: 0}
+--- !u!114 &3330295074963464004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577742727862747637}
   m_GameObject: {fileID: 4038168036799931648}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -165,6 +218,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 20ee233c-2d53-4056-8639-19136af06970
     m_ActionName: Player1/AttackLight[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ce3d3ab1-7238-46e1-abd9-76107c8475da
+    m_ActionName: Player/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -184,6 +253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6625926399867947078}
   speed: 5
+  isGrounded: 1
+  isJumping: 0
   facingRight: 0
   groundLayer:
     serializedVersion: 2
@@ -191,6 +262,9 @@ MonoBehaviour:
   groundCheck: {fileID: 1156375821117293003}
   groundCheckRadius: 0.1
   jumpForce: 20
+  attack: {fileID: 520575334858600176}
+  Data: {fileID: 0}
+--- !u!50 &6005894754886322277
   attack: {fileID: 0}
 --- !u!50 &6625926399867947078
 Rigidbody2D:
@@ -219,6 +293,63 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &520575334858600176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577742727862747637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 807eadf04117fd945a5c74e7e49454f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  isBlocking: 0
+  actionName: Action
+  hitbox: {fileID: 0}
+  controller: {fileID: 6024589478923480192}
+--- !u!114 &6024589478923480192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577742727862747637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65fffb217b2f64846b258cfe1ee41b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHurtBox: {fileID: 4721342976139048492}
+  playerPushBox: {fileID: 1293744640342681270}
+  healthText: {fileID: 0}
+  heathPrefab: {fileID: 8102807398023398880, guid: 5d58a7a0d3762644a9b95d7a89595a96, type: 3}
+  superMeterText: {fileID: 0}
+  currentBlock: 100
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  hitBoxSize: {x: 1, y: 1}
+  Data: {fileID: 0}
+  state: {fileID: 0}
+--- !u!114 &7790050326956709410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577742727862747637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fce5c7ae81bc74eb59c6dfb6e0b20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+--- !u!61 &3935916367781342058
 --- !u!61 &7945952260916385476
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -251,6 +382,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
+  m_Offset: {x: 0.07526639, y: -0.1568289}
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -262,6 +394,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
+  m_Size: {x: 0.17, y: 0.7118933}
   m_Size: {x: 0.7, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2380832797912663951

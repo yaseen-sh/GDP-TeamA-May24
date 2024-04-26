@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: 
   charImage: {fileID: 0}
-  selectLine: {fileID: 0}
+  VoiceLine: []
   characterSpeed: 0
   PlayerTag: {fileID: 0}
   OpponentTag: {fileID: 0}
@@ -31,11 +31,17 @@ MonoBehaviour:
   lightAttackPosY: 0
   lightAttackPosX: 0
   lightAttackFrameCount: 0
+  lightAttackStartUpFrames: 0
+  lightAttackRecoveryFrames: 0
   lightAttackHitboxScale: {x: 0, y: 0}
+  lightAttackHitStun: 0
   LightAnimator: {fileID: 0}
   heavyAttackDamage: 0
   heavyAttackPosY: 0
   heavyAttackPosX: 0
   heavyAttackFrameCount: 0
+  heavyAttackStartUpFrames: 0
+  heavyAttackRecoveryFrames: 0
   heavyAttackHitboxScale: {x: 0, y: 0}
+  heavyAttackHitStun: 0
   HeavyAnimator: {fileID: 0}

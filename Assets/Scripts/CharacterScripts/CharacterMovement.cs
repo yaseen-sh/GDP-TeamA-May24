@@ -9,9 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public bool isGrounded = true;
     public bool isJumping = false;
     public bool isCrouching = false;
-    public bool isBlocking = false;
     public bool facingRight;
-    public float moveValue;
 
     Transform playerRotation; //Variable to control player's rotation
 
@@ -23,6 +21,10 @@ public class CharacterMovement : MonoBehaviour
     public CharacterAttack attack;
     public CharacterDataLoader Data;
     CharacterStateMachine state;
+
+
+    bool isStopMove = false;
+    //public GameManager managerOfGames;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -32,75 +34,62 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if (!isCrouching && !isBlocking)
-        {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-            if (moveValue > 0)
-            {
-                state.SwitchState(state.FWalkState);
-            }
-            else if (moveValue < 0)
-            {
-                state.SwitchState(state.BWalkState);
-            }
-            //Debug.Log(horizontal);
-        }
+        isStopMove = GameManager.roundOver;
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         if (facingRight)
-        { 
-            playerRotation.rotation = Quaternion.Euler(0, 180, 0);
-            moveValue = horizontal;
+        {
+            
+                playerRotation.rotation = Quaternion.Euler(0, 180, 0);
+            //Debug.Log("Facing Right");
+            //state.SwitchState(state.FWalkState);
         }
         else
         {
-            playerRotation.rotation = Quaternion.Euler(0, 0, 0);
-            moveValue = horizontal * -1;
+                playerRotation.rotation = Quaternion.Euler(0, 0, 0);
+            //Debug.Log("Facing Left");
+            //state.SwitchState(state.BWalkState);
+
         }
         if (isGrounded)
         {
-            //Make a pause for a certain amount of time (length of jump)
-            //Call SwitchState
-            //Debug.Log("Grounded");
+            isJumping = false;
         }
     }
    
     public void Movement(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
-
-        //for crouching, is the player holding down s?
-        if(context.ReadValue<Vector2>().y < 0){
-            isCrouching = true;
-            state.SwitchState(state.CrouchState);
-        }
-        else
+        if (!isStopMove)
         {
-            isCrouching = false;
+            horizontal = context.ReadValue<Vector2>().x;
+
+            //for crouching, is the player holding down s?
+            if (context.ReadValue<Vector2>().y < 0)
+            {
+                isCrouching = true;
+                state.SwitchState(state.CrouchState);
+            }
+            else
+            {
+                isCrouching = false;
+            }
         }
     }
 
     public void Jump (InputAction.CallbackContext context)
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        Debug.Log(isStopMove);
+        if (!isStopMove)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        if (context.performed && isGrounded && !isBlocking)
-        {
-            Debug.Log("Jump " + isGrounded);
-            isJumping = true;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            state.SwitchState(state.JumpState);
-        }
-    }
+            //Debug.Log(isGrounded);
 
-    public void Block(InputAction.CallbackContext context)
-    {
-        if(context.performed && isGrounded && !isCrouching)
-        {
-            isBlocking = true;
-            state.SwitchState(state.BlockingState);
-        }
-        else
-        {
-            isBlocking = false;
+            if (context.performed && isGrounded)
+            {
+                isJumping = true;
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                state.SwitchState(state.JumpState);
+            }
         }
     }
 }

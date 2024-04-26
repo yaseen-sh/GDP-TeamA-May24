@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelectPvP.unity
     guid: a5ac79c1431bf5949bfaa33e4f94a9b8
   - enabled: 1
-    path: Assets/Scenes/TempStageSelect.unity
+    path: Assets/Scenes/StageSelect.unity
     guid: 5a3e971af7d7b2948aab182759066b37
   - enabled: 1
     path: Assets/Scenes/Story.unity
@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 321433c666e63c34c80f309e35577901
+  - enabled: 1
+    path: Assets/Scenes/BrawlScene.unity
+    guid: 20c78a7e95c463b4ab42894479a7af0c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6a20dfd1b09417744be1b50b88ecd232, type: 2}
