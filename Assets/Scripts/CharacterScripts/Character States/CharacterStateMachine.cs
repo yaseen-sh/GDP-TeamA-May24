@@ -36,6 +36,7 @@ public class CharacterStateMachine : MonoBehaviour
     public Dead DeadState = new Dead();
 
     public float stateTimer = 0f;
+    public Animations anime;
     private void Start()
     {
         character = gameObject;
@@ -43,6 +44,7 @@ public class CharacterStateMachine : MonoBehaviour
         CurrentState = IdleState;
         CurrentState.EnterState(this);
         playerInput = gameObject.GetComponent<PlayerInput>();
+        anime = gameObject.GetComponent<Animations>();
     }
     public void SwitchState(CharacterBaseState state)
     {

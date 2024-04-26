@@ -9,7 +9,7 @@ public class Idle : CharacterBaseState
     GameObject character;
     public override void EnterState(CharacterStateMachine state)
     {
-        anime = state.character.GetComponent<Animations>();
+        anime = state.anime;
         character = state.character.GetComponent<GameObject>();
         anime.Idle();
     }
