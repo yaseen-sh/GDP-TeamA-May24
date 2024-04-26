@@ -62,6 +62,24 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Block"",
+                    ""type"": ""Button"",
+                    ""id"": ""698bdf01-18fb-4d0c-a731-bde6f560e3c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Super"",
+                    ""type"": ""Button"",
+                    ""id"": ""2aefd8fe-972c-4127-9510-10d4db8f924d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -238,6 +256,39 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""AttackHeavy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4428ecce-1e8a-4e7c-9af6-16f0cf6d96f5"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AttackHeavy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9596c60-4043-465d-83c2-f0e07238176c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Block"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eeb321d-75d6-431c-9a59-e91de2da4107"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Super"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -464,6 +515,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
         m_Player_AttackLight = m_Player.FindAction("AttackLight", throwIfNotFound: true);
         m_Player_AttackHeavy = m_Player.FindAction("AttackHeavy", throwIfNotFound: true);
+        m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
+        m_Player_Super = m_Player.FindAction("Super", throwIfNotFound: true);
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
@@ -534,6 +587,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jumping;
     private readonly InputAction m_Player_AttackLight;
     private readonly InputAction m_Player_AttackHeavy;
+    private readonly InputAction m_Player_Block;
+    private readonly InputAction m_Player_Super;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -542,6 +597,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
         public InputAction @AttackLight => m_Wrapper.m_Player_AttackLight;
         public InputAction @AttackHeavy => m_Wrapper.m_Player_AttackHeavy;
+        public InputAction @Block => m_Wrapper.m_Player_Block;
+        public InputAction @Super => m_Wrapper.m_Player_Super;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -563,6 +620,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AttackHeavy.started += instance.OnAttackHeavy;
             @AttackHeavy.performed += instance.OnAttackHeavy;
             @AttackHeavy.canceled += instance.OnAttackHeavy;
+            @Block.started += instance.OnBlock;
+            @Block.performed += instance.OnBlock;
+            @Block.canceled += instance.OnBlock;
+            @Super.started += instance.OnSuper;
+            @Super.performed += instance.OnSuper;
+            @Super.canceled += instance.OnSuper;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -579,6 +642,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @AttackHeavy.started -= instance.OnAttackHeavy;
             @AttackHeavy.performed -= instance.OnAttackHeavy;
             @AttackHeavy.canceled -= instance.OnAttackHeavy;
+            @Block.started -= instance.OnBlock;
+            @Block.performed -= instance.OnBlock;
+            @Block.canceled -= instance.OnBlock;
+            @Super.started -= instance.OnSuper;
+            @Super.performed -= instance.OnSuper;
+            @Super.canceled -= instance.OnSuper;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -682,6 +751,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnJumping(InputAction.CallbackContext context);
         void OnAttackLight(InputAction.CallbackContext context);
         void OnAttackHeavy(InputAction.CallbackContext context);
+        void OnBlock(InputAction.CallbackContext context);
+        void OnSuper(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {
