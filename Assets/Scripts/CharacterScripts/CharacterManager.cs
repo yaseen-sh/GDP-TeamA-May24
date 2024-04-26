@@ -118,10 +118,12 @@ public class CharacterManager : MonoBehaviour
         if (gameObject.CompareTag("Player 1"))
         {
             GameManager.health1 = currentHealth;
+            GameManager.super2 += 100;
         }
         else if (gameObject.CompareTag("Player 2"))
         {
             GameManager.health2 = currentHealth;
+            GameManager.super1 += 100;
         }
         if (currentHealth <= 0)
         {

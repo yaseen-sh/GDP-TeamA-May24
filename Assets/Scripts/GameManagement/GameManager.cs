@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    [Header("Fighter Spawn Positions")]
     public Transform player1Pos;
     public Transform player2Pos;
 
@@ -24,17 +25,26 @@ public class GameManager : MonoBehaviour
     private Slider healthBar1;
     private Slider healthBar2;
 
+    [Header("Health Bars")]
     public GameObject heathPrefab1;
     public GameObject heathPrefab2;
-
     public Gradient healthColor1;
     public Gradient healthColor2;
-
     private Image fill1;
     private Image fill2;
 
-    float maxhealth = 3;
+    [Header("Super Bars")]
+    public GameObject superPrefab1;
+    public GameObject superPrefab2;
+    private Slider superBar1;
+    private Slider superBar2;
+    private Image superFill1;
+    private Image superFill2;
+    public Gradient superColor;
+    public static float super1 = 0;
+    public static float super2 = 0;
 
+    const float maxhealth = 3;
     public static float health1 = 3;
     public static float health2 = 3;
 
@@ -53,6 +63,9 @@ public class GameManager : MonoBehaviour
 
     private int roundNumber;
     bool onlyOnce = true;
+
+    bool super1Filled = false;
+    bool super2Filled = false;
 
     private void Start()
     {
@@ -84,6 +97,16 @@ public class GameManager : MonoBehaviour
 
             fill1 = bar1.GetComponentInChildren<Image>();
             fill2 = bar2.GetComponentInChildren<Image>();
+
+            GameObject sbar1 = Instantiate(superPrefab1, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+            superBar1 = sbar1.GetComponent<Slider>();
+
+            GameObject sbar2 = Instantiate(superPrefab2, GameObject.FindGameObjectWithTag("HealthBar").transform.parent);
+            superBar2 = sbar2.GetComponent<Slider>();
+
+            superFill1 = sbar1.GetComponentInChildren<Image>();
+            superFill2 = sbar2.GetComponentInChildren<Image>();
+
             winnerText.text = "";
 
             player1Text.text = CSSManager.player1FighterName;
@@ -125,6 +148,35 @@ public class GameManager : MonoBehaviour
             healthBar2.value = health2;
             fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
             fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
+
+            if (superBar1.value != superBar1.maxValue)
+            {
+                super1 += .5f;
+                superBar1.value = super1;
+            }
+            else
+            {
+                //if (!super1Filled)
+                //{
+                    superFill1.color = superColor.Evaluate(Time.deltaTime);
+                    //super1Filled = true;
+                //}
+            }
+
+            if (superBar2.value != superBar2.maxValue)
+            {
+                super2 += .5f;
+                superBar2.value = super2;
+            }
+            else
+            {
+                //if (!super2Filled)
+                //{
+                superFill2.color = superColor.Evaluate(Time.deltaTime);
+                // super2Filled = true;
+                //}
+            }
+
             if (roundOver)
             {
                 if (health1 <= 0 && health2 > 0)

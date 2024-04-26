@@ -31,7 +31,7 @@ public class GamepadJoin : MonoBehaviour
     public void Awake()
     {
         currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-        if (inputManager == null)
+        /*if (inputManager == null)
         {
             inputManager = gameObject;
             DontDestroyOnLoad(gameObject);
@@ -39,7 +39,7 @@ public class GamepadJoin : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
+        }*/
     }
     void Start()
     {

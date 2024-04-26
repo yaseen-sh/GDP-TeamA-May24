@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 */
 public class ButtonManager : MonoBehaviour
 {
-
     public void TitleScreen()
     {
         Destroy(GameObject.FindGameObjectWithTag("CharManager"));

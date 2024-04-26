@@ -102,7 +102,10 @@ public class GamepadCursor : MonoBehaviour
                 {
                     int players = GamepadJoin.numberOfActivePlayers;
                     if (players == 2)
+                    {
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
                         titleButtons.pvpMode.GetComponent<Button>().onClick.Invoke();
+                    }
                     else
                         StartCoroutine(ShowRequiredText());
                 }
@@ -110,19 +113,22 @@ public class GamepadCursor : MonoBehaviour
                 if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.story.GetComponent<RectTransform>(), transform.position))
                 {
                     Debug.Log("Story");
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
                     titleButtons.story.GetComponent<Button>().onClick.Invoke();
                 }
                 // Credits Button
                 if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.credits.GetComponent<RectTransform>(), transform.position))
                 {
                     Debug.Log("Credits");
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
                     titleButtons.credits.GetComponent<Button>().onClick.Invoke();
                 }
                 // Quit Button
                 if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.quit.GetComponent<RectTransform>(), transform.position))
                 {
                     Debug.Log("Quit");
-                    //titleButtons.quit.GetComponent<Button>().onClick.Invoke();
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
+                    titleButtons.quit.GetComponent<Button>().onClick.Invoke();
                 }
             } 
             else if (SceneManager.GetActiveScene().name == "Credits" && gameObject.CompareTag("CursorP1")) {
