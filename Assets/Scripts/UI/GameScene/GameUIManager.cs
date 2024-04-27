@@ -20,7 +20,7 @@ public class GameUIManager : MonoBehaviour
     private string round = "ROUND";
     //private string fighttext = "fighttext";
     public static bool newRound = false;
-    public bool roundCoRoutine = false;
+    public static bool stopTimer = false;
 
     void Start()
     {
@@ -31,14 +31,15 @@ public class GameUIManager : MonoBehaviour
         timerText.text = "99";
         timer = 99;
         StartCoroutine(showRoundText());
-        //StartCoroutine(timerCountDown());
+        StartCoroutine(timerCountDown());
     }
     void Update()
     {
         if (newRound)
         {
+            //Debug.
             timer = 99;
-            roundCoRoutine = true;
+            stopTimer = false;
             StopAllCoroutines();
             StartCoroutine(showRoundText());
             StartCoroutine(timerCountDown());
@@ -74,27 +75,30 @@ public class GameUIManager : MonoBehaviour
         roundText.text = "";
         brawlText.GetComponent<Animator>().enabled = false;
         roundNumberText.GetComponent<Animator>().enabled = false;
-        StartCoroutine(timerCountDown());
+        //StartCoroutine(timerCountDown());
     }
 
     IEnumerator timerCountDown()
     {
-        //yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(4.5f);
         while (timer > -1)
         {
             timerText.text = timer.ToString();
             yield return new WaitForSeconds(1);
             --timer;
-            if (roundCoRoutine)
+            if (stopTimer)
             {
                 Debug.Log("New Round");
-                roundCoRoutine = false;
+                //stopTimer = false;
                 yield break;
             }
         }
         if (timer <= -1)
         {
-            newRound = true;
+            GameManager.roundOver = true;
+            yield return new WaitForSeconds(.5f);
+            if (GameManager.totalLives1 != 0 && GameManager.totalLives2 != 0)
+                newRound = true;
         }
     }
 

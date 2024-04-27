@@ -55,11 +55,13 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI player1Text;
     public Image player1Icon;
     public List<Image> player1Lives;
+    public static int totalLives1;
 
     [Header("Player 2 Icon and Name")]
     public TextMeshProUGUI player2Text;
     public Image player2Icon;
     public List<Image> player2Lives;
+    public static int totalLives2;
 
     private int roundNumber;
     bool onlyOnce = true;
@@ -119,6 +121,9 @@ public class GameManager : MonoBehaviour
 
             roundNumber = 1;
             onlyOnce = true;
+
+            totalLives1 = player1Lives.Count;
+            totalLives2 = player2Lives.Count;
         } 
         else
         {
@@ -149,37 +154,38 @@ public class GameManager : MonoBehaviour
             fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
             fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
 
-            if (superBar1.value != superBar1.maxValue)
+            if (superBar1.value != superBar1.maxValue && !GameUIManager.stopTimer)
             {
                 super1 += .5f;
                 superBar1.value = super1;
             }
             else
             {
-                //if (!super1Filled)
-                //{
+                if (!GameUIManager.stopTimer)
+                {
                     superFill1.color = superColor.Evaluate(Time.deltaTime);
                     //super1Filled = true;
-                //}
+                }
             }
 
-            if (superBar2.value != superBar2.maxValue)
+            if (superBar2.value != superBar2.maxValue && !GameUIManager.stopTimer)
             {
                 super2 += .5f;
                 superBar2.value = super2;
             }
             else
             {
-                //if (!super2Filled)
-                //{
-                superFill2.color = superColor.Evaluate(Time.deltaTime);
+                if (!GameUIManager.stopTimer)
+                {
+                    superFill2.color = superColor.Evaluate(Time.deltaTime);
                 // super2Filled = true;
-                //}
+                }
             }
 
             if (roundOver)
             {
-                if (health1 <= 0 && health2 > 0)
+                //if (health1 <= 0 && health2 > 0)
+                if (health1 < health2)
                 {
                     winnerText.color = new Color(1f, 0, 0, 1f);
                     winnerText.text = CSSManager.player2FighterName + " Wins!";
@@ -194,9 +200,11 @@ public class GameManager : MonoBehaviour
                         player1Lives[0].enabled = false;
                         player1Lives.RemoveAt(0);
                     }
-
+                    totalLives1 = player1Lives.Count;
+                    totalLives2 = player2Lives.Count;
                 }
-                else if (health2 <= 0 && health1 > 0)
+                //else if (health2 <= 0 && health1 > 0)
+                else if (health2 < health1)
                 {
                     winnerText.color = new Color(0, 0, 1f, 1f);
                     winnerText.text = CSSManager.player1FighterName + " Wins!";
@@ -210,10 +218,19 @@ public class GameManager : MonoBehaviour
                         player2Lives[0].enabled = false;
                         player2Lives.RemoveAt(0);
                     }
+                    totalLives1 = player1Lives.Count;
+                    totalLives2 = player2Lives.Count;
                 }
                 else
                 {
-                    winnerText.text = "Draw";
+                    winnerText.color = new Color(1f, 0, 1f, 1f);
+                    winnerText.text = "Both Lose";
+                    player1Lives[0].enabled = false;
+                    player1Lives.RemoveAt(0);
+                    player2Lives[0].enabled = false;
+                    player2Lives.RemoveAt(0);
+                    totalLives1 = player1Lives.Count;
+                    totalLives2 = player2Lives.Count;
                 }
 
                 health1 = maxhealth;
@@ -221,6 +238,11 @@ public class GameManager : MonoBehaviour
                 roundOver = false;
                 ++roundNumber;
 
+                if (player1Lives.Count == 0 && player2Lives.Count == 0)
+                {
+                    StartCoroutine(EndGame("Nobody"));
+                    onlyOnce = false;
+                }
                 if (player1Lives.Count == 0 && onlyOnce)
                 {
                     StartCoroutine(EndGame(CSSManager.player2FighterName));
@@ -242,6 +264,7 @@ public class GameManager : MonoBehaviour
     {
         player1Controls.enabled = false;
         player2Controls.enabled = false;
+        GameUIManager.stopTimer = true;
         yield return new WaitForSeconds(5f);
         GameUIManager.newRound = true;
         winnerText.text = "";
@@ -259,6 +282,8 @@ public class GameManager : MonoBehaviour
     {
         //player1Controls.enabled = false;
         //player2Controls.enabled = false;
+        winnerText.color = new Color(1f, 0, 1f, 1f);
+        yield return new WaitForSeconds(2f);
         winnerText.text = playerWhoWon + " Is The Binary Camp!";
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("TitleScreen");

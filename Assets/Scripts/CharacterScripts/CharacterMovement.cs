@@ -23,8 +23,7 @@ public class CharacterMovement : MonoBehaviour
     public CharacterDataLoader Data;
     CharacterStateMachine state;
     public float moveValue;
-    public 
-    bool isStopMove = false;
+    public bool isStopMove = false;
     //public GameManager managerOfGames;
     void Start()
     {
@@ -62,8 +61,8 @@ public class CharacterMovement : MonoBehaviour
    
     public void Movement(InputAction.CallbackContext context)
     {
-        if (!isStopMove)
-        {
+        //if (!GameManager.roundOver)
+        //{
             horizontal = context.ReadValue<Vector2>().x;
 
             //for crouching, is the player holding down s?
@@ -76,13 +75,12 @@ public class CharacterMovement : MonoBehaviour
             {
                 isCrouching = false;
             }
-        }
+        //}
     }
 
     public void Jump (InputAction.CallbackContext context)
     {
-        //Debug.Log(isStopMove);
-        //if (!isStopMove)
+        //if (!GameManager.roundOver)
         //{
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 

@@ -9,7 +9,6 @@ public class startGame : MonoBehaviour
 {
     public GameObject hoverObj;
     private StageHover hoverScript;
-    //private string stageName = "null";
     public GameObject startGameText;
 
     public static string selectedStage;
