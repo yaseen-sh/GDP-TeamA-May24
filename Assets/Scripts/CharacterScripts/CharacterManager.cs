@@ -108,6 +108,6 @@ public class CharacterManager : MonoBehaviour
         if (roundStarted)
             currentMeter = minMeter;
         currentMeter += charge;
-        superMeterText.text = "Super: " +  currentMeter.ToString();
+        //superMeterText.text = "Super: " +  currentMeter.ToString();
     }
 }
