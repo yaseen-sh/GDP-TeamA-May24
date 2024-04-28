@@ -78,6 +78,16 @@ public class CharacterAttack : MonoBehaviour
             StartCoroutine(StartUp(hitbox.StartUpFrames, attackID));
         }
     }
+    public void AttackSuper(InputAction.CallbackContext context)
+    {
+        if (context.action.IsPressed())
+        {
+            hitbox.isAttacking = true;
+            characterState.SwitchState(characterState.SuperState);
+            attackID = 3;
+            StartCoroutine(StartUp(hitbox.StartUpFrames, attackID));
+        }
+    }
     IEnumerator StartUp(float frames, int ID )
     {
         yield return new WaitForSeconds(frames);

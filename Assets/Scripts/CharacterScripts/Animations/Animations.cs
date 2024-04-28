@@ -71,4 +71,8 @@ public class Animations : MonoBehaviour
     {
         anime.Play("Jump");
     }
+    public void Super()
+    {
+        anime.Play("Super");
+    }
 }
