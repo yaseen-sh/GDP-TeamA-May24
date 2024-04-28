@@ -17,7 +17,7 @@ public class Damaged : CharacterBaseState
 
         anime = state.character.GetComponent<Animations>();
 
-        state.StartCo(hitbox.hitStun);
+        state.StartCo(.03f);
 
         anime.Damaged();
     }
@@ -35,7 +35,7 @@ public class Damaged : CharacterBaseState
 
         //transition back to idle
 
-        if (state.stateTimer >= hitbox.hitStun)
+        if (state.stateTimer >= .03f)
         {
             state.stateTimer = 0;
             state.SwitchState(state.IdleState);

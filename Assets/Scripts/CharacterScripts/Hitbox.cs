@@ -56,6 +56,15 @@ public class Hitbox : MonoBehaviour
     public float heavyAttackHitStun = 0;
     public Vector2 heavyAttackHitboxScale = new Vector2 (0f,0f);
 
+    public int superAttackDamage = 0;
+    public float superAttackPosY = 0;
+    public float superAttackPosX = 0;
+    public float superAttackFrameCount = 0;
+    public float superAttackStartUpFrames = 0;
+    public float superAttackRecoveryFrames = 0;
+    public float superAttackHitStun = 0;
+    public Vector2 superAttackHitboxScale = new Vector2(0f, 0f);
+
     //blocking
     public float blockPosY = 0;
     public float blockPosX = 0;
@@ -90,6 +99,15 @@ public class Hitbox : MonoBehaviour
         heavyAttackRecoveryFrames = Data.heavyAttackRecoveryFrames;
         heavyAttackHitStun = Data.heavyAttackHitStun;
         heavyAttackHitboxScale = Data.heavyAttackHitboxScale;
+
+        superAttackDamage = Data.superAttackDamage;
+        superAttackPosY = Data.superAttackPosY;
+        superAttackPosX = Data.superAttackPosX;
+        superAttackFrameCount = Data.superAttackFrameCount;
+        superAttackStartUpFrames = Data.superAttackStartUpFrames;
+        superAttackRecoveryFrames = Data.superAttackRecoveryFrames;
+        superAttackHitStun = Data.superAttackHitStun;
+        superAttackHitboxScale = Data.superAttackHitboxScale;
 
         blockPosX = Data.blockPosX;
         blockPosY = Data.blockPosY;
@@ -197,13 +215,22 @@ public class Hitbox : MonoBehaviour
                 break;
             //attacktype etc
             case 3:
+                damage = superAttackDamage;
+                frameCount = superAttackFrameCount;
+                scaleChange = superAttackHitboxScale;
+                RecoveryFrames = superAttackRecoveryFrames;
+                StartUpFrames = superAttackStartUpFrames;
+                totalFrameCount = RecoveryFrames + StartUpFrames + frameCount;
+                hitStun = superAttackHitStun;
                 if (movement.facingRight == true)
                 {
-                    Debug.Log("FacingRightLightAttack");
+                    hitboxPosX = heavyAttackPosX;
+                    hitboxPosY = heavyAttackPosY;
                 }
                 else
                 {
-                    Debug.Log("FacingLeftLightAttack");
+                    hitboxPosX = -heavyAttackPosX;
+                    hitboxPosY = heavyAttackPosY;
                 }
                 break;
             case 4:
@@ -215,7 +242,6 @@ public class Hitbox : MonoBehaviour
 
         if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
-            
             Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;

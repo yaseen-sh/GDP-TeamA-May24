@@ -60,10 +60,11 @@ public class CharacterStateMachine : MonoBehaviour
     }
     public IEnumerator DisableInputForDuration(float duration)
     {
-        playerInput.enabled = false; //pausing input
+        playerInput.DeactivateInput();
         // Wait for the specified duration
+        Debug.Log("hello");
         yield return new WaitForSeconds(duration);
-        playerInput.enabled = true; //resuming input
+        playerInput.ActivateInput();
     }
     public void StartCo(float duration)
     {
