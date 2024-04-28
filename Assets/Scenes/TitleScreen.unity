@@ -412,7 +412,6 @@ MonoBehaviour:
   story: {fileID: 2124133887}
   credits: {fileID: 6003050828052654136}
   quit: {fileID: 200296431}
-  buttonSfx: {fileID: 0}
 --- !u!4 &282268427
 Transform:
   m_ObjectHideFlags: 0
@@ -1277,7 +1276,7 @@ AudioSource:
   m_Volume: 0.828
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128

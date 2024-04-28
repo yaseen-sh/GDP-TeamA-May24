@@ -39,6 +39,9 @@ public class SetupCharTiles : MonoBehaviour
     public Dictionary<string, string> charIdles = new Dictionary<string, string>(); // Dictionary of Names of Char Idles Animations
     public Dictionary<string, string> charPicks = new Dictionary<string, string>(); // Dictionary of Names of Char Ready Animations
 
+    public static Dictionary<string, AudioClip> charA1Lines = new Dictionary<string, AudioClip>();
+    public static Dictionary<string, AudioClip> charA2Lines = new Dictionary<string, AudioClip>();
+
     public Button backButton;
 
     [Header("Ready?")]
@@ -71,6 +74,11 @@ public class SetupCharTiles : MonoBehaviour
         charIdles.Add(fighter.charName, fighter.charIdle);
         charPicks.Add(fighter.charName, fighter.charReadyAnim);
 
+        if (!charA1Lines.ContainsKey(fighter.charName) && !charA2Lines.ContainsKey(fighter.charName))
+        {
+            charA1Lines.Add(fighter.charName, fighter.anouncerLine[0]);
+            charA2Lines.Add(fighter.charName, fighter.anouncerLine[1]);
+        }
         allTiles.Add(tile);
     }
 

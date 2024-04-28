@@ -61,6 +61,7 @@ public class CharacterManager : MonoBehaviour
     {
         /*if (roundStarted)
         {
+            state.SwitchState(state.IdleState);
             currentHealth = maxHealth; 
             roundStarted = false;
         }*/
@@ -96,7 +97,7 @@ public class CharacterManager : MonoBehaviour
         {
             GameManager.roundOver = true;
             roundStarted = true;
-            //state.SwitchState(state.DeadState);
+            state.SwitchState(state.DeadState);
         }
     }
     public float GetPlayerSuper()

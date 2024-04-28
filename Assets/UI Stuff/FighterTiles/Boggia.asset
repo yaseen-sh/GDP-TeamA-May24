@@ -19,3 +19,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 992f568a1d93f1643a2d69f1364f4afc, type: 3}
   charIdle: BoggiaIdle
   charReadyAnim: BoggiaReady
+  anouncerLine:
+  - {fileID: 8300000, guid: 9750d90447102a64e9bf0458bb96bfd2, type: 3}
+  - {fileID: 8300000, guid: 4295ac03c8f79d54aa37e30c693495eb, type: 3}

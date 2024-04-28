@@ -19,3 +19,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ba9192f437fbcb74c86ca3756c2db138, type: 3}
   charIdle: BekticIdle
   charReadyAnim: BekticReady
+  anouncerLine:
+  - {fileID: 8300000, guid: cd56d7ce354c9814582fdebdae668907, type: 3}
+  - {fileID: 8300000, guid: cb1eaca73aa15264fbb3f2256225ee0c, type: 3}

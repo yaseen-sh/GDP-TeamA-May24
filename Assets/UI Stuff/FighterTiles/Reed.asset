@@ -19,3 +19,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 100a9bf24ea202c4093943c8b38de230, type: 3}
   charIdle: ReedIdle
   charReadyAnim: ReedReady
+  anouncerLine:
+  - {fileID: 8300000, guid: 1ea620658c1a54947b9f8f3e88b2e733, type: 3}
+  - {fileID: 8300000, guid: d771b3c7148110f42ac076bc7b009818, type: 3}

@@ -13,6 +13,7 @@ public class startGame : MonoBehaviour
 
     public static string selectedStage;
     public static Sprite selectedImage;
+    public static AudioClip selectedClip;
     private string prevSelectedStage;
     public static bool hasSelectedStage = false;
 
@@ -40,6 +41,7 @@ public class startGame : MonoBehaviour
     {
         selectedStage = StageHover.selectedStageName;
         selectedImage = StageHover.defaultImage;
+        selectedClip = StageHover.stageSong;
         Debug.Log(selectedStage);
         if (prevSelectedStage == selectedStage)
         {
@@ -57,6 +59,7 @@ public class startGame : MonoBehaviour
     {
         Debug.Log("We would be loading "+selectedStage+" here");
         CSSManager.stage = selectedImage;
+        CSSManager.stageTheme = selectedClip;
 
         if (GameObject.Find("AudioManager") != null)
         {

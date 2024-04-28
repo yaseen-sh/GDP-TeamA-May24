@@ -14,15 +14,18 @@ public class CSSManager : MonoBehaviour
     public static Sprite player1Fighter;
     public static string player1FighterName;
     public static GameObject player1Object;
+    public static AudioClip player1Intro;
 
     [Header("Player 2 Variables")]
     public static bool player2Selected = false;
     public static Sprite player2Fighter;
     public static string player2FighterName;
     public static GameObject player2Object;
+    public static AudioClip player2Intro;
 
     [Header("Selected Stage")]
     public static Sprite stage;
+    public static AudioClip stageTheme;
 
     public void Start()
     {

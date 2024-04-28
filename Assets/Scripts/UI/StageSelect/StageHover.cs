@@ -18,6 +18,7 @@ public class StageHover : MonoBehaviour
     public static Sprite defaultImage;
     //public static bool has_selected_once;
     public static string selectedStageName;
+    public static AudioClip stageSong;
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class StageHover : MonoBehaviour
                 defaultImage = buttonImage.sprite;
                 buttonImage.enabled = true;
                 selectedStageName = MainText.text;
+                stageSong = stage.GetComponent<AudioSource>().clip;
                 hovered = true;
                 break;
             }
@@ -61,6 +63,7 @@ public class StageHover : MonoBehaviour
                 defaultImage = buttonImage.sprite;
                 buttonImage.enabled = true;
                 selectedStageName = MainText.text;
+                stageSong = stage.GetComponent<AudioSource>().clip;
                 hovered = true;
                 break;
             }

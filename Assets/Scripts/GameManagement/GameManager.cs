@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
     bool super1Filled = false;
     bool super2Filled = false;
 
+    public AudioSource KO;
+
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -118,12 +120,16 @@ public class GameManager : MonoBehaviour
             player2Icon.sprite = CSSManager.player2Fighter;
 
             GameObject.Find("StageBackground").GetComponent<Image>().sprite = CSSManager.stage;
+            GameObject.Find("BattleMusic").GetComponent<AudioSource>().clip = CSSManager.stageTheme;
+            GameObject.Find("BattleMusic").GetComponent<AudioSource>().Play();
 
             roundNumber = 1;
             onlyOnce = true;
 
             totalLives1 = player1Lives.Count;
             totalLives2 = player2Lives.Count;
+
+            StartCoroutine(DisableControls(10));
         } 
         else
         {
@@ -184,7 +190,6 @@ public class GameManager : MonoBehaviour
 
             if (roundOver)
             {
-                //if (health1 <= 0 && health2 > 0)
                 if (health1 < health2)
                 {
                     winnerText.color = new Color(1f, 0, 0, 1f);
@@ -203,7 +208,6 @@ public class GameManager : MonoBehaviour
                     totalLives1 = player1Lives.Count;
                     totalLives2 = player2Lives.Count;
                 }
-                //else if (health2 <= 0 && health1 > 0)
                 else if (health2 < health1)
                 {
                     winnerText.color = new Color(0, 0, 1f, 1f);
@@ -240,16 +244,28 @@ public class GameManager : MonoBehaviour
 
                 if (player1Lives.Count == 0 && player2Lives.Count == 0)
                 {
+                    super1 = 0;
+                    super2 = 0;
+                    superBar1.value = 0;
+                    superBar2.value = 0;
                     StartCoroutine(EndGame("Nobody"));
                     onlyOnce = false;
                 }
                 if (player1Lives.Count == 0 && onlyOnce)
                 {
+                    super1 = 0;
+                    super2 = 0;
+                    superBar1.value = 0;
+                    superBar2.value = 0;
                     StartCoroutine(EndGame(CSSManager.player2FighterName));
                     onlyOnce = false;
                 }
                 else if (player2Lives.Count == 0 && onlyOnce)
                 {
+                    super1 = 0;
+                    super2 = 0;
+                    superBar1.value = 0;
+                    superBar2.value = 0;
                     StartCoroutine(EndGame(CSSManager.player1FighterName));
                     onlyOnce = false;
                 }
@@ -262,29 +278,39 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitBetweenRounds()
     {
-        player1Controls.enabled = false;
-        player2Controls.enabled = false;
+        player1Controls.DeactivateInput();
+        player2Controls.DeactivateInput();
         GameUIManager.stopTimer = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(7f);
         GameUIManager.newRound = true;
         winnerText.text = "";
         player1Controls.transform.position = player1Pos.position;
         player2Controls.transform.position = player2Pos.position;
-        StartCoroutine(DisableControls());
+        player1Controls.ActivateInput();
+        player2Controls.ActivateInput();
     }
-    IEnumerator DisableControls()
+    IEnumerator DisableControls(float num)
     {
-        yield return new WaitForSeconds(5f);
-        //player1Controls.enabled = true;
-        //player2Controls.enabled = true;
+        player1Controls.DeactivateInput();
+        player2Controls.DeactivateInput();
+        yield return new WaitForSeconds(num);
+        player1Controls.ActivateInput();
+        player2Controls.ActivateInput();
     }
     IEnumerator EndGame(string playerWhoWon)
     {
-        //player1Controls.enabled = false;
-        //player2Controls.enabled = false;
-        winnerText.color = new Color(1f, 0, 1f, 1f);
+        KO.Play();
+        player1Controls.enabled = false;
+        player2Controls.enabled = false;
+
+        player1Controls.DeactivateInput();
+        player2Controls.DeactivateInput();
         yield return new WaitForSeconds(2f);
-        winnerText.text = playerWhoWon + " Is The Binary Camp!";
+        winnerText.color = new Color(1f, 0, 1f, 1f);
+        winnerText.text = playerWhoWon + " Is The Binary Champ!";
+
+        // Play the winner's Victory Line!
+        // Play the Looser's lost line!
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("TitleScreen");
     }

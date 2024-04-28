@@ -19,3 +19,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0404f115e139c6046aa3656018eaa7ef, type: 3}
   charIdle: NestyIdle
   charReadyAnim: NestyReady
+  anouncerLine:
+  - {fileID: 8300000, guid: b0006790ea485394eaf18538b1adc134, type: 3}
+  - {fileID: 8300000, guid: c029b0e85438e1e4ab2f3a8b213d6cf6, type: 3}

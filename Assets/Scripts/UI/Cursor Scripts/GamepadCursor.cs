@@ -28,7 +28,6 @@ public class GamepadCursor : MonoBehaviour
     [Space]
 
     public GameObject playerSelection;
-    //public static EventHandler DoneSelectingEvent;
 
     [Header("Title Screen Required text")]
     public GameObject player2Required;
@@ -40,11 +39,6 @@ public class GamepadCursor : MonoBehaviour
 
     [SerializeField]
     private Sprite cursorSprite;
-
-    public void Awake()
-    {
-
-    }
 
     private void Update()
     {
@@ -193,6 +187,7 @@ public class GamepadCursor : MonoBehaviour
                             CSSManager.player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player1FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                             CSSManager.player1Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player1FighterName}");
+                            CSSManager.player1Intro = SetupCharTiles.charA1Lines[fighter.GetComponentInChildren<TextMeshProUGUI>().text];
                         }
                         else if (gameObject.CompareTag("CursorP2"))
                         {
@@ -214,6 +209,7 @@ public class GamepadCursor : MonoBehaviour
                             CSSManager.player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
                             CSSManager.player2FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
                             CSSManager.player2Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player2FighterName + "2"}");
+                            CSSManager.player2Intro = SetupCharTiles.charA2Lines[fighter.GetComponentInChildren<TextMeshProUGUI>().text];
                         }
                         return;
                     }

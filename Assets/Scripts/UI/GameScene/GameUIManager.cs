@@ -22,38 +22,51 @@ public class GameUIManager : MonoBehaviour
     public static bool newRound = false;
     public static bool stopTimer = false;
 
+    public TextMeshProUGUI fighter1IntroText;
+    public TextMeshProUGUI fighter2IntroText;
+    public TextMeshProUGUI vs;
+
+    public AudioSource anouncer1;
+    public AudioSource anouncer2;
+    public AudioSource readyFightLine;
+
     void Start()
     {
+        fighter1IntroText.text = "";
+        fighter2IntroText.text = "";
+        vs.text = "";
         roundText.text = "";
         roundNumberText.text = "";
         brawlText.text = "";
         roundNumber = 1;
         timerText.text = "99";
         timer = 99;
-        StartCoroutine(showRoundText());
-        StartCoroutine(timerCountDown());
+        stopTimer = true;
+        anouncer1.clip = CSSManager.player1Intro;
+        anouncer2.clip = CSSManager.player2Intro;
+        StartCoroutine(FightIntro());
+        //StartCoroutine(showRoundText());
+        StartCoroutine(timerCountDown(10));
     }
     void Update()
     {
         if (newRound)
         {
-            //Debug.
             timer = 99;
-            stopTimer = false;
             StopAllCoroutines();
             StartCoroutine(showRoundText());
-            StartCoroutine(timerCountDown());
+            StartCoroutine(timerCountDown(6));
             roundNumber++;
             newRound = false;
-
         }
     }
     public IEnumerator showRoundText()
     {
+        readyFightLine.Play();
         foreach(char letter in round.ToCharArray())
         {
             roundText.text += letter;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.15f);
         }
         if (roundNumber == 1)
             roundNumberText.text = "01";
@@ -64,23 +77,23 @@ public class GameUIManager : MonoBehaviour
 
         roundNumberText.GetComponent<Animator>().Play("FightStart");
         roundNumberText.GetComponent<Animator>().enabled = true;
-        yield return new WaitForSeconds(1);
-        brawlText.text = "BRAWL";
+        yield return new WaitForSeconds(0.5f);
+        brawlText.text = "FIGHT";
         brawlText.GetComponent<Animator>().Play("fighttext");
         brawlText.GetComponent<Animator>().enabled = true;
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
         roundNumberText.text = "";
         brawlText.text = "";
         roundText.text = "";
         brawlText.GetComponent<Animator>().enabled = false;
         roundNumberText.GetComponent<Animator>().enabled = false;
-        //StartCoroutine(timerCountDown());
     }
 
-    IEnumerator timerCountDown()
+    IEnumerator timerCountDown(float wait)
     {
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(wait);
+        stopTimer = false;
         while (timer > -1)
         {
             timerText.text = timer.ToString();
@@ -89,16 +102,12 @@ public class GameUIManager : MonoBehaviour
             if (stopTimer)
             {
                 Debug.Log("New Round");
-                //stopTimer = false;
                 yield break;
             }
         }
         if (timer <= -1)
         {
             GameManager.roundOver = true;
-            yield return new WaitForSeconds(.5f);
-            if (GameManager.totalLives1 != 0 && GameManager.totalLives2 != 0)
-                newRound = true;
         }
     }
 
@@ -108,5 +117,23 @@ public class GameUIManager : MonoBehaviour
         {
             SceneManager.LoadScene("TitleScreen");
         }
+    }
+    IEnumerator FightIntro()
+    {
+        anouncer1.Play();
+        fighter1IntroText.text = CSSManager.player1FighterName;
+        yield return new WaitForSeconds(1f);
+        vs.text = "VS";
+        yield return new WaitForSeconds(1f);
+        anouncer2.Play();
+        fighter2IntroText.text = CSSManager.player2FighterName;
+        yield return new WaitForSeconds(1f);
+        fighter1IntroText.text = "";
+        fighter2IntroText.text = "";
+        vs.text = "";
+        // Play the intro voicelines from each character - to-do
+
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(showRoundText());
     }
 }

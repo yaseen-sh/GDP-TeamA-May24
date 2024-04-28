@@ -29,3 +29,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  stageMusic: {fileID: 8300000, guid: 170ad3c449d9f554c851314d835b0206, type: 3}
