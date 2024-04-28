@@ -26,12 +26,24 @@ MonoBehaviour:
   lightAttackStartUpFrames: 0.4
   lightAttackRecoveryFrames: 0.7
   lightAttackHitboxScale: {x: 0.4, y: 0.2}
-  lightAttackHitStun: 0
+  lightAttackHitStun: 0.03
   heavyAttackDamage: 1
-  heavyAttackPosY: 0
-  heavyAttackPosX: 0
-  heavyAttackFrameCount: 0
-  heavyAttackStartUpFrames: 0
-  heavyAttackRecoveryFrames: 0
-  heavyAttackHitboxScale: {x: 0, y: 0}
+  heavyAttackPosY: 1
+  heavyAttackPosX: 1.5
+  heavyAttackFrameCount: 0.1
+  heavyAttackStartUpFrames: 0.3
+  heavyAttackRecoveryFrames: 0.7
+  heavyAttackHitboxScale: {x: 0.5, y: 0.2}
   heavyAttackHitStun: 0
+  superAttackDamage: 2
+  superAttackPosY: 1
+  superAttackPosX: 1
+  superAttackFrameCount: 1
+  superAttackStartUpFrames: 1
+  superAttackRecoveryFrames: 1
+  superAttackHitboxScale: {x: 1, y: 1}
+  superAttackHitStun: 1
+  blockPosY: 1
+  blockPosX: 1
+  blockBoxScale: {x: 1, y: 1, z: 1}
+  blockRecoveryFrames: 1
