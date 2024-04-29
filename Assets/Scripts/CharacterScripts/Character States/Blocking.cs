@@ -6,8 +6,11 @@ public class Blocking : CharacterBaseState
 {
     Animations anime;
     CharacterAttack block;
+    CharacterManager manager;
+
     public override void EnterState(CharacterStateMachine state)
     {
+        manager = state.character.GetComponent<CharacterManager>();
         block = state.character.GetComponent<CharacterAttack>();
         anime = state.character.GetComponent<Animations>();
         anime.Block();
@@ -15,8 +18,9 @@ public class Blocking : CharacterBaseState
 
     public override void OnCollisionEnter(CharacterStateMachine state)
     {
-        if (!block.isBlocking)
-            state.SwitchState(state.IdleState);
+       //super 1 damage
+       //decrease block meter
+      
     }
 
     public override void UpdateState(CharacterStateMachine state)

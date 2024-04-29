@@ -12,7 +12,7 @@ public class Hitbox : MonoBehaviour
     public bool useSphere = false;
 
     public Vector2 hitboxSize = Vector3.one;
-
+    public CharacterAttack characterAttack;
     public float radius = 0.5f;
     public GameObject hitboxPrefab;
     public Transform hitBoxSpawnLocation;// where the hit box spawns
@@ -82,6 +82,7 @@ public class Hitbox : MonoBehaviour
     }
     public void Start()
     {
+        characterAttack = GetComponent<CharacterAttack>();
         lightAttackDamage = Data.lightAttackDamage;
         lightAttackPosY = Data.lightAttackPosX ;
         lightAttackPosX = Data.lightAttackPosY;
@@ -151,7 +152,8 @@ public class Hitbox : MonoBehaviour
             if (activeHitboxFrames > frameCount) // After hitbox duration, destroy hitbox and reset frame count
             {
                 Debug.Log("Frames per second: " + frameCount + "\n" + "totalTimer: " + activeHitboxFrames);
-                DestroyHitbox(currentHitBox);
+                if(!characterAttack.isBlocking)
+                    DestroyHitbox(currentHitBox);
                 activeHitboxFrames = 0;
                 frameCount = 0;
                 isAttacking = false;

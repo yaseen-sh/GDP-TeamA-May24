@@ -33,14 +33,14 @@ public class CharacterAttack : MonoBehaviour
     //blocking
     public bool isBlocking = false;
     public GameObject hurtBox;
-
+    public PlayerInput playerInput;
     private void Awake()
     {
         characterState = GetComponent<CharacterStateMachine>();
     }
     void Start()
     {
-       
+       playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterManager>();
 
         hitBoxRenderer = GetComponent<SpriteRenderer>();
@@ -99,10 +99,15 @@ public class CharacterAttack : MonoBehaviour
             hurtBox.SetActive(false);
             attackID = 4;
             StartCoroutine(StartUp(0f, attackID));
+            //characterState.StartCo((float)context.duration);
+            //create timer to disable and re enable input
             isBlocking = true;
         }
         if(context.canceled)
         {
+            Debug.Log("not blocking");
+            characterState.SwitchState(characterState.IdleState);
+           
             isBlocking = false;
             hurtBox.SetActive(true);
         }
