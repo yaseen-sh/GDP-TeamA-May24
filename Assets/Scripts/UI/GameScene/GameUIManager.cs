@@ -132,10 +132,26 @@ public class GameUIManager : MonoBehaviour
         fighter2IntroText.text = "";
         vs.text = "";
         // Play the intro voicelines from each character - to-do
-        GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart" + Random.Range(1, 3).ToString()];
+        int rand1 = Random.Range(1, 3);
+        if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("roundstart" + rand1.ToString())) 
+        {
+            GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart" + rand1.ToString()];
+        }
+        else
+        {
+            GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart1"];
+        }
         GameManager.player1Line.Play();
         yield return new WaitForSeconds(3f);
-        GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart" + Random.Range(1, 3).ToString()];
+        int rand2 = Random.Range(1, 3);
+        if (GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines.ContainsKey("roundstart" + rand2.ToString()))
+        {
+            GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart" + rand2.ToString()];
+        }
+        else
+        {
+            GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart1"];
+        }
         GameManager.player2Line.Play();
         yield return new WaitForSeconds(3f);
         StartCoroutine(showRoundText());

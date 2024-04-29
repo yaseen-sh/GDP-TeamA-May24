@@ -74,10 +74,13 @@ public class GameManager : MonoBehaviour
     public static AudioSource player1Line;
     public static AudioSource player2Line;
 
+    public GameObject battleMenu;
+
     private void Start()
     {
         player1Line = GameObject.Find("CurrentP1VoiceLine").GetComponent<AudioSource>();
         player2Line = GameObject.Find("CurrentP2VoiceLine").GetComponent<AudioSource>();
+        battleMenu.SetActive(false);
         Application.targetFrameRate = 60;
     }
     void Awake()
@@ -379,6 +382,7 @@ public class GameManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene("TitleScreen");
+        battleMenu.SetActive(true);
+        //SceneManager.LoadScene("TitleScreen");
     }
 }
