@@ -8,11 +8,17 @@ public class Damaged : CharacterBaseState
     Hitbox hitbox;
 
     Animations anime;
+    private AudioSource damageLine;
     public override void EnterState(CharacterStateMachine state)
     {
         movement = state.character.GetComponent<CharacterMovement>();
 
         hitbox = state.character.GetComponent<Hitbox>();
+
+        damageLine = state.character.GetComponentInChildren<AudioSource>();
+
+        damageLine.clip = hitbox.voiceLines["damage" + Random.Range(1, 3).ToString()];
+        damageLine.Play();
 
         anime = state.character.GetComponent<Animations>();
 

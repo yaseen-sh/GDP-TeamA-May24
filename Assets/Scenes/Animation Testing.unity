@@ -265,6 +265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Branson
       objectReference: {fileID: 0}
+    - target: {fileID: 4038168036799931648, guid: efaf966967c35a3438a80e5c84959baf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6456239981279994395, guid: efaf966967c35a3438a80e5c84959baf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.04
