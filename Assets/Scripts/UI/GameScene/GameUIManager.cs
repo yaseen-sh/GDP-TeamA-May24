@@ -127,13 +127,17 @@ public class GameUIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         anouncer2.Play();
         fighter2IntroText.text = CSSManager.player2FighterName;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         fighter1IntroText.text = "";
         fighter2IntroText.text = "";
         vs.text = "";
         // Play the intro voicelines from each character - to-do
-
-        yield return new WaitForSeconds(5f);
+        GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart" + Random.Range(1, 3).ToString()];
+        GameManager.player1Line.Play();
+        yield return new WaitForSeconds(3f);
+        GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart" + Random.Range(1, 3).ToString()];
+        GameManager.player2Line.Play();
+        yield return new WaitForSeconds(3f);
         StartCoroutine(showRoundText());
     }
 }

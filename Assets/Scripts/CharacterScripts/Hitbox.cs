@@ -71,7 +71,7 @@ public class Hitbox : MonoBehaviour
     public Vector3 blockBoxScale = new Vector3(0f, 0f);
 
 
-    
+    public Dictionary<string, AudioClip> voiceLines = new Dictionary<string, AudioClip>();
 
     public CharacterMovement movement;
     private void Awake()
@@ -125,6 +125,13 @@ public class Hitbox : MonoBehaviour
         {
             playerTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
             OpponentTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
+        }
+
+        int i = 0;
+        foreach(AudioClip clip in Data.voiceLines)
+        {
+            voiceLines.Add(Data.voiceLineNames[i], clip);
+            ++i;
         }
     }
     private void Update()

@@ -12,7 +12,8 @@ public class CharacterDataLoader : ScriptableObject
 {
     public string charName; // Name of Character
     public Sprite charImage; // Sprite of Character
-    public AudioClip[] VoiceLine; // Voice Line when Character is Selected
+    public AudioClip[] voiceLines; // Voice Lines
+    public string[] voiceLineNames;
     public int characterSpeed;
     public CharacterManager PlayerTag;
     public CharacterManager OpponentTag;
@@ -51,5 +52,4 @@ public class CharacterDataLoader : ScriptableObject
     public float blockPosX;
     public Vector3 blockBoxScale;
     public float blockRecoveryFrames;
-
 }

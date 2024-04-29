@@ -14,7 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charName: Nesterenko
   charImage: {fileID: 0}
-  VoiceLine: []
+  voiceLines:
+  - {fileID: 8300000, guid: 19ee9c233d2acf8489b8ce96a2888799, type: 3}
+  - {fileID: 8300000, guid: 7b49a34284024a3478cd1636a8e4eb63, type: 3}
+  - {fileID: 8300000, guid: 7036c057b493fb24ab40c92f77292b4b, type: 3}
+  - {fileID: 8300000, guid: 76e75eaa7c40f8f4aa4bb91dcf82341c, type: 3}
+  - {fileID: 8300000, guid: a74841493975ea24a9b4065b0a9cc39b, type: 3}
+  - {fileID: 8300000, guid: 0c645297e6bd68341bda95814810cc4d, type: 3}
+  - {fileID: 8300000, guid: 24d74463fd293f94db913333f2172e2c, type: 3}
+  - {fileID: 8300000, guid: 584d8d6b34ded8545bd80976fc4a105f, type: 3}
+  - {fileID: 8300000, guid: fe5fcb8f0e6f6934681a57b6bb564f18, type: 3}
+  - {fileID: 8300000, guid: 340a3096dc3258b45857aa5f6ae21902, type: 3}
+  - {fileID: 8300000, guid: 1f836c16427faac438597b8605a2d4ae, type: 3}
+  voiceLineNames:
+  - damage1
+  - damage2
+  - damage3
+  - lose1
+  - lose2
+  - lose3
+  - roundstart1
+  - roundstart2
+  - super1
+  - victory1
+  - victory2
   characterSpeed: 5
   PlayerTag: {fileID: 0}
   OpponentTag: {fileID: 0}

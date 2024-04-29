@@ -71,8 +71,13 @@ public class GameManager : MonoBehaviour
 
     public AudioSource KO;
 
+    public static AudioSource player1Line;
+    public static AudioSource player2Line;
+
     private void Start()
     {
+        player1Line = GameObject.Find("CurrentP1VoiceLine").GetComponent<AudioSource>();
+        player2Line = GameObject.Find("CurrentP2VoiceLine").GetComponent<AudioSource>();
         Application.targetFrameRate = 60;
     }
     void Awake()
@@ -253,6 +258,31 @@ public class GameManager : MonoBehaviour
                 }
                 if (player1Lives.Count == 0 && onlyOnce)
                 {
+                    if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("lose3"))
+                    {
+                        int randNum = Random.Range(1, 4);
+                        player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["lose" + randNum.ToString()];
+                    }
+                    else if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("lose2"))
+                    {
+                        int randNum = Random.Range(1, 3);
+                        player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["lose" + randNum.ToString()];
+                    }
+                    else
+                    {
+                        player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["lose1"]; //whatever lose line is
+                    }
+
+                    if (GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines.ContainsKey("victory2"))
+                    {
+                        int randNum = Random.Range(1, 3);
+                        player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["victory" + randNum.ToString()];
+                    }
+                    else
+                    {
+                        player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["victory1"]; //whatever win line is
+                    }
+
                     super1 = 0;
                     super2 = 0;
                     superBar1.value = 0;
@@ -262,6 +292,31 @@ public class GameManager : MonoBehaviour
                 }
                 else if (player2Lives.Count == 0 && onlyOnce)
                 {
+                    if (GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines.ContainsKey("lose3"))
+                    {
+                        int randNum = Random.Range(1, 4);
+                        player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["lose" + randNum.ToString()];
+                    }
+                    else if (GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines.ContainsKey("lose2"))
+                    {
+                        int randNum = Random.Range(1, 3);
+                        player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["lose" + randNum.ToString()];
+                    }
+                    else
+                    {
+                        player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["lose1"]; //whatever lose line is
+                    }
+
+                    if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("victory2"))
+                    {
+                        int randNum = Random.Range(1, 3);
+                        player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["victory" + randNum.ToString()];
+                    }
+                    else
+                    {
+                        player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["victory1"]; //whatever win line is
+                    }
+
                     super1 = 0;
                     super2 = 0;
                     superBar1.value = 0;
@@ -302,16 +357,28 @@ public class GameManager : MonoBehaviour
         KO.Play();
         player1Controls.enabled = false;
         player2Controls.enabled = false;
-
+        GameUIManager.stopTimer = true;
         player1Controls.DeactivateInput();
         player2Controls.DeactivateInput();
         yield return new WaitForSeconds(2f);
         winnerText.color = new Color(1f, 0, 1f, 1f);
         winnerText.text = playerWhoWon + " Is The Binary Champ!";
 
-        // Play the winner's Victory Line!
-        // Play the Looser's lost line!
-        yield return new WaitForSeconds(5f);
+        // Play the winner's Victory Line & the Looser's lost line!
+        if (playerWhoWon == CSSManager.player1FighterName)
+        {
+            player1Line.Play();
+            yield return new WaitForSeconds(3f);
+            player2Line.Play();
+        }
+        else if (playerWhoWon == CSSManager.player2FighterName)
+        {
+            player2Line.Play();
+            yield return new WaitForSeconds(3f);
+            player1Line.Play();
+        }
+
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("TitleScreen");
     }
 }

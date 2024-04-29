@@ -10,7 +10,6 @@ public class Damaged : CharacterBaseState
     Animations anime;
     public override void EnterState(CharacterStateMachine state)
     {
-
         movement = state.character.GetComponent<CharacterMovement>();
 
         hitbox = state.character.GetComponent<Hitbox>();
