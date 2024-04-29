@@ -32,6 +32,7 @@ public class CharacterAttack : MonoBehaviour
 
     //blocking
     public bool isBlocking = false;
+    public GameObject hurtBox;
 
     private void Awake()
     {
@@ -95,13 +96,15 @@ public class CharacterAttack : MonoBehaviour
     {
         if (context.performed) { 
             characterState.SwitchState(characterState.BlockingState);
+            hurtBox.SetActive(false);
             attackID = 4;
             StartCoroutine(StartUp(0f, attackID));
             isBlocking = true;
         }
-        else
+        if(context.canceled)
         {
             isBlocking = false;
+            hurtBox.SetActive(true);
         }
     }
 

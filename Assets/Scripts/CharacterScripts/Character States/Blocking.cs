@@ -21,6 +21,6 @@ public class Blocking : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+       // throw new System.NotImplementedException();
     }
 }

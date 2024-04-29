@@ -161,6 +161,7 @@ MonoBehaviour:
   superAttackHitboxScale: {x: 0, y: 0}
   blockPosY: 0
   blockPosX: 0
+  blockRecoveryFrames: 0
   blockBoxScale: {x: 0, y: 0, z: 0}
   movement: {fileID: 0}
 --- !u!114 &3330295074963464004
@@ -347,10 +348,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  isBlocking: 0
   actionName: Action
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
+  isBlocking: 0
+  hurtBox: {fileID: 4721342976139048492}
 --- !u!114 &6024589478923480192
 MonoBehaviour:
   m_ObjectHideFlags: 0
