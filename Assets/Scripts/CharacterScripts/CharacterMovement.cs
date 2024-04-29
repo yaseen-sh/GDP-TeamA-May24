@@ -75,6 +75,17 @@ public class CharacterMovement : MonoBehaviour
             {
                 isCrouching = false;
             }
+
+        if (context.ReadValue<Vector2>().y < 0)
+        {
+            isCrouching = true;
+            state.SwitchState(state.CrouchState);
+        }
+        else
+        {
+            isCrouching = false;
+        }
+
         //}
     }
 

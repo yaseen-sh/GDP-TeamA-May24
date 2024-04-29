@@ -13,7 +13,6 @@ public class CharacterAttack : MonoBehaviour
 {
    // public Rigidbody2D character;
     public LayerMask groundLayer; //ground layer so we know if we're above ground
-    public bool isBlocking = false;
     public string actionName = "Action";// action names
     
     private float frameCount; // counts duration of current attack
@@ -30,7 +29,10 @@ public class CharacterAttack : MonoBehaviour
     private SpriteRenderer hitBoxRenderer;
     private int attackID;
     //needed for stopping input
-   
+
+    //blocking
+    public bool isBlocking = false;
+
     private void Awake()
     {
         characterState = GetComponent<CharacterStateMachine>();
@@ -88,6 +90,21 @@ public class CharacterAttack : MonoBehaviour
             StartCoroutine(StartUp(hitbox.StartUpFrames, attackID));
         }
     }
+
+    public void Block(InputAction.CallbackContext context)
+    {
+        if (context.performed) { 
+            characterState.SwitchState(characterState.BlockingState);
+            attackID = 4;
+            StartCoroutine(StartUp(0f, attackID));
+            isBlocking = true;
+        }
+        else
+        {
+            isBlocking = false;
+        }
+    }
+
     IEnumerator StartUp(float frames, int ID )
     {
         yield return new WaitForSeconds(frames);

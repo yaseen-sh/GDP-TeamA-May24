@@ -68,6 +68,7 @@ public class Hitbox : MonoBehaviour
     //blocking
     public float blockPosY = 0;
     public float blockPosX = 0;
+    public float blockRecoveryFrames = 0;
     public Vector3 blockBoxScale = new Vector3(0f, 0f);
 
 
@@ -112,6 +113,7 @@ public class Hitbox : MonoBehaviour
         blockPosX = Data.blockPosX;
         blockPosY = Data.blockPosY;
         blockBoxScale = Data.blockBoxScale;
+        blockRecoveryFrames = Data.blockRecoveryFrames;
 
 
         //TODO
@@ -240,8 +242,20 @@ public class Hitbox : MonoBehaviour
                     hitboxPosY = heavyAttackPosY;
                 }
                 break;
+                //Block
             case 4:
-
+                scaleChange = blockBoxScale;
+                RecoveryFrames = blockRecoveryFrames;
+                if (movement.facingRight == true)
+                {
+                    hitboxPosX = blockPosX;
+                    hitboxPosY = blockPosY;
+                }
+                else
+                {
+                    hitboxPosX = -blockPosX;
+                    hitboxPosY = blockPosY;
+                }
                 break;
         }
        
