@@ -45,8 +45,7 @@ public class GameUIManager : MonoBehaviour
         anouncer1.clip = CSSManager.player1Intro;
         anouncer2.clip = CSSManager.player2Intro;
         StartCoroutine(FightIntro());
-        //StartCoroutine(showRoundText());
-        StartCoroutine(timerCountDown(10));
+        StartCoroutine(timerCountDown(12));
     }
     void Update()
     {
@@ -55,7 +54,7 @@ public class GameUIManager : MonoBehaviour
             timer = 99;
             StopAllCoroutines();
             StartCoroutine(showRoundText());
-            StartCoroutine(timerCountDown(6));
+            StartCoroutine(timerCountDown(3));
             roundNumber++;
             newRound = false;
         }
@@ -108,14 +107,6 @@ public class GameUIManager : MonoBehaviour
         if (timer <= -1)
         {
             GameManager.roundOver = true;
-        }
-    }
-
-    public void Pause(InputAction.CallbackContext context)
-    {
-        if (context.action.IsPressed())
-        {
-            SceneManager.LoadScene("TitleScreen");
         }
     }
     IEnumerator FightIntro()

@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject battleMenu;
 
-    float timer = 7;
+    float timer = 6;
     float resetTimer;
     bool enableControls = false;
 
@@ -145,7 +145,7 @@ public class GameManager : MonoBehaviour
             totalLives1 = player1Lives.Count;
             totalLives2 = player2Lives.Count;
 
-            StartCoroutine(DisableControls(10));
+            StartCoroutine(DisableControls(12));
         } 
         else
         {
@@ -422,6 +422,7 @@ public class GameManager : MonoBehaviour
         player2Controls.GetComponent<CharacterMovement>().enabled = false;
         health1 = maxhealth;
         health2 = maxhealth;
+        winnerText.text = "";
     }
 
     void StartTimer()
