@@ -82,7 +82,6 @@ public class CharacterManager : MonoBehaviour
         }
 
         //currentHealth -= damage;
-
         if (gameObject.CompareTag("Player 1"))
         {
             GameManager.health1 = currentHealth;

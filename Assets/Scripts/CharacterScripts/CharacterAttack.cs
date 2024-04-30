@@ -13,7 +13,6 @@ public class CharacterAttack : MonoBehaviour
 {
    // public Rigidbody2D character;
     public LayerMask groundLayer; //ground layer so we know if we're above ground
-    public bool isBlocking = false;
     public string actionName = "Action";// action names
     
     private float frameCount; // counts duration of current attack
@@ -30,15 +29,21 @@ public class CharacterAttack : MonoBehaviour
     private SpriteRenderer hitBoxRenderer;
     private int attackID;
     //needed for stopping input
-   
+
+    //blocking
+    public bool isBlocking = false;
+    public GameObject hurtBox;
+    private PlayerInput playerInput;
+    private CharacterMovement characterMovement;
     private void Awake()
     {
         characterState = GetComponent<CharacterStateMachine>();
     }
     void Start()
     {
-       
+       playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterManager>();
+        characterMovement = GetComponent<CharacterMovement>();
 
         hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
@@ -65,7 +70,7 @@ public class CharacterAttack : MonoBehaviour
             attackID = 1;
             StartCoroutine(StartUp(hitbox.StartUpFrames,attackID));
             
-                                  //Debug.Log("light punch");
+            //Debug.Log("light punch");
         }
     }
     public void AttackHeavy(InputAction.CallbackContext context)
@@ -90,6 +95,30 @@ public class CharacterAttack : MonoBehaviour
             StartCoroutine(StartUp(hitbox.StartUpFrames, attackID));
         }
     }
+
+    public void Block(InputAction.CallbackContext context)
+    {
+        if (context.performed) { 
+            characterState.SwitchState(characterState.BlockingState);
+            hurtBox.SetActive(false);
+            attackID = 4;
+            StartCoroutine(StartUp(0f, attackID));
+            //characterState.StartCo((float)context.duration);
+            //create timer to disable and re enable input
+            isBlocking = true;
+            characterMovement.isBlocking = true;
+        }
+        else //if(context.canceled)
+        {
+            Debug.Log("not blocking");
+            characterState.SwitchState(characterState.IdleState);
+           
+            isBlocking = false;
+            characterMovement.isBlocking = false;
+            hurtBox.SetActive(true);
+        }
+    }
+
     IEnumerator StartUp(float frames, int ID )
     {
         yield return new WaitForSeconds(frames);

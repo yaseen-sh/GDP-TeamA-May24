@@ -161,6 +161,7 @@ MonoBehaviour:
   superAttackHitboxScale: {x: 0, y: 0}
   blockPosY: 0
   blockPosX: 0
+  blockRecoveryFrames: 0
   blockBoxScale: {x: 0, y: 0, z: 0}
   movement: {fileID: 0}
 --- !u!114 &3330295074963464004
@@ -278,13 +279,13 @@ MonoBehaviour:
     m_ActionName: Player/AttackHeavy[/Keyboard/k]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 577742727862747637}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 520575334858600176}
+        m_TargetAssemblyTypeName: CharacterAttack, Assembly-CSharp
+        m_MethodName: Block
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -430,10 +431,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  isBlocking: 0
   actionName: Action
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
+  isBlocking: 0
+  hurtBox: {fileID: 4721342976139048492}
 --- !u!114 &6024589478923480192
 MonoBehaviour:
   m_ObjectHideFlags: 0

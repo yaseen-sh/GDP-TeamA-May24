@@ -12,7 +12,7 @@ public class Hitbox : MonoBehaviour
     public bool useSphere = false;
 
     public Vector2 hitboxSize = Vector3.one;
-
+    public CharacterAttack characterAttack;
     public float radius = 0.5f;
     public GameObject hitboxPrefab;
     public Transform hitBoxSpawnLocation;// where the hit box spawns
@@ -68,6 +68,7 @@ public class Hitbox : MonoBehaviour
     //blocking
     public float blockPosY = 0;
     public float blockPosX = 0;
+    public float blockRecoveryFrames = 0;
     public Vector3 blockBoxScale = new Vector3(0f, 0f);
 
 
@@ -81,6 +82,7 @@ public class Hitbox : MonoBehaviour
     }
     public void Start()
     {
+        characterAttack = GetComponent<CharacterAttack>();
         lightAttackDamage = Data.lightAttackDamage;
         lightAttackPosY = Data.lightAttackPosX ;
         lightAttackPosX = Data.lightAttackPosY;
@@ -112,6 +114,7 @@ public class Hitbox : MonoBehaviour
         blockPosX = Data.blockPosX;
         blockPosY = Data.blockPosY;
         blockBoxScale = Data.blockBoxScale;
+        blockRecoveryFrames = Data.blockRecoveryFrames;
 
 
         //TODO
@@ -149,7 +152,8 @@ public class Hitbox : MonoBehaviour
             if (activeHitboxFrames > frameCount) // After hitbox duration, destroy hitbox and reset frame count
             {
                 Debug.Log("Frames per second: " + frameCount + "\n" + "totalTimer: " + activeHitboxFrames);
-                DestroyHitbox(currentHitBox);
+                if(!characterAttack.isBlocking)
+                    DestroyHitbox(currentHitBox);
                 activeHitboxFrames = 0;
                 frameCount = 0;
                 isAttacking = false;
@@ -240,8 +244,20 @@ public class Hitbox : MonoBehaviour
                     hitboxPosY = heavyAttackPosY;
                 }
                 break;
+                //Block
             case 4:
-
+                scaleChange = blockBoxScale;
+                RecoveryFrames = blockRecoveryFrames;
+                if (movement.facingRight == true)
+                {
+                    hitboxPosX = blockPosX;
+                    hitboxPosY = blockPosY;
+                }
+                else
+                {
+                    hitboxPosX = -blockPosX;
+                    hitboxPosY = blockPosY;
+                }
                 break;
         }
        
