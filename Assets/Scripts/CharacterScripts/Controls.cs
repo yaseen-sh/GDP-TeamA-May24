@@ -80,6 +80,33 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Title"",
+                    ""type"": ""Button"",
+                    ""id"": ""4943654c-e29a-46b1-a31a-9748e5bb7ac1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CharSelect"",
+                    ""type"": ""Button"",
+                    ""id"": ""fab4f94e-b83b-42d6-ab11-5a41009bec35"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rematch"",
+                    ""type"": ""Button"",
+                    ""id"": ""af613085-a23a-43ad-8ec7-d501856547e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=2)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -313,6 +340,39 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Super"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""392669ef-9e9b-4e9c-8678-a2401a776d19"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Title"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3369e2d-f9cc-4e4b-9171-4496ebba3765"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CharSelect"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4333f7e-60aa-4449-95aa-eeea8de7b2a7"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rematch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -539,6 +599,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Player_AttackHeavy = m_Player.FindAction("AttackHeavy", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_Super = m_Player.FindAction("Super", throwIfNotFound: true);
+        m_Player_Title = m_Player.FindAction("Title", throwIfNotFound: true);
+        m_Player_CharSelect = m_Player.FindAction("CharSelect", throwIfNotFound: true);
+        m_Player_Rematch = m_Player.FindAction("Rematch", throwIfNotFound: true);
         // Player1
         m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
         m_Player1_Movement = m_Player1.FindAction("Movement", throwIfNotFound: true);
@@ -611,6 +674,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_AttackHeavy;
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_Super;
+    private readonly InputAction m_Player_Title;
+    private readonly InputAction m_Player_CharSelect;
+    private readonly InputAction m_Player_Rematch;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -621,6 +687,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @AttackHeavy => m_Wrapper.m_Player_AttackHeavy;
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @Super => m_Wrapper.m_Player_Super;
+        public InputAction @Title => m_Wrapper.m_Player_Title;
+        public InputAction @CharSelect => m_Wrapper.m_Player_CharSelect;
+        public InputAction @Rematch => m_Wrapper.m_Player_Rematch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -648,6 +717,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Super.started += instance.OnSuper;
             @Super.performed += instance.OnSuper;
             @Super.canceled += instance.OnSuper;
+            @Title.started += instance.OnTitle;
+            @Title.performed += instance.OnTitle;
+            @Title.canceled += instance.OnTitle;
+            @CharSelect.started += instance.OnCharSelect;
+            @CharSelect.performed += instance.OnCharSelect;
+            @CharSelect.canceled += instance.OnCharSelect;
+            @Rematch.started += instance.OnRematch;
+            @Rematch.performed += instance.OnRematch;
+            @Rematch.canceled += instance.OnRematch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -670,6 +748,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Super.started -= instance.OnSuper;
             @Super.performed -= instance.OnSuper;
             @Super.canceled -= instance.OnSuper;
+            @Title.started -= instance.OnTitle;
+            @Title.performed -= instance.OnTitle;
+            @Title.canceled -= instance.OnTitle;
+            @CharSelect.started -= instance.OnCharSelect;
+            @CharSelect.performed -= instance.OnCharSelect;
+            @CharSelect.canceled -= instance.OnCharSelect;
+            @Rematch.started -= instance.OnRematch;
+            @Rematch.performed -= instance.OnRematch;
+            @Rematch.canceled -= instance.OnRematch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -775,6 +862,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnAttackHeavy(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnSuper(InputAction.CallbackContext context);
+        void OnTitle(InputAction.CallbackContext context);
+        void OnCharSelect(InputAction.CallbackContext context);
+        void OnRematch(InputAction.CallbackContext context);
     }
     public interface IPlayer1Actions
     {

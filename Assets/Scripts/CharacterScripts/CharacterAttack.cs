@@ -80,6 +80,8 @@ public class CharacterAttack : MonoBehaviour
     }
     public void AttackSuper(InputAction.CallbackContext context)
     {
+        if (hitbox.playerTag.CompareTag("Player 1") && !GameManager.super1Full) return;
+        else if (hitbox.playerTag.CompareTag("Player 2") && !GameManager.super2Full) return;
         if (context.action.IsPressed())
         {
             hitbox.isAttacking = true;

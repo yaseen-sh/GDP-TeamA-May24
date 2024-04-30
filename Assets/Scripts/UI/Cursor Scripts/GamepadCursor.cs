@@ -227,8 +227,7 @@ public class GamepadCursor : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 Debug.Log("Start Button Pressed");
-                if (/*GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected &&
-                    GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected*/ CSSManager.player1Selected && CSSManager.player2Selected)
+                if (CSSManager.player1Selected && CSSManager.player2Selected)
                 {
                     SceneManager.LoadScene("StageSelect");
                 }

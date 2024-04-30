@@ -16,8 +16,8 @@ public class AudioManager : MonoBehaviour
         else
         {
             DontDestroyOnLoad(transform.gameObject);
-            music = GetComponents<AudioSource>()[0];
-            buttonSfx = GetComponents<AudioSource>()[1];
+            music = GetComponents<AudioSource>()[Random.Range(0, 2)];
+            buttonSfx = GetComponents<AudioSource>()[2];
         }
     }
     public void PlayMusic()

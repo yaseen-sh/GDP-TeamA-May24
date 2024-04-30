@@ -23,8 +23,7 @@ public class CharacterMovement : MonoBehaviour
     public CharacterDataLoader Data;
     CharacterStateMachine state;
     public float moveValue;
-    public bool isStopMove = false;
-    //public GameManager managerOfGames;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,7 +35,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (!isCrouching)
         { 
-    rb.velocity = new Vector2(horizontal* speed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontal* speed, rb.velocity.y);
             if (moveValue > 0)
             {
                 state.SwitchState(state.FWalkState);
@@ -61,8 +60,6 @@ public class CharacterMovement : MonoBehaviour
    
     public void Movement(InputAction.CallbackContext context)
     {
-        //if (!GameManager.roundOver)
-        //{
             horizontal = context.ReadValue<Vector2>().x;
 
             //for crouching, is the player holding down s?
@@ -75,13 +72,10 @@ public class CharacterMovement : MonoBehaviour
             {
                 isCrouching = false;
             }
-        //}
     }
 
     public void Jump (InputAction.CallbackContext context)
     {
-        //if (!GameManager.roundOver)
-        //{
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
             //Debug.Log(isGrounded);
@@ -92,6 +86,5 @@ public class CharacterMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 state.SwitchState(state.JumpState);
             }
-        //}
     }
 }

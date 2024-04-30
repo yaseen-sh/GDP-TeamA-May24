@@ -18,21 +18,30 @@ public class SetupTitle : MonoBehaviour
     public Button credits;
     public Button quit;
 
+    public TextMeshProUGUI pressText;
+    private bool showText = false;
+
     private void Start()
     {
         CSSManager.player1Fighter = null;
         CSSManager.player1Selected = false;
         CSSManager.player2Fighter = null;
         CSSManager.player2Selected = false;
+        CSSManager.gameOver = false;
         GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (GameObject.FindGameObjectWithTag("CursorP1") == null && !showText)
+        {
+            StartCoroutine(PressAnyButton());
+        }
         // Only Player 1 can Select and hover over buttons on the Title Screen
         if (GameObject.FindGameObjectWithTag("CursorP1") != null && SceneManager.GetActiveScene().name == "TitleScreen")
         {
+            pressText.text = "";
             if (RectTransformUtility.RectangleContainsScreenPoint(pvpMode.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
             {
                 var buttonColor = pvpMode.GetComponent<Button>().colors;
@@ -68,4 +77,14 @@ public class SetupTitle : MonoBehaviour
             }
         }
     }
+    IEnumerator PressAnyButton()
+    {
+        pressText.text = "Press Any Button";
+        showText = true;
+        yield return new WaitForSeconds(1f);
+        pressText.text = "";
+        yield return new WaitForSeconds(1f);
+        showText = false;
+    }
 }
+

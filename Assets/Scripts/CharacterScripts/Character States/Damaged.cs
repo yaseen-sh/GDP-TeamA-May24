@@ -17,7 +17,14 @@ public class Damaged : CharacterBaseState
 
         damageLine = state.character.GetComponentInChildren<AudioSource>();
 
-        damageLine.clip = hitbox.voiceLines["damage" + Random.Range(1, 3).ToString()];
+        if (hitbox.voiceLines.ContainsKey("damage3"))
+        {
+            damageLine.clip = hitbox.voiceLines["damage" + Random.Range(1, 4).ToString()];
+        }
+        else
+        {
+            damageLine.clip = hitbox.voiceLines["damage" + Random.Range(1, 3).ToString()];
+        }
         damageLine.Play();
 
         anime = state.character.GetComponent<Animations>();

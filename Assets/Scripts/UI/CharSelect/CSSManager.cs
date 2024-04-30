@@ -27,6 +27,8 @@ public class CSSManager : MonoBehaviour
     public static Sprite stage;
     public static AudioClip stageTheme;
 
+    public static bool gameOver = false;
+
     public void Start()
     {
         /*

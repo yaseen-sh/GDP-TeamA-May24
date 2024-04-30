@@ -35,6 +35,7 @@ public class CharacterStateMachine : MonoBehaviour
     public Wakeup WakeupState = new Wakeup();
     public Dead DeadState = new Dead();
     public Super SuperState = new Super();
+    public Knockdown knockdownState = new Knockdown();
 
     public float stateTimer = 0f;
     public Animations anime;

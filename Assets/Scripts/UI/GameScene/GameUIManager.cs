@@ -131,7 +131,7 @@ public class GameUIManager : MonoBehaviour
         fighter1IntroText.text = "";
         fighter2IntroText.text = "";
         vs.text = "";
-        // Play the intro voicelines from each character - to-do
+        // Play the intro voicelines from each character 
         int rand1 = Random.Range(1, 3);
         if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("roundstart" + rand1.ToString())) 
         {

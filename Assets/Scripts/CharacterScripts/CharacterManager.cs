@@ -86,18 +86,34 @@ public class CharacterManager : MonoBehaviour
         if (gameObject.CompareTag("Player 1"))
         {
             GameManager.health1 = currentHealth;
-            GameManager.super2 += 100;
+            if(!GameManager.super2Full && !GameManager.super2Used) 
+                GameManager.super2 += 100;
         }
         else if (gameObject.CompareTag("Player 2"))
         {
             GameManager.health2 = currentHealth;
-            GameManager.super1 += 100;
+            if (!GameManager.super1Full && !GameManager.super1Used)
+                GameManager.super1 += 100;
         }
+
         if (currentHealth <= 0)
         {
             GameManager.roundOver = true;
             roundStarted = true;
-            state.SwitchState(state.DeadState);
+            if (gameObject.CompareTag("Player 1"))
+            {
+                if (GameManager.totalLives1 == 1)
+                    state.SwitchState(state.DeadState);
+                else
+                    state.SwitchState(state.knockdownState);
+            }
+            if (gameObject.CompareTag("Player 2"))
+            {
+                if (GameManager.totalLives2 == 1)
+                    state.SwitchState(state.DeadState);
+                else
+                    state.SwitchState(state.knockdownState);
+            }
         }
     }
     public float GetPlayerSuper()

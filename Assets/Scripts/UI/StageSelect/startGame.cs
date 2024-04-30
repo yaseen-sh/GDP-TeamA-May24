@@ -64,7 +64,10 @@ public class startGame : MonoBehaviour
         if (GameObject.Find("AudioManager") != null)
         {
             GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusic();
-            Destroy(GameObject.Find("AudioManager"));
+        }
+        else if (GameObject.Find("AudioManager2") != null)
+        {
+            GameObject.Find("AudioManager2").GetComponent<AudioManager>().StopMusic();
         }
         SceneManager.LoadScene("BrawlScene");
     }

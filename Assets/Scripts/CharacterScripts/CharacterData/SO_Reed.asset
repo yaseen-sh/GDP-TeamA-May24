@@ -20,8 +20,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1f15be426a70150429bf951efb800827, type: 3}
   - {fileID: 8300000, guid: fe354741e13934344b78d3e7abd906c6, type: 3}
   - {fileID: 8300000, guid: 51640e2a22bc44b45ac117bc151a5254, type: 3}
+  - {fileID: 8300000, guid: ac47190e5b40d6846b922f6d4a66335a, type: 3}
   - {fileID: 8300000, guid: db2cd85c5f48df84f9b4d0d39d8795bd, type: 3}
-  - {fileID: 8300000, guid: 49f9f448c6eb0184d9dd4b9d069a02de, type: 3}
   - {fileID: 8300000, guid: 072dc404cfe440e43add5821312607b6, type: 3}
   - {fileID: 8300000, guid: 676416a3918ab0749bc9d3b15099e64e, type: 3}
   voiceLineNames:
@@ -31,9 +31,9 @@ MonoBehaviour:
   - lose2
   - roundstart1
   - super1
+  - Super2
   - victory1
   - victory2
-  - victory3
   characterSpeed: 5
   PlayerTag: {fileID: 0}
   OpponentTag: {fileID: 0}
