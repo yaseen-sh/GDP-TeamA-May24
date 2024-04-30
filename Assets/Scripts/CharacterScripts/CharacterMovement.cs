@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
     public bool isGrounded = true;
     public bool isJumping = false;
     public bool isCrouching = false;
+    public bool isBlocking = false;
     public bool facingRight;
 
     Transform playerRotation; //Variable to control player's rotation
@@ -34,7 +35,7 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        if (!isCrouching)
+        if (!isCrouching && !isBlocking)
         { 
     rb.velocity = new Vector2(horizontal* speed, rb.velocity.y);
             if (moveValue > 0)
@@ -65,6 +66,8 @@ public class CharacterMovement : MonoBehaviour
         //{
             horizontal = context.ReadValue<Vector2>().x;
 
+        if (!isBlocking)
+        {
             //for crouching, is the player holding down s?
             if (context.ReadValue<Vector2>().y < 0)
             {
@@ -76,16 +79,16 @@ public class CharacterMovement : MonoBehaviour
                 isCrouching = false;
             }
 
-        if (context.ReadValue<Vector2>().y < 0)
-        {
-            isCrouching = true;
-            state.SwitchState(state.CrouchState);
+            if (context.ReadValue<Vector2>().y < 0)
+            {
+                isCrouching = true;
+                state.SwitchState(state.CrouchState);
+            }
+            else
+            {
+                isCrouching = false;
+            }
         }
-        else
-        {
-            isCrouching = false;
-        }
-
         //}
     }
 
