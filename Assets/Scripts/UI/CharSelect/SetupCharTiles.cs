@@ -61,7 +61,11 @@ public class SetupCharTiles : MonoBehaviour
         {
             Display(fighter);
         }
-
+        CSSManager.player1Fighter = null;
+        CSSManager.player1Selected = false;
+        CSSManager.player2Fighter = null;
+        CSSManager.player2Selected = false;
+        CSSManager.gameOver = false;
         if (GameObject.Find("AudioManager") != null)
         {
             GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();

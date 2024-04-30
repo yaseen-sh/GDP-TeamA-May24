@@ -322,7 +322,7 @@ public class GameManager : MonoBehaviour
                     super2 = 0;
                     superBar1.value = 0;
                     superBar2.value = 0;
-                    StartCoroutine(EndGame(CSSManager.player2FighterName));
+                    StartCoroutine(EndGame(CSSManager.player2FighterName + "2"));
                     onlyOnce = false;
                 }
                 else if (player2Lives.Count == 0 && onlyOnce)
@@ -356,7 +356,7 @@ public class GameManager : MonoBehaviour
                     super2 = 0;
                     superBar1.value = 0;
                     superBar2.value = 0;
-                    StartCoroutine(EndGame(CSSManager.player1FighterName));
+                    StartCoroutine(EndGame(CSSManager.player1FighterName + "1"));
                     onlyOnce = false;
                 }
                 else
@@ -400,13 +400,13 @@ public class GameManager : MonoBehaviour
         winnerText.text = playerWhoWon + " Is The Binary Champ!";
 
         // Play the winner's Victory Line & the Looser's lost line!
-        if (playerWhoWon == CSSManager.player1FighterName)
+        if (playerWhoWon == CSSManager.player1FighterName + "1")
         {
             player1Line.Play();
             yield return new WaitForSeconds(3f);
             player2Line.Play();
         }
-        else if (playerWhoWon == CSSManager.player2FighterName)
+        else if (playerWhoWon == CSSManager.player2FighterName + "2")
         {
             player2Line.Play();
             yield return new WaitForSeconds(3f);

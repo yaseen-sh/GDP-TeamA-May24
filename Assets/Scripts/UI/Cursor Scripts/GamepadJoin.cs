@@ -166,6 +166,23 @@ public class GamepadJoin : MonoBehaviour
                 }
             }
         }
+        else if (SceneManager.GetActiveScene().name == "Controls")
+        {
+            if (numberOfActivePlayers != 2)
+            {
+
+                // *** Note this utilizes the NAME of the cursor prefabs to associate the player/player # ***
+                GameObject playerCursor = Resources.Load<GameObject>($"Cursors/CursorP{playerNumberToAdd}");
+
+                currentCanvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+                if (!playerCursor.activeInHierarchy)
+                {
+                    PlayerInput theCursor = PlayerInput.Instantiate(playerCursor, -1, controlScheme, -1, device);
+                    theCursor.transform.parent = currentCanvas.transform;
+                    theCursor.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+            }
+        }
     }
     IEnumerator ShowControllerText()
     {

@@ -16,6 +16,7 @@ public class SetupTitle : MonoBehaviour
     public Button pvpMode;
     public Button story;
     public Button credits;
+    public Button controls;
     public Button quit;
 
     public TextMeshProUGUI pressText;
@@ -60,6 +61,12 @@ public class SetupTitle : MonoBehaviour
                 buttonColor.normalColor = new Color(0, 0, 1, .2f);
                 credits.GetComponent<Button>().colors = buttonColor;
             }
+            else if (RectTransformUtility.RectangleContainsScreenPoint(controls.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+            {
+                var buttonColor = controls.GetComponent<Button>().colors;
+                buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                controls.GetComponent<Button>().colors = buttonColor;
+            }
             else if (RectTransformUtility.RectangleContainsScreenPoint(quit.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
             {
                 var buttonColor = quit.GetComponent<Button>().colors;
@@ -73,6 +80,7 @@ public class SetupTitle : MonoBehaviour
                 pvpMode.GetComponent<Button>().colors = defaultColor;
                 story.GetComponent<Button>().colors = defaultColor;
                 credits.GetComponent<Button>().colors = defaultColor;
+                controls.GetComponent<Button>().colors = defaultColor;
                 quit.GetComponent<Button>().colors = defaultColor;
             }
         }
