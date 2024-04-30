@@ -111,6 +111,7 @@ public class CharacterAttack : MonoBehaviour
         else //if(context.canceled)
         {
             Debug.Log("not blocking");
+
             characterState.SwitchState(characterState.IdleState);
            
             isBlocking = false;

@@ -75,4 +75,8 @@ public class Animations : MonoBehaviour
     {
         anime.Play("Super");
     }
+    public void Projectile()
+    {
+        anime.Play("Projectile");
+    }
 }

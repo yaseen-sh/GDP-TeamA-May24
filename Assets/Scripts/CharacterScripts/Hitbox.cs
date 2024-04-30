@@ -71,7 +71,7 @@ public class Hitbox : MonoBehaviour
     public float blockRecoveryFrames = 0;
     public Vector3 blockBoxScale = new Vector3(0f, 0f);
 
-
+    public Animations superSprite;
     public Dictionary<string, AudioClip> voiceLines = new Dictionary<string, AudioClip>();
 
     public CharacterMovement movement;
@@ -271,6 +271,10 @@ public class Hitbox : MonoBehaviour
             currentHitBox.transform.parent = hitBoxChild.transform;
             currentHitBox.SetActive(true);
             hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
+            if(attackType == 4)
+            {
+                superSprite.Projectile();
+            }
             //hitBoxRenderer.enabled = true;
         }
       
