@@ -34,6 +34,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Credits");
         GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
+    }
     public void Story()
     {
         SceneManager.LoadScene("Story");
