@@ -309,6 +309,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2aefd8fe-972c-4127-9510-10d4db8f924d
     m_ActionName: Player/Super
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7734420478384617324, guid: c78025e566b6799499728b728565df86, type: 3}
+        m_TargetAssemblyTypeName: BattleMenu, Assembly-CSharp
+        m_MethodName: ReturnToTitle
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4943654c-e29a-46b1-a31a-9748e5bb7ac1
+    m_ActionName: Player/Title[/XInputControllerWindows/leftTrigger,/XInputControllerWindows1/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7734420478384617324, guid: c78025e566b6799499728b728565df86, type: 3}
+        m_TargetAssemblyTypeName: BattleMenu, Assembly-CSharp
+        m_MethodName: ReturnToCharSelect
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fab4f94e-b83b-42d6-ab11-5a41009bec35
+    m_ActionName: Player/CharSelect[/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7734420478384617324, guid: c78025e566b6799499728b728565df86, type: 3}
+        m_TargetAssemblyTypeName: BattleMenu, Assembly-CSharp
+        m_MethodName: Rematch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: af613085-a23a-43ad-8ec7-d501856547e5
+    m_ActionName: Player/Rematch[/XInputControllerWindows/select,/XInputControllerWindows1/select]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Controller
   m_DefaultActionMap: Player
@@ -341,7 +389,6 @@ MonoBehaviour:
   attack: {fileID: 520575334858600176}
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
   moveValue: 0
-  isStopMove: 0
 --- !u!50 &6005894754886322277
 Rigidbody2D:
   serializedVersion: 4

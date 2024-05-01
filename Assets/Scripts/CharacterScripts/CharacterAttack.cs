@@ -33,7 +33,8 @@ public class CharacterAttack : MonoBehaviour
     //blocking
     public bool isBlocking = false;
     public GameObject hurtBox;
-    public PlayerInput playerInput;
+    private PlayerInput playerInput;
+    private CharacterMovement characterMovement;
     private void Awake()
     {
         characterState = GetComponent<CharacterStateMachine>();
@@ -42,6 +43,7 @@ public class CharacterAttack : MonoBehaviour
     {
        playerInput = GetComponent<PlayerInput>();
         controller = GetComponent<CharacterManager>();
+        characterMovement = GetComponent<CharacterMovement>();
 
         hitBoxRenderer = GetComponent<SpriteRenderer>();
         if (hitBoxRenderer == null)
@@ -68,7 +70,7 @@ public class CharacterAttack : MonoBehaviour
             attackID = 1;
             StartCoroutine(StartUp(hitbox.StartUpFrames,attackID));
             
-                                  //Debug.Log("light punch");
+            //Debug.Log("light punch");
         }
     }
     public void AttackHeavy(InputAction.CallbackContext context)
@@ -83,6 +85,8 @@ public class CharacterAttack : MonoBehaviour
     }
     public void AttackSuper(InputAction.CallbackContext context)
     {
+        if (hitbox.playerTag.CompareTag("Player 1") && !GameManager.super1Full) return;
+        else if (hitbox.playerTag.CompareTag("Player 2") && !GameManager.super2Full) return;
         if (context.action.IsPressed())
         {
             hitbox.isAttacking = true;
@@ -102,14 +106,16 @@ public class CharacterAttack : MonoBehaviour
             //characterState.StartCo((float)context.duration);
             //create timer to disable and re enable input
             isBlocking = true;
+            characterMovement.isBlocking = true;
         }
-        if(context.canceled)
+        else //if(context.canceled)
         {
             Debug.Log("not blocking");
 
             characterState.SwitchState(characterState.IdleState);
            
             isBlocking = false;
+            characterMovement.isBlocking = false;
             hurtBox.SetActive(true);
         }
     }

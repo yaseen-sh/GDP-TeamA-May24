@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Knockdown : CharacterBaseState
 {
+    Animations anime;
+    CharacterMovement movement;
+    Hitbox hitbox;
     public override void EnterState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        hitbox = state.character.GetComponent<Hitbox>();
+        movement = state.character.GetComponent<CharacterMovement>();
+        anime = state.character.GetComponent<Animations>();
+        anime.Knockdown();
     }
 
     public override void OnCollisionEnter(CharacterStateMachine state)
@@ -16,6 +22,10 @@ public class Knockdown : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        throw new System.NotImplementedException();
+        if (state.stateTimer >= hitbox.totalFrameCount)
+        {
+            state.stateTimer = 0;
+            state.SwitchState(state.IdleState);
+        }
     }
 }

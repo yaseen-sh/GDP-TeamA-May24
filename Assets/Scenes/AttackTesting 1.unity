@@ -1163,6 +1163,7 @@ MonoBehaviour:
   player2Icon: {fileID: 0}
   player2Lives: []
   KO: {fileID: 0}
+  battleMenu: {fileID: 0}
 --- !u!4 &1600685875
 Transform:
   m_ObjectHideFlags: 0

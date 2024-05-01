@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BrawlScene.unity
     guid: 20c78a7e95c463b4ab42894479a7af0c
+  - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: f33ae8a13a454804db10965f98af0e90
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6a20dfd1b09417744be1b50b88ecd232, type: 2}

@@ -45,8 +45,7 @@ public class GameUIManager : MonoBehaviour
         anouncer1.clip = CSSManager.player1Intro;
         anouncer2.clip = CSSManager.player2Intro;
         StartCoroutine(FightIntro());
-        //StartCoroutine(showRoundText());
-        StartCoroutine(timerCountDown(10));
+        StartCoroutine(timerCountDown(12));
     }
     void Update()
     {
@@ -55,7 +54,7 @@ public class GameUIManager : MonoBehaviour
             timer = 99;
             StopAllCoroutines();
             StartCoroutine(showRoundText());
-            StartCoroutine(timerCountDown(6));
+            StartCoroutine(timerCountDown(3));
             roundNumber++;
             newRound = false;
         }
@@ -110,14 +109,6 @@ public class GameUIManager : MonoBehaviour
             GameManager.roundOver = true;
         }
     }
-
-    public void Pause(InputAction.CallbackContext context)
-    {
-        if (context.action.IsPressed())
-        {
-            SceneManager.LoadScene("TitleScreen");
-        }
-    }
     IEnumerator FightIntro()
     {
         anouncer1.Play();
@@ -131,11 +122,27 @@ public class GameUIManager : MonoBehaviour
         fighter1IntroText.text = "";
         fighter2IntroText.text = "";
         vs.text = "";
-        // Play the intro voicelines from each character - to-do
-        GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart" + Random.Range(1, 3).ToString()];
+        // Play the intro voicelines from each character 
+        int rand1 = Random.Range(1, 3);
+        if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("roundstart" + rand1.ToString())) 
+        {
+            GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart" + rand1.ToString()];
+        }
+        else
+        {
+            GameManager.player1Line.clip = GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines["roundstart1"];
+        }
         GameManager.player1Line.Play();
         yield return new WaitForSeconds(3f);
-        GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart" + Random.Range(1, 3).ToString()];
+        int rand2 = Random.Range(1, 3);
+        if (GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines.ContainsKey("roundstart" + rand2.ToString()))
+        {
+            GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart" + rand2.ToString()];
+        }
+        else
+        {
+            GameManager.player2Line.clip = GameObject.FindGameObjectWithTag("Player 2").GetComponent<Hitbox>().voiceLines["roundstart1"];
+        }
         GameManager.player2Line.Play();
         yield return new WaitForSeconds(3f);
         StartCoroutine(showRoundText());

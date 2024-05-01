@@ -66,24 +66,35 @@ public class GameManager : MonoBehaviour
     private int roundNumber;
     bool onlyOnce = true;
 
-    bool super1Filled = false;
-    bool super2Filled = false;
+    public static bool super1Full = false;
+    public static bool super2Full = false;
+    public static bool super1Used = false;
+    public static bool super2Used = false;
 
     public AudioSource KO;
 
     public static AudioSource player1Line;
     public static AudioSource player2Line;
 
+    public GameObject battleMenu;
+
+    float timer = 6;
+    float resetTimer;
+    bool enableControls = false;
+
     private void Start()
     {
         player1Line = GameObject.Find("CurrentP1VoiceLine").GetComponent<AudioSource>();
         player2Line = GameObject.Find("CurrentP2VoiceLine").GetComponent<AudioSource>();
+        battleMenu.SetActive(false);
         Application.targetFrameRate = 60;
+        resetTimer = timer;
     }
     void Awake()
     {
         if (GamepadJoin.playerControllers.ContainsKey(1))
         {
+            CSSManager.gameOver = false;
             player1 = CSSManager.player1Object;
             player1Controls = PlayerInput.Instantiate(player1, 1, "Controller", -1, GamepadJoin.playerControllers[1]);
             player1Controls.transform.position = player1Pos.position;
@@ -134,7 +145,7 @@ public class GameManager : MonoBehaviour
             totalLives1 = player1Lives.Count;
             totalLives2 = player2Lives.Count;
 
-            StartCoroutine(DisableControls(10));
+            StartCoroutine(DisableControls(12));
         } 
         else
         {
@@ -148,6 +159,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!enableControls)
+        {
+            player1Controls.DeactivateInput();
+            player2Controls.DeactivateInput();
+            StartTimer();
+        }
+        else if (roundNumber != 1)
+        {
+            player1Controls.ActivateInput();
+            player2Controls.ActivateInput();
+        }
+
         if (player1Controls.transform.position.x < player2Controls.transform.position.x)
         {
             player1Controls.GetComponent<CharacterMovement>().facingRight = true;
@@ -165,32 +188,46 @@ public class GameManager : MonoBehaviour
             fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
             fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
 
-            if (superBar1.value != superBar1.maxValue && !GameUIManager.stopTimer)
+            if (!super1Used)
             {
-                super1 += .5f;
+                if (superBar1.value != superBar1.maxValue && !GameUIManager.stopTimer)
+                {
+                    super1 += .5f;
+                    superBar1.value = super1;
+                }
+                else
+                {
+                    if (!GameUIManager.stopTimer)
+                    {
+                        superFill1.color = superColor.Evaluate(Time.deltaTime);
+                        super1Full = true;
+                    }
+                }
+            }
+            else
+            {
                 superBar1.value = super1;
             }
-            else
-            {
-                if (!GameUIManager.stopTimer)
-                {
-                    superFill1.color = superColor.Evaluate(Time.deltaTime);
-                    //super1Filled = true;
-                }
-            }
 
-            if (superBar2.value != superBar2.maxValue && !GameUIManager.stopTimer)
+            if (!super2Used)
             {
-                super2 += .5f;
-                superBar2.value = super2;
+                if (superBar2.value != superBar2.maxValue && !GameUIManager.stopTimer)
+                {
+                    super2 += .5f;
+                    superBar2.value = super2;
+                }
+                else
+                {
+                    if (!GameUIManager.stopTimer)
+                    {
+                        superFill2.color = superColor.Evaluate(Time.deltaTime);
+                        super2Full = true;
+                    }
+                }
             }
             else
             {
-                if (!GameUIManager.stopTimer)
-                {
-                    superFill2.color = superColor.Evaluate(Time.deltaTime);
-                // super2Filled = true;
-                }
+                superBar2.value = super2;
             }
 
             if (roundOver)
@@ -242,8 +279,6 @@ public class GameManager : MonoBehaviour
                     totalLives2 = player2Lives.Count;
                 }
 
-                health1 = maxhealth;
-                health2 = maxhealth;
                 roundOver = false;
                 ++roundNumber;
 
@@ -287,7 +322,7 @@ public class GameManager : MonoBehaviour
                     super2 = 0;
                     superBar1.value = 0;
                     superBar2.value = 0;
-                    StartCoroutine(EndGame(CSSManager.player2FighterName));
+                    StartCoroutine(EndGame(CSSManager.player2FighterName + "2"));
                     onlyOnce = false;
                 }
                 else if (player2Lives.Count == 0 && onlyOnce)
@@ -321,7 +356,7 @@ public class GameManager : MonoBehaviour
                     super2 = 0;
                     superBar1.value = 0;
                     superBar2.value = 0;
-                    StartCoroutine(EndGame(CSSManager.player1FighterName));
+                    StartCoroutine(EndGame(CSSManager.player1FighterName + "1"));
                     onlyOnce = false;
                 }
                 else
@@ -333,31 +368,31 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator WaitBetweenRounds()
     {
-        player1Controls.DeactivateInput();
-        player2Controls.DeactivateInput();
+        enableControls = false;
         GameUIManager.stopTimer = true;
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(3f);
         GameUIManager.newRound = true;
         winnerText.text = "";
+        health1 = maxhealth;
+        health2 = maxhealth;
         player1Controls.transform.position = player1Pos.position;
         player2Controls.transform.position = player2Pos.position;
-        player1Controls.ActivateInput();
-        player2Controls.ActivateInput();
     }
     IEnumerator DisableControls(float num)
     {
         player1Controls.DeactivateInput();
         player2Controls.DeactivateInput();
+        enableControls = false;
         yield return new WaitForSeconds(num);
         player1Controls.ActivateInput();
         player2Controls.ActivateInput();
+        enableControls = true;
     }
     IEnumerator EndGame(string playerWhoWon)
     {
         KO.Play();
-        player1Controls.enabled = false;
-        player2Controls.enabled = false;
         GameUIManager.stopTimer = true;
+        enableControls = false;
         player1Controls.DeactivateInput();
         player2Controls.DeactivateInput();
         yield return new WaitForSeconds(2f);
@@ -365,20 +400,39 @@ public class GameManager : MonoBehaviour
         winnerText.text = playerWhoWon + " Is The Binary Champ!";
 
         // Play the winner's Victory Line & the Looser's lost line!
-        if (playerWhoWon == CSSManager.player1FighterName)
+        if (playerWhoWon == CSSManager.player1FighterName + "1")
         {
             player1Line.Play();
             yield return new WaitForSeconds(3f);
             player2Line.Play();
         }
-        else if (playerWhoWon == CSSManager.player2FighterName)
+        else if (playerWhoWon == CSSManager.player2FighterName + "2")
         {
             player2Line.Play();
             yield return new WaitForSeconds(3f);
             player1Line.Play();
         }
 
-        yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene("TitleScreen");
+        yield return new WaitForSeconds(1f);
+        battleMenu.SetActive(true);
+        CSSManager.gameOver = true;
+        player1Controls.GetComponent<CharacterAttack>().enabled = false;
+        player1Controls.GetComponent<CharacterMovement>().enabled = false;
+        player2Controls.GetComponent<CharacterAttack>().enabled = false;
+        player2Controls.GetComponent<CharacterMovement>().enabled = false;
+        health1 = maxhealth;
+        health2 = maxhealth;
+        winnerText.text = "";
+    }
+
+    void StartTimer()
+    {
+        timer -= Time.deltaTime;
+        if (timer <= 0)
+        {
+            enableControls = true;
+            timer = resetTimer;
+            Debug.Log("timer end");
+        }
     }
 }

@@ -48,7 +48,7 @@ public class SetupCharTiles : MonoBehaviour
     public GameObject ready;
 
     // Intial Setup
-    void Start()
+    void Awake()
     {
         ready.SetActive(false);
         player1Name.text = "";
@@ -60,6 +60,15 @@ public class SetupCharTiles : MonoBehaviour
         foreach (CharTile fighter in fighters)
         {
             Display(fighter);
+        }
+        CSSManager.player1Fighter = null;
+        CSSManager.player1Selected = false;
+        CSSManager.player2Fighter = null;
+        CSSManager.player2Selected = false;
+        CSSManager.gameOver = false;
+        if (GameObject.Find("AudioManager") != null)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
         }
     }
     void Display(CharTile fighter)
