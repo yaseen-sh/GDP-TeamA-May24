@@ -65,6 +65,7 @@ public class CharacterAttack : MonoBehaviour
 
     public void AttackLight(InputAction.CallbackContext context)
     {
+        if (GameManager.roundOver || CSSManager.gameOver) return;
         if (context.action.IsPressed())
         {
             //Debug.Log("AttackLightCalled");
@@ -80,6 +81,7 @@ public class CharacterAttack : MonoBehaviour
     }
     public void AttackHeavy(InputAction.CallbackContext context)
     {
+        if (GameManager.roundOver || CSSManager.gameOver) return;
         if (context.action.IsPressed())
         {
             hitbox.isAttacking = true;            
@@ -90,6 +92,8 @@ public class CharacterAttack : MonoBehaviour
     }
     public void AttackSuper(InputAction.CallbackContext context)
     {
+        if (GameManager.roundOver || CSSManager.gameOver) return;
+
         if (hitbox.playerTag.CompareTag("Player 1") && !GameManager.super1Full) return;
         else if (hitbox.playerTag.CompareTag("Player 2") && !GameManager.super2Full) return;
         if (context.action.IsPressed())
@@ -103,6 +107,7 @@ public class CharacterAttack : MonoBehaviour
 
     public void Block(InputAction.CallbackContext context)
     {
+        if (GameManager.roundOver || CSSManager.gameOver) return;
         if (gameObject.CompareTag("Player 1"))
         {
             if (context.performed && GameManager.p1Blocks != 0)

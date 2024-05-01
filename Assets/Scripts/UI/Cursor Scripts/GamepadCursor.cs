@@ -44,7 +44,6 @@ public class GamepadCursor : MonoBehaviour
     {
         if (moving && !charSelected)
         {
-            Debug.Log(cursorSpeed);
             Vector3 newPos = new Vector3(cursorMovement.x, cursorMovement.y, 0f) * cursorSpeed;
             Vector3 temp = new Vector3(0, 0, 0);
             Vector3 worldSpace1 = Camera.main.ScreenToWorldPoint(temp);
