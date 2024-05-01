@@ -273,7 +273,22 @@ public class Hitbox : MonoBehaviour
             hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
             if(attackType == 4)
             {
-                superSprite.Projectile();
+
+                    if (CSSManager.player1FighterName == "Meldin Bectik")
+                    {
+
+                    }
+                     if (CSSManager.player1FighterName == "Mikhail Nesterenko")
+                    {
+
+                     }
+                    if (CSSManager.player1FighterName == "Bill Reed")
+                    {
+                    }
+                    if (CSSManager.player1FighterName == "Branson")
+                    { 
+                    }
+                        superSprite.Projectile();
             }
             //hitBoxRenderer.enabled = true;
         }
