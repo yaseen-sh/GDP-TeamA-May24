@@ -39,49 +39,146 @@ public class SetupTitle : MonoBehaviour
         {
             StartCoroutine(PressAnyButton());
         }
-        // Only Player 1 can Select and hover over buttons on the Title Screen
-        if (GameObject.FindGameObjectWithTag("CursorP1") != null && SceneManager.GetActiveScene().name == "TitleScreen")
+
+        if (GamepadJoin.numberOfActivePlayers == 1)
         {
-            pressText.text = "";
-            if (RectTransformUtility.RectangleContainsScreenPoint(pvpMode.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+            if (GameObject.FindGameObjectWithTag("CursorP1") != null && SceneManager.GetActiveScene().name == "TitleScreen")
             {
-                var buttonColor = pvpMode.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .2f);
-                pvpMode.GetComponent<Button>().colors = buttonColor;
+                pressText.text = "";
+                if (RectTransformUtility.RectangleContainsScreenPoint(pvpMode.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+                {
+                    var buttonColor = pvpMode.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    pvpMode.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = pvpMode.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    pvpMode.GetComponent<Button>().colors = buttonColor;
+                }
+
+                if (RectTransformUtility.RectangleContainsScreenPoint(story.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+                {
+                    var buttonColor = story.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    story.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = story.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    story.GetComponent<Button>().colors = buttonColor;
+                }
+                if (RectTransformUtility.RectangleContainsScreenPoint(credits.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+                {
+                    var buttonColor = credits.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    credits.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = credits.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    credits.GetComponent<Button>().colors = buttonColor;
+                }
+                if (RectTransformUtility.RectangleContainsScreenPoint(controls.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+                {
+                    var buttonColor = controls.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    controls.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = controls.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    controls.GetComponent<Button>().colors = buttonColor;
+                }
+                if (RectTransformUtility.RectangleContainsScreenPoint(quit.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+                {
+                    var buttonColor = quit.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    quit.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = quit.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    quit.GetComponent<Button>().colors = buttonColor;
+                }
             }
-            else if (RectTransformUtility.RectangleContainsScreenPoint(story.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
+        }
+        else
+        {
+            if (GameObject.FindGameObjectWithTag("CursorP1") != null && GameObject.FindGameObjectWithTag("CursorP2") != null && SceneManager.GetActiveScene().name == "TitleScreen")
             {
-                var buttonColor = story.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .2f);
-                story.GetComponent<Button>().colors = buttonColor;
-            }
-            else if (RectTransformUtility.RectangleContainsScreenPoint(credits.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
-            {
-                var buttonColor = credits.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .2f);
-                credits.GetComponent<Button>().colors = buttonColor;
-            }
-            else if (RectTransformUtility.RectangleContainsScreenPoint(controls.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
-            {
-                var buttonColor = controls.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .2f);
-                controls.GetComponent<Button>().colors = buttonColor;
-            }
-            else if (RectTransformUtility.RectangleContainsScreenPoint(quit.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position))
-            {
-                var buttonColor = quit.GetComponent<Button>().colors;
-                buttonColor.normalColor = new Color(0, 0, 1, .2f);
-                quit.GetComponent<Button>().colors = buttonColor;
-            }
-            else
-            {
-                var defaultColor = pvpMode.GetComponent<Button>().colors;
-                defaultColor.normalColor = new Color(0, 0, 0, 0);
-                pvpMode.GetComponent<Button>().colors = defaultColor;
-                story.GetComponent<Button>().colors = defaultColor;
-                credits.GetComponent<Button>().colors = defaultColor;
-                controls.GetComponent<Button>().colors = defaultColor;
-                quit.GetComponent<Button>().colors = defaultColor;
+                pressText.text = "";
+                if (RectTransformUtility.RectangleContainsScreenPoint(pvpMode.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position) ||
+                    RectTransformUtility.RectangleContainsScreenPoint(pvpMode.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                {
+                    var buttonColor = pvpMode.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    pvpMode.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = pvpMode.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    pvpMode.GetComponent<Button>().colors = buttonColor;
+                }
+
+                if (RectTransformUtility.RectangleContainsScreenPoint(story.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position) ||
+                    RectTransformUtility.RectangleContainsScreenPoint(story.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                {
+                    var buttonColor = story.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    story.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = story.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    story.GetComponent<Button>().colors = buttonColor;
+                }
+                if (RectTransformUtility.RectangleContainsScreenPoint(credits.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position) ||
+                    RectTransformUtility.RectangleContainsScreenPoint(credits.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                {
+                    var buttonColor = credits.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    credits.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = credits.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    credits.GetComponent<Button>().colors = buttonColor;
+                }
+                if (RectTransformUtility.RectangleContainsScreenPoint(controls.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position) ||
+                    RectTransformUtility.RectangleContainsScreenPoint(controls.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                {
+                    var buttonColor = controls.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    controls.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = controls.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    controls.GetComponent<Button>().colors = buttonColor;
+                }
+                if (RectTransformUtility.RectangleContainsScreenPoint(quit.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP1").transform.position) ||
+                    RectTransformUtility.RectangleContainsScreenPoint(quit.GetComponent<RectTransform>(), GameObject.FindGameObjectWithTag("CursorP2").transform.position))
+                {
+                    var buttonColor = quit.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 1, .2f);
+                    quit.GetComponent<Button>().colors = buttonColor;
+                }
+                else
+                {
+                    var buttonColor = quit.GetComponent<Button>().colors;
+                    buttonColor.normalColor = new Color(0, 0, 0, 0);
+                    quit.GetComponent<Button>().colors = buttonColor;
+                }
             }
         }
     }
