@@ -82,6 +82,12 @@ public class GameManager : MonoBehaviour
     float resetTimer;
     bool enableControls = false;
 
+    public TextMeshProUGUI block1Counter;
+    public TextMeshProUGUI block2Counter;
+
+    public static int p1Blocks = 3;
+    public static int p2Blocks = 3;
+
     private void Start()
     {
         player1Line = GameObject.Find("CurrentP1VoiceLine").GetComponent<AudioSource>();
@@ -145,6 +151,12 @@ public class GameManager : MonoBehaviour
             totalLives1 = player1Lives.Count;
             totalLives2 = player2Lives.Count;
 
+            p1Blocks = 3;
+            p2Blocks = 3;
+
+            block1Counter.text = p1Blocks.ToString();
+            block2Counter.text = p2Blocks.ToString();
+
             StartCoroutine(DisableControls(12));
         } 
         else
@@ -187,6 +199,9 @@ public class GameManager : MonoBehaviour
             healthBar2.value = health2;
             fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
             fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
+
+            block1Counter.text = p1Blocks.ToString();
+            block2Counter.text = p2Blocks.ToString();
 
             if (!super1Used)
             {
