@@ -266,10 +266,10 @@ public class Hitbox : MonoBehaviour
         if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
             Vector2 newPosition = new Vector2(0, 0);
-            if (attackType == 4)
+            if (attackType == 3)
             {
                 Debug.Log("Super Hitbox Called");
-                if (playerTag.gameObject.name == "Branson Boggia" || playerTag.gameObject.name == "Branson Boggia2")
+                if (playerTag.gameObject.name == "Branson Boggia(Clone)" || playerTag.gameObject.name == "Branson Boggia2(Clone)")
                 {
                     Debug.Log("Branson Super Logic");
                      newPosition = OpponentTag.transform.position + new Vector3(hitboxPosX,hitboxPosY);

@@ -55,8 +55,8 @@ MonoBehaviour:
   heavyAttackHitboxScale: {x: 0.5, y: 0.2}
   heavyAttackHitStun: 0
   superAttackDamage: 2
-  superAttackPosY: 1
-  superAttackPosX: 1
+  superAttackPosY: 0
+  superAttackPosX: 0
   superAttackFrameCount: 1
   superAttackStartUpFrames: 1
   superAttackRecoveryFrames: 1
