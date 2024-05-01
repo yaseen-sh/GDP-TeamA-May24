@@ -265,31 +265,26 @@ public class Hitbox : MonoBehaviour
 
         if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
         {
-            Vector2 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
+            Vector2 newPosition = new Vector2(0, 0);
+            if (attackType == 4)
+            {
+                Debug.Log("Super Hitbox Called");
+                if (playerTag.gameObject.name == "Branson Boggia" || playerTag.gameObject.name == "Branson Boggia2")
+                {
+                    Debug.Log("Branson Super Logic");
+                     newPosition = OpponentTag.transform.position + new Vector3(hitboxPosX,hitboxPosY);
+                }
+            }
+            else
+            {
+                 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
+            }
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;
             currentHitBox.transform.parent = hitBoxChild.transform;
             currentHitBox.SetActive(true);
             hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
-            if(attackType == 4)
-            {
-
-                    if (CSSManager.player1FighterName == "Meldin Bectik")
-                    {
-
-                    }
-                     if (CSSManager.player1FighterName == "Mikhail Nesterenko")
-                    {
-
-                     }
-                    if (CSSManager.player1FighterName == "Bill Reed")
-                    {
-                    }
-                    if (CSSManager.player1FighterName == "Branson")
-                    { 
-                    }
-                        superSprite.Projectile();
-            }
+            
             //hitBoxRenderer.enabled = true;
         }
       
