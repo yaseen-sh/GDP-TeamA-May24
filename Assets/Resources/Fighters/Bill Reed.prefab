@@ -438,7 +438,7 @@ MonoBehaviour:
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
   isBlocking: 0
-  hurtBox: {fileID: 0}
+  hurtBox: {fileID: 4721342976139048492}
 --- !u!114 &6024589478923480192
 MonoBehaviour:
   m_ObjectHideFlags: 0
