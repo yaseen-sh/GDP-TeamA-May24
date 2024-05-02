@@ -44,7 +44,6 @@ public class GamepadCursor : MonoBehaviour
     {
         if (moving && !charSelected)
         {
-            Debug.Log(cursorSpeed);
             Vector3 newPos = new Vector3(cursorMovement.x, cursorMovement.y, 0f) * cursorSpeed;
             Vector3 temp = new Vector3(0, 0, 0);
             Vector3 worldSpace1 = Camera.main.ScreenToWorldPoint(temp);
@@ -89,7 +88,7 @@ public class GamepadCursor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            if (SceneManager.GetActiveScene().name == "TitleScreen" && gameObject.CompareTag("CursorP1"))
+            if (SceneManager.GetActiveScene().name == "TitleScreen"/* && gameObject.CompareTag("CursorP1")*/)
             {
                 SetupTitle titleButtons = GameObject.Find("TitleButtons").GetComponent<SetupTitle>();
                 // Player V Player Button
@@ -133,53 +132,53 @@ public class GamepadCursor : MonoBehaviour
                     titleButtons.quit.GetComponent<Button>().onClick.Invoke();
                 }
             } 
-            else if (SceneManager.GetActiveScene().name == "Credits" && gameObject.CompareTag("CursorP1")) {
+            else if (SceneManager.GetActiveScene().name == "Credits" /*&& gameObject.CompareTag("CursorP1")*/) {
                 GameObject.Find("Credits").GetComponent<ScrollingText>().creditSpeedup = !GameObject.Find("Credits").GetComponent<ScrollingText>().creditSpeedup;
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
             }
-            else if (SceneManager.GetActiveScene().name == "Story" && gameObject.CompareTag("CursorP1"))
+            else if (SceneManager.GetActiveScene().name == "Story" /*&& gameObject.CompareTag("CursorP1")*/)
             {
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
             }
-            else if (SceneManager.GetActiveScene().name == "Controls" && gameObject.CompareTag("CursorP1"))
+            else if (SceneManager.GetActiveScene().name == "Controls" /*&& gameObject.CompareTag("CursorP1")*/)
             {
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
             }
             else if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
                 foreach (GameObject fighter in GameObject.FindGameObjectWithTag("CharGrid").GetComponent<SetupCharTiles>().allTiles)
                 {
                     if (RectTransformUtility.RectangleContainsScreenPoint(fighter.GetComponent<RectTransform>(), transform.position))
@@ -242,7 +241,7 @@ public class GamepadCursor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            if (gameObject.CompareTag("CursorP2")) return;
+            //if (gameObject.CompareTag("CursorP2")) return;
 
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
@@ -258,7 +257,7 @@ public class GamepadCursor : MonoBehaviour
     public void OnBackButton(InputAction.CallbackContext context)
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        if (gameObject.CompareTag("CursorP1") && currentScene.name != "TitleScreen")
+        if (/*gameObject.CompareTag("CursorP1") &&*/ currentScene.name != "TitleScreen")
         {
             if (context.phase == InputActionPhase.Started) beingHeld = true;
 

@@ -3147,7 +3147,7 @@ GameObject:
   - component: {fileID: 1138934570}
   - component: {fileID: 1138934569}
   m_Layer: 5
-  m_Name: P1BlockNumber
+  m_Name: P2BlockNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4084,6 +4084,8 @@ MonoBehaviour:
   - {fileID: 496775830}
   KO: {fileID: 106071570}
   battleMenu: {fileID: 1597532860}
+  block1Counter: {fileID: 364207995}
+  block2Counter: {fileID: 1138934569}
 --- !u!114 &1453527523
 MonoBehaviour:
   m_ObjectHideFlags: 0

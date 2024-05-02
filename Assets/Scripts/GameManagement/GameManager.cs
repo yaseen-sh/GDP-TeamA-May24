@@ -82,6 +82,15 @@ public class GameManager : MonoBehaviour
     float resetTimer;
     bool enableControls = false;
 
+    public TextMeshProUGUI block1Counter;
+    public TextMeshProUGUI block2Counter;
+
+    public static int p1Blocks = 3;
+    public static int p2Blocks = 3;
+
+    bool live1Lost = false;
+    bool live2Lost = false;
+
     private void Start()
     {
         player1Line = GameObject.Find("CurrentP1VoiceLine").GetComponent<AudioSource>();
@@ -145,6 +154,12 @@ public class GameManager : MonoBehaviour
             totalLives1 = player1Lives.Count;
             totalLives2 = player2Lives.Count;
 
+            p1Blocks = 3;
+            p2Blocks = 3;
+
+            block1Counter.text = p1Blocks.ToString();
+            block2Counter.text = p2Blocks.ToString();
+
             StartCoroutine(DisableControls(12));
         } 
         else
@@ -187,6 +202,9 @@ public class GameManager : MonoBehaviour
             healthBar2.value = health2;
             fill1.color = healthColor1.Evaluate(healthBar1.normalizedValue);
             fill2.color = healthColor2.Evaluate(healthBar2.normalizedValue);
+
+            block1Counter.text = p1Blocks.ToString();
+            block2Counter.text = p2Blocks.ToString();
 
             if (!super1Used)
             {
@@ -232,7 +250,21 @@ public class GameManager : MonoBehaviour
 
             if (roundOver)
             {
-                if (health1 < health2)
+                roundOver = false;
+                if (health1 == health2 && !live1Lost && !live2Lost)
+                {
+                    winnerText.color = new Color(1f, 0, 1f, 1f);
+                    winnerText.text = "Both Lose";
+                    player1Lives[0].enabled = false;
+                    player1Lives.RemoveAt(0);
+                    player2Lives[0].enabled = false;
+                    player2Lives.RemoveAt(0);
+                    totalLives1 = player1Lives.Count;
+                    totalLives2 = player2Lives.Count;
+                    live1Lost = true;
+                    live2Lost = true;
+                }
+                else if (health1 < health2 && !live1Lost)
                 {
                     winnerText.color = new Color(1f, 0, 0, 1f);
                     winnerText.text = CSSManager.player2FighterName + " Wins!";
@@ -249,8 +281,9 @@ public class GameManager : MonoBehaviour
                     }
                     totalLives1 = player1Lives.Count;
                     totalLives2 = player2Lives.Count;
+                    live1Lost = true;
                 }
-                else if (health2 < health1)
+                else if (health2 < health1 && !live2Lost)
                 {
                     winnerText.color = new Color(0, 0, 1f, 1f);
                     winnerText.text = CSSManager.player1FighterName + " Wins!";
@@ -266,8 +299,9 @@ public class GameManager : MonoBehaviour
                     }
                     totalLives1 = player1Lives.Count;
                     totalLives2 = player2Lives.Count;
+                    live2Lost = true;
                 }
-                else
+                /*else
                 {
                     winnerText.color = new Color(1f, 0, 1f, 1f);
                     winnerText.text = "Both Lose";
@@ -277,12 +311,12 @@ public class GameManager : MonoBehaviour
                     player2Lives.RemoveAt(0);
                     totalLives1 = player1Lives.Count;
                     totalLives2 = player2Lives.Count;
-                }
+                }*/
 
                 roundOver = false;
                 ++roundNumber;
 
-                if (player1Lives.Count == 0 && player2Lives.Count == 0)
+                if (player1Lives.Count == 0 && player2Lives.Count == 0 && onlyOnce)
                 {
                     super1 = 0;
                     super2 = 0;
@@ -291,7 +325,7 @@ public class GameManager : MonoBehaviour
                     StartCoroutine(EndGame("Nobody"));
                     onlyOnce = false;
                 }
-                if (player1Lives.Count == 0 && onlyOnce)
+                else if (player1Lives.Count == 0 && onlyOnce)
                 {
                     if (GameObject.FindGameObjectWithTag("Player 1").GetComponent<Hitbox>().voiceLines.ContainsKey("lose3"))
                     {
@@ -322,7 +356,7 @@ public class GameManager : MonoBehaviour
                     super2 = 0;
                     superBar1.value = 0;
                     superBar2.value = 0;
-                    StartCoroutine(EndGame(CSSManager.player2FighterName + "2"));
+                    StartCoroutine(EndGame(CSSManager.player2FighterName + " P2"));
                     onlyOnce = false;
                 }
                 else if (player2Lives.Count == 0 && onlyOnce)
@@ -356,7 +390,7 @@ public class GameManager : MonoBehaviour
                     super2 = 0;
                     superBar1.value = 0;
                     superBar2.value = 0;
-                    StartCoroutine(EndGame(CSSManager.player1FighterName + "1"));
+                    StartCoroutine(EndGame(CSSManager.player1FighterName + " P1"));
                     onlyOnce = false;
                 }
                 else
@@ -377,6 +411,8 @@ public class GameManager : MonoBehaviour
         health2 = maxhealth;
         player1Controls.transform.position = player1Pos.position;
         player2Controls.transform.position = player2Pos.position;
+        live1Lost = false;
+        live2Lost = false;
     }
     IEnumerator DisableControls(float num)
     {
@@ -400,13 +436,13 @@ public class GameManager : MonoBehaviour
         winnerText.text = playerWhoWon + " Is The Binary Champ!";
 
         // Play the winner's Victory Line & the Looser's lost line!
-        if (playerWhoWon == CSSManager.player1FighterName + "1")
+        if (playerWhoWon == CSSManager.player1FighterName + " P1")
         {
             player1Line.Play();
             yield return new WaitForSeconds(3f);
             player2Line.Play();
         }
-        else if (playerWhoWon == CSSManager.player2FighterName + "2")
+        else if (playerWhoWon == CSSManager.player2FighterName + " P2")
         {
             player2Line.Play();
             yield return new WaitForSeconds(3f);
@@ -418,10 +454,14 @@ public class GameManager : MonoBehaviour
         CSSManager.gameOver = true;
         player1Controls.GetComponent<CharacterAttack>().enabled = false;
         player1Controls.GetComponent<CharacterMovement>().enabled = false;
+
         player2Controls.GetComponent<CharacterAttack>().enabled = false;
         player2Controls.GetComponent<CharacterMovement>().enabled = false;
+
         health1 = maxhealth;
         health2 = maxhealth;
+        live1Lost = false;
+        live2Lost = false;
         winnerText.text = "";
     }
 
@@ -432,7 +472,6 @@ public class GameManager : MonoBehaviour
         {
             enableControls = true;
             timer = resetTimer;
-            Debug.Log("timer end");
         }
     }
 }

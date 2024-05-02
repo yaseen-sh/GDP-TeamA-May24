@@ -37,15 +37,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Jumping"",
-                    ""type"": ""Button"",
-                    ""id"": ""a7b4ce45-fc6c-4262-9d9e-3acc400b031a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""AttackLight"",
                     ""type"": ""Button"",
                     ""id"": ""e6ee0c68-f92f-4b4d-bd51-e9bf7a8e63e4"",
@@ -110,28 +101,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""9a400a53-c19c-4f96-9816-a918a83f89f0"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""Jumping"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a7e69547-f1fd-4b11-aee1-df2b81593677"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Jumping"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": """",
                     ""id"": ""2c2314c3-62b6-42fc-b3a0-1cd9e7da57d7"",
@@ -594,7 +563,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Jumping = m_Player.FindAction("Jumping", throwIfNotFound: true);
         m_Player_AttackLight = m_Player.FindAction("AttackLight", throwIfNotFound: true);
         m_Player_AttackHeavy = m_Player.FindAction("AttackHeavy", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
@@ -669,7 +637,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Jumping;
     private readonly InputAction m_Player_AttackLight;
     private readonly InputAction m_Player_AttackHeavy;
     private readonly InputAction m_Player_Block;
@@ -682,7 +649,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Jumping => m_Wrapper.m_Player_Jumping;
         public InputAction @AttackLight => m_Wrapper.m_Player_AttackLight;
         public InputAction @AttackHeavy => m_Wrapper.m_Player_AttackHeavy;
         public InputAction @Block => m_Wrapper.m_Player_Block;
@@ -702,9 +668,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Jumping.started += instance.OnJumping;
-            @Jumping.performed += instance.OnJumping;
-            @Jumping.canceled += instance.OnJumping;
             @AttackLight.started += instance.OnAttackLight;
             @AttackLight.performed += instance.OnAttackLight;
             @AttackLight.canceled += instance.OnAttackLight;
@@ -733,9 +696,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Jumping.started -= instance.OnJumping;
-            @Jumping.performed -= instance.OnJumping;
-            @Jumping.canceled -= instance.OnJumping;
             @AttackLight.started -= instance.OnAttackLight;
             @AttackLight.performed -= instance.OnAttackLight;
             @AttackLight.canceled -= instance.OnAttackLight;
@@ -857,7 +817,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
-        void OnJumping(InputAction.CallbackContext context);
         void OnAttackLight(InputAction.CallbackContext context);
         void OnAttackHeavy(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);

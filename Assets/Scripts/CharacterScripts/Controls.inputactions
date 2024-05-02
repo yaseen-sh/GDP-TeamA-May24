@@ -15,15 +15,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jumping",
-                    "type": "Button",
-                    "id": "a7b4ce45-fc6c-4262-9d9e-3acc400b031a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "AttackLight",
                     "type": "Button",
                     "id": "e6ee0c68-f92f-4b4d-bd51-e9bf7a8e63e4",
@@ -88,28 +79,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "9a400a53-c19c-4f96-9816-a918a83f89f0",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "Jumping",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a7e69547-f1fd-4b11-aee1-df2b81593677",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jumping",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "2c2314c3-62b6-42fc-b3a0-1cd9e7da57d7",
