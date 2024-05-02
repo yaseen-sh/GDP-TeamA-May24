@@ -7,25 +7,28 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class SuperMove : MonoBehaviour
 {
-    public GameObject superBox;
+    public GameObject superBoxPrefab;
     public CharacterDataLoader data;
     private Transform spawnLocation;
     private Hitbox Opponent;
+    private GameObject super;
     public void InstantiateSuper()
     {
-        spawnLocation.position = new Vector2(data.superAttackPosX, data.superAttackPosY);
-        superBox = Instantiate(superBox, spawnLocation);
-
+        Debug.Log("Yadadaadada");
+        //gameObject.transform.position = new Vector2(data.superAttackPosX, data.superAttackPosY);
+        super = Instantiate(superBoxPrefab, gameObject.transform);
+        Debug.Log("PEpepepwad");
         wait(data.superAttackFrameCount);
-        deleteSuper();
+        
     }
     IEnumerator wait (float f)
     {
         yield return new WaitForSeconds (f);
+        deleteSuper();
     }
     public void deleteSuper()
     {
-        Destroy(superBox);
+       Destroy(super);
     }
     void OnTriggerEnter2D(Collider2D coll)
     {

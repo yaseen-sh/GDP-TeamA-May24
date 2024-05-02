@@ -211,22 +211,6 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3187021693580342971}
-        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a7b4ce45-fc6c-4262-9d9e-3acc400b031a
-    m_ActionName: Player/Jumping[/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: 
         m_MethodName: 
@@ -573,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3b561b1e9922846ab2cb8f2cd45fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superBox: {fileID: 0}
+  superBoxPrefab: {fileID: 5381330351135636884, guid: d90bcc3d0da1d1549b62ebe5a68d2d7c, type: 3}
   data: {fileID: 11400000, guid: 39fa0e7bd922e404fa8bbfe78fd98f8c, type: 2}
 --- !u!1 &793717921374446596
 GameObject:

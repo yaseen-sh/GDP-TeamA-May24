@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b0aa19fd16f83429fa80228ac391f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 577742727862747637, guid: 72ebae1c0d2417d4ca448aad870187dc, type: 3}
+  player1: {fileID: 577742727862747637, guid: 618d034b6bd4dd14ba9aa843d6687b98, type: 3}
   player2: {fileID: 577742727862747637, guid: 8d33940e1bbd1ba4f85f9eba2d71d7b2, type: 3}
   player1Pos: {fileID: 0}
   player2Pos: {fileID: 0}
@@ -1164,6 +1164,8 @@ MonoBehaviour:
   player2Lives: []
   KO: {fileID: 0}
   battleMenu: {fileID: 0}
+  block1Counter: {fileID: 0}
+  block2Counter: {fileID: 0}
 --- !u!4 &1600685875
 Transform:
   m_ObjectHideFlags: 0
@@ -1564,12 +1566,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1362966172721938064, guid: d82f1bdf08c63374389b50d3d3b84c2e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.173377
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362966172721938064, guid: d82f1bdf08c63374389b50d3d3b84c2e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2210011
+      objectReference: {fileID: 0}
+    - target: {fileID: 1362966172721938064, guid: d82f1bdf08c63374389b50d3d3b84c2e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0615
+      value: 1.2733
       objectReference: {fileID: 0}
     - target: {fileID: 1362966172721938064, guid: d82f1bdf08c63374389b50d3d3b84c2e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.1722
+      value: -0.1414
       objectReference: {fileID: 0}
     - target: {fileID: 1362966172721938064, guid: d82f1bdf08c63374389b50d3d3b84c2e, type: 3}
       propertyPath: m_LocalPosition.z
