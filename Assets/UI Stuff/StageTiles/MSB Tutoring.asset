@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a430b7c70949bfe46b5d3d4091ec36a9, type: 3}
+  m_Name: MSB Tutoring
+  m_EditorClassIdentifier: 
+  stageName: MSB Tutoring
+  stagePicture: {fileID: 21300000, guid: ae57633103b1c404090f4691b4fe3b93, type: 3}
+  selectStage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4989375186431213006, guid: a1f22281fcb8fd84898c6d1357e0c3f6, type: 3}
+        m_TargetAssemblyTypeName: startGame, Assembly-CSharp
+        m_MethodName: StageSelect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  stageMusic: {fileID: 8300000, guid: 170ad3c449d9f554c851314d835b0206, type: 3}

@@ -299,6 +299,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f01c4b4f-0a39-4496-957a-b47733da8b50
     m_ActionName: Player/Return[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5273879768098429769, guid: 4d258b2b629969846ba8a2c319bde6b2, type: 3}
+        m_TargetAssemblyTypeName: SecretStage, Assembly-CSharp
+        m_MethodName: SelectSecretStage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f30f7c81-df36-41bf-8de6-b44e1c5e0666
+    m_ActionName: Player/Secret[/XInputControllerWindows/dpad/down,/XInputControllerWindows1/dpad/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player

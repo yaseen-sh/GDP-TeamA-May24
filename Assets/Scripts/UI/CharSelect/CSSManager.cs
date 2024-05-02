@@ -25,6 +25,7 @@ public class CSSManager : MonoBehaviour
 
     [Header("Selected Stage")]
     public static Sprite stage;
+    public static string stageName;
     public static AudioClip stageTheme;
 
     public static bool gameOver = false;

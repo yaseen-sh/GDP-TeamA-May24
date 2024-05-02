@@ -60,6 +60,7 @@ public class startGame : MonoBehaviour
         Debug.Log("We would be loading "+selectedStage+" here");
         CSSManager.stage = selectedImage;
         CSSManager.stageTheme = selectedClip;
+        CSSManager.stageName = selectedStage;
 
         if (GameObject.Find("AudioManager") != null)
         {
