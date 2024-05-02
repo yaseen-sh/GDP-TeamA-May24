@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 80045932812321540}
   - component: {fileID: 9087430873852648489}
   - component: {fileID: 7355270301737394939}
+  - component: {fileID: 1121871427441648894}
   m_Layer: 0
   m_Name: Bill Reed2
   m_TagString: Player 2
@@ -116,6 +117,7 @@ MonoBehaviour:
     m_Bits: 0
   useSphere: 0
   hitboxSize: {x: 1, y: 1}
+  characterAttack: {fileID: 0}
   radius: 0.5
   hitboxPrefab: {fileID: 7534746022721900129, guid: 6ddecd71ac375ab4a8218a3cec209e30, type: 3}
   hitBoxSpawnLocation: {fileID: 5136994986536587821}
@@ -161,8 +163,11 @@ MonoBehaviour:
   superAttackHitboxScale: {x: 0, y: 0}
   blockPosY: 0
   blockPosX: 0
+  blockRecoveryFrames: 0
   blockBoxScale: {x: 0, y: 0, z: 0}
+  superSprite: {fileID: 0}
   movement: {fileID: 0}
+  super: {fileID: 0}
 --- !u!114 &3330295074963464004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +383,7 @@ MonoBehaviour:
   isGrounded: 1
   isJumping: 0
   isCrouching: 0
+  isBlocking: 0
   facingRight: 1
   groundLayer:
     serializedVersion: 2
@@ -430,10 +436,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  isBlocking: 0
   actionName: Action
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
+  isBlocking: 0
+  hurtBox: {fileID: 0}
 --- !u!114 &6024589478923480192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -554,6 +561,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1121871427441648894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577742727862747637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d3b561b1e9922846ab2cb8f2cd45fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  superBox: {fileID: 0}
+  data: {fileID: 11400000, guid: 3bd9afc2195bc3e44b514ca1d9e64a9a, type: 2}
 --- !u!1 &1293744640342681270
 GameObject:
   m_ObjectHideFlags: 0

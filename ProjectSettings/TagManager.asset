@@ -18,6 +18,7 @@ TagManager:
   - Pushbox
   - HitBox
   - HealthBar
+  - Super
   layers:
   - Default
   - TransparentFX

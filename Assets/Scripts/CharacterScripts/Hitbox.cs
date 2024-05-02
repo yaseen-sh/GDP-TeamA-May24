@@ -75,6 +75,8 @@ public class Hitbox : MonoBehaviour
     public Dictionary<string, AudioClip> voiceLines = new Dictionary<string, AudioClip>();
 
     public CharacterMovement movement;
+
+    public SuperMove super;
     private void Awake()
     {
         movement = GetComponent<CharacterMovement>();
@@ -129,7 +131,7 @@ public class Hitbox : MonoBehaviour
             playerTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
             OpponentTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
         }
-
+        super = playerTag.GetComponent<SuperMove>();
         int i = 0;
         foreach(AudioClip clip in Data.voiceLines)
         {
@@ -180,7 +182,7 @@ public class Hitbox : MonoBehaviour
 
             //attacktype Light
             case 1:
-                
+
                 damage = lightAttackDamage;
                 //set hitbox parameters
                 frameCount = lightAttackFrameCount;
@@ -201,7 +203,7 @@ public class Hitbox : MonoBehaviour
                     hitboxPosX = -lightAttackPosX;
                     hitboxPosY = lightAttackPosY;
                 }
-            break;
+                break;
             //attacktype heavy
             case 2:
                 damage = heavyAttackDamage;
@@ -226,25 +228,10 @@ public class Hitbox : MonoBehaviour
                 break;
             //attacktype etc
             case 3:
-                damage = superAttackDamage;
-                frameCount = superAttackFrameCount;
-                scaleChange = superAttackHitboxScale;
-                RecoveryFrames = superAttackRecoveryFrames;
-                StartUpFrames = superAttackStartUpFrames;
-                totalFrameCount = RecoveryFrames + StartUpFrames + frameCount;
-                hitStun = superAttackHitStun;
-                if (movement.facingRight == true)
-                {
-                    hitboxPosX = heavyAttackPosX;
-                    hitboxPosY = heavyAttackPosY;
-                }
-                else
-                {
-                    hitboxPosX = -heavyAttackPosX;
-                    hitboxPosY = heavyAttackPosY;
-                }
+                Debug.Log("Super Called");
+                super.InstantiateSuper();
                 break;
-                //Block
+            //Block
             case 4:
                 scaleChange = blockBoxScale;
                 RecoveryFrames = blockRecoveryFrames;
@@ -260,36 +247,22 @@ public class Hitbox : MonoBehaviour
                 }
                 break;
         }
-       
-                                             //Tweak size of prefab based off of attack
 
-        if (hitBoxChild.transform.childCount <= 0 )//Add totaltotalTimer for animation
+        //Tweak size of prefab based off of attack
+
+        if (hitBoxChild.transform.childCount <= 0 && attackType != 3)//Add totaltotalTimer for animation
         {
             Vector2 newPosition = new Vector2(0, 0);
-            if (attackType == 3)
-            {
-                Debug.Log("Super Hitbox Called");
-                if (playerTag.gameObject.name == "Branson Boggia(Clone)" || playerTag.gameObject.name == "Branson Boggia2(Clone)")
-                {
-                    Debug.Log("Branson Super Logic");
-                     newPosition = OpponentTag.transform.position + new Vector3(hitboxPosX,hitboxPosY);
-                }
-            }
-            else
-            {
-                 newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
-            }
+            newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             currentHitBox.transform.localScale = scaleChange;
             currentHitBox.transform.parent = hitBoxChild.transform;
             currentHitBox.SetActive(true);
             hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
-            
+
             //hitBoxRenderer.enabled = true;
         }
-      
     }
-
     public void DestroyHitbox(GameObject hb)
     {
 
