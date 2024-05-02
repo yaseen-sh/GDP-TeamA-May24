@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Programmers Doom
   m_EditorClassIdentifier: 
   stageName: Nesty's Office
-  stagePicture: {fileID: 21300000, guid: ae57633103b1c404090f4691b4fe3b93, type: 3}
+  stagePicture: {fileID: 21300000, guid: 92b579c92a56174488bfce67140fb70c, type: 3}
   selectStage:
     m_PersistentCalls:
       m_Calls:

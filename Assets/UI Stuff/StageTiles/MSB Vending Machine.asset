@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a430b7c70949bfe46b5d3d4091ec36a9, type: 3}
   m_Name: MSB Vending Machine
   m_EditorClassIdentifier: 
-  stageName: Vending Machine
-  stagePicture: {fileID: 21300000, guid: ae57633103b1c404090f4691b4fe3b93, type: 3}
+  stageName: MSB Vending
+  stagePicture: {fileID: 21300000, guid: 0da78c0bd4bc83b4a87687ab7d2a4e9a, type: 3}
   selectStage:
     m_PersistentCalls:
       m_Calls:
@@ -29,4 +29,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  stageMusic: {fileID: 8300000, guid: 52ee6defcbfe1144398b570700b4d5bf, type: 3}
+  stageMusic: {fileID: 8300000, guid: c7f88e7eb392c024f8dd3dbc8800f0e8, type: 3}
