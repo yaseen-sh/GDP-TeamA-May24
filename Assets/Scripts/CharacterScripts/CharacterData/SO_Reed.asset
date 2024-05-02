@@ -39,7 +39,7 @@ MonoBehaviour:
   OpponentTag: {fileID: 0}
   animations: {fileID: 0}
   lightAttackDamage: 1
-  lightAttackPosY: 1
+  lightAttackPosY: 1.5
   lightAttackPosX: 1
   lightAttackFrameCount: 0.3
   lightAttackStartUpFrames: 0.4
@@ -49,10 +49,10 @@ MonoBehaviour:
   heavyAttackDamage: 1
   heavyAttackPosY: 1
   heavyAttackPosX: 1.5
-  heavyAttackFrameCount: 0.1
+  heavyAttackFrameCount: 0.4
   heavyAttackStartUpFrames: 0.3
   heavyAttackRecoveryFrames: 0.7
-  heavyAttackHitboxScale: {x: 0.5, y: 0.2}
+  heavyAttackHitboxScale: {x: 0.5, y: 0.5}
   heavyAttackHitStun: 0
   superAttackDamage: 2
   superAttackPosY: 1
@@ -62,7 +62,7 @@ MonoBehaviour:
   superAttackRecoveryFrames: 1
   superAttackHitboxScale: {x: 1, y: 1}
   superAttackHitStun: 1
-  blockPosY: 1
-  blockPosX: 1
-  blockBoxScale: {x: 1, y: 1, z: 1}
+  blockPosY: 0
+  blockPosX: 0
+  blockBoxScale: {x: 0.5, y: 1, z: 0.5}
   blockRecoveryFrames: 1

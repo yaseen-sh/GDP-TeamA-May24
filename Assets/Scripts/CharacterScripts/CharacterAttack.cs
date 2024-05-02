@@ -27,7 +27,7 @@ public class CharacterAttack : MonoBehaviour
     public Hitbox hitbox;
     public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
-    private int attackID;
+    public int attackID;
     //needed for stopping input
 
     //blocking

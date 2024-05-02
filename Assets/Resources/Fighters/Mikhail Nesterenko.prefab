@@ -116,6 +116,7 @@ MonoBehaviour:
     m_Bits: 0
   useSphere: 0
   hitboxSize: {x: 1, y: 1}
+  characterAttack: {fileID: 0}
   radius: 0.5
   hitboxPrefab: {fileID: 7534746022721900129, guid: 6ddecd71ac375ab4a8218a3cec209e30, type: 3}
   hitBoxSpawnLocation: {fileID: 5136994986536587821}
@@ -163,6 +164,7 @@ MonoBehaviour:
   blockPosX: 0
   blockRecoveryFrames: 0
   blockBoxScale: {x: 0, y: 0, z: 0}
+  superSprite: {fileID: 0}
   movement: {fileID: 0}
 --- !u!114 &3330295074963464004
 MonoBehaviour:
@@ -379,6 +381,7 @@ MonoBehaviour:
   isGrounded: 1
   isJumping: 0
   isCrouching: 0
+  isBlocking: 0
   facingRight: 1
   groundLayer:
     serializedVersion: 2
@@ -434,6 +437,7 @@ MonoBehaviour:
   actionName: Action
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
+  attackID: 0
   isBlocking: 0
   hurtBox: {fileID: 4721342976139048492}
 --- !u!114 &6024589478923480192
@@ -493,7 +497,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07526639, y: -0.15682891}
+  m_Offset: {x: 0.07526641, y: -0.031933367}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -504,7 +508,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17000002, y: 0.71189326}
+  m_Size: {x: 0.41447628, y: 0.96168435}
   m_EdgeRadius: 0
 --- !u!114 &80045932812321540
 MonoBehaviour:
