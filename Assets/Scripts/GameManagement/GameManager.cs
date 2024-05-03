@@ -91,6 +91,9 @@ public class GameManager : MonoBehaviour
     bool live1Lost = false;
     bool live2Lost = false;
 
+    public GameObject logoImage;
+    public GameObject teamtext;
+
     private void Start()
     {
         player1Line = GameObject.Find("CurrentP1VoiceLine").GetComponent<AudioSource>();
@@ -147,6 +150,17 @@ public class GameManager : MonoBehaviour
             GameObject.Find("StageBackground").GetComponent<Image>().sprite = CSSManager.stage;
             GameObject.Find("BattleMusic").GetComponent<AudioSource>().clip = CSSManager.stageTheme;
             GameObject.Find("BattleMusic").GetComponent<AudioSource>().Play();
+
+            if (CSSManager.stageName == "Esports Arena")
+            {
+                logoImage.SetActive(true);
+                teamtext.SetActive(true);
+            }
+            else
+            {
+                logoImage.SetActive(false);
+                teamtext.SetActive(false);
+            }
 
             roundNumber = 1;
             onlyOnce = true;
@@ -409,6 +423,8 @@ public class GameManager : MonoBehaviour
         winnerText.text = "";
         health1 = maxhealth;
         health2 = maxhealth;
+        p1Blocks = 3;
+        p2Blocks = 3;
         player1Controls.transform.position = player1Pos.position;
         player2Controls.transform.position = player2Pos.position;
         live1Lost = false;

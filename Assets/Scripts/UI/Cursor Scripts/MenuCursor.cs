@@ -80,6 +80,15 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Hold(duration=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Secret"",
+                    ""type"": ""Button"",
+                    ""id"": ""f30f7c81-df36-41bf-8de6-b44e1c5e0666"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -333,6 +342,17 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Return"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8eaaacfe-5e8d-4afd-a618-af847eb57c56"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Secret"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -958,6 +978,7 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
         m_Player_Submit = m_Player.FindAction("Submit", throwIfNotFound: true);
         m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
         m_Player_Return = m_Player.FindAction("Return", throwIfNotFound: true);
+        m_Player_Secret = m_Player.FindAction("Secret", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1037,6 +1058,7 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Submit;
     private readonly InputAction m_Player_Start;
     private readonly InputAction m_Player_Return;
+    private readonly InputAction m_Player_Secret;
     public struct PlayerActions
     {
         private @MenuCursor m_Wrapper;
@@ -1047,6 +1069,7 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
         public InputAction @Submit => m_Wrapper.m_Player_Submit;
         public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputAction @Return => m_Wrapper.m_Player_Return;
+        public InputAction @Secret => m_Wrapper.m_Player_Secret;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1074,6 +1097,9 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
             @Return.started += instance.OnReturn;
             @Return.performed += instance.OnReturn;
             @Return.canceled += instance.OnReturn;
+            @Secret.started += instance.OnSecret;
+            @Secret.performed += instance.OnSecret;
+            @Secret.canceled += instance.OnSecret;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1096,6 +1122,9 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
             @Return.started -= instance.OnReturn;
             @Return.performed -= instance.OnReturn;
             @Return.canceled -= instance.OnReturn;
+            @Secret.started -= instance.OnSecret;
+            @Secret.performed -= instance.OnSecret;
+            @Secret.canceled -= instance.OnSecret;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1284,6 +1313,7 @@ public partial class @MenuCursor: IInputActionCollection2, IDisposable
         void OnSubmit(InputAction.CallbackContext context);
         void OnStart(InputAction.CallbackContext context);
         void OnReturn(InputAction.CallbackContext context);
+        void OnSecret(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

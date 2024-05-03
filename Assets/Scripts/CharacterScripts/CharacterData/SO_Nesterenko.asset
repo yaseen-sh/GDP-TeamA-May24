@@ -66,7 +66,7 @@ MonoBehaviour:
   superAttackRecoveryFrames: 1
   superAttackHitboxScale: {x: 1, y: 1}
   superAttackHitStun: 1
-  blockPosY: 1
-  blockPosX: 1
-  blockBoxScale: {x: 1, y: 1, z: 1}
+  blockPosY: 0
+  blockPosX: 0
+  blockBoxScale: {x: 0.5, y: 1, z: 0.5}
   blockRecoveryFrames: 1

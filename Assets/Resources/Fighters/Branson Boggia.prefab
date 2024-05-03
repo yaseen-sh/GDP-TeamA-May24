@@ -424,6 +424,7 @@ MonoBehaviour:
   actionName: Action
   hitbox: {fileID: 0}
   controller: {fileID: 6024589478923480192}
+  attackID: 0
   isBlocking: 0
   hurtBox: {fileID: 4721342976139048492}
 --- !u!114 &6024589478923480192
@@ -483,7 +484,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03488756, y: -0.102626175}
+  m_Offset: {x: -0.050593525, y: 0.0038251579}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -494,7 +495,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1385275, y: 0.82029873}
+  m_Size: {x: 0.44915646, y: 1.179791}
   m_EdgeRadius: 0
 --- !u!114 &80045932812321540
 MonoBehaviour:

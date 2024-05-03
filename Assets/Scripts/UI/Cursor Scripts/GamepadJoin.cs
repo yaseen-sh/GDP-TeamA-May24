@@ -40,8 +40,6 @@ public class GamepadJoin : MonoBehaviour
             DontDestroyOnLoad(transform.gameObject);
         }
 
-        if (SceneManager.GetActiveScene().name == "BrawlScene") return;
-
         if (!playerControllers.ContainsKey(1) && !playerControllers.ContainsKey(2))
         {
             var myAction = new InputAction(binding: "/*/<button>");
@@ -51,7 +49,7 @@ public class GamepadJoin : MonoBehaviour
             };
             myAction.Enable();
         }
-        else
+        else if (SceneManager.GetActiveScene().name != "BrawlScene")
         {
             string controlScheme = "Gamepad";
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP" || SceneManager.GetActiveScene().name == "StageSelect")

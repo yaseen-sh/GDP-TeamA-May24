@@ -27,7 +27,7 @@ public class CharacterAttack : MonoBehaviour
     public Hitbox hitbox;
     public CharacterManager controller;
     private SpriteRenderer hitBoxRenderer;
-    private int attackID;
+    public int attackID;
     //needed for stopping input
 
     //blocking
@@ -121,8 +121,8 @@ public class CharacterAttack : MonoBehaviour
                 //create timer to disable and re enable input
                 isBlocking = true;
                 characterMovement.isBlocking = true;
-                blocks1--;
-                GameManager.p1Blocks = blocks1;
+                //blocks1--;
+                GameManager.p1Blocks--;// = blocks1;
 
             }
             else //if(context.canceled)
@@ -150,8 +150,8 @@ public class CharacterAttack : MonoBehaviour
                 isBlocking = true;
                 characterMovement.isBlocking = true;
 
-                blocks2--;
-                GameManager.p2Blocks = blocks2;
+                //blocks2--;
+                GameManager.p2Blocks--; //= //blocks2;
 
             }
             else //if(context.canceled)

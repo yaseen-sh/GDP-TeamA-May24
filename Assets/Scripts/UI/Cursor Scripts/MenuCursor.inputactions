@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "Hold(duration=2)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Secret",
+                    "type": "Button",
+                    "id": "f30f7c81-df36-41bf-8de6-b44e1c5e0666",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -311,6 +320,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8eaaacfe-5e8d-4afd-a618-af847eb57c56",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Secret",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
