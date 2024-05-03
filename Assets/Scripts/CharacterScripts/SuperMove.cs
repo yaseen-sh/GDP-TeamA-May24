@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using static UnityEngine.Rendering.DebugUI;
@@ -12,12 +13,14 @@ public class SuperMove : MonoBehaviour
     private Transform spawnLocation;
     private Hitbox Opponent;
     private GameObject super;
+    public void Awake()
+    {
+        Opponent = GetComponent<Hitbox>();
+    }
     public void InstantiateSuper()
     {
-        Debug.Log("Yadadaadada");
         //gameObject.transform.position = new Vector2(data.superAttackPosX, data.superAttackPosY);
         super = Instantiate(superBoxPrefab, gameObject.transform);
-        Debug.Log("PEpepepwad");
         wait(data.superAttackFrameCount);
         
     }
@@ -35,10 +38,13 @@ public class SuperMove : MonoBehaviour
         //Debug.Log("ontrigger");
         if (coll.gameObject.CompareTag("HurtBox"))
         {
-            //Debug.Log(coll.gameObject.name);
             Opponent.OpponentTag.GetPlayerHealth();
             Opponent.OpponentTag.SetPlayerHealth(2,1);
-            //Debug.Log("Hit Confirmed");
+        }
+        if (coll.gameObject.CompareTag("BlockBox"))
+        {
+            Opponent.OpponentTag.GetPlayerHealth();
+            Opponent.OpponentTag.SetPlayerHealth(1, 1);
         }
     }
 

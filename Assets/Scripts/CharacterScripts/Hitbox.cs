@@ -15,6 +15,7 @@ public class Hitbox : MonoBehaviour
     public CharacterAttack characterAttack;
     public float radius = 0.5f;
     public GameObject hitboxPrefab;
+    public GameObject blockBoxPrefab;
     public Transform hitBoxSpawnLocation;// where the hit box spawns
     public float hitboxPosX = 0.5f, hitboxPosY = 0.5f; //used to reposition hitbox 
     public Collider2D hitBoxCollider;
@@ -254,12 +255,15 @@ public class Hitbox : MonoBehaviour
         {
             Vector2 newPosition = new Vector2(0, 0);
             newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
-            currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
+            if(attackType == 4)
+            { currentHitBox = Instantiate(blockBoxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation); }
+            else
+            { currentHitBox = Instantiate(hitboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation); }
             currentHitBox.transform.localScale = scaleChange;
             currentHitBox.transform.parent = hitBoxChild.transform;
             currentHitBox.SetActive(true);
             hitBoxCollider = currentHitBox.GetComponent<Collider2D>();
-
+            
             //hitBoxRenderer.enabled = true;
         }
     }

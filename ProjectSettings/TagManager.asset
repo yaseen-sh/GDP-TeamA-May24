@@ -19,6 +19,7 @@ TagManager:
   - HitBox
   - HealthBar
   - Super
+  - BlockBox
   layers:
   - Default
   - TransparentFX

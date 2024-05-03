@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1487680214418023188}
   - component: {fileID: -3503545570310182837}
   m_Layer: 0
-  m_Name: ReedBeam
+  m_Name: ReedBeam1
   m_TagString: Super
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
