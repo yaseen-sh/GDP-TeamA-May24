@@ -22,7 +22,7 @@ public class Knockdown : CharacterBaseState
 
     public override void UpdateState(CharacterStateMachine state)
     {
-        if (state.stateTimer >= hitbox.totalFrameCount)
+        if (state.stateTimer >= .3)
         {
             state.stateTimer = 0;
             state.SwitchState(state.IdleState);

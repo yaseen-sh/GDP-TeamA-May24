@@ -25,7 +25,8 @@ public class Damaged : CharacterBaseState
         {
             damageLine.clip = hitbox.voiceLines["damage" + Random.Range(1, 3).ToString()];
         }
-        damageLine.Play();
+        //damageLine.Play();
+        damageLine.PlayOneShot(damageLine.clip);
 
         anime = state.character.GetComponent<Animations>();
 
@@ -47,7 +48,7 @@ public class Damaged : CharacterBaseState
 
         //transition back to idle
 
-        if (state.stateTimer >= .03f)
+        if (state.stateTimer >= .3f)
         {
             state.stateTimer = 0;
             state.SwitchState(state.IdleState);
