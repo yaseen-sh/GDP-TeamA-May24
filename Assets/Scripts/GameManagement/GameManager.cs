@@ -442,7 +442,8 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator EndGame(string playerWhoWon)
     {
-        KO.Play();
+        //KO.Play();
+        KO.PlayOneShot(KO.clip);
         GameUIManager.stopTimer = true;
         enableControls = false;
         player1Controls.DeactivateInput();

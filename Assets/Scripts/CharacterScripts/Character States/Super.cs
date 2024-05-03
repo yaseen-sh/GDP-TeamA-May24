@@ -26,7 +26,8 @@ public class Super : CharacterBaseState
         {
             superLine.clip = hitbox.voiceLines["super1"];
         }
-        superLine.Play();
+        //superLine.Play();
+        superLine.PlayOneShot(superLine.clip);
 
         if (hitbox.playerTag.CompareTag("Player 1"))
         {
