@@ -10,8 +10,19 @@ public class SuperMove : MonoBehaviour
     public GameObject superBoxPrefab;
     public CharacterDataLoader data;
     private Transform spawnLocation;
-    private Hitbox Opponent;
+    private CharacterManager OpponentTag;
     private GameObject super;
+    private void Awake()
+    {
+        if (gameObject.tag == "Player 1")
+        {
+            OpponentTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
+        }
+        else
+        {
+            OpponentTag = GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>();
+        }
+    }
     public void InstantiateSuper()
     {
         Debug.Log("Yadadaadada");
@@ -32,14 +43,14 @@ public class SuperMove : MonoBehaviour
         if (coll.gameObject.CompareTag("HurtBox"))
         {
             //Debug.Log(coll.gameObject.name);
-            Opponent.OpponentTag.GetPlayerHealth();
-            Opponent.OpponentTag.SetPlayerHealth(2,1);
+            OpponentTag.GetPlayerHealth();
+            OpponentTag.SetPlayerHealth(2,1);
             //Debug.Log("Hit Confirmed");
         }
         else if (coll.gameObject.CompareTag("BlockBox"))
         {
-            Opponent.OpponentTag.GetPlayerHealth();
-            Opponent.OpponentTag.SetPlayerHealth(1, 1);
+            OpponentTag.GetPlayerHealth();
+            OpponentTag.SetPlayerHealth(1, 1);
         }
     }
 
