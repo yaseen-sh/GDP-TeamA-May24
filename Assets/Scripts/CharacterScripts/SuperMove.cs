@@ -40,6 +40,11 @@ public class SuperMove : MonoBehaviour
             Opponent.OpponentTag.SetPlayerHealth(2,1);
             //Debug.Log("Hit Confirmed");
         }
+        else if (coll.gameObject.CompareTag("BlockBox"))
+        {
+            Opponent.OpponentTag.GetPlayerHealth();
+            Opponent.OpponentTag.SetPlayerHealth(1, 1);
+        }
     }
 
 }
