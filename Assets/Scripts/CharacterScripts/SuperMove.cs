@@ -24,11 +24,7 @@ public class SuperMove : MonoBehaviour
     IEnumerator wait (float f)
     {
         yield return new WaitForSeconds (f);
-        deleteSuper();
-    }
-    public void deleteSuper()
-    {
-       Destroy(super);
+        Destroy(super);
     }
     void OnTriggerEnter2D(Collider2D coll)
     {
