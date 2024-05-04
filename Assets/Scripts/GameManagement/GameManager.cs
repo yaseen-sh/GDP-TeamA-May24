@@ -427,6 +427,8 @@ public class GameManager : MonoBehaviour
         p2Blocks = 3;
         player1Controls.transform.position = player1Pos.position;
         player2Controls.transform.position = player2Pos.position;
+        GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>().playerHurtBox.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>().playerHurtBox.SetActive(true);
         live1Lost = false;
         live2Lost = false;
     }
@@ -474,6 +476,9 @@ public class GameManager : MonoBehaviour
 
         player2Controls.GetComponent<CharacterAttack>().enabled = false;
         player2Controls.GetComponent<CharacterMovement>().enabled = false;
+
+        GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>().playerHurtBox.SetActive(true);
+        GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>().playerHurtBox.SetActive(true);
 
         health1 = maxhealth;
         health2 = maxhealth;

@@ -61,8 +61,6 @@ public class CharacterManager : MonoBehaviour
     {
         /*if (roundStarted)
         {
-            state.SwitchState(state.IdleState);
-            currentHealth = maxHealth; 
             roundStarted = false;
         }*/
         if (gameObject.CompareTag("Player 1"))
@@ -105,6 +103,8 @@ public class CharacterManager : MonoBehaviour
                     state.SwitchState(state.DeadState);
                 else
                     state.SwitchState(state.knockdownState);
+
+                GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>().playerHurtBox.SetActive(false);
             }
             if (gameObject.CompareTag("Player 2"))
             {
@@ -112,6 +112,8 @@ public class CharacterManager : MonoBehaviour
                     state.SwitchState(state.DeadState);
                 else
                     state.SwitchState(state.knockdownState);
+
+                GameObject.FindGameObjectWithTag("Player 1").GetComponent<CharacterManager>().playerHurtBox.SetActive(false);
             }
         }
     }
