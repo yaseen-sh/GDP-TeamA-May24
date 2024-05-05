@@ -14,7 +14,8 @@ public class NestySuper1 : MonoBehaviour
     void Start()
     {
         //want to find the object
-        superball = GameObject.FindGameObjectWithTag("superBall");
+        //superball = GameObject.FindGameObjectWithTag("superBall");
+        superball = gameObject;
         pos = superball.transform.position;
     }
 
@@ -38,7 +39,7 @@ public class NestySuper1 : MonoBehaviour
                 StartCoroutine(wait(1)); //space out the timing of shards by a bit
                 GameObject s = Instantiate(shardsPrefab, superball.transform);//instantiate prefab
                 s.transform.GetChild(0).Rotate(0, 0, Random.Range(-30f, 30f)); //slightly randomize the location
-                s.GetComponent<Rigidbody2D>().AddForce(s.transform.up * -10f); //launch it 
+                //s.GetComponent<Rigidbody2D>().AddForce(s.transform.up * -10f); //launch it 
             }
             Destroy(gameObject);
 
