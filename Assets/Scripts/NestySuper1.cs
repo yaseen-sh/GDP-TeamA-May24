@@ -9,6 +9,7 @@ public class NestySuper1 : MonoBehaviour
     public GameObject shardsPrefab;
     public int numberOfShards = 5;
     public GameObject opponent;
+    Hitbox hitbox;
 
     private CharacterManager OpponentTag;
     ParticleSystem particle;
@@ -24,7 +25,7 @@ public class NestySuper1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        particle = getComponent<ParticleSystem>();
+        particle = GetComponent<ParticleSystem>();
         opponent = GameObject.FindGameObjectWithTag("Player 2");
 
         //want to find the object
@@ -37,7 +38,8 @@ public class NestySuper1 : MonoBehaviour
     void Update()
     {
         // until the ball reaches the desired position
-        if(superball.transform.position != new Vector2(0, 3)){
+        if(superball.transform.position.x != 0 || superball.transform.position.y != 3)
+        {
             //move it to the middle at a certain speed
             superball.transform.position = Vector3.MoveTowards(pos, new Vector2(0, 3), 5f * Time.deltaTime);
         }
@@ -45,11 +47,11 @@ public class NestySuper1 : MonoBehaviour
         else{
             //play explosive particle system
             //shoot out shards at slightly varying angles
-            for(int i = 0; i < numberOfShards, ++i){
+            for(int i = 0; i < numberOfShards; ++i){
                 StartCoroutine(wait(1)); //space out the timing of shards by a bit
-                GameObject s = Instantiate(shardsPrefab, superball.transform.position);//instantiate prefab
-                s.getChild(0).rotation += Random.range(-30f, 30f); //slightly randomize the location
-                s.GetComponent<Rigidbody2D>().AddForce(s.transform.down * 10f); //launch it 
+                GameObject s = Instantiate(shardsPrefab, superball.transform);//instantiate prefab
+                s.transform.GetChild(0).Rotate(0,0, Random.Range(-30f, 30f)); //slightly randomize the location
+                s.GetComponent<Rigidbody2D>().AddForce(s.transform.up * -10f); //launch it 
             }
             Destroy(gameObject);
 
@@ -59,7 +61,7 @@ public class NestySuper1 : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(collider other){
+    void OnTriggerEnter2D(Collider2D coll){
         //Debug.Log("ontrigger");
         if (coll.gameObject.CompareTag("HurtBox") && hitbox.isAttacking == true)
         {
@@ -82,6 +84,6 @@ public class NestySuper1 : MonoBehaviour
     IEnumerator wait (float f)
     {
         yield return new WaitForSeconds (f);
-        Destroy(super);
+        //Destroy(super);
     }
 }
