@@ -120,7 +120,7 @@ MonoBehaviour:
   radius: 0.5
   hitboxPrefab: {fileID: 7534746022721900129, guid: 6ddecd71ac375ab4a8218a3cec209e30, type: 3}
   blockboxPrefab: {fileID: 7534746022721900129, guid: c90214fb318aaa642a8871077fc0b4dd, type: 3}
-  superBoxPrefab: {fileID: 0}
+  superBoxPrefab: {fileID: 5012943828020297704, guid: 7634f3fe7042f284fbd593f93bd429b1, type: 3}
   hitBoxSpawnLocation: {fileID: 5136994986536587821}
   hitboxPosX: 0.5
   hitboxPosY: 0.5
