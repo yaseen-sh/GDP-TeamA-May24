@@ -119,6 +119,8 @@ MonoBehaviour:
   characterAttack: {fileID: 0}
   radius: 0.5
   hitboxPrefab: {fileID: 7534746022721900129, guid: 6ddecd71ac375ab4a8218a3cec209e30, type: 3}
+  blockboxPrefab: {fileID: 7534746022721900129, guid: c90214fb318aaa642a8871077fc0b4dd, type: 3}
+  superBoxPrefab: {fileID: 0}
   hitBoxSpawnLocation: {fileID: 5136994986536587821}
   hitboxPosX: 0.5
   hitboxPosY: 0.5
@@ -207,22 +209,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4261bed3-5dcf-4833-b72a-b56f1a9ef01c
     m_ActionName: Player/Movement[/XInputControllerWindows/leftStick,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3187021693580342971}
-        m_TargetAssemblyTypeName: CharacterMovement, Assembly-CSharp
-        m_MethodName: Jump
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a7b4ce45-fc6c-4262-9d9e-3acc400b031a
-    m_ActionName: Player/Jumping[/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
