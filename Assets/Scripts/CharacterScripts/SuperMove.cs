@@ -12,8 +12,10 @@ public class SuperMove : MonoBehaviour
     private Transform spawnLocation;
     private CharacterManager OpponentTag;
     private GameObject super;
+    private Hitbox hitbox;
     private void Awake()
     {
+        hitbox = GetComponent<Hitbox>();
         if (gameObject.tag == "Player 1")
         {
             OpponentTag = GameObject.FindGameObjectWithTag("Player 2").GetComponent<CharacterManager>();
@@ -25,13 +27,11 @@ public class SuperMove : MonoBehaviour
     }
     public void InstantiateSuper()
     {
-        Debug.Log("Yadadaadada");
         //gameObject.transform.position = new Vector2(data.superAttackPosX, data.superAttackPosY);
         super = Instantiate(superBoxPrefab, gameObject.transform);
-        Debug.Log("PEpepepwad");
-        wait(data.superAttackFrameCount);
-        
+        StartCoroutine(wait(data.superAttackFrameCount));
     }
+    
     IEnumerator wait (float f)
     {
         yield return new WaitForSeconds (f);
@@ -40,7 +40,7 @@ public class SuperMove : MonoBehaviour
     void OnTriggerEnter2D(Collider2D coll)
     {
         //Debug.Log("ontrigger");
-        if (coll.gameObject.CompareTag("HurtBox"))
+        if (coll.gameObject.CompareTag("HurtBox") && hitbox.isAttacking == true)
         {
             //Debug.Log(coll.gameObject.name);
             OpponentTag.GetPlayerHealth();
