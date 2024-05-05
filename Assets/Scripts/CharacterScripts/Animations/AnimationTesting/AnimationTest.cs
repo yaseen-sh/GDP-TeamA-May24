@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class AnimationTest : MonoBehaviour
 {
-   // public GameObject Nesteranko;
-    public GameObject Branson;
+    public GameObject Nesteranko;
+    //public GameObject Branson;
     //public GameObject Meldin;
     //public GameObject Reed;
 
@@ -13,7 +13,7 @@ public class AnimationTest : MonoBehaviour
         if(context.performed)
         {
             //Nesteranko.GetComponent<Animations>().Idle();
-            Branson.GetComponent<Animations>().Idle();
+            //Branson.GetComponent<Animations>().Idle();
             //Meldin
             //Reed
         }
@@ -24,7 +24,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
            // Nesteranko.GetComponent<Animations>().FWalk();
-            Branson.GetComponent<Animations>().FWalk();
+            //Branson.GetComponent<Animations>().FWalk();
             //Meldin
             //Reed
         }
@@ -35,7 +35,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().BWalk();
-            Branson.GetComponent<Animations>().BWalk();
+            ///Branson.GetComponent<Animations>().BWalk();
             //Meldin
             //Reed
         }
@@ -46,7 +46,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().Block();
-            Branson.GetComponent<Animations>().Block();
+            //Branson.GetComponent<Animations>().Block();
             //Meldin
             //Reed
         }
@@ -65,7 +65,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().Damaged();
-            Branson.GetComponent<Animations>().Damaged();
+            //Branson.GetComponent<Animations>().Damaged();
             //Meldin
             //Reed
         }
@@ -76,7 +76,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().lightAttack();
-            Branson.GetComponent<Animations>().lightAttack();
+            //Branson.GetComponent<Animations>().lightAttack();
             //Meldin
             //Reed
         }
@@ -87,7 +87,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().heavyAttack();
-            Branson.GetComponent<Animations>().heavyAttack();
+            //Branson.GetComponent<Animations>().heavyAttack();
             //Meldin
             //Reed
         }
@@ -98,7 +98,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().Knockdown();
-            Branson.GetComponent<Animations>().Knockdown();
+            //Branson.GetComponent<Animations>().Knockdown();
             //Meldin
             //Reed
         }
@@ -109,7 +109,7 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
             //Nesteranko.GetComponent<Animations>().KO();
-            Branson.GetComponent<Animations>().KO();
+            //Branson.GetComponent<Animations>().KO();
             //Meldin
             //Reed
         }
@@ -120,18 +120,18 @@ public class AnimationTest : MonoBehaviour
         if (context.performed)
         {
            // Nesteranko.GetComponent<Animations>().Crouch();
-            Branson.GetComponent<Animations>().Crouch();
+            //Branson.GetComponent<Animations>().Crouch();
             //Meldin
             //Reed
         }
     }
 
-    public void jumpTest(InputAction.CallbackContext context)
+    public void superTest(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            //Nesteranko.GetComponent<Animations>().Jump();
-            Branson.GetComponent<Animations>().Jump();
+            Nesteranko.GetComponent<Animations>().Super();
+            //Branson.GetComponent<Animations>().Super();
             //Meldin
             //Reed
         }
