@@ -558,7 +558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d3b561b1e9922846ab2cb8f2cd45fc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superBoxPrefab: {fileID: 0}
+  superBoxPrefab: {fileID: 5012943828020297704, guid: 7634f3fe7042f284fbd593f93bd429b1, type: 3}
   data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
 --- !u!1 &1293744640342681270
 GameObject:
