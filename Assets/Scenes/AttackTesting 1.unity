@@ -1239,8 +1239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b0aa19fd16f83429fa80228ac391f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 577742727862747637, guid: 4d2c3f4fe3a5f9e40a28e951a36e56ba, type: 3}
-  player2: {fileID: 577742727862747637, guid: d4b5b8f8ded26904797a014bd0e35af5, type: 3}
+  player1: {fileID: 577742727862747637, guid: 3d3776e4f073bc848830be58801b88fe, type: 3}
+  player2: {fileID: 577742727862747637, guid: 6bb2cb6ef6e5c7c4c97ec5f6550c2a92, type: 3}
   player1Pos: {fileID: 0}
   player2Pos: {fileID: 0}
   Data: {fileID: 0}
