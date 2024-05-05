@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5012943828020297704
+--- !u!1 &9150431297502478467
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9034214811692614870}
-  - component: {fileID: 5383057339952274720}
-  - component: {fileID: 5432305965054731440}
-  - component: {fileID: 4768028345056779361}
-  - component: {fileID: 2489283334833845170}
+  - component: {fileID: 8367254841962106042}
+  - component: {fileID: 6976926725899208165}
+  - component: {fileID: 6237656830056659426}
+  - component: {fileID: 6544913787235519291}
   m_Layer: 0
-  m_Name: nestySuperPrefab
-  m_TagString: superBall
+  m_Name: nestyShards
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9034214811692614870
+--- !u!4 &8367254841962106042
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5012943828020297704}
+  m_GameObject: {fileID: 9150431297502478467}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.99893063, w: 0.04623485}
-  m_LocalPosition: {x: -3.81, y: -0.32, z: 0}
-  m_LocalScale: {x: 0.6622, y: 0.6622, z: 0.6622}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2161946, y: -1.6926824, z: 0}
+  m_LocalScale: {x: 0.49, y: 0.49, z: 0.49}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 174.7}
---- !u!212 &5383057339952274720
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &6976926725899208165
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5012943828020297704}
+  m_GameObject: {fileID: 9150431297502478467}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1991320089, guid: 2bba1519863e76f46b8bf0125b4407b5, type: 3}
+  m_Sprite: {fileID: -1962841878, guid: 2bba1519863e76f46b8bf0125b4407b5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,34 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &5432305965054731440
-Animator:
-  serializedVersion: 5
+--- !u!61 &6237656830056659426
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5012943828020297704}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c043cce1ff8018745a84ea6b11b1dfb3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!58 &4768028345056779361
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5012943828020297704}
+  m_GameObject: {fileID: 9150431297502478467}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -137,24 +115,31 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05, y: -0.007742433}
+  m_Offset: {x: 0.04524885, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.7238192
---- !u!114 &2489283334833845170
+  m_Size: {x: 0.69588053, y: 1.28}
+  m_EdgeRadius: 0
+--- !u!114 &6544913787235519291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5012943828020297704}
+  m_GameObject: {fileID: 9150431297502478467}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee1e145cd9f0614438d7260973e90bac, type: 3}
+  m_Script: {fileID: 11500000, guid: b8297bb4ead89994db8d23fbd9570aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superball: {fileID: 0}
-  shardsPrefab: {fileID: 9150431297502478467, guid: 7c49271ef79c1034fa4e6d51c982d50b, type: 3}
-  numberOfShards: 7
