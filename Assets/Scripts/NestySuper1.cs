@@ -30,10 +30,11 @@ public class NestySuper1 : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag != gameObject.tag)
+        if(collision.transform.parent.tag != playerOne.tag)
         {
             Debug.Log("Nesteranko Super: I've hit something");
             hitbox.OnTriggerEnter2D(collision);
+            Destroy(gameObject);
         }
     }
 
