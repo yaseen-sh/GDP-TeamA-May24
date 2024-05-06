@@ -21,6 +21,7 @@ TagManager:
   - Super
   - BlockBox
   - superBall
+  - Floor
   layers:
   - Default
   - TransparentFX

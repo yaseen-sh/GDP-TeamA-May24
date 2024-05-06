@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 5432305965054731440}
   - component: {fileID: 4768028345056779361}
   - component: {fileID: 2489283334833845170}
+  - component: {fileID: -3609700135416594123}
   m_Layer: 0
   m_Name: nestySuperPrefab
-  m_TagString: superBall
+  m_TagString: Super
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5012943828020297704}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.99893063, w: 0.04623485}
-  m_LocalPosition: {x: -3.81, y: -0.32, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6622, y: 0.6622, z: 0.6622}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 174.7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5383057339952274720
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -137,12 +138,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.05, y: -0.007742433}
   serializedVersion: 2
-  m_Radius: 0.7238192
+  m_Radius: 0.6
 --- !u!114 &2489283334833845170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +156,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1e145cd9f0614438d7260973e90bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  superball: {fileID: 0}
-  shardsPrefab: {fileID: 9150431297502478467, guid: 7c49271ef79c1034fa4e6d51c982d50b, type: 3}
-  numberOfShards: 7
+--- !u!50 &-3609700135416594123
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5012943828020297704}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
