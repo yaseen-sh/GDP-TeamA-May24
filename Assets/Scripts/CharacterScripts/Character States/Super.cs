@@ -15,8 +15,8 @@ public class Super : CharacterBaseState
         hitbox = state.character.GetComponent<Hitbox>();
         superLine = state.character.GetComponentInChildren<AudioSource>();
 
-        if (hitbox.playerTag.CompareTag("Player 1") && !GameManager.super1Full) return;
-        else if (hitbox.playerTag.CompareTag("Player 2") && !GameManager.super2Full) return;
+       // if (hitbox.playerTag.CompareTag("Player 1") && !GameManager.super1Full) return;
+       // else if (hitbox.playerTag.CompareTag("Player 2") && !GameManager.super2Full) return;
 
         if (hitbox.voiceLines.ContainsKey("super2"))
         {

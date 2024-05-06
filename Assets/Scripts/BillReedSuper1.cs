@@ -24,12 +24,14 @@ public class BillReedSuper1 : MonoBehaviour
     {
         if (characterMovement.facingRight)
         {
+            Debug.Break();
             //setting the beam to the other players transform
-            transform.position = playerOne.transform.position + new Vector3(1, 1);
+            transform.position = playerOne.transform.position + new Vector3(3.3f, -.7f);
         }
         else
         {
-            transform.position = playerOne.transform.position + new Vector3(-1, 1);
+            Debug.Break();
+            transform.position = playerOne.transform.position + new Vector3(-3.3f, -.7f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
