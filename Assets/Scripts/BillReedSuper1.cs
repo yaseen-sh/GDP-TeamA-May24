@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class BillReedSuper1 : MonoBehaviour
 {
     //Player
     private GameObject playerOne;
     private CharacterMovement characterMovement;
-
+    private Hitbox hitbox;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,7 @@ public class BillReedSuper1 : MonoBehaviour
         //getting player two
         playerOne = GameObject.FindGameObjectWithTag("Player 1");
         characterMovement = playerOne.GetComponent<CharacterMovement>();
+        hitbox = playerOne.GetComponent<Hitbox>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,15 @@ public class BillReedSuper1 : MonoBehaviour
         else
         {
             transform.position = playerOne.transform.position + new Vector3(-1, 1);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.parent.tag != playerOne.tag)
+        {
+            Debug.Log("Nesteranko Super: I've hit something");
+            hitbox.OnTriggerEnter2D(collision);
+            Destroy(gameObject);
         }
     }
 }
