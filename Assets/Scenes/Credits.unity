@@ -910,8 +910,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.56482, y: -2775.2952}
-  m_SizeDelta: {x: 952.8423, y: 4416.991}
+  m_AnchoredPosition: {x: 45.265137, y: -3514.7808}
+  m_SizeDelta: {x: 992.2429, y: 5895.962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753662268
 MonoBehaviour:
@@ -953,8 +953,10 @@ MonoBehaviour:
     Composed By\nTheodore Lovinski\n\nSongs:\ncsfight-menu\ncsfight-menu2\ncsfight-menu2alt\ncsfight-breaks1\ncsfight-battle2-acid\ncsfight-battle3-liquid\n\nArt:
     \n\nCharacter Likeness + Voices\nMeldin Bektic + His Cat Medo\nBranson Boggia\nMikhail
     Nesterenko\nBill Reed\n\nAnouncer \nBrendon Nguyen\n\nImages Used\nKent State
-    Gateway Arch - KSU\nRisman Plaza - KSU\nMSB 228 - KSU\nEsports Area -KSU\n\nMade
-    For\nGame Development Practicum\n\nSpecial Thanks To\nYou :)"
+    Gateway Arch - KSU\nRisman Plaza - KSU\nMSB 228 - KSU\nEsports Arena -KSU\nMSB
+    Lobby - KSU\nProfessor Nesterenko's Office - KSU\nOutside MSB - KSU\nKSU Student
+    Center Basement - KSU\n\nMade For\nGame Development Practicum\n\nSpecial Thanks
+    To\nYou :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}
   m_sharedMaterial: {fileID: -6869724750558662721, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}

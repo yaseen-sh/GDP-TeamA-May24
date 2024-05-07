@@ -26,11 +26,11 @@ public class BillReedSuper2 : MonoBehaviour
         {
             
             //setting the beam to the other players transform
-            transform.position = playerTwo.transform.position + new Vector3(3.3f, -.7f);
+            transform.position = playerTwo.transform.position + new Vector3(3.5f, .2f);
         }
         else
         {
-            transform.position = playerTwo.transform.position + new Vector3(-3.3f, -.7f);
+            transform.position = playerTwo.transform.position + new Vector3(-3.5f, .2f);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

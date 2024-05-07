@@ -31,7 +31,7 @@ MonoBehaviour:
   - lose2
   - roundstart1
   - super1
-  - Super2
+  - super2
   - victory1
   - victory2
   characterSpeed: 5
