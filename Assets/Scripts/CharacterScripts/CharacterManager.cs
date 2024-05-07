@@ -35,7 +35,10 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     public CharacterStateMachine state;
 
+    public CharacterAttack characterAttack;
+
     public float hitStunTimer;
+    //private AudioSource damageLine;
 
     private void Awake()
     {

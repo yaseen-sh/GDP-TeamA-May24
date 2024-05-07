@@ -57,7 +57,7 @@ MonoBehaviour:
   superAttackDamage: 2
   superAttackPosY: 1
   superAttackPosX: 1
-  superAttackFrameCount: 1
+  superAttackFrameCount: 2
   superAttackStartUpFrames: 1
   superAttackRecoveryFrames: 1
   superAttackHitboxScale: {x: 1, y: 1}

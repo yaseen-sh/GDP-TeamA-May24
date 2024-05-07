@@ -121,6 +121,7 @@ MonoBehaviour:
   hitboxPrefab: {fileID: 7534746022721900129, guid: 6ddecd71ac375ab4a8218a3cec209e30, type: 3}
   blockboxPrefab: {fileID: 7534746022721900129, guid: c90214fb318aaa642a8871077fc0b4dd, type: 3}
   superBoxPrefab: {fileID: 5381330351135636884, guid: d90bcc3d0da1d1549b62ebe5a68d2d7c, type: 3}
+  hurtBoxPrefab: {fileID: 4721342976139048492}
   hitBoxSpawnLocation: {fileID: 5136994986536587821}
   hitboxPosX: 0.5
   hitboxPosY: 0.5
@@ -450,6 +451,7 @@ MonoBehaviour:
   hitBoxSize: {x: 1, y: 1}
   Data: {fileID: 11400000, guid: 2090c9285d11ee64f82a2a2a85aa8659, type: 2}
   state: {fileID: 0}
+  characterAttack: {fileID: 520575334858600176}
   hitStunTimer: 0
 --- !u!61 &3935916367781342058
 BoxCollider2D:

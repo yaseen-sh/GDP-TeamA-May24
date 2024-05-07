@@ -17,6 +17,7 @@ public class Hitbox : MonoBehaviour
     public GameObject hitboxPrefab;
     public GameObject blockboxPrefab;
     public GameObject superBoxPrefab;
+    public GameObject hurtBoxPrefab;
     public Transform hitBoxSpawnLocation;// where the hit box spawns
     public float hitboxPosX = 0.5f, hitboxPosY = 0.5f; //used to reposition hitbox 
     public Collider2D hitBoxCollider;
@@ -77,12 +78,11 @@ public class Hitbox : MonoBehaviour
     public Dictionary<string, AudioClip> voiceLines = new Dictionary<string, AudioClip>();
 
     public CharacterMovement movement;
-
+    bool onlyOnce = false;
 
     private void Awake()
     {
         movement = GetComponent<CharacterMovement>();
-        
     }
     public void Start()
     {
@@ -162,6 +162,10 @@ public class Hitbox : MonoBehaviour
                 isAttacking = false;
             }
         }
+        if (!characterAttack.isBlocking)
+        {
+            hurtBoxPrefab.SetActive(true);
+        }
     }
     public void OnTriggerEnter2D(Collider2D coll)
     {
@@ -172,10 +176,12 @@ public class Hitbox : MonoBehaviour
             OpponentTag.SetPlayerHealth(damage, hitStun);
             //Debug.Log("Hit Confirmed");
         }
-        else if (coll.gameObject.CompareTag("BlockBox") && isAttacking == true && globalAttackID == 3)
+        else if (coll.gameObject.CompareTag("BlockBox") && isAttacking == true && globalAttackID == 3 && !onlyOnce)
         {
             OpponentTag.GetPlayerHealth();
             OpponentTag.SetPlayerHealth(1, 1);
+            StartCoroutine(disableHurtbox());
+            onlyOnce = true;
         }
     }
     public void SpawnHitbox(int attackType)
@@ -279,11 +285,19 @@ public class Hitbox : MonoBehaviour
             newPosition = hitBoxSpawnLocation.position + new Vector3(hitboxPosX, hitboxPosY); //Tweak HitBox Locations based on Attack type
             if (attackType == 4)
             {
+                hurtBoxPrefab.SetActive(false);
                 currentHitBox = Instantiate(blockboxPrefab, newPosition, Quaternion.identity, hitBoxSpawnLocation);
             }
             else if (attackType == 3)
             {
-                currentHitBox = Instantiate(superBoxPrefab, gameObject.transform);
+                //currentHitBox = Instantiate(superBoxPrefab, gameObject.transform);
+                // if the char is branson
+                if (gameObject.CompareTag("Player 1") && CSSManager.player1FighterName == "Branson Boggia")
+                    currentHitBox = Instantiate(superBoxPrefab, OpponentTag.transform);
+                else if (gameObject.CompareTag("Player 2") && CSSManager.player2FighterName == "Branson Boggia")
+                    currentHitBox = Instantiate(superBoxPrefab, OpponentTag.transform);
+                else
+                    currentHitBox = Instantiate(superBoxPrefab, gameObject.transform);
             }
             else
             {
@@ -307,5 +321,12 @@ public class Hitbox : MonoBehaviour
             //Debug.Log("Hitbox Destroyed");
         }
     }
-    
+
+    IEnumerator disableHurtbox()
+    {
+        hurtBoxPrefab.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        hurtBoxPrefab.SetActive(true);
+        onlyOnce = false;
+    }
 }
