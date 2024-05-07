@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     private AudioSource music;
+    private AudioSource buttonSfx;
 
     void Awake()
     {
@@ -15,7 +16,8 @@ public class AudioManager : MonoBehaviour
         else
         {
             DontDestroyOnLoad(transform.gameObject);
-            music = GetComponent<AudioSource>();
+            music = GetComponents<AudioSource>()[Random.Range(0, 2)];
+            buttonSfx = GetComponents<AudioSource>()[2];
         }
     }
     public void PlayMusic()
@@ -26,5 +28,10 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         music.Stop();
+    }
+    public void PlaySFX()
+    {
+        if (buttonSfx.isPlaying) return;
+        buttonSfx.Play();
     }
 }

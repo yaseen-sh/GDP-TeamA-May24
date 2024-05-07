@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MSB 228
   m_EditorClassIdentifier: 
   stageName: MSB 228
-  stagePicture: {fileID: 21300000, guid: 65976beb12257ce41ab399cdae467505, type: 3}
+  stagePicture: {fileID: 21300000, guid: dba95a7ce1fda6a4fa7b217d0630cdef, type: 3}
   selectStage:
     m_PersistentCalls:
       m_Calls:
@@ -29,3 +29,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  stageMusic: {fileID: 8300000, guid: 52ee6defcbfe1144398b570700b4d5bf, type: 3}

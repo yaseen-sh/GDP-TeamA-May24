@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35, y: 35}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: 51.125, y: 49.125004}
+  m_SizeDelta: {x: 102.25, y: 98.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4833859071309740332
 CanvasRenderer:
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c956b3ddd76a56345b79dc7d307b3443, type: 3}
+  m_Sprite: {fileID: -405853049, guid: c824915f1fdb94e4aa01f621f7c55d7f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -127,8 +127,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 35, y: 35}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: 51, y: 49.125}
+  m_SizeDelta: {x: 102, y: 98.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6064656325164616275
 CanvasRenderer:
@@ -299,6 +299,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f01c4b4f-0a39-4496-957a-b47733da8b50
     m_ActionName: Player/Return[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5273879768098429769, guid: 4d258b2b629969846ba8a2c319bde6b2, type: 3}
+        m_TargetAssemblyTypeName: SecretStage, Assembly-CSharp
+        m_MethodName: SelectSecretStage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f30f7c81-df36-41bf-8de6-b44e1c5e0666
+    m_ActionName: Player/Secret[/XInputControllerWindows/dpad/down,/XInputControllerWindows1/dpad/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
@@ -316,11 +332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063c50bf4ce60f24a81ef2357b4e8aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorSpeed: 10
+  cursorSpeed: 15
   padding: 50
   moving: 0
   charSelected: 0
   playerSelection: {fileID: 0}
   player2Required: {fileID: 959128374766350556, guid: bb8478fa9d52dc14eb64d518dccb2560, type: 3}
   holdSlider: {fileID: 705868000677630395, guid: f866f5ec72b7a36459fe25bbc4b8ded1, type: 3}
-  cursorSprite: {fileID: 21300000, guid: c956b3ddd76a56345b79dc7d307b3443, type: 3}
+  cursorSprite: {fileID: -405853049, guid: c824915f1fdb94e4aa01f621f7c55d7f, type: 3}

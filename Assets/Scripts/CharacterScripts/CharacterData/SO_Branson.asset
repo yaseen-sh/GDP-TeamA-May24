@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21252a1830fa2b14e95ea728e29185ef, type: 3}
+  m_Name: SO_Branson
+  m_EditorClassIdentifier: 
+  charName: Branson
+  charImage: {fileID: 0}
+  voiceLines:
+  - {fileID: 8300000, guid: 26244b32eff1cb94294fa93ddc2da62c, type: 3}
+  - {fileID: 8300000, guid: ddac64d6405c9844ab5ae613d4b8efe5, type: 3}
+  - {fileID: 8300000, guid: e8310d51246e92440a74c60d9ec580c8, type: 3}
+  - {fileID: 8300000, guid: 080ba013447684240a5f8bf87f367a6e, type: 3}
+  - {fileID: 8300000, guid: 61b2fed3924cbdc4e81c43a10756e281, type: 3}
+  - {fileID: 8300000, guid: ef9a348d48769db4b987c8508fa0cef5, type: 3}
+  - {fileID: 8300000, guid: c1919c824e204e747b03f963f5b55ff6, type: 3}
+  - {fileID: 8300000, guid: 0f1f5f7e9654d4843a6cc71b2daba8e1, type: 3}
+  - {fileID: 8300000, guid: fe12a8b7ec216714a8db16bbb52b0e6a, type: 3}
+  voiceLineNames:
+  - damage1
+  - damage2
+  - damage3
+  - lose1
+  - lose2
+  - roundstart1
+  - roundstart2
+  - super1
+  - victory1
+  characterSpeed: 5
+  PlayerTag: {fileID: 0}
+  OpponentTag: {fileID: 0}
+  animations: {fileID: 0}
+  lightAttackDamage: 1
+  lightAttackPosY: 1.55
+  lightAttackPosX: 0.8
+  lightAttackFrameCount: 0.3
+  lightAttackStartUpFrames: 0.4
+  lightAttackRecoveryFrames: 0.7
+  lightAttackHitboxScale: {x: 0.4, y: 0.2}
+  lightAttackHitStun: 0.03
+  heavyAttackDamage: 1
+  heavyAttackPosY: 1
+  heavyAttackPosX: 1.5
+  heavyAttackFrameCount: 0.1
+  heavyAttackStartUpFrames: 0.3
+  heavyAttackRecoveryFrames: 0.7
+  heavyAttackHitboxScale: {x: 0.3, y: 0.5}
+  heavyAttackHitStun: 0
+  superAttackDamage: 2
+  superAttackPosY: 1
+  superAttackPosX: 1
+  superAttackFrameCount: 2
+  superAttackStartUpFrames: 1
+  superAttackRecoveryFrames: 1
+  superAttackHitboxScale: {x: 1, y: 1}
+  superAttackHitStun: 1
+  blockPosY: 0
+  blockPosX: 0
+  blockBoxScale: {x: 0.6, y: 1.2, z: 0.5}
+  blockRecoveryFrames: 1

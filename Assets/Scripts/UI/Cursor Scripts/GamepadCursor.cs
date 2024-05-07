@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Users;
-using System;
+//using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEditor;
 
 /*
     This should allow the user to select buttons with cursor using the gamepad left stick. 
@@ -15,7 +16,7 @@ using TMPro;
 */
 public class GamepadCursor : MonoBehaviour
 {
-    private float cursorSpeed = 6;
+    public float cursorSpeed;
     [SerializeField]
     private float padding = 50f;
 
@@ -27,7 +28,6 @@ public class GamepadCursor : MonoBehaviour
     [Space]
 
     public GameObject playerSelection;
-    public static EventHandler DoneSelectingEvent;
 
     [Header("Title Screen Required text")]
     public GameObject player2Required;
@@ -44,7 +44,7 @@ public class GamepadCursor : MonoBehaviour
     {
         if (moving && !charSelected)
         {
-            Vector3 newPos = new Vector3(cursorMovement.x, cursorMovement.y, 0f) * cursorSpeed;
+            Vector3 newPos = new Vector3(cursorMovement.x, cursorMovement.y, 0f) * cursorSpeed * (Time.deltaTime * 100);
             Vector3 temp = new Vector3(0, 0, 0);
             Vector3 worldSpace1 = Camera.main.ScreenToWorldPoint(temp);
 
@@ -65,7 +65,7 @@ public class GamepadCursor : MonoBehaviour
             if (slider != null) Destroy(slider);
         }
 
-        if (SceneManager.GetActiveScene().name == "TempStageSelect") { gameObject.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0); }
+        if (SceneManager.GetActiveScene().name == "StageSelect") { gameObject.GetComponentInChildren<Image>().color = new Color(0, 0, 0, 0); }
         else { gameObject.GetComponentInChildren<Image>().sprite = cursorSprite; }
     }
 
@@ -88,7 +88,7 @@ public class GamepadCursor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            if (SceneManager.GetActiveScene().name == "TitleScreen" && gameObject.CompareTag("CursorP1"))
+            if (SceneManager.GetActiveScene().name == "TitleScreen"/* && gameObject.CompareTag("CursorP1")*/)
             {
                 SetupTitle titleButtons = GameObject.Find("TitleButtons").GetComponent<SetupTitle>();
                 // Player V Player Button
@@ -96,7 +96,10 @@ public class GamepadCursor : MonoBehaviour
                 {
                     int players = GamepadJoin.numberOfActivePlayers;
                     if (players == 2)
+                    {
+                        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
                         titleButtons.pvpMode.GetComponent<Button>().onClick.Invoke();
+                    }
                     else
                         StartCoroutine(ShowRequiredText());
                 }
@@ -104,56 +107,78 @@ public class GamepadCursor : MonoBehaviour
                 if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.story.GetComponent<RectTransform>(), transform.position))
                 {
                     Debug.Log("Story");
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
                     titleButtons.story.GetComponent<Button>().onClick.Invoke();
                 }
                 // Credits Button
                 if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.credits.GetComponent<RectTransform>(), transform.position))
                 {
                     Debug.Log("Credits");
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
                     titleButtons.credits.GetComponent<Button>().onClick.Invoke();
+                }
+                // Controls Button
+                if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.controls.GetComponent<RectTransform>(), transform.position))
+                {
+                    Debug.Log("Controls");
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
+                    titleButtons.controls.GetComponent<Button>().onClick.Invoke();
                 }
                 // Quit Button
                 if (RectTransformUtility.RectangleContainsScreenPoint(titleButtons.quit.GetComponent<RectTransform>(), transform.position))
                 {
                     Debug.Log("Quit");
-                    //titleButtons.quit.GetComponent<Button>().onClick.Invoke();
+                    GameObject.Find("AudioManager").GetComponent<AudioManager>().PlaySFX();
+                    titleButtons.quit.GetComponent<Button>().onClick.Invoke();
                 }
             } 
-            else if (SceneManager.GetActiveScene().name == "Credits" && gameObject.CompareTag("CursorP1")) {
+            else if (SceneManager.GetActiveScene().name == "Credits" /*&& gameObject.CompareTag("CursorP1")*/) {
                 GameObject.Find("Credits").GetComponent<ScrollingText>().creditSpeedup = !GameObject.Find("Credits").GetComponent<ScrollingText>().creditSpeedup;
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
             }
-            else if (SceneManager.GetActiveScene().name == "Story" && gameObject.CompareTag("CursorP1"))
+            else if (SceneManager.GetActiveScene().name == "Story" /*&& gameObject.CompareTag("CursorP1")*/)
             {
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
+            }
+            else if (SceneManager.GetActiveScene().name == "Controls" /*&& gameObject.CompareTag("CursorP1")*/)
+            {
+                // Back Button
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
+                    BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
+                    if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
+                    {
+                        charButtons.backButton.GetComponent<Button>().onClick.Invoke();
+                    }
+                //}
             }
             else if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 // Back Button
-                if (gameObject.CompareTag("CursorP1"))
-                {
+                //if (gameObject.CompareTag("CursorP1"))
+                //{
                     BackButton charButtons = GameObject.Find("BackButton").GetComponent<BackButton>();
                     if (RectTransformUtility.RectangleContainsScreenPoint(charButtons.backButton.GetComponent<RectTransform>(), transform.position))
                     {
                         charButtons.backButton.GetComponent<Button>().onClick.Invoke();
                     }
-                }
+                //}
                 foreach (GameObject fighter in GameObject.FindGameObjectWithTag("CharGrid").GetComponent<SetupCharTiles>().allTiles)
                 {
                     if (RectTransformUtility.RectangleContainsScreenPoint(fighter.GetComponent<RectTransform>(), transform.position))
@@ -168,15 +193,20 @@ public class GamepadCursor : MonoBehaviour
                             {
                                 buttonColor.normalColor = new Color(0, 0, .2f, .5f);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor;
-                                fighter.GetComponent<AudioSource>().Play(); // Selected Voice Line Plays
+                                fighter.GetComponents<AudioSource>()[Random.Range(0, fighter.GetComponents<AudioSource>().Length)].Play(); // Selected Voice Line Plays
                             }
                             else
                             {
                                 buttonColor.normalColor = new Color(0, 0, 0, 0);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor;
                             }
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected = charSelected;
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected = charSelected;
+                            CSSManager.player1Selected = charSelected;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player1Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player1FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                            CSSManager.player1Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player1FighterName}");
+                            CSSManager.player1Intro = SetupCharTiles.charA1Lines[fighter.GetComponentInChildren<TextMeshProUGUI>().text];
                         }
                         else if (gameObject.CompareTag("CursorP2"))
                         {
@@ -192,8 +222,13 @@ public class GamepadCursor : MonoBehaviour
                                 buttonColor2.normalColor = new Color(0, 0, 0, 0);
                                 fighter.GetComponentInChildren<Button>().colors = buttonColor2;
                             }
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected = charSelected;
-                            GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected = charSelected;
+                            CSSManager.player2Selected = charSelected;
+                            //GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player2Fighter = fighter.GetComponentInChildren<Image>().sprite;
+                            CSSManager.player2FighterName = fighter.GetComponentInChildren<TextMeshProUGUI>().text;
+                            CSSManager.player2Object = Resources.Load<GameObject>($"Fighters/{CSSManager.player2FighterName + "2"}");
+                            CSSManager.player2Intro = SetupCharTiles.charA2Lines[fighter.GetComponentInChildren<TextMeshProUGUI>().text];
                         }
                         return;
                     }
@@ -206,15 +241,14 @@ public class GamepadCursor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started)
         {
-            if (gameObject.CompareTag("CursorP2")) return;
+            //if (gameObject.CompareTag("CursorP2")) return;
 
             if (SceneManager.GetActiveScene().name == "CharacterSelectPvP")
             {
                 Debug.Log("Start Button Pressed");
-                if (GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player1Selected &&
-                    GameObject.FindGameObjectWithTag("CharManager").GetComponent<CSSManager>().player2Selected)
+                if (CSSManager.player1Selected && CSSManager.player2Selected)
                 {
-                    SceneManager.LoadScene("TempStageSelect");
+                    SceneManager.LoadScene("StageSelect");
                 }
             }
         }
@@ -223,7 +257,7 @@ public class GamepadCursor : MonoBehaviour
     public void OnBackButton(InputAction.CallbackContext context)
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        if (gameObject.CompareTag("CursorP1") && currentScene.name != "TitleScreen")
+        if (/*gameObject.CompareTag("CursorP1") &&*/ currentScene.name != "TitleScreen")
         {
             if (context.phase == InputActionPhase.Started) beingHeld = true;
 
@@ -232,9 +266,10 @@ public class GamepadCursor : MonoBehaviour
             if (context.phase == InputActionPhase.Performed)
             {
                 if (currentScene.name == "CharacterSelectPvP") { SceneManager.LoadScene("TitleScreen"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
-                else if (currentScene.name == "TempStageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
+                else if (currentScene.name == "StageSelect") { SceneManager.LoadScene("CharacterSelectPvP"); Destroy(GameObject.FindGameObjectWithTag("CharManager")); }
                 else if (currentScene.name == "Credits") { SceneManager.LoadScene("TitleScreen"); }
                 else if (currentScene.name == "Story") { SceneManager.LoadScene("TitleScreen"); }
+                else if (currentScene.name == "Controls") { SceneManager.LoadScene("TitleScreen"); }
             }
         }
     }

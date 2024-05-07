@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 */
 public class ButtonManager : MonoBehaviour
 {
-
     public void TitleScreen()
     {
         Destroy(GameObject.FindGameObjectWithTag("CharManager"));
@@ -33,6 +32,11 @@ public class ButtonManager : MonoBehaviour
     public void Credits()
     {
         SceneManager.LoadScene("Credits");
+        GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
+    }
+    public void Controls()
+    {
+        SceneManager.LoadScene("Controls");
         GameObject.Find("AudioManager").GetComponent<AudioManager>().PlayMusic();
     }
     public void Story()

@@ -479,6 +479,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &1165344992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1931406053471596303, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_Name
+      value: ButtonManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 880.96906
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 588.5155
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.7369356
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197763466636592927, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
 --- !u!1 &1330458537
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,8 +910,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -22.252602, y: -1411.175}
-  m_SizeDelta: {x: 667.2076, y: 1688.75}
+  m_AnchoredPosition: {x: 45.265137, y: -3514.7808}
+  m_SizeDelta: {x: 992.2429, y: 5895.962}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753662268
 MonoBehaviour:
@@ -891,10 +948,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Kent Fighters: Binary Brawl\n\nCredits\n\nTeam A \n\"Productions\"\n\nYaseen
-    Shaikh\nBrendon Nguyen\nChris Cubick\nDylan Sarell\nKedrick Karasek\nRosa Kilmer\n\nAssets\nMusic:\nArt:
-    \n\nCharacter Likeness\nMeldin Bektic\nBranson Boggia\nMikhail Nesterenko\nBill
-    Reed"
+  m_text: "Kent Fighters: Binary Brawl\n\nCREDITS\n\nTeam A \n\"Productions\"\n\nChris
+    Cubick\nKedrick Karasek\nRosa Kilmer\nBrendon Nguyen\nDylan Sarell\nYaseen Shaikh\n\nAssets\nMusic
+    Composed By\nTheodore Lovinski\n\nSongs:\ncsfight-menu\ncsfight-menu2\ncsfight-menu2alt\ncsfight-breaks1\ncsfight-battle2-acid\ncsfight-battle3-liquid\n\nFight-On!
+    \nBy Nobuo Uematsu\n\nCharacter Likeness + Voices\nMeldin Bektic + His Cat Medo\nBranson
+    Boggia\nMikhail Nesterenko\nBill Reed\n\nAnouncer \nBrendon Nguyen\n\nImages
+    Used\nKent State Gateway Arch - KSU\nRisman Plaza - KSU\nMSB 228 - KSU\nEsports
+    Arena -KSU\nMSB Lobby - KSU\nProfessor Nesterenko's Office - KSU\nOutside MSB
+    - KSU\nKSU Student Center Basement - KSU\nFFVII First Battle - Square Eniox\n\nMade
+    For\nGame Development Practicum\n\nSpecial Thanks To\nYou :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}
   m_sharedMaterial: {fileID: -6869724750558662721, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}
@@ -1049,50 +1111,17 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
---- !u!1 &1951158909
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1951158911}
-  - component: {fileID: 1951158910}
-  m_Layer: 0
-  m_Name: ButtonManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1951158910
+--- !u!114 &1951158910 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 578345633789454994, guid: 32d0788bd01bbec4ea86fcee1d070d4b, type: 3}
+  m_PrefabInstance: {fileID: 1165344992}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951158909}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44a56814ef430af418a0144104031dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1951158911
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951158909}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 880.96906, y: 588.5155, z: 4.7369356}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965738853
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,5 +1347,5 @@ SceneRoots:
   - {fileID: 1759483055}
   - {fileID: 1965738856}
   - {fileID: 1634995759}
-  - {fileID: 1951158911}
+  - {fileID: 1165344992}
   - {fileID: 402087574}

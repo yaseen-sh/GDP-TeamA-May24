@@ -25,6 +25,7 @@ public class SetupStageTiles : MonoBehaviour
         tile.GetComponentInChildren<TextMeshProUGUI>().text = stage.stageName;
         tile.GetComponentsInChildren<Image>()[1].sprite = stage.stagePicture;
         tile.GetComponentInChildren<Button>().onClick = stage.selectStage;
+        tile.GetComponent<AudioSource>().clip = stage.stageMusic;
         stageTileObjects.Add(tile);
     }
 }

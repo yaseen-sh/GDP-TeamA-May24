@@ -9,4 +9,5 @@ public class StageTile : ScriptableObject
     public string stageName; // Name of Stage
     public Sprite stagePicture; // Picture of Stage
     public Button.ButtonClickedEvent selectStage; // Button Action for Stage
+    public AudioClip stageMusic; // Music of Stage
 }

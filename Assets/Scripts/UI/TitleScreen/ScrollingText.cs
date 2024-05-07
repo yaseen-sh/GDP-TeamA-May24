@@ -33,7 +33,7 @@ public class ScrollingText : MonoBehaviour
         else
             rectTransform.anchoredPosition += Vector2.up * scrollSpeed * Time.deltaTime;
 
-        if (rectTransform.transform.position.y > Screen.height * 1.75)
+        if (rectTransform.transform.position.y > Screen.height * 2)
             SceneManager.LoadScene(TITLESCENE);
 
         if (Input.GetKeyDown(KeyCode.Escape))

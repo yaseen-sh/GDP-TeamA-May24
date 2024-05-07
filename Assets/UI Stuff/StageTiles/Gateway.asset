@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gateway
   m_EditorClassIdentifier: 
   stageName: Gateway
-  stagePicture: {fileID: 21300000, guid: 95f564ee549f51747993d8baf289d577, type: 3}
+  stagePicture: {fileID: 21300000, guid: 0779accf0c1512742bf3abae58a6716a, type: 3}
   selectStage:
     m_PersistentCalls:
       m_Calls:
@@ -29,3 +29,4 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  stageMusic: {fileID: 8300000, guid: c7f88e7eb392c024f8dd3dbc8800f0e8, type: 3}

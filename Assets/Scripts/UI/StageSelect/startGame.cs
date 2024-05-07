@@ -9,11 +9,11 @@ public class startGame : MonoBehaviour
 {
     public GameObject hoverObj;
     private StageHover hoverScript;
-    //private string stageName = "null";
     public GameObject startGameText;
 
     public static string selectedStage;
     public static Sprite selectedImage;
+    public static AudioClip selectedClip;
     private string prevSelectedStage;
     public static bool hasSelectedStage = false;
 
@@ -22,7 +22,7 @@ public class startGame : MonoBehaviour
     {
         hoverObj = GameObject.Find("Buttons");
         hoverScript = hoverObj.GetComponent<StageHover>();
-        startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "";//SetActive(false);
+        startGameText.GetComponentInChildren<TextMeshProUGUI>().text = "";
         selectedStage = "";
         hasSelectedStage = false;
         prevSelectedStage = "";
@@ -41,6 +41,7 @@ public class startGame : MonoBehaviour
     {
         selectedStage = StageHover.selectedStageName;
         selectedImage = StageHover.defaultImage;
+        selectedClip = StageHover.stageSong;
         Debug.Log(selectedStage);
         if (prevSelectedStage == selectedStage)
         {
@@ -57,7 +58,18 @@ public class startGame : MonoBehaviour
     public void LoadStage()
     {
         Debug.Log("We would be loading "+selectedStage+" here");
-        //SceneManager.LoadScene(selectedStage);
-        
+        CSSManager.stage = selectedImage;
+        CSSManager.stageTheme = selectedClip;
+        CSSManager.stageName = selectedStage;
+
+        if (GameObject.Find("AudioManager") != null)
+        {
+            GameObject.Find("AudioManager").GetComponent<AudioManager>().StopMusic();
+        }
+        else if (GameObject.Find("AudioManager2") != null)
+        {
+            GameObject.Find("AudioManager2").GetComponent<AudioManager>().StopMusic();
+        }
+        SceneManager.LoadScene("BrawlScene");
     }
 }
