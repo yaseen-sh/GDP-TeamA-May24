@@ -950,13 +950,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Kent Fighters: Binary Brawl\n\nCREDITS\n\nTeam A \n\"Productions\"\n\nChris
     Cubick\nKedrick Karasek\nRosa Kilmer\nBrendon Nguyen\nDylan Sarell\nYaseen Shaikh\n\nAssets\nMusic
-    Composed By\nTheodore Lovinski\n\nSongs:\ncsfight-menu\ncsfight-menu2\ncsfight-menu2alt\ncsfight-breaks1\ncsfight-battle2-acid\ncsfight-battle3-liquid\n\nArt:
-    \n\nCharacter Likeness + Voices\nMeldin Bektic + His Cat Medo\nBranson Boggia\nMikhail
-    Nesterenko\nBill Reed\n\nAnouncer \nBrendon Nguyen\n\nImages Used\nKent State
-    Gateway Arch - KSU\nRisman Plaza - KSU\nMSB 228 - KSU\nEsports Arena -KSU\nMSB
-    Lobby - KSU\nProfessor Nesterenko's Office - KSU\nOutside MSB - KSU\nKSU Student
-    Center Basement - KSU\n\nMade For\nGame Development Practicum\n\nSpecial Thanks
-    To\nYou :)"
+    Composed By\nTheodore Lovinski\n\nSongs:\ncsfight-menu\ncsfight-menu2\ncsfight-menu2alt\ncsfight-breaks1\ncsfight-battle2-acid\ncsfight-battle3-liquid\n\nFight-On!
+    \nBy Nobuo Uematsu\n\nCharacter Likeness + Voices\nMeldin Bektic + His Cat Medo\nBranson
+    Boggia\nMikhail Nesterenko\nBill Reed\n\nAnouncer \nBrendon Nguyen\n\nImages
+    Used\nKent State Gateway Arch - KSU\nRisman Plaza - KSU\nMSB 228 - KSU\nEsports
+    Arena -KSU\nMSB Lobby - KSU\nProfessor Nesterenko's Office - KSU\nOutside MSB
+    - KSU\nKSU Student Center Basement - KSU\nFFVII First Battle - Square Eniox\n\nMade
+    For\nGame Development Practicum\n\nSpecial Thanks To\nYou :)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}
   m_sharedMaterial: {fileID: -6869724750558662721, guid: cfe8de307b1ed8d40b2305ff795e7fb7, type: 2}
