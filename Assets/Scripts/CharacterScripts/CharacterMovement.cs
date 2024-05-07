@@ -66,7 +66,7 @@ public class CharacterMovement : MonoBehaviour
         if (!isBlocking)
         {
             //for crouching, is the player holding down s?
-            if (context.ReadValue<Vector2>().y < 0)
+            if (context.ReadValue<Vector2>().y < -0.8)
             {
                 isCrouching = true;
                 state.SwitchState(state.CrouchState);
