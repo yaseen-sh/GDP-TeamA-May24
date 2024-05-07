@@ -169,7 +169,7 @@ public class Hitbox : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.CompareTag("HurtBox") && isAttacking == true && coll.transform.parent.CompareTag(OpponentTag.tag))
+        if (coll.gameObject.CompareTag("HurtBox") && isAttacking == true && coll.transform.parent.CompareTag(OpponentTag.tag) && !onlyOnce)
         {
             //Debug.Log(coll.gameObject.name);
             OpponentTag.GetPlayerHealth();
